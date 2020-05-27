@@ -20,3 +20,8 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+docker/app/**
+docker/mysql/**
+.keep
+.env

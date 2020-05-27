@@ -1,0 +1,12 @@
+version : '3'
+
+services:
+  lamp:
+    image : mattrayner/lamp:latest-1404
+    ports:
+      - "3306:3306"
+      - "8080:80"
+    volumes : 
+      - ./docker/mysql:/var/lib/mysql
+      - ./docker/app:/app
+      - ./docker/php_config/php:/etc/php

@@ -1,0 +1,7 @@
+{
+    "name": "sovang-php",
+    "description": "new sovang web php",
+    "require": {
+        "vlucas/phpdotenv": "^4.1"
+    }
+}
