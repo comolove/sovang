@@ -25,3 +25,4 @@ docker/app/**
 docker/mysql/**
 .keep
 .env
+.php_env
