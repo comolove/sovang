@@ -1,14 +1,14 @@
 <template>
   <header>
     <div class="wrap">
-      <img src="../assets/images/brand-logo.png" alt="소녀방앗간 로고">
+      <img src="../assets/images/brand-logo.png" alt="소녀방앗간 로고" />
       <div class="menu-container bar-top">
-          <span class="menu">브랜드</span>
-          <span class="menu">식사공간</span>
-          <span class="menu">온라인몰</span>
-          <span class="menu">케이터링</span>
-          <span class="menu">명절선물</span>
-          <span class="menu">커뮤니티</span>
+        <span class="menu">브랜드</span>
+        <span class="menu">식사공간</span>
+        <span class="menu">온라인몰</span>
+        <span class="menu">케이터링</span>
+        <span class="menu">명절선물</span>
+        <span class="menu">커뮤니티</span>
       </div>
     </div>
   </header>
@@ -20,24 +20,25 @@ export default {};
 
 <style scoped lang="scss">
 header {
-    padding-top: 6.75rem;
+  padding-top: 6.75rem;
+  margin-bottom: 3.125rem;
 }
 
 .wrap {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .menu-container {
-    display: inline-flex;
-    justify-content: space-between;
-    width: 50%;
-    padding-top: 1.375rem;
-    align-self: flex-end;
+  display: inline-flex;
+  justify-content: space-between;
+  width: 50%;
+  padding-top: 1.375rem;
+  align-self: flex-end;
 
-    .menu {
-        font-size: 1.625rem;
-    }
+  .menu {
+    font-size: 1.625rem;
+  }
 }
 </style>

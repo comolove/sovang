@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header />
-    <router-view/>
+    <router-view />
     <Footer />
   </div>
 </template>
@@ -27,6 +27,6 @@ export default {
   width: 100%;
   height: 100%;
 
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
 }
 </style>
