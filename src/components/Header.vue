@@ -20,8 +20,8 @@ export default {};
 
 <style scoped lang="scss">
 header {
-  padding-top: 6.75rem;
-  margin-bottom: 3.125rem;
+  padding-top: 4.813rem;
+  margin-bottom: 4.438rem;
 }
 
 .wrap {
@@ -37,7 +37,7 @@ header {
     align-self: flex-end;
 
     .menu {
-      font-size: 1.625rem;
+      font-size: 1.563rem;
     }
   }
 }

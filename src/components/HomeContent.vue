@@ -19,9 +19,9 @@ article {
   width: 100%;
 
   h3 {
-    font-size: 1.625rem;
-    padding-bottom: 0.875rem;
-    margin-bottom: 3.5rem;
+    font-size: 1.563rem;
+    padding-bottom: 0.938rem;
+    margin-bottom: 3.438rem;
   }
 }
 </style>

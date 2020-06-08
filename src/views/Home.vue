@@ -9,9 +9,8 @@
         paginationSize="17"
       >
         <Slide v-for="(path, index) of slideImgPaths" :key="index">
-          <!-- <img :src="path" /> -->
           <!-- TODO : backend 구현 후 db에서 링크 불러와서 넣어주도록 변경 -->
-          <img src="../assets/images/slide/1.png" />
+          <AssetImage :src="path" />
         </Slide>
       </Carousel>
     </section>
@@ -27,16 +26,74 @@
     </section>
     <section class="wrap home-contents">
       <HomeContent title="식사공간">
-        <img src="../assets/images/catering.png"/>
+        <AssetImage src="catering.png" />
       </HomeContent>
       <HomeContent title="온라인몰">
-        <img src="../assets/images/catering.png"/>
+        <div class="online-mall-container">
+          <!-- TODO : backend 구현 후 db에서 링크 불러와서 넣어주도록 변경 -->
+          <div class="item">
+            <HoverTextImage
+              src="online-grid-template.png"
+              infoHtml="<p style='font-weight:100;'>Hello, World!</p>"
+            />
+          </div>
+          <div class="item">
+            <HoverTextImage src="online-grid-template.png" />
+          </div>
+          <div class="item">
+            <HoverTextImage src="online-grid-template.png" />
+          </div>
+          <div class="item">
+            <HoverTextImage src="online-grid-template.png" />
+          </div>
+          <div class="item">
+            <HoverTextImage src="online-grid-template.png" />
+          </div>
+          <div class="item">
+            <HoverTextImage src="online-grid-template.png" />
+          </div>
+          <div class="item">
+            <HoverTextImage src="online-grid-template.png" />
+          </div>
+        </div>
       </HomeContent>
       <HomeContent title="케이터링">
-        <img src="../assets/images/catering.png"/>
+        <ImageOverlayInfo src="catering.png" backgroundColor="#edeae6">
+          <div class="on-overlay-info dark">
+            <div class="overlay-header">
+              <p>로컬청정재료를 건강하고 지속가능하게</p>
+              <h2>청정재료 케이터링</h2>
+            </div>
+            <div class="overlay-content">
+              <p>
+                산지직송 로컬푸드 중 제철재료만을 골라, 저염 건강식으로
+                고급스럽게 도시락과 케이터링을 준비합니다. 로컬푸드 식재료를
+                가장 건강하게 즐길 수 있는 레시피로 행사와 모임에 품격을 더하며,
+                지속가능한 식습관을 제안합니다.
+              </p>
+              <a>&lt; 케이터링 소식 더 보러가기 &gt;</a>
+            </div>
+          </div>
+        </ImageOverlayInfo>
       </HomeContent>
       <HomeContent title="명절선물">
-        <img src="../assets/images/catering.png"/>
+        <ImageOverlayInfo src="present.png" backgroundColor="#867d72">
+          <div class="on-overlay-info white">
+            <div class="overlay-header">
+              <p>매해 가장 좋은 재료로</p>
+              <h2>산지직송 명절선물</h2>
+            </div>
+            <div class="overlay-content">
+              <p>
+                50년 경력의 청정지역 장인들이 직접 손으로 한땀 한땀 정성들여
+                수확한 청정재료로 한 해의 고마움을 전합니다. 땅과 공기가 줄 수
+                있는 에너지를 온전히 담은 재료로 청정지역 장인들의 수준높은
+                식문화를 전합니다.
+              </p>
+              <a>&lt; 명절선물 소식 더 보러가기 &gt;</a>
+            </div>
+          </div>
+        </ImageOverlayInfo>
       </HomeContent>
     </section>
   </main>
@@ -45,24 +102,32 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Carousel, Slide } from "vue-carousel";
-import HomeContent from "@/components/HomeContent.vue";
+import {
+  HomeContent,
+  HoverTextImage,
+  AssetImage,
+  ImageOverlayInfo
+} from "@/components";
 
 @Component({
   name: "Home",
   components: {
     Carousel,
     Slide,
-    HomeContent
+    HomeContent,
+    HoverTextImage,
+    AssetImage,
+    ImageOverlayInfo
   }
 })
 export default class Home extends Vue {
   private slideImgPaths: string[] = [];
 
   created() {
-    this.slideImgPaths.push("/images/slide/1.png");
-    this.slideImgPaths.push("/images/slide/1.png");
-    this.slideImgPaths.push("/images/slide/1.png");
-    this.slideImgPaths.push("/images/slide/1.png");
+    this.slideImgPaths.push("slide/1.png");
+    this.slideImgPaths.push("slide/1.png");
+    this.slideImgPaths.push("slide/1.png");
+    this.slideImgPaths.push("slide/1.png");
   }
 }
 </script>
@@ -77,32 +142,83 @@ export default class Home extends Vue {
 }
 
 .info {
-  margin-top: 6.438rem;
-  // padding: 0 35rem 0 35rem;
+  margin-top: 7.75rem;
   text-align: center;
 
   .title {
-    font-size: 1.875rem;
+    font-size: 1.813rem;
     letter-spacing: -0.15px;
   }
 
   .content {
-    margin-top: 2.688rem;
-    font-size: 1.625rem;
-    line-height: 1.62;
+    margin-top: 2.813rem;
+    font-size: 1.563rem;
+    line-height: 1.68;
     font-weight: 300;
   }
 }
 
 .home-contents {
   margin-top: 11.5rem;
-  
+
   > * {
-    margin-bottom: 11.875rem;
+    margin-bottom: 14.25rem;
+
+    img {
+      width: 100%;
+    }
   }
 
-  > *:last-child {
-    margin-bottom: 14.25rem;
+  .online-mall-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    .item {
+      margin-bottom: 3.438rem;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .on-overlay-info {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: {
+      top: 4.313rem;
+      bottom: 3.938rem;
+      left: 2rem;
+      right: 2.125rem;
+    }
+
+    &.dark {
+      color: #595757;
+    }
+    &.white {
+      color: white;
+    }
+
+    h2 {
+      font-size: 1.719vw;
+      letter-spacing: -0.42px;
+    }
+
+    p,
+    a {
+      font-size: 1.094vw;
+      font-weight: 300;
+      line-height: 1.38;
+    }
+
+    a {
+      display: inline-block;
+      font-style: italic;
+      margin-top: 2.063rem;
+    }
   }
 }
 </style>
