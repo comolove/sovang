@@ -4,10 +4,12 @@
       <div class="header">
         <h3>청정재료 한식밥집 소녀방앗간</h3>
         <div class="sns">
-          <a class="facebook"
-            ><img src="../assets/images/icon-facebook.png"
-          /></a>
-          <a class="insta"><img src="../assets/images/icon-instagram.png"/></a>
+          <a href="https://www.facebook.com/" class="facebook">
+            <img src="../assets/images/icon-facebook.png" />
+          </a>
+          <a href="https://www.instagram.com/" class="insta">
+            <img src="../assets/images/icon-instagram.png" />
+          </a>
         </div>
       </div>
       <p>

@@ -1,5 +1,9 @@
 <template>
-  <div class="hover-text-image">
+  <div
+    class="hover-text-image"
+    :class="{ 'cursor-pointer': hrefExist }"
+    @click="handleClick"
+  >
     <AssetImage :src="src" />
     <div class="overlay"></div>
     <span v-html="infoHtml"></span>
@@ -18,6 +22,17 @@ import { AssetImage } from "@/components";
 export default class HoverTextImage extends Vue {
   @Prop() private src!: string;
   @Prop() private infoHtml!: string;
+  @Prop() private href!: string;
+
+  handleClick(/* e : Event */) {
+    if (this.hrefExist) {
+      location.href = this.href;
+    }
+  }
+
+  get hrefExist() {
+    return this.href != null;
+  }
 }
 </script>
 
@@ -65,5 +80,9 @@ export default class HoverTextImage extends Vue {
       opacity: 1;
     }
   }
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 </style>

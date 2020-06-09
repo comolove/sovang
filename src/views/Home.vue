@@ -2,13 +2,19 @@
   <main class="home">
     <section class="img-slider">
       <Carousel
+        class="main-carousel"
         :per-page="1"
-        :mouse-drag="false"
+        :mouseDrag="false"
+        :autoplay="true"
+        :autoplayTimeout="6000"
+        :autoplayHoverPause="false"
+        :loop="true"
         paginationPosition="bottom-overlay"
         paginationColor="#c9caca"
-        paginationSize="17"
+        :paginationSize="14"
+        :paginationPadding="10"
       >
-        <Slide v-for="(path, index) of slideImgPaths" :key="index">
+        <Slide v-for="(path, index) of slideImgPaths" :key="index" :id='"main-carousel-slide-"+index'>
           <!-- TODO : backend 구현 후 db에서 링크 불러와서 넣어주도록 변경 -->
           <AssetImage :src="path" />
         </Slide>
@@ -26,7 +32,26 @@
     </section>
     <section class="wrap home-contents">
       <HomeContent title="식사공간">
-        <AssetImage src="catering.png" />
+        <Carousel
+          ref="storeCarousel"
+          class="store-carousel"
+          :per-page="3"
+          :scrollPerPage="false"
+          :paginationEnabled="false"
+          :navigationEnabled="true"
+          :navigationNextLabel="navigationNext"
+          :navigationPrevLabel="navigationPrev"
+          :autoplay="true"
+          :loop="true"
+        >
+          <Slide v-for="(path, index) of slideImgPaths" :key="index" :data-index="index" data-name="DataName" @slideclick="handleStoreSlideClick">
+            <!-- TODO : backend 구현 후 db에서 링크 불러와서 넣어주도록 변경 -->
+            <div class="store-content">
+              <AssetImage src="store.png" />
+              <p>{{index}}</p>
+            </div>
+          </Slide>
+        </Carousel>
       </HomeContent>
       <HomeContent title="온라인몰">
         <div class="online-mall-container">
@@ -35,6 +60,7 @@
             <HoverTextImage
               src="online-grid-template.png"
               infoHtml="<p style='font-weight:100;'>Hello, World!</p>"
+              href="abc"
             />
           </div>
           <div class="item">
@@ -59,7 +85,14 @@
       </HomeContent>
       <HomeContent title="케이터링">
         <ImageOverlayInfo src="catering.png" backgroundColor="#edeae6">
-          <div class="on-overlay-info dark">
+          <div
+            class="on-overlay-info dark"
+            @click="
+              () => {
+                this.$router.push('/catering');
+              }
+            "
+          >
             <div class="overlay-header">
               <p>로컬청정재료를 건강하고 지속가능하게</p>
               <h2>청정재료 케이터링</h2>
@@ -78,7 +111,14 @@
       </HomeContent>
       <HomeContent title="명절선물">
         <ImageOverlayInfo src="present.png" backgroundColor="#867d72">
-          <div class="on-overlay-info white">
+          <div
+            class="on-overlay-info white"
+            @click="
+              () => {
+                this.$router.push('/present');
+              }
+            "
+          >
             <div class="overlay-header">
               <p>매해 가장 좋은 재료로</p>
               <h2>산지직송 명절선물</h2>
@@ -122,12 +162,40 @@ import {
 })
 export default class Home extends Vue {
   private slideImgPaths: string[] = [];
+  private curStoreIndex = 0;
 
   created() {
     this.slideImgPaths.push("slide/1.png");
     this.slideImgPaths.push("slide/1.png");
     this.slideImgPaths.push("slide/1.png");
     this.slideImgPaths.push("slide/1.png");
+    this.slideImgPaths.push("slide/1.png");
+    this.slideImgPaths.push("slide/1.png");
+    this.slideImgPaths.push("slide/1.png");
+    this.slideImgPaths.push("slide/1.png");
+  }
+
+  mounted() {
+    // vue-carousel mounted시 첫 번째 요소가 활성화 클래스 태그가 안붙는 문제가 있음
+    ((document as Document).getElementById('main-carousel-slide-0') as Element).classList.add('VueCarousel-slide-active');
+    setTimeout(() => {
+      // 슬라이드가 바뀌어도 임의로 넣어준 active 클래스는 삭제가 안되서 n초후에 임의로 삭제
+      ((document as Document).getElementById('main-carousel-slide-0') as Element).classList.remove('VueCarousel-slide-active');
+    }, 6000)
+  }
+
+  handleStoreSlideClick(dataset : any) {
+    this.curStoreIndex = parseInt(dataset.index);
+    // index 값으로 주면 해당 인덱스가 왼쪽(start)에 붙게되서 - 1 인덱스로 해주어서 선택한 인덱스가 가운데로 오도록 함
+    (this.$refs.storeCarousel as Carousel).goToPage( dataset.index - 1 );
+  }
+
+  public get navigationNext(): string {
+    return `<img src=${require("@/assets/images/arrow-right.png")} style="margin-left:4.25rem;">`;
+  }
+
+  public get navigationPrev(): string {
+    return `<img src=${require("@/assets/images/arrow-left.png")} style="margin-right:4.25rem;">`;
   }
 }
 </script>
@@ -136,11 +204,29 @@ export default class Home extends Vue {
 .img-slider {
   width: 100%;
 
+  &::v-deep .VueCarousel-pagination--bottom-overlay {
+    bottom: 2.063rem;
+  }
+
+  &::v-deep .VueCarousel-inner {
+    // transition: none !important;
+    transition: transform 0s ease 1s !important;
+
+    .VueCarousel-slide {
+      transition: opacity 1s !important;
+      opacity: 0 !important;
+    }
+
+    .VueCarousel-slide-active {
+      transition: opacity 2s ease 1s !important;
+      opacity: 1 !important;
+    }
+  }
+
   img {
     width: 100%;
   }
 }
-
 .info {
   margin-top: 7.75rem;
   text-align: center;
@@ -189,11 +275,12 @@ export default class Home extends Vue {
     flex-direction: column;
     justify-content: space-between;
     padding: {
-      top: 4.313rem;
-      bottom: 3.938rem;
-      left: 2rem;
+      top: 13.7%;
+      bottom: 12.1%;
+      left: 8%;
       right: 2.125rem;
     }
+    cursor: pointer;
 
     &.dark {
       color: #595757;
@@ -218,6 +305,21 @@ export default class Home extends Vue {
       display: inline-block;
       font-style: italic;
       margin-top: 2.063rem;
+    }
+  }
+
+  .store-carousel {
+    .VueCarousel-slide > div {
+      padding-left: 0.5rem;
+      padding-right: 2.125rem;
+    }
+
+    .store-content {
+      p {
+        margin-top: 1.563rem;
+        text-align: center;
+        font-size: 1.469rem;
+      }
     }
   }
 }
