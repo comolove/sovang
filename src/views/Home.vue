@@ -14,7 +14,11 @@
         :paginationSize="14"
         :paginationPadding="10"
       >
-        <Slide v-for="(path, index) of slideImgPaths" :key="index" :id='"main-carousel-slide-"+index'>
+        <Slide
+          v-for="(path, index) of slideImgPaths"
+          :key="index"
+          :id="'main-carousel-slide-' + index"
+        >
           <!-- TODO : backend 구현 후 db에서 링크 불러와서 넣어주도록 변경 -->
           <AssetImage :src="path" />
         </Slide>
@@ -44,11 +48,17 @@
           :autoplay="true"
           :loop="true"
         >
-          <Slide v-for="(path, index) of slideImgPaths" :key="index" :data-index="index" data-name="DataName" @slideclick="handleStoreSlideClick">
+          <Slide
+            v-for="(path, index) of slideImgPaths"
+            :key="index"
+            :data-index="index"
+            data-name="DataName"
+            @slideclick="handleStoreSlideClick"
+          >
             <!-- TODO : backend 구현 후 db에서 링크 불러와서 넣어주도록 변경 -->
             <div class="store-content">
               <AssetImage src="store.png" />
-              <p>{{index}}</p>
+              <p>{{ index }}</p>
             </div>
           </Slide>
         </Carousel>
@@ -177,17 +187,21 @@ export default class Home extends Vue {
 
   mounted() {
     // vue-carousel mounted시 첫 번째 요소가 활성화 클래스 태그가 안붙는 문제가 있음
-    ((document as Document).getElementById('main-carousel-slide-0') as Element).classList.add('VueCarousel-slide-active');
+    ((document as Document).getElementById(
+      "main-carousel-slide-0"
+    ) as Element).classList.add("VueCarousel-slide-active");
     setTimeout(() => {
       // 슬라이드가 바뀌어도 임의로 넣어준 active 클래스는 삭제가 안되서 n초후에 임의로 삭제
-      ((document as Document).getElementById('main-carousel-slide-0') as Element).classList.remove('VueCarousel-slide-active');
-    }, 6000)
+      ((document as Document).getElementById(
+        "main-carousel-slide-0"
+      ) as Element).classList.remove("VueCarousel-slide-active");
+    }, 6000);
   }
 
-  handleStoreSlideClick(dataset : any) {
+  handleStoreSlideClick(dataset: any) {
     this.curStoreIndex = parseInt(dataset.index);
     // index 값으로 주면 해당 인덱스가 왼쪽(start)에 붙게되서 - 1 인덱스로 해주어서 선택한 인덱스가 가운데로 오도록 함
-    (this.$refs.storeCarousel as Carousel).goToPage( dataset.index - 1 );
+    (this.$refs.storeCarousel as Carousel).goToPage(dataset.index - 1);
   }
 
   public get navigationNext(): string {
@@ -200,7 +214,7 @@ export default class Home extends Vue {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" scoped> 
 .img-slider {
   width: 100%;
 
@@ -232,6 +246,7 @@ export default class Home extends Vue {
   text-align: center;
 
   .title {
+    font-family: batang;
     font-size: 1.813rem;
     letter-spacing: -0.15px;
   }
