@@ -15,9 +15,9 @@
       <p>
         주식회사 방앗간컴퍼니 ㅣ 대표. 김민영 ㅣ 사업자등록번호. 206-87-00778<br />
         청정재료문의전화. +82(0)10-4721-0778 ㅣ문의시간. 오전 10시 - 오후 7시<br />
-        대표메일. sobang@millcompany.co.kr ㅣ 서울 광진구 긴고랑로7길 5
+        대표메일. sobang@millcompany.co.kr ㅣ 서울 광진구 긴고랑로7길 5<br />
+        copyrhight (c) millcompany. All rights reserved
       </p>
-      <p class="copyright">copyrhight (c) millcompany. All rights reserved</p>
     </div>
   </footer>
 </template>
@@ -38,33 +38,31 @@ footer {
 }
 
 .header {
-  margin-bottom: 3.063rem;
+  margin-bottom: 1.927vw;
 
   h3 {
     display: inline;
-    font-size: 1.313rem;
+    font-size: 1.094vw;
     font-weight: normal;
     color: #595757;
   }
 
   .sns {
     float: right;
+    img {
+      width: 2.708vw;
+    }
 
     .facebook {
-      padding-right: 1rem;
+      padding-right: 0.833vw;
     }
   }
 }
 
 p {
-  font-size: 1.313rem;
+  font-size: 1.094vw;
   color: #595757;
   font-weight: 300;
   line-height: 1.52;
-}
-
-.copyright {
-  margin-top: 2.75rem;
-  font-size: 1.313rem;
 }
 </style>

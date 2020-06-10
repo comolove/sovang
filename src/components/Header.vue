@@ -22,8 +22,8 @@ export default {};
 
 <style scoped lang="scss">
 header {
-  padding-top: 4.813rem;
-  margin-bottom: 4.438rem;
+  padding-top: 3.958vw;
+  margin-bottom: 3.646vw;
 }
 
 .wrap {
@@ -31,10 +31,14 @@ header {
   flex-direction: row;
   justify-content: space-between;
 
+  img {
+    width: 9.271vw;
+  }
+
   nav {
     display: inline-flex;
     justify-content: space-between;
-    flex-basis: 50%;
+    flex-basis: 53%;
     flex-shrink: 0;
     padding-top: 1.375rem;
     align-self: flex-end;

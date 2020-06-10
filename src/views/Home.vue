@@ -66,7 +66,7 @@
       <HomeContent title="온라인몰">
         <div class="online-mall-container">
           <!-- TODO : backend 구현 후 db에서 링크 불러와서 넣어주도록 변경 -->
-          <div 
+          <div
             class="item"
             v-for="(data, index) of onlineMallData"
             :key="index"
@@ -158,8 +158,12 @@ import {
 })
 export default class Home extends Vue {
   private slideImgPaths: string[] = [];
-  private storeData: {imgPath : string, storeName : string}[] = [];
-  private onlineMallData: {imgPath : string, info : string, link : string}[] = [];
+  private storeData: { imgPath: string; storeName: string }[] = [];
+  private onlineMallData: {
+    imgPath: string;
+    info: string;
+    link: string;
+  }[] = [];
 
   private curStoreIndex = 0;
 
@@ -168,20 +172,18 @@ export default class Home extends Vue {
     this.slideImgPaths.push("slide/1.png");
     this.slideImgPaths.push("slide/1.png");
 
-    for (let i = 0 ; i < 8; i++)
-    {
+    for (let i = 0; i < 8; i++) {
       this.onlineMallData.push({
-        imgPath : "online-grid-template.png",
-        info : "<p style='font-weight:100;'>Hello, World!</p>",
-        link : "https://google.com"
+        imgPath: "online-grid-template.png",
+        info: "<p style='font-weight:100;'>Hello, World!</p>",
+        link: "https://google.com"
       });
     }
 
-    for (let i = 0 ; i < 11; i++)
-    {
+    for (let i = 0; i < 11; i++) {
       this.storeData.push({
-        imgPath : "store.png",
-        storeName : i.toString()
+        imgPath: "store.png",
+        storeName: i.toString()
       });
     }
   }
@@ -199,23 +201,24 @@ export default class Home extends Vue {
     }, 6000);
   }
 
-  handleStoreSlideClick(dataset: {index : string}) {
+  handleStoreSlideClick(dataset: { index: string }) {
     this.curStoreIndex = parseInt(dataset.index);
     // index 값으로 주면 해당 인덱스가 왼쪽(start)에 붙게되서 - 1 인덱스로 해주어서 선택한 인덱스가 가운데로 오도록 함
     (this.$refs.storeCarousel as Carousel).goToPage(this.curStoreIndex - 1);
   }
 
   public get navigationNext(): string {
-    return `<img src=${require("@/assets/images/arrow-right.png")} style="margin-left:4.25rem;">`;
+    return `<img src=${require("@/assets/images/arrow-right.png")} style="margin-left:3.542vw;width:1.146vw;">`;
   }
 
   public get navigationPrev(): string {
-    return `<img src=${require("@/assets/images/arrow-left.png")} style="margin-right:4.25rem;">`;
+    return `<img src=${require("@/assets/images/arrow-left.png")} style="margin-right:3.542vw;width:1.146vw;">`;
   }
 }
 </script>
 
-<style lang="scss" scoped> 
+<style lang="scss" scoped>
+// 메인 이미지 슬라이드
 .img-slider {
   width: 100%;
 
@@ -243,38 +246,57 @@ export default class Home extends Vue {
   }
 }
 .info {
-  margin-top: 7.75rem;
+  margin-top: 6.458vw;
   text-align: center;
 
   .title {
     font-family: mbatang;
-    font-size: 1.813rem;
+    font-size: 1.51vw;
     letter-spacing: -0.15px;
   }
 
   .content {
-    margin-top: 2.813rem;
-    font-size: 1.563rem;
+    margin-top: 2.344vw;
+    font-size: 1.302vw;
     line-height: 1.68;
     font-weight: 300;
   }
 }
 
 .home-contents {
-  margin-top: 11.5rem;
+  margin-top: 11.875vw;
 
   > * {
-    margin-bottom: 14.25rem;
+    margin-bottom: 11.875vw;
 
     img {
       width: 100%;
     }
   }
 
+  // 식사 공간
+  .store-carousel {
+    // 매장 이미지 사이 간격
+    .VueCarousel-slide > div {
+      padding-left: 0.417vw;
+      padding-right: 1.771vw;
+    }
+
+    // 매장 사진 밑에 텍스트
+    .store-content {
+      p {
+        margin-top: 1.302vw;
+        text-align: center;
+        font-size: 1.224vw;
+      }
+    }
+  }
+
+  // 온라인 몰
   .online-mall-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2.188rem 1.625rem;
+    gap: 1.823vw 1.354vw;
 
     .item {
       img {
@@ -319,21 +341,6 @@ export default class Home extends Vue {
       display: inline-block;
       font-style: italic;
       margin-top: 2.063rem;
-    }
-  }
-
-  .store-carousel {
-    .VueCarousel-slide > div {
-      padding-left: 0.5rem;
-      padding-right: 2.125rem;
-    }
-
-    .store-content {
-      p {
-        margin-top: 1.563rem;
-        text-align: center;
-        font-size: 1.469rem;
-      }
     }
   }
 }
