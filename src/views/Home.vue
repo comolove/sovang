@@ -78,9 +78,41 @@
             />
           </div>
         </div>
+        <div class="online-mall-container-mobile">
+          <!-- TODO : backend 구현 후 db에서 링크 불러와서 넣어주도록 변경 -->
+          <Carousel
+            ref="onlineMallCarousel"
+            class="online-mall-carousel"
+            :per-page="1"
+            :scrollPerPage="false"
+            :paginationEnabled="false"
+            :navigationEnabled="true"
+            :navigationNextLabel="navigationNext"
+            :navigationPrevLabel="navigationPrev"
+            :autoplay="true"
+            :loop="true"
+          >
+            <Slide
+              v-for="(data, index) of storeData"
+              :key="index"
+              :data-index="index"
+              data-name="DataName"
+              @slideclick="handleStoreSlideClick"
+            >
+              <div class="store-content">
+                <AssetImage :src="data.imgPath" />
+                <p>{{ data.storeName }}</p>
+              </div>
+            </Slide>
+          </Carousel>
+        </div>
       </HomeContent>
       <HomeContent title="케이터링">
-        <ImageOverlayInfo src="catering.png" backgroundColor="#edeae6">
+        <ImageOverlayInfo
+          src="catering.png"
+          backgroundColor="#edeae6"
+          imageHeight="26.615vw"
+        >
           <div
             class="on-overlay-info dark"
             @click="
@@ -106,7 +138,11 @@
         </ImageOverlayInfo>
       </HomeContent>
       <HomeContent title="명절선물">
-        <ImageOverlayInfo src="present.png" backgroundColor="#867d72">
+        <ImageOverlayInfo
+          src="present.png"
+          backgroundColor="#867d72"
+          imageHeight="26.615vw"
+        >
           <div
             class="on-overlay-info white"
             @click="
@@ -208,16 +244,24 @@ export default class Home extends Vue {
   }
 
   public get navigationNext(): string {
-    return `<img src=${require("@/assets/images/arrow-right.png")} style="margin-left:3.542vw;width:1.146vw;">`;
+    return `<img 
+              src=${require("@/assets/images/arrow-right.png")} 
+              style="margin-left:3.542vw;margin-bottom:3.646vw;width:1.146vw;"
+            >`;
   }
 
   public get navigationPrev(): string {
-    return `<img src=${require("@/assets/images/arrow-left.png")} style="margin-right:3.542vw;width:1.146vw;">`;
+    return `<img 
+              src=${require("@/assets/images/arrow-left.png")} 
+              style="margin-right:3.542vw;margin-bottom:3.646vw;width:1.146vw;"
+            >`;
   }
 }
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/styles/layouts";
+
 // 메인 이미지 슬라이드
 .img-slider {
   width: 100%;
@@ -227,7 +271,6 @@ export default class Home extends Vue {
   }
 
   &::v-deep .VueCarousel-inner {
-    // transition: none !important;
     transition: transform 0s ease 1s !important;
 
     .VueCarousel-slide {
@@ -276,7 +319,7 @@ export default class Home extends Vue {
 
   // 식사 공간
   .store-carousel {
-    // 매장 이미지 사이 간격
+    // 매장 이미지들의 사이 간격
     .VueCarousel-slide > div {
       padding-left: 0.417vw;
       padding-right: 1.771vw;
@@ -302,6 +345,18 @@ export default class Home extends Vue {
       img {
         width: 100%;
       }
+    }
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  // 온라인몰 모바일
+  .online-mall-container-mobile {
+    display: none;
+    @include mobile {
+      display: block;
     }
   }
 

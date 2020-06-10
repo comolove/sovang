@@ -1,6 +1,9 @@
 <template>
   <div class="image-overlay-info">
-    <AssetImage :src="src" />
+    <AssetImage
+      :src="src"
+      :style="{ width: imageWidth, height: imageHeight }"
+    />
     <div class="overlay-info" :style="{ backgroundColor: backgroundColor }">
       <slot></slot>
     </div>
@@ -19,6 +22,8 @@ import { AssetImage } from "@/components";
 export default class ImageOverlayInfo extends Vue {
   @Prop() private src!: string;
   @Prop() private backgroundColor!: string;
+  @Prop() private imageWidth!: string;
+  @Prop() private imageHeight!: string;
 }
 </script>
 
