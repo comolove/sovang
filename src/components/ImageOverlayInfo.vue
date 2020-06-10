@@ -39,7 +39,7 @@ export default class ImageOverlayInfo extends Vue {
   .overlay-info {
     position: absolute;
     width: 31.16%;
-    height: 100%;
+    height: 99.5%;
     top: 0;
     right: 0;
   }
