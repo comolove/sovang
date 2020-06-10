@@ -34,13 +34,13 @@ header {
   nav {
     display: inline-flex;
     justify-content: space-between;
-    flex-basis: 55%;
+    flex-basis: 50%;
     flex-shrink: 0;
     padding-top: 1.375rem;
     align-self: flex-end;
 
     .menu {
-      font-size: 1.563rem;
+      font-size: 1.302vw;
       color: black;
       text-decoration: none;
     }

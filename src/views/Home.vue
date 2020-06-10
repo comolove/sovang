@@ -49,7 +49,7 @@
           :loop="true"
         >
           <Slide
-            v-for="(path, index) of slideImgPaths"
+            v-for="(data, index) of storeData"
             :key="index"
             :data-index="index"
             data-name="DataName"
@@ -57,8 +57,8 @@
           >
             <!-- TODO : backend 구현 후 db에서 링크 불러와서 넣어주도록 변경 -->
             <div class="store-content">
-              <AssetImage src="store.png" />
-              <p>{{ index }}</p>
+              <AssetImage :src="data.imgPath" />
+              <p>{{ data.storeName }}</p>
             </div>
           </Slide>
         </Carousel>
@@ -66,30 +66,16 @@
       <HomeContent title="온라인몰">
         <div class="online-mall-container">
           <!-- TODO : backend 구현 후 db에서 링크 불러와서 넣어주도록 변경 -->
-          <div class="item">
+          <div 
+            class="item"
+            v-for="(data, index) of onlineMallData"
+            :key="index"
+          >
             <HoverTextImage
-              src="online-grid-template.png"
-              infoHtml="<p style='font-weight:100;'>Hello, World!</p>"
-              href="abc"
+              :src="data.imgPath"
+              :infoHtml="data.info"
+              :href="data.link"
             />
-          </div>
-          <div class="item">
-            <HoverTextImage src="online-grid-template.png" />
-          </div>
-          <div class="item">
-            <HoverTextImage src="online-grid-template.png" />
-          </div>
-          <div class="item">
-            <HoverTextImage src="online-grid-template.png" />
-          </div>
-          <div class="item">
-            <HoverTextImage src="online-grid-template.png" />
-          </div>
-          <div class="item">
-            <HoverTextImage src="online-grid-template.png" />
-          </div>
-          <div class="item">
-            <HoverTextImage src="online-grid-template.png" />
           </div>
         </div>
       </HomeContent>
@@ -172,17 +158,32 @@ import {
 })
 export default class Home extends Vue {
   private slideImgPaths: string[] = [];
+  private storeData: {imgPath : string, storeName : string}[] = [];
+  private onlineMallData: {imgPath : string, info : string, link : string}[] = [];
+
   private curStoreIndex = 0;
 
   created() {
     this.slideImgPaths.push("slide/1.png");
     this.slideImgPaths.push("slide/1.png");
     this.slideImgPaths.push("slide/1.png");
-    this.slideImgPaths.push("slide/1.png");
-    this.slideImgPaths.push("slide/1.png");
-    this.slideImgPaths.push("slide/1.png");
-    this.slideImgPaths.push("slide/1.png");
-    this.slideImgPaths.push("slide/1.png");
+
+    for (let i = 0 ; i < 8; i++)
+    {
+      this.onlineMallData.push({
+        imgPath : "online-grid-template.png",
+        info : "<p style='font-weight:100;'>Hello, World!</p>",
+        link : "https://google.com"
+      });
+    }
+
+    for (let i = 0 ; i < 11; i++)
+    {
+      this.storeData.push({
+        imgPath : "store.png",
+        storeName : i.toString()
+      });
+    }
   }
 
   mounted() {
@@ -198,10 +199,10 @@ export default class Home extends Vue {
     }, 6000);
   }
 
-  handleStoreSlideClick(dataset: any) {
+  handleStoreSlideClick(dataset: {index : string}) {
     this.curStoreIndex = parseInt(dataset.index);
     // index 값으로 주면 해당 인덱스가 왼쪽(start)에 붙게되서 - 1 인덱스로 해주어서 선택한 인덱스가 가운데로 오도록 함
-    (this.$refs.storeCarousel as Carousel).goToPage(dataset.index - 1);
+    (this.$refs.storeCarousel as Carousel).goToPage(this.curStoreIndex - 1);
   }
 
   public get navigationNext(): string {
@@ -246,7 +247,7 @@ export default class Home extends Vue {
   text-align: center;
 
   .title {
-    font-family: batang;
+    font-family: mbatang;
     font-size: 1.813rem;
     letter-spacing: -0.15px;
   }
@@ -271,13 +272,11 @@ export default class Home extends Vue {
   }
 
   .online-mall-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.188rem 1.625rem;
 
     .item {
-      margin-bottom: 3.438rem;
-
       img {
         width: 100%;
       }

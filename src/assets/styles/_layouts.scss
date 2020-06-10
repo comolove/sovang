@@ -1,3 +1,21 @@
+@mixin mobile {
+  @media screen and (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-pc - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: #{$breakpoint-pc}) {
+    @content;
+  }
+}
+
 .wrap {
     padding: {
         left: 13%;
