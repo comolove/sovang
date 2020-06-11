@@ -1,6 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 
 @font-face {
-    font-family: mbatang;
-    src: "../fonts/mt.ttf";
+    font-family: 'munche_jemok_batang';
+    src: url('~@/assets/fonts/munche_jemok_batang.woff2') format('woff2'),
+         url('~@/assets/fonts/munche_jemok_batang.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }

@@ -2,7 +2,7 @@
   <header>
     <div class="wrap">
       <div>
-        <img src="../assets/images/brand-logo.png" alt="소녀방앗간 로고" />
+        <img src="@/assets/images/brand/brand-logo.png" alt="소녀방앗간 로고" />
       </div>
       <nav class="bar-top">
         <router-link to="/" class="menu">브랜드</router-link>
@@ -22,8 +22,12 @@ export default {};
 
 <style scoped lang="scss">
 header {
-  padding-top: 3.958vw;
-  margin-bottom: 3.646vw;
+  width: 100%;
+  top: 0;
+  position: fixed;
+  background-color: white;
+  z-index: 10;
+  padding: 2.448vw 0 2.448vw 0;
 }
 
 .wrap {
@@ -32,19 +36,20 @@ header {
   justify-content: space-between;
 
   img {
-    width: 9.271vw;
+    width: 7.5vw;
   }
 
   nav {
     display: inline-flex;
     justify-content: space-between;
-    flex-basis: 53%;
+    flex-basis: 51.8%;
     flex-shrink: 0;
-    padding-top: 1.375rem;
+    padding-top: 0.729vw;
     align-self: flex-end;
 
     .menu {
-      font-size: 1.302vw;
+      font-size: 1.198vw;
+      font-weight: 300;
       color: black;
       text-decoration: none;
     }

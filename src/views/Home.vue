@@ -8,11 +8,12 @@
         :autoplay="true"
         :autoplayTimeout="6000"
         :autoplayHoverPause="false"
+        :navigationEnabled="true"
+        :navigationNextLabel="mainCarouselNavigationNext"
+        :navigationPrevLabel="mainCarouselNavigationPrev"
         :loop="true"
         paginationPosition="bottom-overlay"
         paginationColor="#c9caca"
-        :paginationSize="14"
-        :paginationPadding="10"
       >
         <Slide
           v-for="(path, index) of slideImgPaths"
@@ -41,12 +42,15 @@
           class="store-carousel"
           :per-page="3"
           :scrollPerPage="false"
+          :autoplayTimeout="4000"
           :paginationEnabled="false"
           :navigationEnabled="true"
-          :navigationNextLabel="navigationNext"
-          :navigationPrevLabel="navigationPrev"
+          :navigationNextLabel="storeCarouselNavigationNext"
+          :navigationPrevLabel="storeCarouselNavigationPrev"
           :autoplay="true"
           :loop="true"
+          :spacePadding="-15"
+          @page-change="handleStoreCarouselChange"
         >
           <Slide
             v-for="(data, index) of storeData"
@@ -71,11 +75,11 @@
             v-for="(data, index) of onlineMallData"
             :key="index"
           >
-            <HoverTextImage
-              :src="data.imgPath"
-              :infoHtml="data.info"
-              :href="data.link"
-            />
+            <HoverTextImage :src="data.imgPath" :href="data.link">
+              <p>
+                {{ data.desc }}<br /><span>{{ data.name }}</span>
+              </p>
+            </HoverTextImage>
           </div>
         </div>
         <div class="online-mall-container-mobile">
@@ -87,8 +91,8 @@
             :scrollPerPage="false"
             :paginationEnabled="false"
             :navigationEnabled="true"
-            :navigationNextLabel="navigationNext"
-            :navigationPrevLabel="navigationPrev"
+            :navigationNextLabel="storeCarouselNavigationNext"
+            :navigationPrevLabel="storeCarouselNavigationPrev"
             :autoplay="true"
             :loop="true"
           >
@@ -108,64 +112,28 @@
         </div>
       </HomeContent>
       <HomeContent title="케이터링">
-        <ImageOverlayInfo
-          src="catering.png"
-          backgroundColor="#edeae6"
-          imageHeight="26.615vw"
+        <div
+          class="clickable"
+          @click="
+            () => {
+              this.$router.push('/catering');
+            }
+          "
         >
-          <div
-            class="on-overlay-info dark"
-            @click="
-              () => {
-                this.$router.push('/catering');
-              }
-            "
-          >
-            <div class="overlay-header">
-              <p>로컬청정재료를 건강하고 지속가능하게</p>
-              <h2>청정재료 케이터링</h2>
-            </div>
-            <div class="overlay-content">
-              <p>
-                산지직송 로컬푸드 중 제철재료만을 골라, 저염 건강식으로
-                고급스럽게 도시락과 케이터링을 준비합니다. 로컬푸드 식재료를
-                가장 건강하게 즐길 수 있는 레시피로 행사와 모임에 품격을 더하며,
-                지속가능한 식습관을 제안합니다.
-              </p>
-              <a>&lt; 케이터링 소식 더 보러가기 &gt;</a>
-            </div>
-          </div>
-        </ImageOverlayInfo>
+          <AssetImage src="catering.jpg" />
+        </div>
       </HomeContent>
       <HomeContent title="명절선물">
-        <ImageOverlayInfo
-          src="present.png"
-          backgroundColor="#867d72"
-          imageHeight="26.615vw"
+        <div
+          class="clickable"
+          @click="
+            () => {
+              this.$router.push('/present');
+            }
+          "
         >
-          <div
-            class="on-overlay-info white"
-            @click="
-              () => {
-                this.$router.push('/present');
-              }
-            "
-          >
-            <div class="overlay-header">
-              <p>매해 가장 좋은 재료로</p>
-              <h2>산지직송 명절선물</h2>
-            </div>
-            <div class="overlay-content">
-              <p>
-                50년 경력의 청정지역 장인들이 직접 손으로 한땀 한땀 정성들여
-                수확한 청정재료로 한 해의 고마움을 전합니다. 땅과 공기가 줄 수
-                있는 에너지를 온전히 담은 재료로 청정지역 장인들의 수준높은
-                식문화를 전합니다.
-              </p>
-              <a>&lt; 명절선물 소식 더 보러가기 &gt;</a>
-            </div>
-          </div>
-        </ImageOverlayInfo>
+          <AssetImage src="present.jpg" />
+        </div>
       </HomeContent>
     </section>
   </main>
@@ -197,31 +165,88 @@ export default class Home extends Vue {
   private storeData: { imgPath: string; storeName: string }[] = [];
   private onlineMallData: {
     imgPath: string;
-    info: string;
+    desc: string;
+    name: string;
     link: string;
   }[] = [];
 
   private curStoreIndex = 0;
 
   created() {
-    this.slideImgPaths.push("slide/1.png");
-    this.slideImgPaths.push("slide/1.png");
-    this.slideImgPaths.push("slide/1.png");
-
-    for (let i = 0; i < 8; i++) {
-      this.onlineMallData.push({
-        imgPath: "online-grid-template.png",
-        info: "<p style='font-weight:100;'>Hello, World!</p>",
-        link: "https://google.com"
-      });
+    for (let i = 1; i <= 4; i++) {
+      this.slideImgPaths.push(`slide/pc/main-slide-${i}.jpg`);
     }
 
-    for (let i = 0; i < 11; i++) {
-      this.storeData.push({
-        imgPath: "store.png",
-        storeName: i.toString()
-      });
-    }
+    this.storeData.push({
+      imgPath: "store/5)web_매장_서울숲시작점.jpg",
+      storeName: "서울숲시작점"
+    });
+    this.storeData.push({
+      imgPath: "store/6)web_매장_현대백화점신도림점.jpg",
+      storeName: "현대백화점 신도림점"
+    });
+    this.storeData.push({
+      imgPath: "store/7)web_매장_이화여대점.jpg",
+      storeName: "이화여대점"
+    });
+    this.storeData.push({
+      imgPath: "store/8)web_매장_마로니에점.jpg",
+      storeName: "마로니에점"
+    });
+    this.storeData.push({
+      imgPath: "store/9)web_매장_고속터미널점.jpg",
+      storeName: "고속터미널점"
+    });
+    this.storeData.push({
+      imgPath: "store/10)web_매장_킨텍스점.jpg",
+      storeName: "킨텍스점"
+    });
+    this.storeData.push({
+      imgPath: "store/11)web_매장_중곡시장점.jpg",
+      storeName: "중곡시장점"
+    });
+
+    this.onlineMallData.push({
+      imgPath: "online-mall/12)web_온라인몰_간장.jpg",
+      desc: "오랜 세월 깊어지는 맛",
+      name: "재래식 된장 (450g)",
+      link: "/"
+    });
+
+    this.onlineMallData.push({
+      imgPath: "online-mall/13)web_온라인몰_된장.jpg",
+      desc: "100% 국내산 고춧가루로 담근",
+      name: "찹쌀 고추장 (450g)",
+      link: "/"
+    });
+
+    this.onlineMallData.push({
+      imgPath: "online-mall/14)web_온라인몰_고추장.jpg",
+      desc: "임금님이 드시던 나물",
+      name: "어수리 (80g)",
+      link: "/"
+    });
+
+    this.onlineMallData.push({
+      imgPath: "online-mall/15)web_온라인몰_곤드레.jpg",
+      desc: "태백산의 보물",
+      name: "곤드레 (80g)",
+      link: "/"
+    });
+
+    this.onlineMallData.push({
+      imgPath: "online-mall/16)web_온라인몰_어수리.jpg",
+      desc: "봄나물의 대명사",
+      name: "취나물 (80g)",
+      link: "/"
+    });
+
+    this.onlineMallData.push({
+      imgPath: "online-mall/17)web_온라인몰_취나물.jpg",
+      desc: "오랜 세월 깊어지는 맛",
+      name: "재래식 된장 (450g)",
+      link: "/"
+    });
   }
 
   mounted() {
@@ -229,6 +254,7 @@ export default class Home extends Vue {
     ((document as Document).getElementById(
       "main-carousel-slide-0"
     ) as Element).classList.add("VueCarousel-slide-active");
+
     setTimeout(() => {
       // 슬라이드가 바뀌어도 임의로 넣어준 active 클래스는 삭제가 안되서 n초후에 임의로 삭제
       ((document as Document).getElementById(
@@ -243,17 +269,35 @@ export default class Home extends Vue {
     (this.$refs.storeCarousel as Carousel).goToPage(this.curStoreIndex - 1);
   }
 
-  public get navigationNext(): string {
+  handleStoreCarouselChange(index: number) {
+    this.curStoreIndex = index;
+  }
+
+  public get mainCarouselNavigationNext(): string {
     return `<img 
-              src=${require("@/assets/images/arrow-right.png")} 
-              style="margin-left:3.542vw;margin-bottom:3.646vw;width:1.146vw;"
+              src=${require("@/assets/images/arrow-right-white.png")}
             >`;
   }
 
-  public get navigationPrev(): string {
+  public get mainCarouselNavigationPrev(): string {
     return `<img 
-              src=${require("@/assets/images/arrow-left.png")} 
-              style="margin-right:3.542vw;margin-bottom:3.646vw;width:1.146vw;"
+              src=${require("@/assets/images/arrow-left-white.png")} 
+            >`;
+  }
+
+  public get storeCarouselNavigationNext(): string {
+    return `<img 
+              src=${require("@/assets/images/arrow-right-black.png")} 
+              style="margin-left:1.771vw;margin-bottom:3.646vw;width:1.042vw;"
+            >`;
+  }
+
+  public get storeCarouselNavigationPrev(): string {
+    if (this.curStoreIndex == 0) return "";
+
+    return `<img 
+              src=${require("@/assets/images/arrow-left-black.png")} 
+              style="margin-right:1.771vw;margin-bottom:3.646vw;width:1.042vw;"
             >`;
   }
 }
@@ -266,21 +310,50 @@ export default class Home extends Vue {
 .img-slider {
   width: 100%;
 
-  &::v-deep .VueCarousel-pagination--bottom-overlay {
-    bottom: 2.063rem;
-  }
+  &::v-deep {
+    .VueCarousel-navigation-prev {
+      transform: unset;
+      left: 3.229vw;
+      top: 17.188vw;
 
-  &::v-deep .VueCarousel-inner {
-    transition: transform 0s ease 1s !important;
-
-    .VueCarousel-slide {
-      transition: opacity 1s !important;
-      opacity: 0 !important;
+      img {
+        width: 1.458vw;
+      }
     }
 
-    .VueCarousel-slide-active {
-      transition: opacity 2s ease 1s !important;
-      opacity: 1 !important;
+    .VueCarousel-navigation-next {
+      transform: unset;
+      right: 3.229vw;
+      top: 17.188vw;
+
+      img {
+        width: 1.458vw;
+      }
+    }
+
+    // 메인 슬라이드 페이지네이션 버튼 위치
+    .VueCarousel-pagination--bottom-overlay {
+      bottom: 1.667vw;
+
+      button.VueCarousel-dot {
+        width: 0.729vw;
+        height: 0.729vw;
+      }
+    }
+
+    // 메인 슬라이드 트랜지션 재정의
+    .VueCarousel-inner {
+      transition: transform 0s ease 1s !important;
+
+      .VueCarousel-slide {
+        transition: opacity 1s !important;
+        opacity: 0 !important;
+      }
+
+      .VueCarousel-slide-active {
+        transition: opacity 2s ease 1s !important;
+        opacity: 1 !important;
+      }
     }
   }
 
@@ -289,28 +362,32 @@ export default class Home extends Vue {
   }
 }
 .info {
-  margin-top: 6.458vw;
+  margin-top: 7.917vw;
   text-align: center;
 
   .title {
-    font-family: mbatang;
-    font-size: 1.51vw;
-    letter-spacing: -0.15px;
+    font-family: "munche_jemok_batang";
+    font-size: 1.354vw;
+    letter-spacing: -0.13px;
   }
 
   .content {
     margin-top: 2.344vw;
-    font-size: 1.302vw;
-    line-height: 1.68;
+    font-size: 1.198vw;
+    line-height: 1.83;
     font-weight: 300;
   }
 }
 
 .home-contents {
-  margin-top: 11.875vw;
+  margin-top: 11.458vw;
 
   > * {
-    margin-bottom: 11.875vw;
+    margin-bottom: 11.458vw;
+
+    &:last-child {
+      margin-bottom: 8.802vw;
+    }
 
     img {
       width: 100%;
@@ -321,16 +398,19 @@ export default class Home extends Vue {
   .store-carousel {
     // 매장 이미지들의 사이 간격
     .VueCarousel-slide > div {
-      padding-left: 0.417vw;
-      padding-right: 1.771vw;
+      // padding-left: 0.417vw;
+      padding-right: 1.354vw;
+      img {
+        width: 22.917vw;
+      }
     }
 
     // 매장 사진 밑에 텍스트
     .store-content {
       p {
-        margin-top: 1.302vw;
+        margin-top: 1.146vw;
         text-align: center;
-        font-size: 1.224vw;
+        font-size: 0.99vw;
       }
     }
   }
@@ -339,9 +419,19 @@ export default class Home extends Vue {
   .online-mall-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.823vw 1.354vw;
+    gap: 1.354vw 1.354vw;
 
     .item {
+      p {
+        font-size: 0.964vw;
+        font-weight: 300;
+        line-height: 1.57;
+
+        span {
+          font-weight: 500;
+        }
+      }
+
       img {
         width: 100%;
       }
@@ -359,44 +449,9 @@ export default class Home extends Vue {
       display: block;
     }
   }
+}
 
-  .on-overlay-info {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: {
-      top: 13.7%;
-      bottom: 12.1%;
-      left: 8%;
-      right: 2.125rem;
-    }
-    cursor: pointer;
-
-    &.dark {
-      color: #595757;
-    }
-    &.white {
-      color: white;
-    }
-
-    h2 {
-      font-size: 1.719vw;
-      letter-spacing: -0.42px;
-    }
-
-    p,
-    a {
-      font-size: 1.094vw;
-      font-weight: 300;
-      line-height: 1.38;
-    }
-
-    a {
-      display: inline-block;
-      font-style: italic;
-      margin-top: 2.063rem;
-    }
-  }
+.clickable {
+  cursor: pointer;
 }
 </style>

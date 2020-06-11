@@ -50,7 +50,7 @@ footer {
   .sns {
     float: right;
     img {
-      width: 2.708vw;
+      width: 2.5vw;
     }
 
     .facebook {
@@ -60,9 +60,9 @@ footer {
 }
 
 p {
-  font-size: 1.094vw;
+  font-size: 0.99vw;
   color: #595757;
   font-weight: 300;
-  line-height: 1.52;
+  line-height: 2;
 }
 </style>
