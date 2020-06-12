@@ -3,6 +3,7 @@
     <div class="wrap">
       <div>
         <img src="@/assets/images/brand/brand-logo.png" alt="소녀방앗간 로고" />
+        <div class="topBar" v-if="barBreak" @click="handleMenu"></div>
       </div>
       <nav class="bar-top">
         <router-link to="/" class="menu">브랜드</router-link>
@@ -13,11 +14,35 @@
         <router-link to="/community" class="menu">커뮤니티</router-link>
       </nav>
     </div>
+    <div ref="mobileMenuRef" class="mobile-menu"><p>fdfd</p></div>
   </header>
 </template>
 
 <script lang="ts">
-export default {};
+import { Component, Vue } from "vue-property-decorator";
+import Breakpoint from "@/utils/screenSize";
+
+export default class Header extends Vue {
+  private barBreak = true;
+  
+
+  created() {
+    if (Breakpoint.tablet > window.innerWidth) {
+      this.barBreak = true;
+    } else {
+      this.barBreak = false;
+    }
+  }
+
+  mounted() {
+    console.log(this.$refs.mobileMenuRef);
+  }
+
+  handleMenu(){
+    //
+  }
+  
+};
 </script>
 
 <style scoped lang="scss">
@@ -50,14 +75,26 @@ header {
     padding: 0;
     margin-right: 9.028vw;
     margin-left: 9.028vw;
+
+    .topBar{
+      display: inline-block;
+      border-top: 0.833vw solid #727171;
+      border-bottom: 0.833vw solid #727171;
+      border-radius: 15%;
+      position: absolute;
+      text-align: right;
+      width:6.389vw;
+      height:2.778vw;
+    }
   }
 
   img {
     width: 7.5vw;
     @include mobile {
+      display: inline;
       width: 25.556vw;
       margin-left: 28.194vw;
-      margin-right: 28.194vw;
+      margin-right: 21.805vw;
       margin-bottom: 6.5vw;
     }
   }
@@ -91,5 +128,16 @@ header {
       }
     }
   }
+}
+
+.mobile-menu {
+  top: 0;
+  left: 0;
+  position: fixed;
+  min-width: 100%;
+  min-height: 100%;
+  background-color: white;
+
+  z-index: 200;
 }
 </style>

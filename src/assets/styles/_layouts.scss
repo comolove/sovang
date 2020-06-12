@@ -27,6 +27,13 @@ main {
         left: 14.3%;
         right: 14.3%;
     };
+
+    @include mobile{  
+      padding: {
+        left: 9.306vw;
+        right: 9.306vw;
+      };
+    }
 }
 
 .bar-top {
@@ -35,4 +42,7 @@ main {
 
 .bar-bottom {
     border-bottom: 0.01em solid #807670;
+    @include mobile{
+      border-bottom: 0.350vw solid black;
+    }
 }

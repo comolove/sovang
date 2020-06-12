@@ -414,6 +414,7 @@ export default class Home extends Vue {
       margin-left: 17.361vw;
       margin-right: 17.361vw;
       line-height: 6vw;
+      color: #595757;
     }
   }
 
@@ -425,12 +426,13 @@ export default class Home extends Vue {
 
     @include mobile {
       font-family: "Noto Sans KR";
+      font-weight: 400;
+      font-size: 3.611vw;
       color: #595757;
       margin-top: 7.5vw;
       margin-left: 11.944vw;
       margin-right: 11.944vw;
       line-height: 5vw;
-      font-size: 3.611vw;
       height: 15.278vw;
     }
   }
@@ -458,8 +460,21 @@ export default class Home extends Vue {
 
     @include mobile {
       margin-bottom: 17.222vw;
-      &:nth-last-child(1) {
-        margin-bottom: 20.278vw;
+      &:nth-child(2){
+        height: 77.222vw;
+      }
+      &:nth-child(n+3){
+        height: 101.667vw;
+        .clickable{
+          height: 90.278vw;
+          img{
+            //사진 받으면 바꾸기
+            height: 100%;
+          }
+        }
+      }
+      &:nth-child(4) {
+        margin-bottom: 21.944vw;
       }
     }
   }
@@ -474,6 +489,7 @@ export default class Home extends Vue {
         width: 22.917vw;
         @include mobile{
           width: 100%;
+          height: 54.167vw;
         }
       }
     }
