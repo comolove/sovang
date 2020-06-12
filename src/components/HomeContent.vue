@@ -19,9 +19,10 @@ article {
   width: 100%;
 
   h3 {
-    font-size: 1.302vw;
     padding-bottom: 0.729vw;
-    margin-bottom: 2.708vw;
+    margin-bottom: 2.76vw;
+    font-size: 1.198vw;
+    color: #807670;
   }
 }
 </style>

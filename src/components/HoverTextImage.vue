@@ -6,7 +6,7 @@
   >
     <AssetImage :src="src" />
     <div class="overlay"></div>
-    <span v-html="infoHtml"></span>
+    <span class="info"><slot></slot></span>
   </div>
 </template>
 
@@ -21,7 +21,6 @@ import { AssetImage } from "@/components";
 })
 export default class HoverTextImage extends Vue {
   @Prop() private src!: string;
-  @Prop() private infoHtml!: string;
   @Prop() private href!: string;
 
   handleClick(/* e : Event */) {
@@ -58,10 +57,10 @@ export default class HoverTextImage extends Vue {
     background-color: #000000;
   }
 
-  span {
+  .info {
     color: white;
-    font-size: 1.625rem;
     position: absolute;
+    width: 100%;
     top: 50%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);

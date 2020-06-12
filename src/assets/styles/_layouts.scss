@@ -18,17 +18,21 @@
   }
 }
 
+main {
+  margin-top: 9.531vw;
+}
+
 .wrap {
     padding: {
-        left: 13%;
-        right: 13%;
+        left: 14.3%;
+        right: 14.3%;
     };
 }
 
 .bar-top {
-    border-top: 1px solid black;
+    border-top: 0.01em solid #807670;
 }
 
 .bar-bottom {
-    border-bottom: 1px solid black;
+    border-bottom: 0.01em solid #807670;
 }
