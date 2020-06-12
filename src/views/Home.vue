@@ -25,13 +25,11 @@
       </Carousel>
     </section>
     <section class="info">
-      <p class="title">
-        좋은 음식을 준비하는 모두의 마음 속엔 소녀가 있습니다.
-      </p>
+      <p class="title">좋은 음식을 준비하는<br v-if="infoBreak"/> 모두의 마음 속엔 소녀가 있습니다.</p>
       <p class="content">
         소녀방앗간은 청정지역 장인들이 해마다 정성들여 수확한 청정
-        햇-식재료를<br />
-        수확한 만큼만 신선하게 담아 도시의 소비자에게 건강한 한 끼로 대접합니다.
+        햇-식재료를
+        <br v-if="!infoBreak"/>수확한 만큼만 신선하게 담아 도시의 소비자에게 건강한 한 끼로 대접합니다.
       </p>
     </section>
     <section class="wrap home-contents">
@@ -66,16 +64,8 @@
       <HomeContent title="온라인몰">
         <div class="online-mall-container">
           <!-- TODO : backend 구현 후 db에서 링크 불러와서 넣어주도록 변경 -->
-          <div
-            class="item"
-            v-for="(data, index) of onlineMallData"
-            :key="index"
-          >
-            <HoverTextImage
-              :src="data.imgPath"
-              :infoHtml="data.info"
-              :href="data.link"
-            />
+          <div class="item" v-for="(data, index) of onlineMallData" :key="index">
+            <HoverTextImage :src="data.imgPath" :infoHtml="data.info" :href="data.link" />
           </div>
         </div>
         <div class="online-mall-container-mobile">
@@ -108,11 +98,7 @@
         </div>
       </HomeContent>
       <HomeContent title="케이터링">
-        <ImageOverlayInfo
-          src="catering.png"
-          backgroundColor="#edeae6"
-          imageHeight="26.615vw"
-        >
+        <ImageOverlayInfo src="catering.png" backgroundColor="#edeae6" imageHeight="26.615vw">
           <div
             class="on-overlay-info dark"
             @click="
@@ -138,11 +124,7 @@
         </ImageOverlayInfo>
       </HomeContent>
       <HomeContent title="명절선물">
-        <ImageOverlayInfo
-          src="present.png"
-          backgroundColor="#867d72"
-          imageHeight="26.615vw"
-        >
+        <ImageOverlayInfo src="present.png" backgroundColor="#867d72" imageHeight="26.615vw">
           <div
             class="on-overlay-info white"
             @click="
@@ -180,6 +162,7 @@ import {
   AssetImage,
   ImageOverlayInfo
 } from "@/components";
+import Breakpoint from "@/utils/screenSize";
 
 @Component({
   name: "Home",
@@ -202,6 +185,7 @@ export default class Home extends Vue {
   }[] = [];
 
   private curStoreIndex = 0;
+  private infoBreak = false;
 
   created() {
     this.slideImgPaths.push("slide/1.png");
@@ -222,6 +206,12 @@ export default class Home extends Vue {
         storeName: i.toString()
       });
     }
+
+    window.addEventListener("resize", this.handleResize);
+  }
+
+  destroyed() {
+    window.removeEventListener("resize", this.handleResize);
   }
 
   mounted() {
@@ -241,6 +231,17 @@ export default class Home extends Vue {
     this.curStoreIndex = parseInt(dataset.index);
     // index 값으로 주면 해당 인덱스가 왼쪽(start)에 붙게되서 - 1 인덱스로 해주어서 선택한 인덱스가 가운데로 오도록 함
     (this.$refs.storeCarousel as Carousel).goToPage(this.curStoreIndex - 1);
+  }
+
+  handleResize(/* e : Event */) {
+    if (Breakpoint.tablet > window.innerWidth)
+    {
+      this.infoBreak = true;
+    }
+    else
+    {
+      this.infoBreak = false;
+    }
   }
 
   public get navigationNext(): string {
@@ -286,16 +287,36 @@ export default class Home extends Vue {
 
   img {
     width: 100%;
+    @include mobile {
+      max-width: 100%;
+      width: 316vw;
+      height: 131.667vw;
+      object-fit: cover;
+      overflow: hidden;
+    }
   }
 }
 .info {
   margin-top: 6.458vw;
   text-align: center;
 
+  @include mobile{
+    margin-top: 13.889vw;
+  }
+
   .title {
     font-family: mbatang;
     font-size: 1.51vw;
     letter-spacing: -0.15px;
+
+    @include mobile{
+      font-size: 4vw;
+      width:65.278vw;
+      height: 11.111vw;
+      margin-left: 17.361vw;
+      margin-right: 17.361vw;
+      line-height: 6vw;
+    }
   }
 
   .content {
@@ -303,17 +324,39 @@ export default class Home extends Vue {
     font-size: 1.302vw;
     line-height: 1.68;
     font-weight: 300;
+
+    @include mobile{
+      margin-top: 7.500vw;
+      margin-left: 11.944vw;
+      margin-right: 11.944vw;
+      line-height: 5vw;
+      font-size: 3.611vw;
+      height: 15.278vw;
+    }
   }
 }
 
 .home-contents {
   margin-top: 11.875vw;
 
+  @include mobile{
+    margin-top: 17.500vw;
+    padding-right: 9.167vw;
+    padding-left: 9.167vw;
+  }
+
   > * {
     margin-bottom: 11.875vw;
 
     img {
       width: 100%;
+    }
+
+    @include mobile{
+      margin-bottom: 17.222vw;
+      &:nth-last-child(1){
+        margin-bottom: 20.278vw;
+      }
     }
   }
 
