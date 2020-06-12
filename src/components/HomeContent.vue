@@ -15,7 +15,6 @@ export default class HomeContent extends Vue {
 </script>
 
 <style scoped lang="scss">
-@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 @import "../assets/styles/layouts";
 
 article {
@@ -27,15 +26,10 @@ article {
     font-size: 1.198vw;
     color: #807670;
 
-    @include mobile{
-      height: 4.722vw;
+    @include mobile {
       font-size: 3.611vw;
-      height: 5.100vw;
-      font-family: "Noto Sans KR",sans-serif;
-      padding-bottom: 1.111vw;
-      font-weight: 600;
+      font-weight: bold;
       margin-bottom: 6.389vw;
-      color: black;
     }
   }
 }

@@ -14,9 +14,9 @@
       </div>
       <p>
         주식회사 방앗간컴퍼니 ㅣ 대표. 김민영 ㅣ 사업자등록번호. 206-87-00778
-        <br />청정재료문의전화. +82(0)10-4721-0778 ㅣ문의시간. 오전 10시 - 오후 7시
-        <br />대표메일. sobang@millcompany.co.kr ㅣ 서울 광진구 긴고랑로7길 5
-        <br />copyrhight (c) millcompany. All rights reserved
+        <br />청정재료문의전화. +82(0)10-4721-0778 ㅣ문의시간. 오전 10시 - 오후
+        7시 <br />대표메일. sobang@millcompany.co.kr ㅣ 서울 광진구 긴고랑로7길
+        5 <br />copyrhight (c) millcompany. All rights reserved
       </p>
     </div>
   </footer>
@@ -46,8 +46,9 @@ footer {
 
 .header {
   margin-bottom: 1.927vw;
+  text-align: left;
 
-  @include mobile{
+  @include mobile {
     margin-bottom: 5.389vw;
   }
 
@@ -57,11 +58,9 @@ footer {
     font-weight: normal;
     color: #595757;
 
-    @include mobile{
-      font-size: 3vw;
-      font-weight: 500;
-      font-family: "Noto Sans KR",sans-serif;
-      width: 35.833vw;
+    @include mobile {
+      font-size: 2.917vw;
+      font-weight: bold;
     }
   }
 
@@ -69,15 +68,17 @@ footer {
     float: right;
     img {
       width: 2.5vw;
-      @include mobile{
-        width: 5.833vw;
+
+      @include mobile {
+        width: 6.111vw;
       }
     }
 
     .facebook {
       padding-right: 0.833vw;
-      @include mobile{
-        padding-right: 1.389vw;
+
+      @include mobile {
+        padding-right: 2.222vw;
       }
     }
   }
@@ -88,9 +89,11 @@ p {
   color: #595757;
   font-weight: 300;
   line-height: 2;
-  @include mobile{
-    font-weight: 400;
-    font-family: "Noto Sans KR",sans-serif;
+
+  @include mobile {
+    font-size: 2.5vw;
+    -webkit-text-size-adjust: none;
+    line-height: normal;
   }
 }
 </style>

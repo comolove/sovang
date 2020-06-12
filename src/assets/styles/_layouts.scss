@@ -30,8 +30,8 @@ main {
 
     @include mobile{  
       padding: {
-        left: 9.306vw;
-        right: 9.306vw;
+        left: 9.167vw;
+        right: 9.167vw;
       };
     }
 }
@@ -42,7 +42,4 @@ main {
 
 .bar-bottom {
     border-bottom: 0.01em solid #807670;
-    @include mobile{
-      border-bottom: 0.350vw solid black;
-    }
 }

@@ -31,9 +31,10 @@
         모두의 마음 속엔 소녀가 있습니다.
       </p>
       <p class="content">
-        소녀방앗간은 청정지역 장인들이 해마다 정성들여 수확한 청정 햇-식재료를
-        <br v-if="!infoBreak" />수확한 만큼만 신선하게 담아 도시의 소비자에게
-        건강한 한 끼로 대접합니다.
+        소녀방앗간은 청정지역 장인들이 해마다 정성들여 수확한 청정
+        햇-식재료를<br v-if="!infoBreak" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수확한
+        만큼만 신선하게 담아 도시의 소비자에게 건강한 한 끼로 대접합니다.
       </p>
     </section>
     <section class="wrap home-contents">
@@ -44,13 +45,14 @@
           :per-page="storeCarouselPerPage"
           :scrollPerPage="false"
           :autoplayTimeout="4000"
-          :paginationEnabled="false"
+          :paginationEnabled="true"
           :navigationEnabled="true"
           :navigationNextLabel="storeCarouselNavigationNext"
           :navigationPrevLabel="storeCarouselNavigationPrev"
           :autoplay="true"
           :loop="true"
-          :spacePadding="-15"
+          :spacePadding="-20"
+          paginationColor="#c9caca"
           @page-change="handleStoreCarouselChange"
         >
           <Slide
@@ -90,23 +92,26 @@
             class="online-mall-carousel"
             :per-page="1"
             :scrollPerPage="false"
-            :paginationEnabled="false"
+            :paginationEnabled="true"
             :navigationEnabled="true"
             :navigationNextLabel="storeCarouselNavigationNext"
             :navigationPrevLabel="storeCarouselNavigationPrev"
             :autoplay="true"
             :loop="true"
+            paginationColor="#c9caca"
           >
             <Slide
-              v-for="(data, index) of storeData"
+              v-for="(data, index) of onlineMallData"
               :key="index"
               :data-index="index"
               data-name="DataName"
               @slideclick="handleStoreSlideClick"
             >
-              <div class="store-content">
+              <div class="online-mall-content">
                 <AssetImage :src="data.imgPath" />
-                <p>{{ data.storeName }}</p>
+                <p>
+                  {{ data.desc }}<br /><span>{{ data.name }}</span>
+                </p>
               </div>
             </Slide>
           </Carousel>
@@ -172,7 +177,10 @@ export default class Home extends Vue {
     link: string;
   }[] = [];
 
+  private isMobile = false;
+
   private storeCarouselPerPage = 1;
+
   private curStoreIndex = 0;
   private infoBreak = false;
 
@@ -182,6 +190,7 @@ export default class Home extends Vue {
 
   created() {
     window.addEventListener("resize", this.handleResize);
+
     for (let i = 1; i <= 4; i++) {
       this.slideImgPaths.push(`slide/pc/main-slide-${i}.jpg`);
     }
@@ -192,7 +201,7 @@ export default class Home extends Vue {
     });
     this.storeData.push({
       imgPath: "store/6)web_매장_현대백화점신도림점.jpg",
-      storeName: "현대백화점 신도림점"
+      storeName: "현대백화점 킨텍스점"
     });
     this.storeData.push({
       imgPath: "store/7)web_매장_이화여대점.jpg",
@@ -271,13 +280,8 @@ export default class Home extends Vue {
       ) as Element).classList.remove("VueCarousel-slide-active");
     }, 6000);
 
-    if (Breakpoint.tablet > window.innerWidth) {
-      this.infoBreak = true;
-      this.storeCarouselPerPage = 1;
-    } else {
-      this.infoBreak = false;
-      this.storeCarouselPerPage = 3;
-    }
+    this.handleResize();
+    this.responseComponents();
   }
 
   handleStoreSlideClick(dataset: { index: string }) {
@@ -287,30 +291,44 @@ export default class Home extends Vue {
   }
 
   handleResize(/* e : Event */) {
-    if (Breakpoint.tablet > window.innerWidth) {
-      this.infoBreak = true;
-    } else {
-      this.infoBreak = false;
-    }
+    this.isMobile = Breakpoint.tablet > window.innerWidth ? true : false;
+
+    this.responseComponents();
   }
 
   handleStoreCarouselChange(index: number) {
     this.curStoreIndex = index;
   }
 
+  responseComponents() {
+    if (this.isMobile) {
+      this.storeCarouselPerPage = 1;
+      this.infoBreak = true;
+    } else {
+      this.storeCarouselPerPage = 3;
+      this.infoBreak = false;
+    }
+  }
+
   public get mainCarouselNavigationNext(): string {
+    if (this.isMobile) return "";
+
     return `<img 
               src=${require("@/assets/images/arrow-right-white.png")}
             >`;
   }
 
   public get mainCarouselNavigationPrev(): string {
+    if (this.isMobile) return "";
+
     return `<img 
               src=${require("@/assets/images/arrow-left-white.png")} 
             >`;
   }
 
   public get storeCarouselNavigationNext(): string {
+    if (this.isMobile) return "";
+
     return `<img 
               src=${require("@/assets/images/arrow-right-black.png")} 
               style="margin-left:1.771vw;margin-bottom:3.646vw;width:1.042vw;"
@@ -318,7 +336,7 @@ export default class Home extends Vue {
   }
 
   public get storeCarouselNavigationPrev(): string {
-    if (this.curStoreIndex == 0) return "";
+    if (this.curStoreIndex == 0 || this.isMobile) return "";
 
     return `<img 
               src=${require("@/assets/images/arrow-left-black.png")} 
@@ -330,7 +348,6 @@ export default class Home extends Vue {
 
 <style lang="scss" scoped>
 @import "../assets/styles/layouts";
-@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
 // 메인 이미지 슬라이드
 .img-slider {
@@ -345,6 +362,10 @@ export default class Home extends Vue {
       img {
         width: 1.458vw;
       }
+
+      @include mobile {
+        display: none;
+      }
     }
 
     .VueCarousel-navigation-next {
@@ -355,15 +376,21 @@ export default class Home extends Vue {
       img {
         width: 1.458vw;
       }
+
+      @include mobile {
+        display: none;
+      }
     }
 
     // 메인 슬라이드 페이지네이션 버튼 위치
     .VueCarousel-pagination--bottom-overlay {
       bottom: 1.667vw;
 
-      button.VueCarousel-dot {
-        width: 0.729vw;
-        height: 0.729vw;
+      @include mobile {
+        button.VueCarousel-dot {
+          width: 2.5vw !important;
+          height: 2.5vw !important;
+        }
       }
     }
 
@@ -409,8 +436,6 @@ export default class Home extends Vue {
 
     @include mobile {
       font-size: 4vw;
-      width: 65.278vw;
-      height: 11.111vw;
       margin-left: 17.361vw;
       margin-right: 17.361vw;
       line-height: 6vw;
@@ -425,7 +450,6 @@ export default class Home extends Vue {
     font-weight: 300;
 
     @include mobile {
-      font-family: "Noto Sans KR";
       font-weight: 400;
       font-size: 3.611vw;
       color: #595757;
@@ -433,7 +457,6 @@ export default class Home extends Vue {
       margin-left: 11.944vw;
       margin-right: 11.944vw;
       line-height: 5vw;
-      height: 15.278vw;
     }
   }
 }
@@ -443,8 +466,6 @@ export default class Home extends Vue {
 
   @include mobile {
     margin-top: 17.5vw;
-    padding-right: 9.167vw;
-    padding-left: 9.167vw;
   }
 
   > * {
@@ -460,21 +481,26 @@ export default class Home extends Vue {
 
     @include mobile {
       margin-bottom: 17.222vw;
-      &:nth-child(2){
-        height: 77.222vw;
-      }
-      &:nth-child(n+3){
-        height: 101.667vw;
-        .clickable{
-          height: 90.278vw;
-          img{
-            //사진 받으면 바꾸기
-            height: 100%;
-          }
-        }
-      }
-      &:nth-child(4) {
+
+      &:last-child {
         margin-bottom: 21.944vw;
+      }
+    }
+  }
+
+  @mixin SquarePagination($bottom) {
+    .VueCarousel-pagination {
+      position: absolute;
+      display: block;
+      right: 0;
+      bottom: $bottom;
+      width: auto !important;
+
+      .VueCarousel-dot {
+        width: 1.667vw !important;
+        height: 1.667vw !important;
+        padding: 1.389vw !important;
+        border-radius: 0;
       }
     }
   }
@@ -483,23 +509,40 @@ export default class Home extends Vue {
   .store-carousel {
     // 매장 이미지들의 사이 간격
     .VueCarousel-slide > div {
-      // padding-left: 0.417vw;
       padding-right: 1.354vw;
       img {
         width: 22.917vw;
-        @include mobile{
+
+        @include mobile {
           width: 100%;
-          height: 54.167vw;
         }
+      }
+    }
+
+    &::v-deep {
+      .VueCarousel-pagination {
+        display: none;
+      }
+
+      @include mobile {
+        @include SquarePagination(-0.556vw);
       }
     }
 
     // 매장 사진 밑에 텍스트
     .store-content {
       p {
+        font-weight: 300;
         margin-top: 1.146vw;
         text-align: center;
         font-size: 0.99vw;
+      }
+
+      @include mobile {
+        p {
+          font-size: 3.611vw;
+          text-align: left;
+        }
       }
     }
   }
@@ -536,6 +579,21 @@ export default class Home extends Vue {
     display: none;
     @include mobile {
       display: block;
+    }
+    &::v-deep {
+      // 메인 슬라이드 페이지네이션 버튼 위치
+      @include SquarePagination(4.444vw);
+    }
+    .online-mall-content {
+      color: #595757;
+
+      font-weight: 300;
+      font-size: 3.611vw;
+      line-height: 1.3;
+
+      span {
+        font-weight: normal;
+      }
     }
   }
 }
