@@ -4,10 +4,10 @@
       <div class="header">
         <h3>청정재료 한식밥집 소녀방앗간</h3>
         <div class="sns">
-          <a href="https://www.facebook.com/" class="facebook">
+          <a href="https://www.facebook.com/sobanglife" class="facebook">
             <img src="../assets/images/icon-facebook.png" />
           </a>
-          <a href="https://www.instagram.com/" class="insta">
+          <a href="https://www.instagram.com/sovangsovang/" class="insta">
             <img src="../assets/images/icon-instagram.png" />
           </a>
         </div>
@@ -49,7 +49,7 @@ footer {
   text-align: left;
 
   @include mobile {
-    margin-bottom: 5.389vw;
+    margin-bottom: 5.278vw;
   }
 
   h3 {
@@ -60,7 +60,6 @@ footer {
 
     @include mobile {
       font-size: 2.917vw;
-      font-weight: bold;
     }
   }
 
@@ -78,7 +77,7 @@ footer {
       padding-right: 0.833vw;
 
       @include mobile {
-        padding-right: 2.222vw;
+        padding-right: 1.389vw;
       }
     }
   }
@@ -88,12 +87,12 @@ p {
   font-size: 0.99vw;
   color: #595757;
   font-weight: 300;
-  line-height: 2;
+  line-height: 1.8;
 
   @include mobile {
-    font-size: 2.5vw;
+    font-size: 2.222vw;
     -webkit-text-size-adjust: none;
-    line-height: normal;
+    line-height: 1.8;
   }
 }
 </style>

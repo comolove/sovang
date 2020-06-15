@@ -6,11 +6,16 @@
           class="logo"
           src="@/assets/images/brand/brand-logo.png"
           alt="소녀방앗간 로고"
+          @click="
+            () => {
+              this.$router.push('/');
+            }
+          "
         />
         <div class="topBar" @click="openMenu"></div>
       </div>
       <nav ref="menuNavRef" class="bar-top">
-        <router-link to="/" class="menu">브랜드</router-link>
+        <router-link to="/brand" class="menu">브랜드</router-link>
         <router-link to="/store" class="menu">식사공간</router-link>
         <router-link to="/mall" class="menu">온라인몰</router-link>
         <router-link to="/catering" class="menu">케이터링</router-link>
@@ -74,7 +79,6 @@ header {
     position: initial;
     padding: 0;
     margin-top: 10.556vw;
-    margin-bottom: 6.667vw;
   }
 }
 
@@ -93,28 +97,26 @@ header {
     margin-left: 9.028vw;
 
     .topBar {
-      display: none;
+      display: inline-block;
       position: absolute;
       width: 6.389vw;
       height: 2.778vw;
       border-top: 0.633vw solid #727171;
       border-bottom: 0.633vw solid #727171;
       text-align: right;
-      @include mobile {
-        display: inline-block;
-      }
     }
   }
 
   .logo {
     width: 6.719vw;
+    cursor: pointer;
 
     @include mobile {
       display: inline;
-      width: 25.556vw;
+      width: 23.333vw;
       margin-left: 28.194vw;
       margin-right: 21.805vw;
-      margin-bottom: 6.5vw;
+      margin-bottom: 6.111vw;
     }
   }
 
@@ -140,15 +142,13 @@ header {
     @include mobile {
       display: flex;
       padding-top: 2.222vw;
-      border-top: 0.4vw solid black;
 
       .menu:nth-child(n + 5) {
         display: none;
       }
 
       .menu {
-        font-size: 3.472vw;
-        font-weight: bold;
+        font-size: 3.611vw;
       }
 
       &.extend {

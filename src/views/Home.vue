@@ -16,12 +16,11 @@
         paginationColor="#c9caca"
       >
         <Slide
-          v-for="(path, index) of slideImgPaths"
+          v-for="(data, index) of mainSlideData"
           :key="index"
           :id="'main-carousel-slide-' + index"
         >
-          <!-- TODO : backend 구현 후 db에서 링크 불러와서 넣어주도록 변경 -->
-          <AssetImage :src="path" />
+          <AssetImage :src="isMobile ? data.mobilePath : data.pcPath" />
         </Slide>
       </Carousel>
     </section>
@@ -33,8 +32,7 @@
       <p class="content">
         소녀방앗간은 청정지역 장인들이 해마다 정성들여 수확한 청정
         햇-식재료를<br v-if="!infoBreak" />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수확한
-        만큼만 신선하게 담아 도시의 소비자에게 건강한 한 끼로 대접합니다.
+        수확한 만큼만 신선하게 담아 도시의 소비자에게 건강한 한 끼로 대접합니다.
       </p>
     </section>
     <section class="wrap home-contents">
@@ -56,15 +54,14 @@
           @page-change="handleStoreCarouselChange"
         >
           <Slide
-            v-for="(data, index) of storeData"
+            v-for="(data, index) of storeSlideData"
             :key="index"
             :data-index="index"
             data-name="DataName"
             @slideclick="handleStoreSlideClick"
           >
-            <!-- TODO : backend 구현 후 db에서 링크 불러와서 넣어주도록 변경 -->
             <div class="store-content">
-              <AssetImage :src="data.imgPath" />
+              <AssetImage :src="isMobile ? data.mobilePath : data.pcPath" />
               <p>{{ data.storeName }}</p>
             </div>
           </Slide>
@@ -72,13 +69,15 @@
       </HomeContent>
       <HomeContent title="온라인몰">
         <div class="online-mall-container">
-          <!-- TODO : backend 구현 후 db에서 링크 불러와서 넣어주도록 변경 -->
           <div
             class="item"
-            v-for="(data, index) of onlineMallData"
+            v-for="(data, index) of onlineMallSlideData"
             :key="index"
           >
-            <HoverTextImage :src="data.imgPath" :href="data.link">
+            <HoverTextImage
+              :src="isMobile ? data.mobilePath : data.pcPath"
+              :href="data.link"
+            >
               <p>
                 {{ data.desc }}<br /><span>{{ data.name }}</span>
               </p>
@@ -86,12 +85,12 @@
           </div>
         </div>
         <div class="online-mall-container-mobile">
-          <!-- TODO : backend 구현 후 db에서 링크 불러와서 넣어주도록 변경 -->
           <Carousel
             ref="onlineMallCarousel"
             class="online-mall-carousel"
             :per-page="1"
             :scrollPerPage="false"
+            :autoplayTimeout="4000"
             :paginationEnabled="true"
             :navigationEnabled="true"
             :navigationNextLabel="storeCarouselNavigationNext"
@@ -101,14 +100,14 @@
             paginationColor="#c9caca"
           >
             <Slide
-              v-for="(data, index) of onlineMallData"
+              v-for="(data, index) of onlineMallSlideData"
               :key="index"
               :data-index="index"
               data-name="DataName"
               @slideclick="handleStoreSlideClick"
             >
               <div class="online-mall-content">
-                <AssetImage :src="data.imgPath" />
+                <AssetImage :src="isMobile ? data.mobilePath : data.pcPath" />
                 <p>
                   {{ data.desc }}<br /><span>{{ data.name }}</span>
                 </p>
@@ -126,7 +125,9 @@
             }
           "
         >
-          <AssetImage src="catering.jpg" />
+          <AssetImage
+            :src="isMobile ? cateringImg.mobilePath : cateringImg.pcPath"
+          />
         </div>
       </HomeContent>
       <HomeContent title="명절선물">
@@ -138,7 +139,9 @@
             }
           "
         >
-          <AssetImage src="present.jpg" />
+          <AssetImage
+            :src="isMobile ? presentImg.mobilePath : presentImg.pcPath"
+          />
         </div>
       </HomeContent>
     </section>
@@ -156,6 +159,20 @@ import {
 } from "@/components";
 import Breakpoint from "@/utils/screenSize";
 
+class ImgPath {
+  public pcPath = "";
+  public tabletPath = "";
+  public mobilePath = "";
+}
+class StoreData extends ImgPath {
+  public storeName = "";
+}
+class OnlineMallData extends ImgPath {
+  public desc = "";
+  public name = "";
+  public link = "";
+}
+
 @Component({
   name: "Home",
   components: {
@@ -168,14 +185,12 @@ import Breakpoint from "@/utils/screenSize";
   }
 })
 export default class Home extends Vue {
-  private slideImgPaths: string[] = [];
-  private storeData: { imgPath: string; storeName: string }[] = [];
-  private onlineMallData: {
-    imgPath: string;
-    desc: string;
-    name: string;
-    link: string;
-  }[] = [];
+  private mainSlideData: ImgPath[] = [];
+  private storeSlideData: StoreData[] = [];
+  private onlineMallSlideData: OnlineMallData[] = [];
+
+  private cateringImg: ImgPath = new ImgPath();
+  private presentImg: ImgPath = new ImgPath();
 
   private isMobile = false;
 
@@ -191,80 +206,66 @@ export default class Home extends Vue {
   created() {
     window.addEventListener("resize", this.handleResize);
 
-    for (let i = 1; i <= 4; i++) {
-      this.slideImgPaths.push(`slide/pc/main-slide-${i}.jpg`);
+    this.cateringImg.pcPath = "catering.jpg";
+    this.cateringImg.mobilePath = "catering-m.jpg";
+
+    this.presentImg.pcPath = "present.jpg";
+    this.presentImg.mobilePath = "present-m.jpg";
+
+    // TODO : Backend 개발 후 DB에서 불러오기
+    for (let i = 0; i < 4; i++) {
+      this.mainSlideData.push({
+        pcPath: `slide/pc/main-slide-${i + 1}.jpg`,
+        tabletPath: "",
+        mobilePath: `slide/mobile/main-slide-${i + 1}.jpg`
+      });
     }
 
-    this.storeData.push({
-      imgPath: "store/5)web_매장_서울숲시작점.jpg",
-      storeName: "서울숲시작점"
-    });
-    this.storeData.push({
-      imgPath: "store/6)web_매장_현대백화점신도림점.jpg",
-      storeName: "현대백화점 킨텍스점"
-    });
-    this.storeData.push({
-      imgPath: "store/7)web_매장_이화여대점.jpg",
-      storeName: "이화여대점"
-    });
-    this.storeData.push({
-      imgPath: "store/8)web_매장_마로니에점.jpg",
-      storeName: "마로니에점"
-    });
-    this.storeData.push({
-      imgPath: "store/9)web_매장_고속터미널점.jpg",
-      storeName: "고속터미널점"
-    });
-    this.storeData.push({
-      imgPath: "store/10)web_매장_킨텍스점.jpg",
-      storeName: "킨텍스점"
-    });
-    this.storeData.push({
-      imgPath: "store/11)web_매장_중곡시장점.jpg",
-      storeName: "중곡시장점"
-    });
+    const storeName = [
+      "서울숲시작점",
+      "현대백화점 킨텍스점",
+      "이화여대점",
+      "마로니에점",
+      "고속터미널점",
+      "킨텍스점",
+      "중곡시장점"
+    ];
+    for (let i = 0; i < storeName.length; i++) {
+      this.storeSlideData.push({
+        pcPath: `store/store-${i + 1}.jpg`,
+        tabletPath: "",
+        mobilePath: `store/mobile/store-${i + 1}.jpg`,
+        storeName: storeName[i]
+      });
+    }
 
-    this.onlineMallData.push({
-      imgPath: "online-mall/12)web_온라인몰_간장.jpg",
-      desc: "오랜 세월 깊어지는 맛",
-      name: "재래식 된장 (450g)",
-      link: "/"
-    });
-
-    this.onlineMallData.push({
-      imgPath: "online-mall/13)web_온라인몰_된장.jpg",
-      desc: "100% 국내산 고춧가루로 담근",
-      name: "찹쌀 고추장 (450g)",
-      link: "/"
-    });
-
-    this.onlineMallData.push({
-      imgPath: "online-mall/14)web_온라인몰_고추장.jpg",
-      desc: "임금님이 드시던 나물",
-      name: "어수리 (80g)",
-      link: "/"
-    });
-
-    this.onlineMallData.push({
-      imgPath: "online-mall/15)web_온라인몰_곤드레.jpg",
-      desc: "태백산의 보물",
-      name: "곤드레 (80g)",
-      link: "/"
-    });
-
-    this.onlineMallData.push({
-      imgPath: "online-mall/16)web_온라인몰_어수리.jpg",
-      desc: "봄나물의 대명사",
-      name: "취나물 (80g)",
-      link: "/"
-    });
-
-    this.onlineMallData.push({
-      imgPath: "online-mall/17)web_온라인몰_취나물.jpg",
-      desc: "오랜 세월 깊어지는 맛",
-      name: "재래식 된장 (450g)",
-      link: "/"
-    });
+    const onlineMallDesc = [
+      "청송 약수와 토종콩 메주로 담근",
+      "오랜 세월 깊어지는 맛",
+      "100% 국내산 고춧가루로 담근",
+      "태백산의 보물",
+      "임금님이 드시던 나물",
+      "봄나물의 대명사"
+    ];
+    const onlineMallName = [
+      "재래식 간장 (550ml)",
+      "재래식 된장 (450g)",
+      "찹쌀 고추장 (450g)",
+      "곤드레 (80g)",
+      "어수리 (80g)",
+      "취나물 (80g)"
+    ];
+    const onlineMallLink = ["/"];
+    for (let i = 0; i < onlineMallName.length; i++) {
+      this.onlineMallSlideData.push({
+        pcPath: `online-mall/online-mall-${i + 1}.jpg`,
+        tabletPath: "",
+        mobilePath: `online-mall/mobile/online-mall-${i + 1}.jpg`,
+        desc: onlineMallDesc[i],
+        name: onlineMallName[i],
+        link: onlineMallLink[0]
+      });
+    }
   }
 
   mounted() {
@@ -311,16 +312,12 @@ export default class Home extends Vue {
   }
 
   public get mainCarouselNavigationNext(): string {
-    if (this.isMobile) return "";
-
     return `<img 
               src=${require("@/assets/images/arrow-right-white.png")}
             >`;
   }
 
   public get mainCarouselNavigationPrev(): string {
-    if (this.isMobile) return "";
-
     return `<img 
               src=${require("@/assets/images/arrow-left-white.png")} 
             >`;
@@ -331,7 +328,7 @@ export default class Home extends Vue {
 
     return `<img 
               src=${require("@/assets/images/arrow-right-black.png")} 
-              style="margin-left:1.771vw;margin-bottom:3.646vw;width:1.042vw;"
+              style="width:1.042vw;"
             >`;
   }
 
@@ -340,7 +337,7 @@ export default class Home extends Vue {
 
     return `<img 
               src=${require("@/assets/images/arrow-left-black.png")} 
-              style="margin-right:1.771vw;margin-bottom:3.646vw;width:1.042vw;"
+              style="width:1.042vw;"
             >`;
   }
 }
@@ -364,7 +361,12 @@ export default class Home extends Vue {
       }
 
       @include mobile {
-        display: none;
+        left: 4vw;
+        top: 50%;
+
+        img {
+          width: 3.889vw;
+        }
       }
     }
 
@@ -378,7 +380,12 @@ export default class Home extends Vue {
       }
 
       @include mobile {
-        display: none;
+        right: 4vw;
+        top: 50%;
+
+        img {
+          width: 3.889vw;
+        }
       }
     }
 
@@ -426,7 +433,7 @@ export default class Home extends Vue {
   text-align: center;
 
   @include mobile {
-    margin-top: 13.889vw;
+    margin-top: 16.944vw;
   }
 
   .title {
@@ -435,10 +442,10 @@ export default class Home extends Vue {
     letter-spacing: -0.13px;
 
     @include mobile {
-      font-size: 4vw;
+      font-size: 3.889vw;
       margin-left: 17.361vw;
       margin-right: 17.361vw;
-      line-height: 6vw;
+      line-height: 1.8;
       color: #595757;
     }
   }
@@ -456,7 +463,7 @@ export default class Home extends Vue {
       margin-top: 7.5vw;
       margin-left: 11.944vw;
       margin-right: 11.944vw;
-      line-height: 5vw;
+      line-height: 1.7;
     }
   }
 }
@@ -480,27 +487,33 @@ export default class Home extends Vue {
     }
 
     @include mobile {
-      margin-bottom: 17.222vw;
+      margin-bottom: 17.5vw;
 
       &:last-child {
-        margin-bottom: 21.944vw;
+        margin-bottom: 17.5vw;
       }
     }
   }
 
-  @mixin SquarePagination($bottom) {
+  @mixin RightAlignPagination($bottom) {
     .VueCarousel-pagination {
       position: absolute;
       display: block;
       right: 0;
       bottom: $bottom;
       width: auto !important;
+      height: 10vw;
+      background-color: white !important;
 
-      .VueCarousel-dot {
-        width: 1.667vw !important;
-        height: 1.667vw !important;
-        padding: 1.389vw !important;
-        border-radius: 0;
+      .VueCarousel-dot-container {
+        margin-top: 0 !important;
+
+        .VueCarousel-dot {
+          margin-top: 0 !important;
+          width: 1.944vw !important;
+          height: 1.944vw !important;
+          padding: 0.667vw !important;
+        }
       }
     }
   }
@@ -524,8 +537,16 @@ export default class Home extends Vue {
         display: none;
       }
 
+      .VueCarousel-navigation-prev {
+        transform: translateY(-70%) translateX(-150%);
+      }
+
+      .VueCarousel-navigation-next {
+        transform: translateY(-70%) translateX(150%);
+      }
+
       @include mobile {
-        @include SquarePagination(-0.556vw);
+        @include RightAlignPagination(-4.856vw);
       }
     }
 
@@ -577,12 +598,9 @@ export default class Home extends Vue {
   // 온라인몰 모바일
   .online-mall-container-mobile {
     display: none;
-    @include mobile {
-      display: block;
-    }
+    
     &::v-deep {
-      // 메인 슬라이드 페이지네이션 버튼 위치
-      @include SquarePagination(4.444vw);
+      @include RightAlignPagination(0.144vw);
     }
     .online-mall-content {
       color: #595757;
@@ -593,6 +611,22 @@ export default class Home extends Vue {
 
       span {
         font-weight: normal;
+      }
+    }
+
+    @include mobile {
+      display: block;
+
+      .online-mall-content {
+        color: #595757;
+
+        font-weight: 300;
+        font-size: 3.611vw;
+        line-height: 1.3;
+
+        span {
+          font-weight: 300;
+        }
       }
     }
   }
