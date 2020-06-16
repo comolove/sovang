@@ -4,7 +4,7 @@
       <div>
         <img
           class="logo"
-          src="@/assets/images/brand/brand-logo.png"
+          src="@/assets/images/brand/brand-logo_revision.png"
           alt="소녀방앗간 로고"
           @click="
             () => {
@@ -78,7 +78,7 @@ header {
   @include mobile {
     position: initial;
     padding: 0;
-    margin-top: 10.556vw;
+    margin-top: 6.389vw;
   }
 }
 
@@ -91,7 +91,7 @@ header {
     margin: 0;
     display: block;
     width: 81.944vw;
-    height: 28.889vw;
+    height: 27.500vw;
     padding: 0;
     margin-right: 9.028vw;
     margin-left: 9.028vw;
@@ -113,9 +113,9 @@ header {
 
     @include mobile {
       display: inline;
-      width: 23.333vw;
-      margin-left: 29.444vw;
-      margin-right: 22.788vw;
+      width: 20.556vw;
+      margin-left: 30.833vw;
+      margin-right: 24.167vw;
       margin-bottom: 6.111vw;
     }
   }

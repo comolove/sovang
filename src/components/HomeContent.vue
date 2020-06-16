@@ -29,7 +29,9 @@ article {
     @include mobile {
       padding-bottom: 1.111vw;
       margin-bottom: 6.389vw;
+      color: #001845;
       font-size: 3.611vw;
+      font-weight: 500;
     }
   }
 }

@@ -13,7 +13,8 @@
         :navigationPrevLabel="mainCarouselNavigationPrev"
         :loop="true"
         paginationPosition="bottom-overlay"
-        paginationColor="#c9caca"
+        paginationColor="#c9caca" 
+        :paginationActiveColor="mainCarouselPaginationActiveColor"
       >
         <Slide
           v-for="(data, index) of mainSlideData"
@@ -51,6 +52,7 @@
           :loop="true"
           :spacePadding="-20"
           paginationColor="#c9caca"
+          :paginationActiveColor="homeContentCarouselPaginationActiveColor"
           @page-change="handleStoreCarouselChange"
         >
           <Slide
@@ -193,8 +195,9 @@ export default class Home extends Vue {
   private presentImg: ImgPath = new ImgPath();
 
   private isMobile = false;
-
   private storeCarouselPerPage = 1;
+  private mainCarouselPaginationActiveColor = "#c9caca";
+  private homeContentCarouselPaginationActiveColor = "black";
 
   private curStoreIndex = 0;
   private infoBreak = false;
@@ -305,9 +308,13 @@ export default class Home extends Vue {
     if (this.isMobile) {
       this.storeCarouselPerPage = 1;
       this.infoBreak = true;
+      this.mainCarouselPaginationActiveColor = "white";
+      this.homeContentCarouselPaginationActiveColor = "#001845"
     } else {
       this.storeCarouselPerPage = 3;
       this.infoBreak = false;
+      this.mainCarouselPaginationActiveColor = "black";
+      this.homeContentCarouselPaginationActiveColor = "black";
     }
   }
 
@@ -345,6 +352,12 @@ export default class Home extends Vue {
 
 <style lang="scss" scoped>
 @import "../assets/styles/layouts";
+
+@include mobile{
+  .home{
+    margin-top:0;
+  }
+}
 
 // 메인 이미지 슬라이드
 .img-slider {
@@ -420,10 +433,8 @@ export default class Home extends Vue {
   img {
     width: 100%;
     @include mobile {
-      max-width: 100%;
-      width: 316vw;
-      height: 131.667vw;
-      object-fit: cover;
+      height: 147.222vw;
+      object-fit: contain;
       overflow: hidden;
     }
   }
@@ -433,7 +444,7 @@ export default class Home extends Vue {
   text-align: center;
 
   @include mobile {
-    margin-top: 16.944vw;
+    margin-top: 22.222vw;
   }
 
   .title {
@@ -445,7 +456,7 @@ export default class Home extends Vue {
       font-size: 3.889vw;
       margin-left: 17.361vw;
       margin-right: 17.361vw;
-      line-height: 1.8;
+      line-height: 1.67;
       color: #595757;
     }
   }
@@ -457,13 +468,15 @@ export default class Home extends Vue {
     font-weight: 300;
 
     @include mobile {
-      font-weight: 400;
+      text-align: center;
+      letter-spacing: normal;
+      font-weight: 300;
       font-size: 3.611vw;
       color: #595757;
       margin-top: 7.5vw;
       margin-left: 11.944vw;
       margin-right: 11.944vw;
-      line-height: 1.7;
+      line-height: 1.62;
     }
   }
 }
@@ -472,7 +485,7 @@ export default class Home extends Vue {
   margin-top: 11.458vw;
 
   @include mobile {
-    margin-top: 17.5vw;
+    margin-top: 21.389vw;
   }
 
   > * {
@@ -487,10 +500,10 @@ export default class Home extends Vue {
     }
 
     @include mobile {
-      margin-bottom: 17.5vw;
+      margin-bottom: 21.389vw;
 
       &:last-child {
-        margin-bottom: 17.5vw;
+        margin-bottom: 20.833vw;
       }
     }
   }
