@@ -41,17 +41,9 @@ main {
 }
 
 .bar-top {
-  border-top: 1px solid black;
-
-  @include mobile {
-    border-top: 1.5px solid black;
-  }
+  border-top: 1px solid #807670;
 }
 
 .bar-bottom {
   border-bottom: 1px solid #807670;
-
-  @include mobile {
-    border-bottom: 1.5px solid #807670;
-  }
 }
