@@ -114,8 +114,8 @@ header {
     @include mobile {
       display: inline;
       width: 23.333vw;
-      margin-left: 28.194vw;
-      margin-right: 21.805vw;
+      margin-left: 29.444vw;
+      margin-right: 22.788vw;
       margin-bottom: 6.111vw;
     }
   }
