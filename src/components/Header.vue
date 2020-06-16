@@ -128,6 +128,8 @@ header {
     padding-top: 0.729vw;
     align-self: flex-end;
 
+    border-top: 1px solid black;
+
     .menu {
       font-size: 1.198vw;
       color: black;
