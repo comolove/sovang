@@ -355,7 +355,7 @@ export default class Home extends Vue {
 
 @include mobile{
   .home{
-    margin-top:0;
+    margin-top: 0.8vw;
   }
 }
 
@@ -375,7 +375,7 @@ export default class Home extends Vue {
 
       @include mobile {
         left: 4vw;
-        top: 50%;
+        top: 45%;
 
         img {
           width: 3.889vw;
@@ -394,7 +394,7 @@ export default class Home extends Vue {
 
       @include mobile {
         right: 4vw;
-        top: 50%;
+        top: 45%;
 
         img {
           width: 3.889vw;
@@ -526,6 +526,9 @@ export default class Home extends Vue {
           width: 1.944vw !important;
           height: 1.944vw !important;
           padding: 0.667vw !important;
+        }
+        .VueCarousel-dot--active {
+          border-radius: 0;
         }
       }
     }

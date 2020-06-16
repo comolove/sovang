@@ -142,7 +142,7 @@ header {
 
     @include mobile {
       display: flex;
-      padding-top: 2.222vw;
+      padding-top: 2.5vw;
 
       .menu:nth-child(n + 5) {
         display: none;

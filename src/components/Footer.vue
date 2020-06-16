@@ -89,6 +89,11 @@ p {
   font-weight: 300;
   line-height: 1.8;
 
+  a {
+    text-decoration: none;
+    color: #595757;
+  }
+
   @include mobile {
     font-size: 2.222vw;
     -webkit-text-size-adjust: none;
