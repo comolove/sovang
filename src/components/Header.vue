@@ -130,7 +130,6 @@ header {
 
     .menu {
       font-size: 1.198vw;
-      font-weight: 300;
       color: black;
       text-decoration: none;
     }
