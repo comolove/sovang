@@ -132,22 +132,20 @@
           />
         </div>
       </HomeContent>
-      <transition name="fade" appear>
-        <HomeContent title="명절선물">
-          <div
-            class="clickable"
-            @click="
-              () => {
-                this.$router.push('/present');
-              }
-            "
-          >
-            <AssetImage
-              :src="isMobile ? presentImg.mobilePath : presentImg.pcPath"
-            />
-          </div>
-        </HomeContent>
-      </transition>
+      <HomeContent title="명절선물">
+        <div
+          class="clickable"
+          @click="
+            () => {
+              this.$router.push('/present');
+            }
+          "
+        >
+          <AssetImage
+            :src="isMobile ? presentImg.mobilePath : presentImg.pcPath"
+          />
+        </div>
+      </HomeContent>
     </section>
   </main>
 </template>
@@ -354,13 +352,6 @@ export default class Home extends Vue {
 
 <style lang="scss" scoped>
 @import "../assets/styles/layouts";
-
-.fade-enter {
-  opacity: 0;
-}
-.fade-enter-active {
-  transition: opacity 5.5s;
-}
 
 @include mobile {
   .home {
