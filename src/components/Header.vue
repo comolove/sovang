@@ -91,7 +91,7 @@ header {
     margin: 0;
     display: block;
     width: 81.944vw;
-    height: 27.500vw;
+    height: 27.5vw;
     padding: 0;
     margin-right: 9.028vw;
     margin-left: 9.028vw;

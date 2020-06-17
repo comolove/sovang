@@ -13,7 +13,7 @@
         :navigationPrevLabel="mainCarouselNavigationPrev"
         :loop="true"
         paginationPosition="bottom-overlay"
-        paginationColor="#c9caca" 
+        paginationColor="#c9caca"
         :paginationActiveColor="mainCarouselPaginationActiveColor"
       >
         <Slide
@@ -132,20 +132,22 @@
           />
         </div>
       </HomeContent>
-      <HomeContent title="명절선물">
-        <div
-          class="clickable"
-          @click="
-            () => {
-              this.$router.push('/present');
-            }
-          "
-        >
-          <AssetImage
-            :src="isMobile ? presentImg.mobilePath : presentImg.pcPath"
-          />
-        </div>
-      </HomeContent>
+      <transition name="fade" appear>
+        <HomeContent title="명절선물">
+          <div
+            class="clickable"
+            @click="
+              () => {
+                this.$router.push('/present');
+              }
+            "
+          >
+            <AssetImage
+              :src="isMobile ? presentImg.mobilePath : presentImg.pcPath"
+            />
+          </div>
+        </HomeContent>
+      </transition>
     </section>
   </main>
 </template>
@@ -309,7 +311,7 @@ export default class Home extends Vue {
       this.storeCarouselPerPage = 1;
       this.infoBreak = true;
       this.mainCarouselPaginationActiveColor = "white";
-      this.homeContentCarouselPaginationActiveColor = "#001845"
+      this.homeContentCarouselPaginationActiveColor = "#001845";
     } else {
       this.storeCarouselPerPage = 3;
       this.infoBreak = false;
@@ -353,8 +355,15 @@ export default class Home extends Vue {
 <style lang="scss" scoped>
 @import "../assets/styles/layouts";
 
-@include mobile{
-  .home{
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  transition: opacity 5.5s;
+}
+
+@include mobile {
+  .home {
     margin-top: 0.8vw;
   }
 }
@@ -614,7 +623,7 @@ export default class Home extends Vue {
   // 온라인몰 모바일
   .online-mall-container-mobile {
     display: none;
-    
+
     &::v-deep {
       @include RightAlignPagination(0.144vw);
     }
