@@ -1,7 +1,7 @@
 @import "./variables";
 
 @mixin mobile {
-  @media screen and (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet - 1px}) {
+  @media screen and (max-width: #{$breakpoint-tablet - 1px}) {
     @content;
   }
 }
@@ -41,15 +41,9 @@ main {
 }
 
 .bar-top {
-  border-top: 1px solid #807670;
-  @include mobile{
-    border-top: 0.556vw solid #313131;
-  }
+  border-top: 1px solid #001845;
 }
 
 .bar-bottom {
-  border-bottom: 1px solid #807670;
-  @include mobile{
-    border-bottom: 0.278vw solid black;
-  }
+  border-bottom: 1px solid #001845;
 }

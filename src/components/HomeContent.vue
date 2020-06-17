@@ -24,12 +24,11 @@ article {
     padding-bottom: 0.729vw;
     margin-bottom: 2.76vw;
     font-size: 1.198vw;
-    color: #807670;
+    color: #001845;
 
     @include mobile {
       padding-bottom: 1.111vw;
       margin-bottom: 6.389vw;
-      color: #001845;
       font-size: 3.611vw;
       font-weight: 500;
     }

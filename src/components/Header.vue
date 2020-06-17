@@ -131,9 +131,12 @@ header {
     border-top: 1px solid black;
 
     .menu {
-      font-size: 1.198vw;
+      font-size: 1.1vw;
       color: black;
       text-decoration: none;
+      &:hover {
+        font-weight:bold;
+      }
     }
 
     .btn-close {

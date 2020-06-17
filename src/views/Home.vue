@@ -31,9 +31,7 @@
         모두의 마음 속엔 소녀가 있습니다.
       </p>
       <p class="content">
-        소녀방앗간은 청정지역 장인들이 해마다 정성들여 수확한 청정
-        햇-식재료를<br v-if="!infoBreak" />
-        수확한 만큼만 신선하게 담아 도시의 소비자에게 건강한 한 끼로 대접합니다.
+        소녀방앗간은 청정지역 장인들이 해마다 정성들여 수확한 청정 햇-식재료를<br v-if="!infoBreak" />수확한 만큼만 신선하게 담아 도시의 소비자에게 건강한 한 끼로 대접합니다.
       </p>
     </section>
     <section class="wrap home-contents">
@@ -449,30 +447,30 @@ export default class Home extends Vue {
 
   .title {
     font-family: "munche_jemok_batang";
-    font-size: 1.354vw;
+    font-size: 1.27vw;
     letter-spacing: -0.13px;
+    color: #595757;
 
     @include mobile {
       font-size: 3.889vw;
       margin-left: 17.361vw;
       margin-right: 17.361vw;
       line-height: 1.67;
-      color: #595757;
     }
   }
 
   .content {
     margin-top: 2.344vw;
-    font-size: 1.198vw;
+    font-size: 1.1vw;
     line-height: 1.83;
     font-weight: 300;
+    color: #595757;
 
     @include mobile {
       text-align: center;
       letter-spacing: normal;
       font-weight: 300;
       font-size: 3.611vw;
-      color: #595757;
       margin-top: 7.5vw;
       margin-left: 11.944vw;
       margin-right: 11.944vw;
@@ -526,9 +524,6 @@ export default class Home extends Vue {
           width: 1.944vw !important;
           height: 1.944vw !important;
           padding: 0.667vw !important;
-        }
-        .VueCarousel-dot--active {
-          border-radius: 0;
         }
       }
     }
