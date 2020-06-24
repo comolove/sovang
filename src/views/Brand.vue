@@ -8,7 +8,7 @@
         <AssetImage :src="'brand-page/' + (isMobile?'Mobile':'WEB') + '/content-1.jpg'" />
         <div class="info-1">
           농사 장인이
-          <br />직접 생산한 청정재료를
+          <br v-if="!isMobile" />직접 생산한 청정재료를
           <br />도시의 건강한 먹거리로
           <br />
         </div>
@@ -17,8 +17,8 @@
           지어온 장인들이 고향 땅에서 직접 키웠습니다.
           식재료는 태백산맥 산악지형으로 둘러싸인 청정지역
           경북 청송에서 재배하였습니다.
-          <br />
-          <br />소녀방앗간은 땅과 공기가 줄 수 있는 에너지를
+          <br v-if="!isMobile" />
+          <br v-if="!isMobile" /><span v-if="!isMobile">소녀방앗간은 </span>땅과 공기가 줄 수 있는 에너지를
           온전히 담은 재료로 청정지역 장인들의 수준 높은
           식문화를 전합니다.
         </div>
@@ -27,7 +27,7 @@
         <AssetImage :src="'brand-page/' + (isMobile?'Mobile':'WEB') + '/content-2.jpg'" />
         <div class="info-1">
           지속가능한 생산과
-          <br />낭비없는 소비의 순환
+          <br v-if="!isMobile"/>낭비없는 소비의 순환
         </div>
         <div class="info-2">
           오지 어르신들과 10년간 청정재료를 재배해 온
@@ -40,10 +40,12 @@
       </HomeContent>
       <HomeContent title="함께하는 로컬 네트워크">
         <div class="info-2">
-          소녀방앗간은 '모두의 먹을거리'에 대한 진정성을 바탕으로
+          <span v-if="!isMobile">소녀방앗간은 '모두의 먹을거리'에 대한 진정성을 바탕으로
           생산자와 소비자 모두를 위한 농업유통을 고민합니다.
           <br />
-          <br />지난 10년간 전국 각지에서 150여분의 생산자를 만나, 농산물을
+          <br />
+          </span>지난
+          <span class="highlight" >10년간 전국 각지에서 150여분의 생산자</span>를 만나, 농산물을
           계약재배하여 지속가능한 농업생산물 유통전문 브랜드로
           성장해왔습니다. 소녀방앗간은 건강한 식재료를 위해 지속가능한
           생산과 낭비 없는 소비의 순환 원칙을 지켜갑니다.
@@ -139,13 +141,20 @@ export default class Brand extends Vue {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/styles/layouts";
+
 main {
   margin-top: 7.849vw;
-
+  @include mobile {
+    margin-top: 0;
+  }
   .main {
     width: 100%;
     img {
       width: 100%;
+
+      @include mobile {
+      }
     }
   }
 
@@ -159,35 +168,86 @@ main {
       padding-right: 14.323vw;
       color: #595757;
 
+      @include mobile {
+        margin-top: 23.611vw;
+        padding-left: 9.563vw;
+        padding-right: 9.563vw;
+      }
+
       img {
         position: absolute;
-        left: 0;
-        width: 54.5vw;
+        width: 55.885vw;
+
+        @include pc {
+          left: 0;
+        }
+
+        @include tablet {
+          left: 0;
+        }
+
+        @include mobile {
+          right: 0;
+          width: 90.833vw;
+        }
       }
 
       .info-1 {
         font-family: "munche_jemok_batang";
         font-size: 1.198vw;
+
+        @include mobile {
+          font-family: "Noto Sans KR", sans-serif;
+          font-size: 3.611vw;
+          letter-spacing: normal;
+        }
       }
 
       .info-2 {
         text-align: justify;
+        text-justify: distribute-all-lines;
         font-size: 1.146vw;
         font-weight: 300;
+
+        @include mobile {
+          font-size: 3.611vw;
+        }
       }
 
       &:nth-child(1) {
         div {
-          margin-left: 46.375vw;
+          margin-left: 46.927vw;
           line-height: 1.979vw;
+
+          @include mobile {
+            margin-left: 0;
+            line-height: 1.62;
+          }
 
           &:nth-last-child(2) {
             padding-top: 1.2vw;
+
+            @include mobile {
+              margin-top: 64.833vw;
+              margin-left: 0;
+              width: 54.111vw;
+              padding: 0;
+              height: 9.167vw;
+              font-weight: 500;
+            }
           }
 
           &:nth-last-child(1) {
             padding-top: 2.454vw;
+
+            @include mobile {
+              padding-top: 5.478vw;
+            }
           }
+        }
+
+        @include mobile {
+          height: 119.444vw;
         }
       }
 
@@ -195,15 +255,34 @@ main {
         div {
           margin-left: 46.675vw;
 
+          @include mobile {
+            margin-left: 0;
+          }
+
           &:nth-last-child(2) {
             line-height: 2.188vw;
             padding-top: 3.385vw;
+
+            @include mobile {
+              margin-top: 64.833vw;
+              margin-left: 0;
+              padding: 0;
+              font-weight: 500;
+              line-height: 1.62;
+            }
           }
 
           &:nth-last-child(1) {
             line-height: 1.979vw;
             padding-top: 3.788vw;
+
+            @include mobile{
+              line-height: 1.62;
+            }
           }
+        }
+        @include mobile {
+          height: 107.778vw;
         }
       }
 
@@ -213,29 +292,90 @@ main {
           line-height: 1.979vw;
           width: 31.875vw;
           padding-top: 4.948vw;
+          .highlight {
+            font-weight: 500;
+
+            @include mobile{
+              font-weight: 300;
+            }
+          }
+
+          @include mobile{
+            display: block;
+            position: relative;
+            bottom: 0.833vw;
+            width: auto;
+            line-height: 1.62;
+            padding:0;
+          }
         }
         img {
-          left: 62.406vw;
-          width: 21.042vw;
+          left: 61.406vw;
+          width: 23.042vw;
           height: 26.716vw;
+
+          @include mobile{
+            margin-top: 4.444vw;
+            left: 27.611vw;
+            width: 50.611vw;
+            height: 61.667vw;
+          }
+        }
+
+        @include mobile{
+          height: 106.111vw;
         }
       }
 
       &:nth-child(4) {
+        margin-top: 4.531vw;
         div {
           padding-top: 1vw;
-          margin-left: 44.675vw;
+          margin-left: 46.927vw;
           line-height: 1.879vw;
+
+          @include mobile{
+            margin:0;
+            margin-top: 64.833vw;
+            padding:0;
+            line-height: 1.53;
+          }
+        }
+
+        @include mobile{
+          margin-top: 23.056vw;
+          height: 141.111vw;
+
+          img{
+            left: 0;
+          }
         }
       }
 
       &:nth-child(5) {
         margin-bottom: 8.75vw;
+
+        @include mobile{
+          margin-top: 22.222vw;
+          margin-bottom: 19.444vw;
+          height: 125.556vw;
+        }
         img {
           position: relative;
           width: 100%;
+
+          @include mobile{
+            padding-top: 1.944vw;
+          }
         }
       }
+    }
+  }
+
+  div{
+    word-break: keep-all;
+    @include mobile{
+      letter-spacing: -0.13vw;
     }
   }
 }

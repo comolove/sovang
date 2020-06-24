@@ -27,7 +27,7 @@ article {
     color: #001845;
 
     @include mobile {
-      padding-bottom: 1.111vw;
+      padding-bottom: 1.311vw;
       margin-bottom: 6.389vw;
       font-size: 3.611vw;
       font-weight: 500;
