@@ -18,7 +18,8 @@
           식재료는 태백산맥 산악지형으로 둘러싸인 청정지역
           경북 청송에서 재배하였습니다.
           <br v-if="!isMobile" />
-          <br v-if="!isMobile" /><span v-if="!isMobile">소녀방앗간은 </span>땅과 공기가 줄 수 있는 에너지를
+          <br v-if="!isMobile" />
+          <span v-if="!isMobile">소녀방앗간은</span>땅과 공기가 줄 수 있는 에너지를
           온전히 담은 재료로 청정지역 장인들의 수준 높은
           식문화를 전합니다.
         </div>
@@ -27,7 +28,7 @@
         <AssetImage :src="'brand-page/' + (isMobile?'Mobile':'WEB') + '/content-2.jpg'" />
         <div class="info-1">
           지속가능한 생산과
-          <br v-if="!isMobile"/>낭비없는 소비의 순환
+          <br v-if="!isMobile" />낭비없는 소비의 순환
         </div>
         <div class="info-2">
           오지 어르신들과 10년간 청정재료를 재배해 온
@@ -40,12 +41,13 @@
       </HomeContent>
       <HomeContent title="함께하는 로컬 네트워크">
         <div class="info-2">
-          <span v-if="!isMobile">소녀방앗간은 '모두의 먹을거리'에 대한 진정성을 바탕으로
-          생산자와 소비자 모두를 위한 농업유통을 고민합니다.
-          <br />
-          <br />
+          <span v-if="!isMobile">
+            소녀방앗간은 '모두의 먹을거리'에 대한 진정성을 바탕으로
+            생산자와 소비자 모두를 위한 농업유통을 고민합니다.
+            <br />
+            <br />
           </span>지난
-          <span class="highlight" >10년간 전국 각지에서 150여분의 생산자</span>를 만나, 농산물을
+          <span class="highlight">10년간 전국 각지에서 150여분의 생산자</span>를 만나, 농산물을
           계약재배하여 지속가능한 농업생산물 유통전문 브랜드로
           성장해왔습니다. 소녀방앗간은 건강한 식재료를 위해 지속가능한
           생산과 낭비 없는 소비의 순환 원칙을 지켜갑니다.
@@ -144,16 +146,21 @@ export default class Brand extends Vue {
 @import "../assets/styles/layouts";
 
 main {
-  margin-top: 7.849vw;
   @include mobile {
     margin-top: 0;
   }
   .main {
     width: 100%;
+    max-width: 100%;
+    overflow: hidden;
     img {
       width: 100%;
-
+      z-index: -1;
+      @include pc {
+        animation: pcMainImg 3s;
+      }
       @include mobile {
+        animation: mobileMainImg 3s;
       }
     }
   }
@@ -276,7 +283,7 @@ main {
             line-height: 1.979vw;
             padding-top: 3.788vw;
 
-            @include mobile{
+            @include mobile {
               line-height: 1.62;
             }
           }
@@ -295,18 +302,18 @@ main {
           .highlight {
             font-weight: 500;
 
-            @include mobile{
+            @include mobile {
               font-weight: 300;
             }
           }
 
-          @include mobile{
+          @include mobile {
             display: block;
             position: relative;
             bottom: 0.833vw;
             width: auto;
             line-height: 1.62;
-            padding:0;
+            padding: 0;
           }
         }
         img {
@@ -314,15 +321,15 @@ main {
           width: 23.042vw;
           height: 26.716vw;
 
-          @include mobile{
+          @include mobile {
             margin-top: 4.444vw;
-            left: 27.611vw;
-            width: 50.611vw;
+            left: 24.611vw;
+            width: 54.611vw;
             height: 61.667vw;
           }
         }
 
-        @include mobile{
+        @include mobile {
           height: 106.111vw;
         }
       }
@@ -334,19 +341,19 @@ main {
           margin-left: 46.927vw;
           line-height: 1.879vw;
 
-          @include mobile{
-            margin:0;
+          @include mobile {
+            margin: 0;
             margin-top: 64.833vw;
-            padding:0;
+            padding: 0;
             line-height: 1.53;
           }
         }
 
-        @include mobile{
+        @include mobile {
           margin-top: 23.056vw;
           height: 141.111vw;
 
-          img{
+          img {
             left: 0;
           }
         }
@@ -355,7 +362,7 @@ main {
       &:nth-child(5) {
         margin-bottom: 8.75vw;
 
-        @include mobile{
+        @include mobile {
           margin-top: 22.222vw;
           margin-bottom: 19.444vw;
           height: 125.556vw;
@@ -364,7 +371,7 @@ main {
           position: relative;
           width: 100%;
 
-          @include mobile{
+          @include mobile {
             padding-top: 1.944vw;
           }
         }
@@ -372,11 +379,37 @@ main {
     }
   }
 
-  div{
+  div {
     word-break: keep-all;
-    @include mobile{
+    letter-spacing: -0.04vw;
+    @include mobile {
       letter-spacing: -0.13vw;
     }
+  }
+}
+@keyframes pcMainImg {
+  from {
+    width: 120%;
+    margin-left: -10%;
+    margin-top: -4%;
+    margin-right: -10%;
+    margin-bottom: -4%;
+  }
+  to {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+}
+
+@keyframes mobileMainImg {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 </style>

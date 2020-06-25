@@ -224,11 +224,11 @@ export default class Home extends Vue {
 
     const storeName = [
       "서울숲시작점",
-      "현대백화점 킨텍스점",
+      "현대백화점 신도림점",
       "이화여대점",
       "마로니에점",
-      "고속터미널점",
-      "킨텍스점",
+      "서울고속터미널점",
+      "현대백화점 킨텍스점",
       "중곡시장점"
     ];
     for (let i = 0; i < storeName.length; i++) {
@@ -546,6 +546,10 @@ export default class Home extends Vue {
     &::v-deep {
       .VueCarousel-pagination {
         display: none;
+
+        @include mobile{
+          padding-top: 0.8vw;
+        }
       }
 
       .VueCarousel-navigation-prev {
@@ -611,7 +615,7 @@ export default class Home extends Vue {
     display: none;
 
     &::v-deep {
-      @include RightAlignPagination(0.144vw);
+      @include RightAlignPagination(-1vw);
     }
     .online-mall-content {
       color: #595757;
@@ -627,6 +631,10 @@ export default class Home extends Vue {
 
     @include mobile {
       display: block;
+
+      .VueCarousel-pagination{
+        padding-top: 5vw;
+      }
 
       .online-mall-content {
         color: #595757;
