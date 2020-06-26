@@ -157,7 +157,7 @@ main {
       width: 100%;
       z-index: -1;
       @include pc {
-        animation: pcMainImg 3s;
+        animation: pcMainImg 2s;
       }
       @include mobile {
         animation: mobileMainImg 3s;
@@ -391,9 +391,9 @@ main {
   from {
     width: 120%;
     margin-left: -10%;
-    margin-top: -4%;
+    margin-top: -4.03%;
     margin-right: -10%;
-    margin-bottom: -4%;
+    margin-bottom: -4.03%;
   }
   to {
     width: 100%;
