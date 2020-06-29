@@ -1,6 +1,6 @@
 <template>
   <main class="home">
-    <section class="img-slider">
+    <section data-aos="fade-up" class="img-slider">
       <Carousel
         class="main-carousel"
         :per-page="1"
@@ -26,18 +26,18 @@
       </Carousel>
     </section>
     <section class="info">
-      <p class="title">
+      <p data-aos="fade-up" class="title">
         좋은 음식을 준비하는<br v-if="infoBreak" />
         모두의 마음 속엔 소녀가 있습니다.
       </p>
-      <p class="content">
+      <p data-aos="fade-up" class="content">
         소녀방앗간은 청정지역 장인들이 해마다 정성들여 수확한 청정
         햇-식재료를<br v-if="!infoBreak" />수확한 만큼만 신선하게 담아 도시의
         소비자에게 건강한 한 끼로 대접합니다.
       </p>
     </section>
     <section class="wrap home-contents">
-      <HomeContent title="식사공간">
+      <HomeContent title="식사공간" data-aos="fade-up">
         <Carousel
           ref="storeCarousel"
           class="store-carousel"
@@ -69,7 +69,7 @@
           </Slide>
         </Carousel>
       </HomeContent>
-      <HomeContent title="온라인몰">
+      <HomeContent title="온라인몰" data-aos="fade-up" >
         <div class="online-mall-container">
           <div
             class="item"
@@ -118,7 +118,7 @@
           </Carousel>
         </div>
       </HomeContent>
-      <HomeContent title="케이터링">
+      <HomeContent title="케이터링" data-aos="fade-up" >
         <div
           class="clickable"
           @click="
@@ -132,7 +132,7 @@
           />
         </div>
       </HomeContent>
-      <HomeContent title="명절선물">
+      <HomeContent title="명절선물" data-aos="fade-up" >
         <div
           class="clickable"
           @click="
