@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import Home from "../views/Home.vue";
 import Brand from "../views/Brand.vue";
+import Store from "../views/Store.vue";
 
 Vue.use(VueRouter);
 
@@ -15,6 +16,11 @@ const routes: Array<RouteConfig> = [
     path: "/brand",
     name: "Brand",
     component: Brand
+  },
+  {
+    path: "/store",
+    name: "Store",
+    component: Store
   },
   {
     path: "/about",

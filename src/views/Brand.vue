@@ -89,12 +89,6 @@ import {
 } from "@/components";
 import Breakpoint from "@/utils/screenSize";
 
-class ImgPath {
-  public pcPath = "";
-  public tabletPath = "";
-  public mobilePath = "";
-}
-
 @Component({
   name: "Brand",
   components: {
@@ -108,18 +102,9 @@ export default class Brand extends Vue {
   private isMobile = false;
 
   private mainImgPath = "";
-  private contentPath: ImgPath[] = [];
 
   created() {
     window.addEventListener("resize", this.handleResize);
-
-    for (let i = 0; i < 5; i++) {
-      this.contentPath.push({
-        pcPath: `brand-page/WEB/content-${i + 1}.jpg`,
-        tabletPath: "",
-        mobilePath: `brand-page/Mobile/content-${i + 1}.jpg`
-      });
-    }
   }
 
   mounted() {
