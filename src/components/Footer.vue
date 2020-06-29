@@ -36,7 +36,7 @@ footer {
   background-color: #ecebe8;
 
   padding: {
-    top: 3.490vw;
+    top: 3.49vw;
     bottom: 8.802vw;
   }
   @include mobile {

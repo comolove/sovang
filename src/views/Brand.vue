@@ -5,75 +5,89 @@
     </section>
     <section class="contents">
       <HomeContent title="농촌과 도시를 잇다">
-        <AssetImage :src="'brand-page/' + (isMobile?'Mobile':'WEB') + '/content-1.jpg'" />
+        <AssetImage
+          :src="
+            'brand-page/' + (isMobile ? 'Mobile' : 'WEB') + '/content-1.jpg'
+          "
+        />
         <div class="info-1">
           농사 장인이
-          <br v-if="!isMobile" />직접 생산한 청정재료를
-          <br />도시의 건강한 먹거리로
+          <br v-if="!isMobile" />직접 생산한 청정재료를 <br />도시의 건강한
+          먹거리로
           <br />
         </div>
         <div class="info-2">
-          소녀방앗간의 먹거리는 수십 년간 평생 농사를
-          지어온 장인들이 고향 땅에서 직접 키웠습니다.
-          식재료는 태백산맥 산악지형으로 둘러싸인 청정지역
-          경북 청송에서 재배하였습니다.
+          소녀방앗간의 먹거리는 수십 년간 평생 농사를 지어온 장인들이 고향
+          땅에서 직접 키웠습니다. 식재료는 태백산맥 산악지형으로 둘러싸인
+          청정지역 경북 청송에서 재배하였습니다.
           <br v-if="!isMobile" />
           <br v-if="!isMobile" />
-          <span v-if="!isMobile">소녀방앗간은</span>땅과 공기가 줄 수 있는 에너지를
-          온전히 담은 재료로 청정지역 장인들의 수준 높은
-          식문화를 전합니다.
+          <span v-if="!isMobile">소녀방앗간은</span>땅과 공기가 줄 수 있는
+          에너지를 온전히 담은 재료로 청정지역 장인들의 수준 높은 식문화를
+          전합니다.
         </div>
       </HomeContent>
       <HomeContent title="지속가능한 생산, 유통, 소비">
-        <AssetImage :src="'brand-page/' + (isMobile?'Mobile':'WEB') + '/content-2.jpg'" />
+        <AssetImage
+          :src="
+            'brand-page/' + (isMobile ? 'Mobile' : 'WEB') + '/content-2.jpg'
+          "
+        />
         <div class="info-1">
           지속가능한 생산과
           <br v-if="!isMobile" />낭비없는 소비의 순환
         </div>
         <div class="info-2">
-          오지 어르신들과 10년간 청정재료를 재배해 온
-          청년들이 모여 소녀방앗간을 운영합니다. 지역
-          생산자들과는 꾸준하고 안정적인 거래를 이어가고,
-          도시 소비자들에게는 농부의 정성어린 먹거리를
-          건강한 한끼로 제공하여 모두를 위한 선순환을
-          만들어 갑니다.
+          오지 어르신들과 10년간 청정재료를 재배해 온 청년들이 모여 소녀방앗간을
+          운영합니다. 지역 생산자들과는 꾸준하고 안정적인 거래를 이어가고, 도시
+          소비자들에게는 농부의 정성어린 먹거리를 건강한 한끼로 제공하여 모두를
+          위한 선순환을 만들어 갑니다.
         </div>
       </HomeContent>
       <HomeContent title="함께하는 로컬 네트워크">
         <div class="info-2">
           <span v-if="!isMobile">
-            소녀방앗간은 '모두의 먹을거리'에 대한 진정성을 바탕으로
-            생산자와 소비자 모두를 위한 농업유통을 고민합니다.
+            소녀방앗간은 '모두의 먹을거리'에 대한 진정성을 바탕으로 생산자와
+            소비자 모두를 위한 농업유통을 고민합니다.
             <br />
-            <br />
-          </span>지난
-          <span class="highlight">10년간 전국 각지에서 150여분의 생산자</span>를 만나, 농산물을
-          계약재배하여 지속가능한 농업생산물 유통전문 브랜드로
-          성장해왔습니다. 소녀방앗간은 건강한 식재료를 위해 지속가능한
-          생산과 낭비 없는 소비의 순환 원칙을 지켜갑니다.
+            <br /> </span
+          >지난
+          <span class="highlight">10년간 전국 각지에서 150여분의 생산자</span>를
+          만나, 농산물을 계약재배하여 지속가능한 농업생산물 유통전문 브랜드로
+          성장해왔습니다. 소녀방앗간은 건강한 식재료를 위해 지속가능한 생산과
+          낭비 없는 소비의 순환 원칙을 지켜갑니다.
         </div>
-        <AssetImage :src="'brand-page/' + (isMobile?'Mobile':'WEB') + '/content-3.png'" />
+        <AssetImage
+          :src="
+            'brand-page/' + (isMobile ? 'Mobile' : 'WEB') + '/content-3.png'
+          "
+        />
       </HomeContent>
       <HomeContent title="청정지역, 오지의 메리트">
-        <AssetImage :src="'brand-page/' + (isMobile?'Mobile':'WEB') + '/content-4.jpg'" />
+        <AssetImage
+          :src="
+            'brand-page/' + (isMobile ? 'Mobile' : 'WEB') + '/content-4.jpg'
+          "
+        />
         <div class="info-2">
           오지(奧地).
-          <br />그 곳은 완전히 지워지지 않은 옛 삶의 방식이
-          고스란히 남겨져 있었고, 먹거리에 관한 오래된
-          유산을 이어받을 수 있는 곳이었습니다．
+          <br />그 곳은 완전히 지워지지 않은 옛 삶의 방식이 고스란히 남겨져
+          있었고, 먹거리에 관한 오래된 유산을 이어받을 수 있는 곳이었습니다．
           <br />
-          <br />산 속에 핀 수많은 풀 중에 먹을 것을 골라내는 눈,
-          고구려 사람들로부터 이어져 내려온 발효음식의
-          전통, 계절을 대비하여 식량을 갈무리하던 혜안 - 그
-          모든 것을 몸에 아로새긴 사람들이 살고 있었습니다.
+          <br />산 속에 핀 수많은 풀 중에 먹을 것을 골라내는 눈, 고구려
+          사람들로부터 이어져 내려온 발효음식의 전통, 계절을 대비하여 식량을
+          갈무리하던 혜안 - 그 모든 것을 몸에 아로새긴 사람들이 살고 있었습니다.
           <br />
-          <br />그렇게 우리는 오랜 시골집 속에, 빛나는 오지의
-          메리트를 찾았고, 지역과 농촌을 잇는 모두를 위한
-          위로의 공간이 되어가고자 합니다.
+          <br />그렇게 우리는 오랜 시골집 속에, 빛나는 오지의 메리트를 찾았고,
+          지역과 농촌을 잇는 모두를 위한 위로의 공간이 되어가고자 합니다.
         </div>
       </HomeContent>
       <HomeContent title="소녀방앗간 나물이야기">
-        <AssetImage :src="'brand-page/' + (isMobile?'Mobile':'WEB') + '/content-5.jpg'" />
+        <AssetImage
+          :src="
+            'brand-page/' + (isMobile ? 'Mobile' : 'WEB') + '/content-5.jpg'
+          "
+        />
       </HomeContent>
     </section>
   </main>
@@ -101,7 +115,7 @@ import Breakpoint from "@/utils/screenSize";
 export default class Brand extends Vue {
   private isMobile = false;
 
-  private mainImgPath = "";
+  private mainImgPath = "brand-page/Mobile/main.jpg";
 
   created() {
     window.addEventListener("resize", this.handleResize);

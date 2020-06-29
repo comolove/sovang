@@ -31,7 +31,9 @@
         모두의 마음 속엔 소녀가 있습니다.
       </p>
       <p class="content">
-        소녀방앗간은 청정지역 장인들이 해마다 정성들여 수확한 청정 햇-식재료를<br v-if="!infoBreak" />수확한 만큼만 신선하게 담아 도시의 소비자에게 건강한 한 끼로 대접합니다.
+        소녀방앗간은 청정지역 장인들이 해마다 정성들여 수확한 청정
+        햇-식재료를<br v-if="!infoBreak" />수확한 만큼만 신선하게 담아 도시의
+        소비자에게 건강한 한 끼로 대접합니다.
       </p>
     </section>
     <section class="wrap home-contents">
@@ -277,9 +279,12 @@ export default class Home extends Vue {
 
     setTimeout(() => {
       // 슬라이드가 바뀌어도 임의로 넣어준 active 클래스는 삭제가 안되서 n초후에 임의로 삭제
-      ((document as Document).getElementById(
+      const firstSlide = (document as Document).getElementById(
         "main-carousel-slide-0"
-      ) as Element).classList.remove("VueCarousel-slide-active");
+      ) as Element;
+      if (firstSlide) {
+        firstSlide.classList.remove("VueCarousel-slide-active");
+      }
     }, 6000);
 
     this.handleResize();
@@ -547,7 +552,7 @@ export default class Home extends Vue {
       .VueCarousel-pagination {
         display: none;
 
-        @include mobile{
+        @include mobile {
           padding-top: 0.8vw;
         }
       }
@@ -632,7 +637,7 @@ export default class Home extends Vue {
     @include mobile {
       display: block;
 
-      .VueCarousel-pagination{
+      .VueCarousel-pagination {
         padding-top: 5vw;
       }
 

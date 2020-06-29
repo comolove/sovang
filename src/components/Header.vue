@@ -8,7 +8,7 @@
           alt="소녀방앗간 로고"
           @click="
             () => {
-              this.$router.push('/');
+              this.$router.push('/').catch(err => {});
             }
           "
         />
@@ -135,7 +135,7 @@ header {
       color: black;
       text-decoration: none;
       &:hover {
-        font-weight:bold;
+        font-weight: bold;
       }
     }
 

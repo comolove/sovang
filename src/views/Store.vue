@@ -12,20 +12,13 @@
       </div>
     </section>
     <section class="contents">
-      <HomeContent title="서울숲시작점">
-      </HomeContent>
-      <HomeContent title="현대백화점 신도림점">
-      </HomeContent>
-      <HomeContent title="이화여대점">
-      </HomeContent>
-      <HomeContent title="마로니에점">
-      </HomeContent>
-      <HomeContent title="서울고속터미널점">
-      </HomeContent>
-      <HomeContent title="현대백화점 킨텍스점">
-      </HomeContent>
-      <HomeContent title="중곡제일시장점">
-      </HomeContent>
+      <HomeContent title="서울숲시작점"> </HomeContent>
+      <HomeContent title="현대백화점 신도림점"> </HomeContent>
+      <HomeContent title="이화여대점"> </HomeContent>
+      <HomeContent title="마로니에점"> </HomeContent>
+      <HomeContent title="서울고속터미널점"> </HomeContent>
+      <HomeContent title="현대백화점 킨텍스점"> </HomeContent>
+      <HomeContent title="중곡제일시장점"> </HomeContent>
     </section>
   </main>
 </template>
@@ -60,10 +53,9 @@ export default class Store extends Vue {}
     background: black;
   }
 
-  div{
+  div {
     color: #595757;
     text-align: center;
-
   }
 
   .info-1 {
@@ -73,7 +65,7 @@ export default class Store extends Vue {}
     letter-spacing: -0.007vw;
   }
 
-  .info-2{
+  .info-2 {
     color: #595757;
     text-align: center;
     font-weight: 300;
@@ -82,15 +74,15 @@ export default class Store extends Vue {}
   }
 }
 
-.contents{
+.contents {
   margin-left: 14.323vw;
   margin-right: 14.323vw;
 
-  article{
+  article {
     margin-top: 9.375vw;
     height: 40.313vw;
 
-    &:nth-child(1){
+    &:nth-child(1) {
       margin-top: 8.281vw;
     }
   }
