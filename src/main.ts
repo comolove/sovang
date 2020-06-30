@@ -10,7 +10,7 @@ Vue.config.productionTip = false;
 new Vue({
   created() {
     AOS.init({
-      disable: false
+       duration: 1000
     });
   },
   router,
