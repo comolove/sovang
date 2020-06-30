@@ -4,7 +4,7 @@
       <AssetImage :src="mainImgPath" />
     </section>
     <section class="contents">
-      <HomeContent title="농촌과 도시를 잇다">
+      <HomeContent data-aos="fade-up" title="농촌과 도시를 잇다">
         <AssetImage
           :src="
             'brand-page/' + (isMobile ? 'Mobile' : 'WEB') + '/content-1.jpg'
@@ -27,7 +27,7 @@
           전합니다.
         </div>
       </HomeContent>
-      <HomeContent title="지속가능한 생산, 유통, 소비">
+      <HomeContent data-aos="fade-up" title="지속가능한 생산, 유통, 소비">
         <AssetImage
           :src="
             'brand-page/' + (isMobile ? 'Mobile' : 'WEB') + '/content-2.jpg'
@@ -44,7 +44,7 @@
           위한 선순환을 만들어 갑니다.
         </div>
       </HomeContent>
-      <HomeContent title="함께하는 로컬 네트워크">
+      <HomeContent data-aos="fade-up" title="함께하는 로컬 네트워크">
         <div class="info-2">
           <span v-if="!isMobile">
             소녀방앗간은 '모두의 먹을거리'에 대한 진정성을 바탕으로 생산자와
@@ -63,7 +63,7 @@
           "
         />
       </HomeContent>
-      <HomeContent title="청정지역, 오지의 메리트">
+      <HomeContent data-aos="fade-up" title="청정지역, 오지의 메리트">
         <AssetImage
           :src="
             'brand-page/' + (isMobile ? 'Mobile' : 'WEB') + '/content-4.jpg'
@@ -82,7 +82,7 @@
           지역과 농촌을 잇는 모두를 위한 위로의 공간이 되어가고자 합니다.
         </div>
       </HomeContent>
-      <HomeContent title="소녀방앗간 나물이야기">
+      <HomeContent data-aos="fade-up" title="소녀방앗간 나물이야기">
         <AssetImage
           :src="
             'brand-page/' + (isMobile ? 'Mobile' : 'WEB') + '/content-5.jpg'
