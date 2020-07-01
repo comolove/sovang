@@ -69,7 +69,7 @@
           </Slide>
         </Carousel>
       </HomeContent>
-      <HomeContent title="온라인몰" data-aos="fade-up" >
+      <HomeContent title="온라인몰" data-aos="fade-up">
         <div class="online-mall-container">
           <div
             class="item"
@@ -118,7 +118,7 @@
           </Carousel>
         </div>
       </HomeContent>
-      <HomeContent title="케이터링" data-aos="fade-up" >
+      <HomeContent title="케이터링" data-aos="fade-up">
         <div
           class="clickable"
           @click="
@@ -132,7 +132,7 @@
           />
         </div>
       </HomeContent>
-      <HomeContent title="명절선물" data-aos="fade-up" >
+      <HomeContent title="명절선물" data-aos="fade-up">
         <div
           class="clickable"
           @click="

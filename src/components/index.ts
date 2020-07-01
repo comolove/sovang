@@ -4,6 +4,7 @@ import HomeContent from "@/components/HomeContent.vue";
 import AssetImage from "@/components/AssetImage.vue";
 import HoverTextImage from "@/components/HoverTextImage.vue";
 import ImageOverlayInfo from "@/components/ImageOverlayInfo.vue";
+import CarouselWithNavCarousel from "@/components/CarouselWithNavCarousel.vue";
 
 export {
   Header,
@@ -11,5 +12,6 @@ export {
   AssetImage,
   HomeContent,
   HoverTextImage,
-  ImageOverlayInfo
+  ImageOverlayInfo,
+  CarouselWithNavCarousel
 };

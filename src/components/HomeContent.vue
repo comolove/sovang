@@ -18,6 +18,7 @@ export default class HomeContent extends Vue {
 @import "../assets/styles/layouts";
 
 article {
+  position: relative;
   width: 100%;
 
   h3 {
