@@ -148,7 +148,7 @@ export default class CarouselWithNavCarousel extends Vue {
     transition: opacity 0.3s;
 
     &.agile__slide--active {
-      opacity: 58%;
+      opacity: 0.58;
     }
   }
 
