@@ -14,7 +14,7 @@
         :loop="true"
         paginationPosition="bottom-overlay"
         paginationColor="#c9caca"
-        :paginationActiveColor="mainCarouselPaginationActiveColor"
+        paginationActiveColor="white"
       >
         <Slide
           v-for="(data, index) of mainSlideData"
@@ -196,7 +196,6 @@ export default class Home extends Vue {
 
   private isMobile = false;
   private storeCarouselPerPage = 1;
-  private mainCarouselPaginationActiveColor = "#c9caca";
   private homeContentCarouselPaginationActiveColor = "black";
 
   private curStoreIndex = 0;
@@ -258,7 +257,14 @@ export default class Home extends Vue {
       "어수리 (80g)",
       "취나물 (80g)"
     ];
-    const onlineMallLink = ["/"];
+    const onlineMallLink = [
+      "https://smartstore.naver.com/sovang/products/2665362069",
+      "https://smartstore.naver.com/sovang/products/2635127753",
+      "https://smartstore.naver.com/sovang/products/2663144160",
+      "https://smartstore.naver.com/sovang/products/2684757759",
+      "https://smartstore.naver.com/sovang/products/2684350052",
+      "https://smartstore.naver.com/sovang/products/2679556897"
+    ];
     for (let i = 0; i < onlineMallName.length; i++) {
       this.onlineMallSlideData.push({
         pcPath: `online-mall/online-mall-${i + 1}.jpg`,
@@ -266,7 +272,7 @@ export default class Home extends Vue {
         mobilePath: `online-mall/mobile/online-mall-${i + 1}.jpg`,
         desc: onlineMallDesc[i],
         name: onlineMallName[i],
-        link: onlineMallLink[0]
+        link: onlineMallLink[i]
       });
     }
   }
@@ -311,12 +317,10 @@ export default class Home extends Vue {
     if (this.isMobile) {
       this.storeCarouselPerPage = 1;
       this.infoBreak = true;
-      this.mainCarouselPaginationActiveColor = "white";
       this.homeContentCarouselPaginationActiveColor = "#001845";
     } else {
       this.storeCarouselPerPage = 3;
       this.infoBreak = false;
-      this.mainCarouselPaginationActiveColor = "black";
       this.homeContentCarouselPaginationActiveColor = "black";
     }
   }
@@ -452,12 +456,12 @@ export default class Home extends Vue {
 
   .title {
     font-family: "munche_jemok_batang";
-    font-size: 1.27vw;
+    font-size: 1.354vw;
     letter-spacing: -0.13px;
     color: #595757;
 
     @include mobile {
-      font-size: 3.889vw;
+      font-size: 4.167vw;
       margin-left: 17.361vw;
       margin-right: 17.361vw;
       line-height: 1.67;
@@ -466,7 +470,7 @@ export default class Home extends Vue {
 
   .content {
     margin-top: 2.344vw;
-    font-size: 1.1vw;
+    font-size: 1.146vw;
     line-height: 1.83;
     font-weight: 300;
     color: #595757;
@@ -475,7 +479,7 @@ export default class Home extends Vue {
       text-align: center;
       letter-spacing: normal;
       font-weight: 300;
-      font-size: 3.611vw;
+      font-size: 3.511vw;
       margin-top: 7.5vw;
       margin-left: 11.944vw;
       margin-right: 11.944vw;

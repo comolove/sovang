@@ -17,7 +17,7 @@
       <nav ref="menuNavRef" class="bar-top">
         <router-link to="/brand" class="menu">브랜드</router-link>
         <router-link to="/store" class="menu">식사공간</router-link>
-        <router-link to="/mall" class="menu">온라인몰</router-link>
+        <a href="https://smartstore.naver.com/sovang" class="menu">온라인몰</a>
         <router-link to="/catering" class="menu">케이터링</router-link>
         <router-link to="/present" class="menu">명절선물</router-link>
         <router-link to="/community" class="menu">알립니다</router-link>

@@ -16,7 +16,7 @@
           :spacePadding="mainSlidePadding"
           paginationPosition="bottom-overlay"
           paginationColor="#c9caca"
-          :paginationActiveColor="mainCarouselPaginationActiveColor"
+          paginationActiveColor="white"
         >
           <Slide
             v-for="(data, index) of mainSlideData"
@@ -38,28 +38,22 @@
     </section>
     <section class="contents">
       <HomeContent data-aos="fade-up" title="서울숲시작점">
-        <a
-          class="searchIcon"
-          href="https://store.naver.com/restaurants/detail?id=35848947"
-        >
+        <a class="searchIcon" href="https://store.naver.com/restaurants/detail?id=35848947">
           <img src="@/assets/images/icon-searching.png" />
         </a>
         <CarouselWithNavCarousel
-          :mainSlides="storeSlides['seoul-forest']['main']"
-          :navSlides="storeSlides['seoul-forest']['thumbnail']"
+          :mainSlides="store_1.main"
+          :navSlides="store_1.thumbnail"
           :isMobile="isMobile"
         />
       </HomeContent>
       <HomeContent data-aos="fade-up" title="현대백화점 신도림점">
-        <a
-          class="searchIcon"
-          href="https://store.naver.com/restaurants/detail?id=37253784"
-        >
+        <a class="searchIcon" href="https://store.naver.com/restaurants/detail?id=37253784">
           <img src="@/assets/images/icon-searching.png" />
         </a>
         <CarouselWithNavCarousel
-          :mainSlides="storeSlides['seoul-forest']['main']"
-          :navSlides="storeSlides['seoul-forest']['thumbnail']"
+          :mainSlides="store_2.main"
+          :navSlides="store_2.thumbnail"
           :isMobile="isMobile"
         />
       </HomeContent>
@@ -71,47 +65,38 @@
           <img src="@/assets/images/icon-searching.png" />
         </a>
         <CarouselWithNavCarousel
-          :mainSlides="storeSlides['seoul-forest']['main']"
-          :navSlides="storeSlides['seoul-forest']['thumbnail']"
+          :mainSlides="store_3.main"
+          :navSlides="store_3.thumbnail"
           :isMobile="isMobile"
         />
       </HomeContent>
       <HomeContent data-aos="fade-up" title="마로니에점">
-        <a
-          class="searchIcon"
-          href="https://store.naver.com/restaurants/detail?id=1712003259"
-        >
+        <a class="searchIcon" href="https://store.naver.com/restaurants/detail?id=1712003259">
           <img src="@/assets/images/icon-searching.png" />
         </a>
         <CarouselWithNavCarousel
-          :mainSlides="storeSlides['seoul-forest']['main']"
-          :navSlides="storeSlides['seoul-forest']['thumbnail']"
+          :mainSlides="store_4.main"
+          :navSlides="store_4.thumbnail"
           :isMobile="isMobile"
         />
       </HomeContent>
       <HomeContent data-aos="fade-up" title="서울고속터미널점">
-        <a
-          class="searchIcon"
-          href="https://store.naver.com/restaurants/detail?id=1440926417"
-        >
+        <a class="searchIcon" href="https://store.naver.com/restaurants/detail?id=1440926417">
           <img src="@/assets/images/icon-searching.png" />
         </a>
         <CarouselWithNavCarousel
-          :mainSlides="storeSlides['seoul-forest']['main']"
-          :navSlides="storeSlides['seoul-forest']['thumbnail']"
+          :mainSlides="store_5.main"
+          :navSlides="store_5.thumbnail"
           :isMobile="isMobile"
         />
       </HomeContent>
       <HomeContent data-aos="fade-up" title="현대백화점 킨텍스점">
-        <a
-          class="searchIcon"
-          href="https://store.naver.com/restaurants/detail?id=1996930133"
-        >
+        <a class="searchIcon" href="https://store.naver.com/restaurants/detail?id=1996930133">
           <img src="@/assets/images/icon-searching.png" />
         </a>
         <CarouselWithNavCarousel
-          :mainSlides="storeSlides['seoul-forest']['main']"
-          :navSlides="storeSlides['seoul-forest']['thumbnail']"
+          :mainSlides="store_6.main"
+          :navSlides="store_6.thumbnail"
           :isMobile="isMobile"
         />
       </HomeContent>
@@ -123,8 +108,8 @@
           <img src="@/assets/images/icon-searching.png" />
         </a>
         <CarouselWithNavCarousel
-          :mainSlides="storeSlides['seoul-forest']['main']"
-          :navSlides="storeSlides['seoul-forest']['thumbnail']"
+          :mainSlides="store_7.main"
+          :navSlides="store_7.thumbnail"
           :isMobile="isMobile"
         />
       </HomeContent>
@@ -150,6 +135,11 @@ class ImgPath {
   public mobilePath = "";
 }
 
+class ImgAndThumbnailPath {
+  public main: string[] = [];
+  public thumbnail: string[] = [];
+}
+
 @Component({
   name: "Store",
   components: {
@@ -164,9 +154,18 @@ class ImgPath {
 })
 export default class Store extends Vue {
   private mainSlideData: ImgPath[] = [];
+  private store_1: ImgAndThumbnailPath = new ImgAndThumbnailPath();
+  private store_2: ImgAndThumbnailPath = new ImgAndThumbnailPath();
+  private store_3: ImgAndThumbnailPath = new ImgAndThumbnailPath();
+  private store_4: ImgAndThumbnailPath = new ImgAndThumbnailPath();
+  private store_5: ImgAndThumbnailPath = new ImgAndThumbnailPath();
+  private store_6: ImgAndThumbnailPath = new ImgAndThumbnailPath();
+  private store_7: ImgAndThumbnailPath = new ImgAndThumbnailPath();
   private isMobile = false;
-  private mainCarouselPaginationActiveColor = "";
   private mainSlidePadding = 0;
+
+  private firstExtraImgTransition = "";
+  private lastExtraImgTransition = "";
 
   private storeSlides = {
     "seoul-forest": {
@@ -197,6 +196,41 @@ export default class Store extends Vue {
         mobilePath: `store-page/main/Mobile/main-slide-${i + 1}.jpg`
       });
     }
+
+    for (let i = 1; i <= 7; i++) {
+      this.store_1.main.push(`store-page/content-1/main/${i}.jpg`);
+      this.store_1.thumbnail.push(`store-page/content-1/thumbnail/${i}.jpg`)
+    }
+
+    for (let i = 1; i <= 5; i++) {
+      this.store_2.main.push(`store-page/content-2/main/${i}.jpg`);
+      this.store_2.thumbnail.push(`store-page/content-2/thumbnail/${i}.jpg`)
+    }
+
+    for (let i = 1; i <= 6; i++) {
+       this.store_3.main.push(`store-page/content-3/main/${i}.jpg`);
+      this.store_3.thumbnail.push(`store-page/content-3/thumbnail/${i}.jpg`)
+    }
+
+    for (let i = 1; i <= 7; i++) {
+       this.store_4.main.push(`store-page/content-4/main/${i}.jpg`);
+      this.store_4.thumbnail.push(`store-page/content-4/thumbnail/${i}.jpg`)
+    }
+
+    for (let i = 1; i <= 7; i++) {
+       this.store_5.main.push(`store-page/content-5/main/${i}.jpg`);
+      this.store_5.thumbnail.push(`store-page/content-5/thumbnail/${i}.jpg`)
+    }
+
+    for (let i = 1; i <= 6; i++) {
+       this.store_6.main.push(`store-page/content-6/main/${i}.jpg`);
+      this.store_6.thumbnail.push(`store-page/content-6/thumbnail/${i}.jpg`)
+    }
+
+    for (let i = 1; i <= 5; i++) {
+       this.store_7.main.push(`store-page/content-7/main/${i}.jpg`);
+      this.store_7.thumbnail.push(`store-page/content-7/thumbnail/${i}.jpg`)
+    }
   }
 
   mounted() {
@@ -211,11 +245,9 @@ export default class Store extends Vue {
 
   responseComponents() {
     if (this.isMobile) {
-      this.mainCarouselPaginationActiveColor = "white";
       this.mainSlidePadding = 0;
     } else {
       this.mainSlidePadding = 1920 * 0.143 * (window.innerWidth / 1920);
-      this.mainCarouselPaginationActiveColor = "black";
     }
   }
 
@@ -245,6 +277,10 @@ export default class Store extends Vue {
     width: 100%;
 
     &::v-deep {
+      .VueCarousel-inner {
+        transition-duration: 1s !important;
+      }
+
       .VueCarousel-navigation-prev {
         transform: unset;
         left: 3.229vw;
@@ -286,16 +322,6 @@ export default class Store extends Vue {
       // 메인 슬라이드 페이지네이션 버튼 위치
       .VueCarousel-pagination--bottom-overlay {
         bottom: 1.667vw;
-
-        button.VueCarousel-dot {
-          width: 0.729vw !important;
-          height: 0.729vw !important;
-
-          @include mobile {
-            width: 2.5vw !important;
-            height: 2.5vw !important;
-          }
-        }
       }
 
       img {
@@ -355,7 +381,7 @@ export default class Store extends Vue {
     }
 
     &:nth-child(1) {
-      margin-top: 8.281vw;
+      margin-top: 8.854vw;
 
       @include mobile {
         margin-top: 20.556vw;

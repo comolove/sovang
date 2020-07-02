@@ -5,6 +5,7 @@
       class="main"
       :options="mainOptions"
       :as-nav-for="asNavForMain"
+      :speed="1000"
     >
       <div
         class="slide"
