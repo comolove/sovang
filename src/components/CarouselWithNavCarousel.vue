@@ -91,6 +91,10 @@ export default class CarouselWithNavCarousel extends Vue {
     return this.isMobile ? this.SLIDES_TO_SHOW_MOBILE : this.SLIDES_TO_SHOW_PC;
   }
 
+  mounted() {
+    this.goToThumbnail(0, 0);
+  }
+
   handleAfterChange(event: { currentSlide: number }) {
     this.prevSlide = this.curSlide;
     this.curSlide = event.currentSlide;
