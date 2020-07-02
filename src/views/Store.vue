@@ -2,30 +2,26 @@
   <main class="store">
     <section class="main">
       <section data-aos="fade-up" class="img-slider">
-        <Carousel
-          class="main-carousel"
-          :per-page="1"
-          :mouseDrag="false"
-          :autoplay="true"
-          :autoplayTimeout="6000"
-          :autoplayHoverPause="false"
-          :navigationEnabled="true"
-          :navigationNextLabel="mainCarouselNavigationNext"
-          :navigationPrevLabel="mainCarouselNavigationPrev"
-          :loop="true"
-          :spacePadding="mainSlidePadding"
-          paginationPosition="bottom-overlay"
-          paginationColor="#c9caca"
-          paginationActiveColor="white"
-        >
-          <Slide
-            v-for="(data, index) of mainSlideData"
-            :key="index"
-            :id="'main-carousel-slide-' + index"
-          >
-            <AssetImage :src="isMobile ? data.mobilePath : data.pcPath" />
-          </Slide>
-        </Carousel>
+        <div class="main-slide-wrapper">
+          <agile
+            :speed="1000">
+            <AssetImage
+              v-for="(data, index) of mainSlideData"
+              :key="index"
+              class="slide"
+              :id="'main-carousel-slide-' + index"
+              :src="isMobile ? data.mobilePath : data.pcPath"
+            >
+            </AssetImage>
+
+            <template slot="prevButton">
+              <AssetImage src="arrow-left-white.png" />
+            </template>
+            <template slot="nextButton">
+              <AssetImage src="arrow-right-white.png" />
+            </template>
+          </agile>
+        </div>
       </section>
       <div data-aos="fade-up" class="info-1">
         매일 다른 제철반찬과 향긋하게 윤기나는
@@ -120,6 +116,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Carousel, Slide } from "vue-carousel";
+import { VueAgile } from "vue-agile";
 import {
   HomeContent,
   HoverTextImage,
@@ -149,7 +146,8 @@ class ImgAndThumbnailPath {
     HoverTextImage,
     AssetImage,
     ImageOverlayInfo,
-    CarouselWithNavCarousel
+    CarouselWithNavCarousel,
+    agile: VueAgile
   }
 })
 export default class Store extends Vue {
@@ -269,64 +267,105 @@ export default class Store extends Vue {
 @import "../assets/styles/layouts";
 
 .main {
-  .agile {
-    width: 100%;
-  }
+  width: 100%;
 
-  .img-slider {
-    width: 100%;
+  .main-slide-wrapper {
+    padding: 0 14.3%;
+    overflow: hidden;
 
     &::v-deep {
-      .VueCarousel-inner {
-        transition-duration: 1s !important;
-      }
-
-      .VueCarousel-navigation-prev {
-        transform: unset;
-        left: 3.229vw;
-        top: 17.188vw;
-
-        img {
-          width: 1.458vw;
+      .agile {
+        .agile__list {
+          overflow: unset;
         }
 
-        @include mobile {
-          left: 4vw;
-          top: 45%;
+        &__nav-button {
+          position: absolute;
+          background: transparent;
+          border: none;
+
+          top: 50%;
+          transform: translateY(-50%);
 
           img {
-            width: 3.889vw;
+            width: 1.458vw;
+            height: 3.438vw;
+
+            @include mobile {
+              width: 3.889vw;
+              height: 9.167vw;
+            }
+          }
+
+          &--prev {
+            left: -11.979vw;
+
+            @include mobile {
+              left: 2.778vw;
+            }
+          }
+
+          &--next {
+            right: -11.979vw;
+
+            @include mobile {
+              right: 2.778vw;
+            }
+          }
+        }
+
+        &__dots {
+          bottom: 1.667vw;
+          left: 50%;
+          position: absolute;
+          transform: translateX(-50%);
+        }
+
+        &__dot {
+		      margin: 0 0.599vw;
+
+		      button {
+            background-color: #c9caca;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: block;
+            width: 0.729vw;
+            height: 0.729vw;
+            font-size: 0;
+            line-height: 0;
+            margin: 0;
+            padding: 0;
+            transition-duration: .3s;
+
+          }
+
+          @include mobile {
+            margin: 0 2.222vw;
+            button {
+              width:2.500vw;
+              height:2.500vw;
+            }
+          }
+
+		      &--current {
+			      button {
+				      background-color: white;
+            }
           }
         }
       }
+    }
+    
 
-      .VueCarousel-navigation-next {
-        transform: unset;
-        right: 3.229vw;
-        top: 17.188vw;
+    .slide {
+      width: 100%;
+      object-fit: cover;
+      display: block;
+    }
 
-        img {
-          width: 1.458vw;
-        }
-
-        @include mobile {
-          right: 4vw;
-          top: 45%;
-
-          img {
-            width: 3.889vw;
-          }
-        }
-      }
-
-      // 메인 슬라이드 페이지네이션 버튼 위치
-      .VueCarousel-pagination--bottom-overlay {
-        bottom: 1.667vw;
-      }
-
-      img {
-        width: 100%;
-      }
+    @include mobile {
+      padding: 0;
     }
   }
 

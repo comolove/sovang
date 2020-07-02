@@ -72,7 +72,7 @@ export default class CarouselWithNavCarousel extends Vue {
     slidesToShow: 2,
     responsive: [
       {
-        breakpoint: ScreenSize.mobile,
+        breakpoint: ScreenSize.tablet,
         settings: {
           slidesToShow: 5
         }
