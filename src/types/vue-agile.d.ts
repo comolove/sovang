@@ -5,6 +5,8 @@ declare module "vue-agile" {
   export default VueAgilePlugin;
   // export const VueAgile: Vue;
 
-  class VueAgile extends Vue {}
+  class VueAgile extends Vue {
+    public goTo(index: number): void;
+  }
   export { VueAgile };
 }

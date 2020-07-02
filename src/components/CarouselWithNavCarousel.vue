@@ -4,8 +4,8 @@
       ref="main"
       class="main"
       :options="mainOptions"
-      :as-nav-for="asNavForMain"
       :speed="1000"
+      @after-change="handleAfterChange($event)"
     >
       <div
         class="slide"
@@ -26,14 +26,18 @@
       class="thumbnails"
       ref="thumbnails"
       :options="thumbnailOptions"
-      :as-nav-for="asNavForThumbnail"
+      :speed="1000"
     >
       <div
         class="slide slide--thumbnail"
         v-for="(slide, index) in navSlides"
         :key="index"
         :class="`slide--${index}`"
-        @click="$refs.thumbnails.goTo(index)"
+        @click="
+          () => {
+            clickThumbnail(index);
+          }
+        "
       >
         <AssetImage :src="slide" />
       </div>
@@ -59,8 +63,11 @@ export default class CarouselWithNavCarousel extends Vue {
   @Prop() navSlides!: string[];
   @Prop() isMobile!: boolean;
 
-  private asNavForMain: Vue[] = [];
-  private asNavForThumbnail: Vue[] = [];
+  private SLIDES_TO_SHOW_MOBILE = 2;
+  private SLIDES_TO_SHOW_PC = 5;
+
+  private prevSlide = 0;
+  private curSlide = 0;
 
   mainOptions = {
     dots: false
@@ -69,20 +76,63 @@ export default class CarouselWithNavCarousel extends Vue {
   thumbnailOptions = {
     navButtons: false,
     dots: false,
-    slidesToShow: 2,
+    slidesToShow: this.SLIDES_TO_SHOW_MOBILE,
     responsive: [
       {
         breakpoint: ScreenSize.tablet,
         settings: {
-          slidesToShow: 5
+          slidesToShow: this.SLIDES_TO_SHOW_PC
         }
       }
     ]
   };
 
-  mounted() {
-    this.asNavForMain.push(this.$refs.thumbnails as Vue);
-    this.asNavForThumbnail.push(this.$refs.main as Vue);
+  get slidesToShow(): number {
+    return this.isMobile ? this.SLIDES_TO_SHOW_MOBILE : this.SLIDES_TO_SHOW_PC;
+  }
+
+  handleAfterChange(event: { currentSlide: number }) {
+    this.prevSlide = this.curSlide;
+    this.curSlide = event.currentSlide;
+
+    this.goToThumbnail(this.curSlide, this.prevSlide);
+  }
+
+  clickThumbnail(index: number) {
+    this.prevSlide = this.curSlide;
+    this.curSlide = index;
+
+    this.goToMain(this.curSlide);
+    this.goToThumbnail(this.curSlide, this.prevSlide);
+  }
+
+  goToMain(index: number) {
+    (this.$refs.main as VueAgile).goTo(index);
+  }
+
+  goToThumbnail(curSlideIndex: number, prevSlideIndex: number) {
+    const prevSlide = (this.$refs.thumbnails as VueAgile).$el.querySelectorAll(
+      `.slide--${prevSlideIndex}`
+    );
+    const nextSlide = (this.$refs.thumbnails as VueAgile).$el.querySelectorAll(
+      `.slide--${curSlideIndex}`
+    );
+
+    prevSlide.forEach(element => {
+      element.classList.remove("active");
+    });
+    nextSlide.forEach(element => {
+      element!.classList.add("active");
+    });
+
+    const slidePage = Math.floor(curSlideIndex / this.slidesToShow);
+    const indexInPage = curSlideIndex % this.slidesToShow;
+
+    if (slidePage > 0 && indexInPage == 0) {
+      (this.$refs.thumbnails as VueAgile).goTo(curSlideIndex);
+    } else if (slidePage == 0 && indexInPage == 0) {
+      (this.$refs.thumbnails as VueAgile).goTo(curSlideIndex);
+    }
   }
 }
 </script>
@@ -148,7 +198,7 @@ export default class CarouselWithNavCarousel extends Vue {
     padding: 0 5px;
     transition: opacity 0.3s;
 
-    &.agile__slide--active {
+    &.active {
       opacity: 0.58;
     }
   }

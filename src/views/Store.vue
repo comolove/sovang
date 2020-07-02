@@ -3,8 +3,7 @@
     <section class="main">
       <section data-aos="fade-up" class="img-slider">
         <div class="main-slide-wrapper">
-          <agile
-            :speed="1000">
+          <agile :speed="1000">
             <AssetImage
               v-for="(data, index) of mainSlideData"
               :key="index"
@@ -34,7 +33,10 @@
     </section>
     <section class="contents">
       <HomeContent data-aos="fade-up" title="서울숲시작점">
-        <a class="searchIcon" href="https://store.naver.com/restaurants/detail?id=35848947">
+        <a
+          class="searchIcon"
+          href="https://store.naver.com/restaurants/detail?id=35848947"
+        >
           <img src="@/assets/images/icon-searching.png" />
         </a>
         <CarouselWithNavCarousel
@@ -44,7 +46,10 @@
         />
       </HomeContent>
       <HomeContent data-aos="fade-up" title="현대백화점 신도림점">
-        <a class="searchIcon" href="https://store.naver.com/restaurants/detail?id=37253784">
+        <a
+          class="searchIcon"
+          href="https://store.naver.com/restaurants/detail?id=37253784"
+        >
           <img src="@/assets/images/icon-searching.png" />
         </a>
         <CarouselWithNavCarousel
@@ -67,7 +72,10 @@
         />
       </HomeContent>
       <HomeContent data-aos="fade-up" title="마로니에점">
-        <a class="searchIcon" href="https://store.naver.com/restaurants/detail?id=1712003259">
+        <a
+          class="searchIcon"
+          href="https://store.naver.com/restaurants/detail?id=1712003259"
+        >
           <img src="@/assets/images/icon-searching.png" />
         </a>
         <CarouselWithNavCarousel
@@ -77,7 +85,10 @@
         />
       </HomeContent>
       <HomeContent data-aos="fade-up" title="서울고속터미널점">
-        <a class="searchIcon" href="https://store.naver.com/restaurants/detail?id=1440926417">
+        <a
+          class="searchIcon"
+          href="https://store.naver.com/restaurants/detail?id=1440926417"
+        >
           <img src="@/assets/images/icon-searching.png" />
         </a>
         <CarouselWithNavCarousel
@@ -87,7 +98,10 @@
         />
       </HomeContent>
       <HomeContent data-aos="fade-up" title="현대백화점 킨텍스점">
-        <a class="searchIcon" href="https://store.naver.com/restaurants/detail?id=1996930133">
+        <a
+          class="searchIcon"
+          href="https://store.naver.com/restaurants/detail?id=1996930133"
+        >
           <img src="@/assets/images/icon-searching.png" />
         </a>
         <CarouselWithNavCarousel
@@ -197,37 +211,37 @@ export default class Store extends Vue {
 
     for (let i = 1; i <= 7; i++) {
       this.store_1.main.push(`store-page/content-1/main/${i}.jpg`);
-      this.store_1.thumbnail.push(`store-page/content-1/thumbnail/${i}.jpg`)
+      this.store_1.thumbnail.push(`store-page/content-1/thumbnail/${i}.jpg`);
     }
 
     for (let i = 1; i <= 5; i++) {
       this.store_2.main.push(`store-page/content-2/main/${i}.jpg`);
-      this.store_2.thumbnail.push(`store-page/content-2/thumbnail/${i}.jpg`)
+      this.store_2.thumbnail.push(`store-page/content-2/thumbnail/${i}.jpg`);
     }
 
     for (let i = 1; i <= 6; i++) {
-       this.store_3.main.push(`store-page/content-3/main/${i}.jpg`);
-      this.store_3.thumbnail.push(`store-page/content-3/thumbnail/${i}.jpg`)
+      this.store_3.main.push(`store-page/content-3/main/${i}.jpg`);
+      this.store_3.thumbnail.push(`store-page/content-3/thumbnail/${i}.jpg`);
     }
 
     for (let i = 1; i <= 7; i++) {
-       this.store_4.main.push(`store-page/content-4/main/${i}.jpg`);
-      this.store_4.thumbnail.push(`store-page/content-4/thumbnail/${i}.jpg`)
+      this.store_4.main.push(`store-page/content-4/main/${i}.jpg`);
+      this.store_4.thumbnail.push(`store-page/content-4/thumbnail/${i}.jpg`);
     }
 
     for (let i = 1; i <= 7; i++) {
-       this.store_5.main.push(`store-page/content-5/main/${i}.jpg`);
-      this.store_5.thumbnail.push(`store-page/content-5/thumbnail/${i}.jpg`)
+      this.store_5.main.push(`store-page/content-5/main/${i}.jpg`);
+      this.store_5.thumbnail.push(`store-page/content-5/thumbnail/${i}.jpg`);
     }
 
     for (let i = 1; i <= 6; i++) {
-       this.store_6.main.push(`store-page/content-6/main/${i}.jpg`);
-      this.store_6.thumbnail.push(`store-page/content-6/thumbnail/${i}.jpg`)
+      this.store_6.main.push(`store-page/content-6/main/${i}.jpg`);
+      this.store_6.thumbnail.push(`store-page/content-6/thumbnail/${i}.jpg`);
     }
 
     for (let i = 1; i <= 5; i++) {
-       this.store_7.main.push(`store-page/content-7/main/${i}.jpg`);
-      this.store_7.thumbnail.push(`store-page/content-7/thumbnail/${i}.jpg`)
+      this.store_7.main.push(`store-page/content-7/main/${i}.jpg`);
+      this.store_7.thumbnail.push(`store-page/content-7/thumbnail/${i}.jpg`);
     }
   }
 
@@ -322,9 +336,9 @@ export default class Store extends Vue {
         }
 
         &__dot {
-		      margin: 0 0.599vw;
+          margin: 0 0.599vw;
 
-		      button {
+          button {
             background-color: #c9caca;
             border: none;
             border-radius: 50%;
@@ -336,27 +350,25 @@ export default class Store extends Vue {
             line-height: 0;
             margin: 0;
             padding: 0;
-            transition-duration: .3s;
-
+            transition-duration: 0.3s;
           }
 
           @include mobile {
             margin: 0 2.222vw;
             button {
-              width:2.500vw;
-              height:2.500vw;
+              width: 2.5vw;
+              height: 2.5vw;
             }
           }
 
-		      &--current {
-			      button {
-				      background-color: white;
+          &--current {
+            button {
+              background-color: white;
             }
           }
         }
       }
     }
-    
 
     .slide {
       width: 100%;
