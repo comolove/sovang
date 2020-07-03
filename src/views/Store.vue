@@ -110,10 +110,10 @@
           :isMobile="isMobile"
         />
       </HomeContent>
-      <HomeContent data-aos="fade-up" title="중곡제일시장점">
+      <HomeContent data-aos="fade-up" title="중곡시장점">
         <a
           class="searchIcon"
-          href="https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=%EC%86%8C%EB%85%80%EB%B0%A9%EC%95%97%EA%B0%84+%EC%A4%91%EA%B3%A1%EC%A0%9C%EC%9D%BC%EC%8B%9C%EC%9E%A5%EC%A0%90&oquery=%EC%86%8C%EB%85%80%EB%B0%A9%EC%95%97%EA%B0%84+%ED%98%84%EB%8C%80%EB%B0%B1%ED%99%94%EC%A0%90+%ED%82%A8%ED%85%8D%EC%8A%A4%EC%A0%90&tqi=UYqzrsprvmZssF1J9HRssssstul-415622"
+          href="https://store.naver.com/restaurants/detail?id=1513302117"
         >
           <img src="@/assets/images/icon-searching.png" />
         </a>
@@ -333,6 +333,10 @@ export default class Store extends Vue {
           left: 50%;
           position: absolute;
           transform: translateX(-50%);
+
+          @include mobile {
+            bottom: 5.278vw;
+          }
         }
 
         &__dot {

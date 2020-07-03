@@ -411,12 +411,21 @@ export default class Home extends Vue {
 
     // 메인 슬라이드 페이지네이션 버튼 위치
     .VueCarousel-pagination--bottom-overlay {
-      bottom: 1.667vw;
+      bottom: 1.87vw;
+
+      .VueCarousel-dot {
+        width: 0.729vw !important;
+        height: 0.729vw !important;
+        padding: 0 0.599vw !important;
+      }
 
       @include mobile {
-        button.VueCarousel-dot {
+        bottom: 5.278vw;
+        
+        .VueCarousel-dot {
           width: 2.5vw !important;
           height: 2.5vw !important;
+          padding: 0 2.222vw !important;
         }
       }
     }
