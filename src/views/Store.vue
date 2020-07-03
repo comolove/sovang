@@ -376,7 +376,6 @@ export default class Store extends Vue {
 
     .slide {
       width: 100%;
-      height: 40.313vw;
       object-fit: cover;
       display: block;
 
