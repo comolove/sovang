@@ -284,6 +284,7 @@ export default class Store extends Vue {
   width: 100%;
 
   .main-slide-wrapper {
+    margin-top: -5px;
     padding: 0 14.3%;
     overflow: hidden;
 
