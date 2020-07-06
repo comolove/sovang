@@ -671,5 +671,9 @@ export default class Home extends Vue {
 
 .clickable {
   cursor: pointer;
+
+  &:hover{
+    opacity: 0.55;
+  }
 }
 </style>
