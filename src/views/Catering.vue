@@ -1,5 +1,6 @@
 <template>
   <main>
+    <Header />
     <section class="main" data-aos="fade-up">
       <section class="img-slider">
         <Carousel
@@ -28,7 +29,8 @@
         </Carousel>
       </section>
       <div class="info info-1">
-        청정지역의 제철먹거리와 함께 특별하고 의미있는 모임을 기획하는 가장 쉬운 방법.
+        청정지역의 제철먹거리와 함께 특별하고 의미있는 모임을 기획하는 가장 쉬운
+        방법.
         <br />소녀방앗간과 함께 어떤 특별함을 만들 수 있을까요?
       </div>
     </section>
@@ -64,8 +66,14 @@
             @slideclick="handleStoreSlideClick"
           >
             <div class="store-content">
-              <AssetImage class="mono" :src="isMobile ? data.mobileMonoPath : data.pcMonoPath" />
-              <AssetImage class="color" :src="isMobile ? data.mobilePath : data.pcPath" />
+              <AssetImage
+                class="mono"
+                :src="isMobile ? data.mobileMonoPath : data.pcMonoPath"
+              />
+              <AssetImage
+                class="color"
+                :src="isMobile ? data.mobilePath : data.pcPath"
+              />
               <p>
                 {{ data.cateringStoryName1 }}
                 <br />
@@ -76,8 +84,10 @@
         </Carousel>
       </HomeContent>
       <div class="info info-1">
-        2017년부터 지금까지 여러 공기관과 대기업, 그리고 사회적경제의 스타트업까지
-        <br />다양한 공간에서 소녀방앗간과 함께 청정케이터링 서비스를 경험하고 있습니다.
+        2017년부터 지금까지 여러 공기관과 대기업, 그리고 사회적경제의
+        스타트업까지
+        <br />다양한 공간에서 소녀방앗간과 함께 청정케이터링 서비스를 경험하고
+        있습니다.
       </div>
       <AssetImage class="logo" src="catering-page/logo-pc.jpg" />
     </section>
@@ -88,35 +98,56 @@
         <div class="contentsWrap contentsWrap-1">
           <div>
             <AssetImage
-              :src="'catering-page/catering-visit/' + (isMobile ? 'Mobile' : 'WEB') + '/1.jpg'"
+              :src="
+                'catering-page/catering-visit/' +
+                  (isMobile ? 'Mobile' : 'WEB') +
+                  '/1.jpg'
+              "
             />
             <div class="info-3">
               <div class="info-4">
-                <span class="bold">실속형</span> 15,000 - 20,000원 (1인) / 메뉴 7 - 9종
+                <span class="bold">실속형</span> 15,000 - 20,000원 (1인) / 메뉴
+                7 - 9종
               </div>
-              <div class="info-5">소규모, 또는 가볍고 편리한 모임에 적합합니다.</div>
+              <div class="info-5">
+                소규모, 또는 가볍고 편리한 모임에 적합합니다.
+              </div>
             </div>
           </div>
           <div>
             <AssetImage
-              :src="'catering-page/catering-visit/' + (isMobile ? 'Mobile' : 'WEB') + '/2.jpg'"
+              :src="
+                'catering-page/catering-visit/' +
+                  (isMobile ? 'Mobile' : 'WEB') +
+                  '/2.jpg'
+              "
             />
             <div class="info-3">
               <div class="info-4">
-                <span class="bold">일반형</span> 20,000 - 30,000원 (1인) / 메뉴 10 - 12종
+                <span class="bold">일반형</span> 20,000 - 30,000원 (1인) / 메뉴
+                10 - 12종
               </div>
-              <div class="info-5">기업 모임, 행사 등의 알찬 구성에 적합합니다.</div>
+              <div class="info-5">
+                기업 모임, 행사 등의 알찬 구성에 적합합니다.
+              </div>
             </div>
           </div>
           <div>
             <AssetImage
-              :src="'catering-page/catering-visit/' + (isMobile ? 'Mobile' : 'WEB') + '/3.jpg'"
+              :src="
+                'catering-page/catering-visit/' +
+                  (isMobile ? 'Mobile' : 'WEB') +
+                  '/3.jpg'
+              "
             />
             <div class="info-3">
               <div class="info-4">
-                <span class="bold">고급형</span> 30,000원 이상 (1인) / 메뉴 12종 이상
+                <span class="bold">고급형</span> 30,000원 이상 (1인) / 메뉴 12종
+                이상
               </div>
-              <div class="info-5">잔치나 파티 등 풍성한 차림의 행사에 적합합니다.</div>
+              <div class="info-5">
+                잔치나 파티 등 풍성한 차림의 행사에 적합합니다.
+              </div>
             </div>
           </div>
         </div>
@@ -128,11 +159,16 @@
         <div class="contentsWrap contentsWrap-2">
           <div>
             <AssetImage
-              :src="'catering-page/catering-box/' + (isMobile ? 'Mobile' : 'WEB') + '/1.jpg'"
+              :src="
+                'catering-page/catering-box/' +
+                  (isMobile ? 'Mobile' : 'WEB') +
+                  '/1.jpg'
+              "
             />
             <div class="info-3">
               <div class="info-4">
-                <span class="bold">실속형</span> 10,000 - 15,000형 (1인) / 메뉴 5 - 6종
+                <span class="bold">실속형</span> 10,000 - 15,000형 (1인) / 메뉴
+                5 - 6종
               </div>
               <div class="info-5">
                 회의 등 모임에 개별로 가볍게 준비해야 할 때
@@ -142,26 +178,40 @@
           </div>
           <div>
             <AssetImage
-              :src="'catering-page/catering-box/' + (isMobile ? 'Mobile' : 'WEB') + '/2.jpg'"
+              :src="
+                'catering-page/catering-box/' +
+                  (isMobile ? 'Mobile' : 'WEB') +
+                  '/2.jpg'
+              "
             />
             <div class="info-3">
               <div class="info-4">
-                <span class="bold">일반형</span> 10,000 - 20,000형 (1인) / 메뉴 7 - 10 종
+                <span class="bold">일반형</span> 10,000 - 20,000형 (1인) / 메뉴
+                7 - 10 종
               </div>
-              <div class="info-5">합리적이고 다양한 구성의 메뉴가 필요할 때 
-              <br />박스형태로 제공되어 편리하게 이용합니다.</div>
+              <div class="info-5">
+                합리적이고 다양한 구성의 메뉴가 필요할 때 <br />박스형태로
+                제공되어 편리하게 이용합니다.
+              </div>
             </div>
           </div>
           <div>
             <AssetImage
-              :src="'catering-page/catering-box/' + (isMobile ? 'Mobile' : 'WEB') + '/3.jpg'"
+              :src="
+                'catering-page/catering-box/' +
+                  (isMobile ? 'Mobile' : 'WEB') +
+                  '/3.jpg'
+              "
             />
             <div class="info-3">
               <div class="info-4">
-                <span class="bold">고급형</span> 20,000 - 30,000형 (1인) / 메뉴 7-10종
+                <span class="bold">고급형</span> 20,000 - 30,000형 (1인) / 메뉴
+                7-10종
               </div>
-              <div class="info-5">풍성한 메뉴 구성이 필요한 소규모 모임 또는
-              <br />고급 답례품 형태로도 제공가능합니다. </div>
+              <div class="info-5">
+                풍성한 메뉴 구성이 필요한 소규모 모임 또는 <br />고급 답례품
+                형태로도 제공가능합니다.
+              </div>
             </div>
           </div>
         </div>
@@ -171,6 +221,7 @@
     <section class="content-3"></section>
 
     <section class="content-4"></section>
+    <Footer />
   </main>
 </template>
 
@@ -178,6 +229,8 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Carousel, Slide } from "vue-carousel";
 import {
+  Header,
+  Footer,
   HomeContent,
   HoverTextImage,
   AssetImage,
@@ -201,6 +254,8 @@ class CateringStoryData extends ImgPath {
 @Component({
   name: "Catering",
   components: {
+    Header,
+    Footer,
     Carousel,
     Slide,
     HomeContent,
@@ -628,7 +683,6 @@ article {
   }
 
   .contentsWrap-2 {
-    
     > div {
       width: 22.917vw;
       height: 21.042vw;

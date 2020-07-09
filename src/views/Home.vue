@@ -1,5 +1,6 @@
 <template>
   <main class="home">
+    <Header />
     <section data-aos="fade-up" class="img-slider">
       <Carousel
         class="main-carousel"
@@ -147,6 +148,7 @@
         </div>
       </HomeContent>
     </section>
+    <Footer />
   </main>
 </template>
 
@@ -154,6 +156,8 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Carousel, Slide } from "vue-carousel";
 import {
+  Header,
+  Footer,
   HomeContent,
   HoverTextImage,
   AssetImage,
@@ -178,6 +182,8 @@ class OnlineMallData extends ImgPath {
 @Component({
   name: "Home",
   components: {
+    Header,
+    Footer,
     Carousel,
     Slide,
     HomeContent,
@@ -421,7 +427,7 @@ export default class Home extends Vue {
 
       @include mobile {
         bottom: 5.278vw;
-        
+
         .VueCarousel-dot {
           width: 2.5vw !important;
           height: 2.5vw !important;
@@ -672,7 +678,7 @@ export default class Home extends Vue {
 .clickable {
   cursor: pointer;
 
-  &:hover{
+  &:hover {
     opacity: 0.55;
   }
 }

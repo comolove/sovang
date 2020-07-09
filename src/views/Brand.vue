@@ -1,5 +1,6 @@
 <template>
   <main class="brand">
+    <Header />
     <section class="main">
       <AssetImage :src="mainImgPath" />
     </section>
@@ -90,12 +91,15 @@
         />
       </HomeContent>
     </section>
+    <Footer />
   </main>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import {
+  Header,
+  Footer,
   HomeContent,
   HoverTextImage,
   AssetImage,
@@ -106,6 +110,8 @@ import Breakpoint from "@/utils/screenSize";
 @Component({
   name: "Brand",
   components: {
+    Header,
+    Footer,
     HomeContent,
     HoverTextImage,
     AssetImage,

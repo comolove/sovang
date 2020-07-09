@@ -1,5 +1,6 @@
 <template>
   <main class="store">
+    <Header />
     <section class="main">
       <section data-aos="fade-up" class="img-slider">
         <div class="main-slide-wrapper">
@@ -124,6 +125,7 @@
         />
       </HomeContent>
     </section>
+    <Footer />
   </main>
 </template>
 
@@ -132,6 +134,8 @@ import { Component, Vue } from "vue-property-decorator";
 import { Carousel, Slide } from "vue-carousel";
 import { VueAgile } from "vue-agile";
 import {
+  Header,
+  Footer,
   HomeContent,
   HoverTextImage,
   AssetImage,
@@ -154,6 +158,8 @@ class ImgAndThumbnailPath {
 @Component({
   name: "Store",
   components: {
+    Header,
+    Footer,
     Carousel,
     Slide,
     HomeContent,
