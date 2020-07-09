@@ -10,3 +10,5 @@ services:
       - ./docker/mysql:/var/lib/mysql
       - ./docker/app:/app
       - ./docker/php_config/php:/etc/php
+      - ./docker/apache2.conf:/etc/apache2/apache2.conf
+      - ./docker/000-default.conf:/etc/apache2/sites-available/000-default.conf
