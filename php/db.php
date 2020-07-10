@@ -11,13 +11,9 @@ function CreateConnection()
     $pw = $_ENV["DB_PW"];
     $dbName = $_ENV["DB_NAME"];
 
-    $conn = mysqli_connect($host, $user, $pw, $dbName);
+    $conn = new mysqli($host, $user, $pw, $dbName);
+    $conn->set_charset("utf8");
 
     return $conn;
-}
-
-function CloseConnection($conn)
-{
-    mysqli_close($conn);
 }
 ?>
