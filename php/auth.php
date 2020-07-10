@@ -1,7 +1,9 @@
 <?php
-    require "utils.php";
-    require "db.php";
+    require_once "utils.php";
+    require_once "db.php";
 
+    $_POST = json_decode(file_get_contents("php://input"), true);
+    
     $id = isset($_POST["id"]) ? $_POST["id"] : "";
     $pw = isset($_POST["password"]) ? $_POST["password"] : "";
 
@@ -35,7 +37,7 @@
     {
         if ($result->num_rows == 0)
         {
-            $message = MakeMessage(FALSE, "Couldn't find id");
+            $message = MakeMessage(FALSE, "ID를 찾을 수 없습니다.");
             Response(404, $message);
             $conn->close();
             exit();
@@ -57,7 +59,7 @@
         }
         else
         {
-            $message = MakeMessage(FALSE, "pw is wrong");
+            $message = MakeMessage(FALSE, "비밀번호가 틀립니다.");
             Response(404, $message);
             $conn->close();
             exit();

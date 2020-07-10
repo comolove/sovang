@@ -41,4 +41,20 @@ function IsNullOrEmptyString($str)
     return (!isset($str) || trim($str) === '');
 }
 
+function Alert($msg)
+{
+    echo "<script>alert('$msg');</script>";
+}
+
+function Redirect($path)
+{
+    echo "<script>location.href='$path'</script>";
+}
+
+function AlertAndRedirectToAdmin($msg)
+{
+    Alert($msg);
+    Redirect("/admin");
+}
+
 ?>

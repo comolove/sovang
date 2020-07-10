@@ -1,6 +1,8 @@
 <?php
-    require "utils.php";
-    require "db.php";
+    require_once "utils.php";
+    require_once "db.php";
+
+    $_POST = json_decode(file_get_contents("php://input"), true);
 
     $id = isset($_POST["id"]) ? $_POST["id"] : "";
     $pw = isset($_POST["password"]) ? $_POST["password"] : "";
