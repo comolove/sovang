@@ -6,7 +6,19 @@
     </div>
     <div class="manage-list" v-else>
       <div class="title-slides">
-        <div></div>
+        <div class="preview">
+          <div class="main-slide">
+            <div
+              class="slide"
+              v-for="(value, index) in mainSlides"
+              :key="index"
+            >
+              <h3>{{ value.name }}</h3>
+              <img :src="value.pcPath" />
+              <img :src="value.mobilePath" />
+            </div>
+          </div>
+        </div>
         <form
           action="/uploadMainSlide.php"
           enctype="multipart/form-data"
@@ -33,6 +45,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import axios from "axios";
 import { Login } from "@/components/Admin";
 
 @Component({
@@ -45,6 +58,8 @@ export default class Admin extends Vue {
   private isLogin = false;
   private grade = 0;
   private name = "";
+
+  private mainSlides = [];
 
   async created() {
     const loginData = this.$cookies.get("login_data");
@@ -61,7 +76,8 @@ export default class Admin extends Vue {
   }
 
   async LoadData() {
-    /* */
+    const { data } = await axios.get("/getMainSlides.php");
+    this.mainSlides = data.data;
   }
 }
 </script>
