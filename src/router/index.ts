@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import Brand from "../views/Brand.vue";
 import Store from "../views/Store.vue";
 import Catering from "../views/Catering.vue";
+import Admin from "../views/Admin.vue";
 
 Vue.use(VueRouter);
 
@@ -29,14 +30,19 @@ const routes: Array<RouteConfig> = [
     component: Catering
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+    path: "/admin",
+    name: "Admin",
+    component: Admin
   }
+  // {
+  //   path: "/about",
+  //   name: "About",
+  //   // route level code-splitting
+  //   // this generates a separate chunk (about.[hash].js) for this route
+  //   // which is lazy-loaded when the route is visited.
+  //   component: () =>
+  //     import(/* webpackChunkName: "about" */ "../views/About.vue")
+  // }
 ];
 
 const router = new VueRouter({
