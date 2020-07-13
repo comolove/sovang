@@ -9,15 +9,11 @@
           :autoplay="true"
           :autoplayTimeout="6000"
           :autoplayHoverPause="false"
-          :navigationEnabled="true"
-          :navigationNextLabel="mainCarouselNavigationNext"
-          :navigationPrevLabel="mainCarouselNavigationPrev"
           :loop="true"
           paginationPosition="bottom-overlay"
           paginationColor="#c9caca"
           paginationActiveColor="white"
         >
-          <!-- 이미지 경로만 변경 -->
           <Slide
             v-for="(data, index) of mainSlideData"
             :key="index"
@@ -168,7 +164,9 @@
       </HomeContent>
     </section>
 
-    <section class="content-3"></section>
+    <section class="content-3">
+
+    </section>
 
     <section class="content-4"></section>
   </main>
@@ -177,6 +175,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Carousel, Slide } from "vue-carousel";
+import { VueAgile } from "vue-agile";
 import {
   HomeContent,
   HoverTextImage,
@@ -206,7 +205,8 @@ class CateringStoryData extends ImgPath {
     HomeContent,
     HoverTextImage,
     AssetImage,
-    ImageOverlayInfo
+    ImageOverlayInfo,
+    agile: VueAgile
   }
 })
 export default class Catering extends Vue {
@@ -457,15 +457,14 @@ article {
 
       // 메인 슬라이드 트랜지션 재정의
       .VueCarousel-inner {
-        transition: transform 0s ease 1s !important;
+        transition: transform 0s ease 0.5s !important;
 
         .VueCarousel-slide {
-          transition: opacity 1s !important;
+          transition: opacity 0.5s !important;
           opacity: 0 !important;
         }
-
         .VueCarousel-slide-active {
-          transition: opacity 2s ease 1s !important;
+          transition: opacity 0.5s ease 0.5s !important;
           opacity: 1 !important;
         }
       }
@@ -489,6 +488,8 @@ article {
 .content-1 {
   .illust {
     margin: 7.656vw 23.281vw 10.781vw 23.281vw;
+    width: 53.438vw;
+    height: 16.875vw;
   }
 
   @mixin RightAlignPagination($bottom) {
