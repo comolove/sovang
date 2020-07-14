@@ -31,7 +31,10 @@
       </div>
       <div class="onlinemall-slides">
         <h2>홈 페이지 온라인 몰 슬라이드</h2>
-        <OnlineMallImgList :images="onlineMallItems" @delete="handleDeleteOnlineMallItem" />
+        <OnlineMallImgList
+          :images="onlineMallItems"
+          @delete="handleDeleteOnlineMallItem"
+        />
         <form
           class="form-main-slide"
           action="/uploadOnlineMallItem.php"
@@ -57,6 +60,32 @@
           <button type="submit">업로드</button>
         </form>
       </div>
+      <div class="store">
+        <h2>식사 공간</h2>
+        <StoreList :stores="stores" @delete="handleDeleteOnlineMallItem" />
+        <form
+          class="form-main-slide"
+          action="/uploadStore.php"
+          enctype="multipart/form-data"
+          method="POST"
+        >
+          <h3>매장 추가</h3>
+          <label for="storeName">매장 이름</label>
+          <input name="storeName" id="storeName" type="text" />
+          <label for="link">매장 외부 링크</label>
+          <input name="link" id="link" type="text" />
+          <label for="pcImage">홈페이지 PC 이미지</label>
+          <input name="pcImage" id="pcImage" type="file" accept="image/*" />
+          <label for="mobileImage">홈페이지 모바일 이미지</label>
+          <input
+            name="mobileImage"
+            id="mobileImage"
+            type="file"
+            accept="image/*"
+          />
+          <button type="submit">업로드</button>
+        </form>
+      </div>
     </div>
   </div>
 </template>
@@ -64,15 +93,21 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import axios from "axios";
-import { Login, ScalingImgList, OnlineMallImgList } from "@/components/Admin";
-import { MainSlide, OnlineMallItem } from "@/utils";
+import {
+  Login,
+  ScalingImgList,
+  OnlineMallImgList,
+  StoreList
+} from "@/components/Admin";
+import { MainSlide, OnlineMallItem, Store } from "@/utils";
 
 @Component({
   name: "Brand",
   components: {
     Login,
     ScalingImgList,
-    OnlineMallImgList
+    OnlineMallImgList,
+    StoreList
   }
 })
 export default class Admin extends Vue {
@@ -82,6 +117,7 @@ export default class Admin extends Vue {
 
   private mainSlides: MainSlide[] = [];
   private onlineMallItems: OnlineMallItem[] = [];
+  private stores: Store[] = [];
 
   async created() {
     const loginData = this.$cookies.get("login_data");
@@ -101,10 +137,8 @@ export default class Admin extends Vue {
     try {
       const { data } = await axios.get("/getMainSlides.php");
       const list = data.data;
-      
-      this.mainSlides = list;
 
-      console.log(this.mainSlides);
+      this.mainSlides = list;
     } catch (error) {
       alert("홈페이지 메인 슬라이드 로딩 실패");
       console.log(error);
@@ -117,6 +151,17 @@ export default class Admin extends Vue {
       this.onlineMallItems = list;
     } catch (error) {
       alert("홈페이지 온라인 몰 아이템 로딩 실패");
+      console.log(error);
+    }
+
+    try {
+      const { data } = await axios.get("/getStore.php");
+      const list = data.data;
+
+      this.stores = list;
+      console.log(this.stores);
+    } catch (error) {
+      alert("식사공간 로딩 실패");
       console.log(error);
     }
   }
