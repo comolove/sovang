@@ -25,6 +25,8 @@ class ImageUploader
             return $result;
         }
         $pcPath = $result;
+        // 맨 앞의 간접 주소 (`.`)을 자른다
+        $pcPath = substr($pcPath, 1);
 
         $result = $this->UploadImage($mobileImage);
         if ($this->IsFail())
@@ -32,6 +34,8 @@ class ImageUploader
             return $result;
         }
         $mobilePath = $result;
+        // 맨 앞의 간접 주소 (`.`)을 자른다
+        $mobilePath = substr($mobilePath, 1);
         
         $insertSQL = "INSERT INTO image (name, pc, mobile) VALUES('$name','$pcPath','$mobilePath')";
 

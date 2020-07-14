@@ -12,7 +12,7 @@ if (IsNullOrEmptyString($index))
     exit();
 }
 
-$selectSQL = "SELECT I.pc AS pcPath, I.mobile AS mobilePath FROM onlineMall AS O INNER JOIN image AS I ON I.index=O.imageIndex";
+$selectSQL = "SELECT I.pc AS pcPath, I.mobile AS mobilePath FROM onlineMall AS O INNER JOIN image AS I ON I.index=O.imageIndex WHERE O.index=$index";
 $deleteSQL = "DELETE FROM O, I USING onlineMall AS O INNER JOIN image AS I ON O.imageIndex=I.index WHERE O.index=$index";
 
 $conn = CreateConnection();

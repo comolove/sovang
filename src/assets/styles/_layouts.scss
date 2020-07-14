@@ -47,3 +47,57 @@ main {
 .bar-bottom {
   border-bottom: 1px solid #001845;
 }
+
+@mixin form-type-1 {
+  form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    width: 60%;
+  
+    h3 {
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+    }
+  
+    .input-wrap {
+      display: block;
+      margin: 10px 0;
+  
+      input {
+        margin-left: 20px;
+      }
+    }
+  
+    button[type="submit"] {
+      height: 30px;
+    }
+  }
+}
+
+@mixin content-wrap {
+  .content-wrap {
+    margin-bottom: 20px;
+  
+    img {
+      display: block;
+    }
+  
+    p {
+      margin-bottom: 5px;
+    }
+  
+    .pc-img {
+      width: 460px;
+      height: auto;
+      object-fit: cover;
+    }
+  
+    .mobile-img {
+      width: 290px;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+}

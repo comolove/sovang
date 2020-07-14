@@ -16,14 +16,6 @@ import { Store } from "@/utils";
 })
 export default class StoreList extends Vue {
   @Prop() stores!: Store[];
-
-  protected handleModify(index: number) {
-    this.$emit("modify", index);
-  }
-
-  protected handleDelete(index: number) {
-    this.$emit("delete", index);
-  }
 }
 </script>
 
@@ -31,10 +23,10 @@ export default class StoreList extends Vue {
 .store-list {
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
+  margin-top: 10px;
 
   .store {
-    margin: 10px 0;
+    margin-right: 20px;
   }
 }
 </style>

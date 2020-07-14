@@ -1,11 +1,20 @@
 <template>
   <div class="scaling-img-list">
     <div class="slide" v-for="(value, index) in images" :key="index">
-      <h3 class="name">{{ value.itemName }}</h3>
-      <p class="desc">{{ value.itemDesc }}</p>
-      <p class="link">{{ value.link }}</p>
-      <img class="pc-img" :src="value.img.pcPath" />
-      <img class="mobile-img" :src="value.img.mobilePath" />
+      <div class="content-wrap">
+        <p>상품 이름 : {{ value.itemName }}</p>
+        <p>상품 설명 : {{ value.itemDesc }}</p>
+        <p><a :href="value.link">상품 링크</a></p>
+      </div>
+      <div class="content-wrap">
+        <p>모바일 이미지</p>
+        <img class="pc-img" :src="value.img.pcPath" />
+      </div>
+      <div class="content-wrap">
+        <p>모바일 이미지</p>
+        <img class="mobile-img" :src="value.img.mobilePath" />
+      </div>
+
       <!-- <button @click="() => {handleModify(value.index)}">이미지 수정</button> -->
       <button
         @click="
@@ -39,35 +48,19 @@ export default class ScalingImgList extends Vue {
 </script>
 
 <style scoped lang="scss">
+@import "../../assets/styles/layouts";
+
 .scaling-img-list {
   display: flex;
   flex-direction: row;
-  margin-bottom: 10px;
-
-  .slide {
-    margin-right: 15px;
-
-    & > * {
-      margin-bottom: 10px;
-    }
-
-    img {
-      display: block;
-    }
-
-    .pc-img {
-      width: 460px;
-      height: auto;
-      object-fit: cover;
-    }
-
-    .mobile-img {
-      width: 290px;
-      height: auto;
-      object-fit: cover;
-    }
-  }
+  margin-top: 10px;
 }
+
+.slide {
+  margin-right: 20px;
+}
+
+@include content-wrap;
 
 button {
   display: block;

@@ -59,9 +59,10 @@ function AlertAndRedirectToAdmin($msg)
 
 function DeleteFileIfExists($path)
 {
-    if (file_exists($path)) 
+    $relativePath = '.'.$path;
+    if (file_exists($relativePath)) 
     {
-        unlink($path);
+        unlink($relativePath);
     }
 }
 

@@ -126,7 +126,7 @@ export default class CarouselWithNavCarousel extends Vue {
       element.classList.remove("active");
     });
     nextSlide.forEach(element => {
-      element!.classList.add("active");
+      element.classList.add("active");
     });
 
     const slidePage = Math.floor(curSlideIndex / this.slidesToShow);

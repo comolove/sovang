@@ -1,9 +1,18 @@
 <template>
   <div class="scaling-img-list">
     <div class="slide" v-for="(value, index) in images" :key="index">
-      <h3 class="img-name">{{ value.img.name }}</h3>
-      <img class="pc-img" :src="value.img.pcPath" />
-      <img class="mobile-img" :src="value.img.mobilePath" />
+      <div class="content-wrap">
+        <p>슬라이드 이름 : {{ value.img.name }}</p>
+      </div>
+      <div class="content-wrap">
+        <p>PC 이미지</p>
+        <img class="pc-img" :src="value.img.pcPath" />
+      </div>
+      <div class="content-wrap">
+        <p>모바일 이미지</p>
+        <img class="mobile-img" :src="value.img.mobilePath" />
+      </div>
+
       <!-- <button @click="() => {handleModify(value.index)}">이미지 수정</button> -->
       <button
         @click="
@@ -37,37 +46,21 @@ export default class ScalingImgList extends Vue {
 </script>
 
 <style scoped lang="scss">
+@import "../../assets/styles/layouts";
+
 .scaling-img-list {
   display: flex;
   flex-direction: row;
-  margin-bottom: 10px;
+  margin-top: 10px;
+}
 
-  .slide {
-    margin-right: 15px;
-
-    & > * {
-      margin-bottom: 10px;
-    }
-
-    img {
-      display: block;
-    }
-
-    .pc-img {
-      width: 460px;
-      height: auto;
-      object-fit: cover;
-    }
-
-    .mobile-img {
-      width: 290px;
-      height: auto;
-      object-fit: cover;
-    }
-  }
+.slide {
+  margin-right: 20px;
 }
 
 button {
   display: block;
 }
+
+@include content-wrap;
 </style>
