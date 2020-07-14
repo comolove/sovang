@@ -57,4 +57,12 @@ function AlertAndRedirectToAdmin($msg)
     Redirect("/admin");
 }
 
+function DeleteFileIfExists($path)
+{
+    if (file_exists($path)) 
+    {
+        unlink($path);
+    }
+}
+
 ?>

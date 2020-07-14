@@ -6,27 +6,45 @@
     </div>
     <div class="manage-list" v-else>
       <div class="title-slides">
-        <div class="preview">
-          <div class="main-slide">
-            <div
-              class="slide"
-              v-for="(value, index) in mainSlides"
-              :key="index"
-            >
-              <h3>{{ value.name }}</h3>
-              <img :src="value.pcPath" />
-              <img :src="value.mobilePath" />
-            </div>
-          </div>
-        </div>
+        <h2>홈페이지 메인 슬라이드</h2>
+        <ScalingImgList :images="mainSlides" @delete="handleDeleteMainSlide" />
         <form
+          class="form-main-slide"
           action="/uploadMainSlide.php"
           enctype="multipart/form-data"
           method="POST"
         >
-          <input name="type" type="hidden" value="mainSlide" />
+          <h3>슬라이드 추가</h3>
           <label for="name">슬라이드 이름</label>
           <input name="name" id="name" type="text" />
+          <label for="pcImage">PC 사이즈 이미지</label>
+          <input name="pcImage" id="pcImage" type="file" accept="image/*" />
+          <label for="mobileImage">모바일 사이즈 이미지</label>
+          <input
+            name="mobileImage"
+            id="mobileImage"
+            type="file"
+            accept="image/*"
+          />
+          <button type="submit">업로드</button>
+        </form>
+      </div>
+      <div class="onlinemall-slides">
+        <h2>홈 페이지 온라인 몰 슬라이드</h2>
+        <OnlineMallImgList :images="onlineMallItems" @delete="handleDeleteOnlineMallItem" />
+        <form
+          class="form-main-slide"
+          action="/uploadOnlineMallItem.php"
+          enctype="multipart/form-data"
+          method="POST"
+        >
+          <h3>상품 추가</h3>
+          <label for="itemName">상품 이름</label>
+          <input name="itemName" id="itemName" type="text" />
+          <label for="itemDesc">상품 설명</label>
+          <input name="itemDesc" id="itemDesc" type="text" />
+          <label for="link">상품 링크</label>
+          <input name="link" id="link" type="text" />
           <label for="pcImage">PC 사이즈 이미지</label>
           <input name="pcImage" id="pcImage" type="file" accept="image/*" />
           <label for="mobileImage">모바일 사이즈 이미지</label>
@@ -46,12 +64,15 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import axios from "axios";
-import { Login } from "@/components/Admin";
+import { Login, ScalingImgList, OnlineMallImgList } from "@/components/Admin";
+import { MainSlide, OnlineMallItem } from "@/utils";
 
 @Component({
   name: "Brand",
   components: {
-    Login
+    Login,
+    ScalingImgList,
+    OnlineMallImgList
   }
 })
 export default class Admin extends Vue {
@@ -59,7 +80,8 @@ export default class Admin extends Vue {
   private grade = 0;
   private name = "";
 
-  private mainSlides = [];
+  private mainSlides: MainSlide[] = [];
+  private onlineMallItems: OnlineMallItem[] = [];
 
   async created() {
     const loginData = this.$cookies.get("login_data");
@@ -76,8 +98,59 @@ export default class Admin extends Vue {
   }
 
   async LoadData() {
-    const { data } = await axios.get("/getMainSlides.php");
-    this.mainSlides = data.data;
+    try {
+      const { data } = await axios.get("/getMainSlides.php");
+      const list = data.data;
+      
+      this.mainSlides = list;
+
+      console.log(this.mainSlides);
+    } catch (error) {
+      alert("홈페이지 메인 슬라이드 로딩 실패");
+      console.log(error);
+    }
+
+    try {
+      const { data } = await axios.get("/getOnlineMallItems.php");
+      const list = data.data;
+
+      this.onlineMallItems = list;
+    } catch (error) {
+      alert("홈페이지 온라인 몰 아이템 로딩 실패");
+      console.log(error);
+    }
+  }
+
+  private async handleDeleteMainSlide(index: number) {
+    try {
+      if (confirm("삭제하시겠습니까?")) {
+        const { data } = await axios.post("/deleteMainSlide.php", {
+          index: index
+        });
+
+        alert("이미지 삭제에 성공 했습니다.");
+        location.reload();
+      }
+    } catch (error) {
+      alert("이미지 삭제에 실패 했습니다.");
+      location.reload();
+    }
+  }
+
+  private async handleDeleteOnlineMallItem(index: number) {
+    try {
+      if (confirm("삭제하시겠습니까?")) {
+        const { data } = await axios.post("/deleteOnlineMallItem.php", {
+          index: index
+        });
+
+        alert("삭제에 성공 했습니다.");
+        location.reload();
+      }
+    } catch (error) {
+      alert("삭제에 실패 했습니다.");
+      location.reload();
+    }
   }
 }
 </script>
@@ -97,10 +170,16 @@ h1 {
 
   & > * {
     margin: 16px 0;
+  }
+}
 
-    input {
-      display: block;
-    }
+[class^="form"] {
+  & > * {
+    margin-bottom: 6px;
+  }
+
+  input {
+    display: block;
   }
 }
 </style>
