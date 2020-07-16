@@ -5,6 +5,9 @@ import AssetImage from "@/components/AssetImage.vue";
 import HoverTextImage from "@/components/HoverTextImage.vue";
 import ImageOverlayInfo from "@/components/ImageOverlayInfo.vue";
 import CarouselWithNavCarousel from "@/components/CarouselWithNavCarousel.vue";
+import CarouselContent from "@/components/CarouselContent.vue";
+import CateringContent from "@/components/CateringContent.vue";
+
 
 export {
   Header,
@@ -13,5 +16,7 @@ export {
   HomeContent,
   HoverTextImage,
   ImageOverlayInfo,
-  CarouselWithNavCarousel
+  CarouselWithNavCarousel,
+  CarouselContent,
+  CateringContent
 };
