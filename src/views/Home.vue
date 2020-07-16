@@ -163,13 +163,8 @@ import {
   AssetImage,
   ImageOverlayInfo
 } from "@/components";
-import Breakpoint from "@/utils/screenSize";
+import { screenSize, ImgPath } from "@/utils";
 
-class ImgPath {
-  public pcPath = "";
-  public tabletPath = "";
-  public mobilePath = "";
-}
 class StoreData extends ImgPath {
   public storeName = "";
 }
@@ -223,6 +218,7 @@ export default class Home extends Vue {
     // TODO : Backend 개발 후 DB에서 불러오기
     for (let i = 0; i < 4; i++) {
       this.mainSlideData.push({
+        name: "",
         pcPath: `slide/pc/main-slide-${i + 1}.jpg`,
         tabletPath: "",
         mobilePath: `slide/mobile/main-slide-${i + 1}.jpg`
@@ -240,6 +236,7 @@ export default class Home extends Vue {
     ];
     for (let i = 0; i < storeName.length; i++) {
       this.storeSlideData.push({
+        name: "",
         pcPath: `store/store-${i + 1}.jpg`,
         tabletPath: "",
         mobilePath: `store/mobile/store-${i + 1}.jpg`,
@@ -310,7 +307,7 @@ export default class Home extends Vue {
   }
 
   handleResize(/* e : Event */) {
-    this.isMobile = Breakpoint.tablet > window.innerWidth ? true : false;
+    this.isMobile = screenSize.tablet > window.innerWidth ? true : false;
 
     this.responseComponents();
   }

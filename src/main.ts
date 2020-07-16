@@ -5,7 +5,11 @@ import router from "./router";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+import VueCookies from "vue-cookies";
+
 Vue.config.productionTip = false;
+
+Vue.use(VueCookies);
 
 new Vue({
   created() {

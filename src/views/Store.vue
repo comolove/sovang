@@ -142,13 +142,7 @@ import {
   ImageOverlayInfo,
   CarouselWithNavCarousel
 } from "@/components";
-import Breakpoint from "@/utils/screenSize";
-
-class ImgPath {
-  public pcPath = "";
-  public tabletPath = "";
-  public mobilePath = "";
-}
+import { screenSize, ImgPath } from "@/utils";
 
 class ImgAndThumbnailPath {
   public main: string[] = [];
@@ -209,6 +203,7 @@ export default class Store extends Vue {
 
     for (let i = 0; i < 6; i++) {
       this.mainSlideData.push({
+        name: "",
         pcPath: `store-page/main/WEB/main-slide-${i + 1}.jpg`,
         tabletPath: "",
         mobilePath: `store-page/main/Mobile/main-slide-${i + 1}.jpg`
@@ -256,7 +251,7 @@ export default class Store extends Vue {
   }
 
   handleResize(/* e : Event */) {
-    this.isMobile = Breakpoint.tablet > window.innerWidth ? true : false;
+    this.isMobile = screenSize.tablet > window.innerWidth ? true : false;
 
     this.responseComponents();
   }

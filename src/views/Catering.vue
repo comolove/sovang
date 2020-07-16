@@ -239,13 +239,7 @@ import {
   CarouselContent,
   CateringContent
 } from "@/components";
-import Breakpoint from "@/utils/screenSize";
-
-class ImgPath {
-  public pcPath = "";
-  public tabletPath = "";
-  public mobilePath = "";
-}
+import { screenSize, ImgPath } from "@/utils";
 
 class CateringStoryData extends ImgPath {
   public pcMonoPath = "";
@@ -309,6 +303,7 @@ export default class Catering extends Vue {
     // TODO : Backend 개발 후 DB에서 불러오기
     for (let i = 0; i < 2; i++) {
       this.mainSlideData.push({
+        name: "",
         pcPath: `catering-page/main/WEB/main-slide-${i + 1}.jpg`,
         tabletPath: "",
         mobilePath: `catering-page/main/Mobile/main-slide-${i + 1}.jpg`
@@ -329,6 +324,7 @@ export default class Catering extends Vue {
 
     for (let i = 0; i < cateringStory1.length; i++) {
       this.cateringStorySlideData.push({
+        name: "",
         pcPath: `catering-page/catering-story/WEB/${i + 1}-color.jpg`,
         tabletPath: "",
         mobilePath: `catering-page/catering-story/Mobile/${i + 1}-color.jpg`,
@@ -359,6 +355,7 @@ export default class Catering extends Vue {
         pcPath: `catering-page/catering-visit/WEB/${i + 1}.jpg`,
         tabletPath: "",
         mobilePath: `catering-page/catering-visit/Mobile/${i + 1}.jpg`,
+        name: "",
         title: visitTitle[i],
         price: visitPrice[i],
         info: visitInfo[i]
@@ -385,6 +382,7 @@ export default class Catering extends Vue {
         pcPath: `catering-page/catering-box/WEB/${i + 1}.jpg`,
         tabletPath: "",
         mobilePath: `catering-page/catering-box/Mobile/${i + 1}.jpg`,
+        name: "",
         title: visitTitle[i],
         price: boxPrice[i],
         info: boxInfo[i]
@@ -412,6 +410,7 @@ export default class Catering extends Vue {
         pcPath: `catering-page/easy-lunch-box/WEB/${i + 1}.jpg`,
         tabletPath: "",
         mobilePath: `catering-page/easy-lunch-box/Mobile/${i + 1}.jpg`,
+        name: "",
         title: easyTitle[i],
         price: easyPrice[i],
         info: easyInfo[i]
@@ -422,6 +421,7 @@ export default class Catering extends Vue {
       pcPath: `catering-page/custom-lunch-box/WEB/1.jpg`,
       tabletPath: "",
       mobilePath: `catering-page/custom-lunch-box/Mobile/1.jpg`,
+      name: "",
       title: "맞춤 도시락",
       price: `20,000원 이상 (1인) <span class="hide">/ </span> <br />메뉴 구성 및 용기는 모두 고객 맞춤형으로<span class="hide> 귀한 손님들에게 준비해드리는 맞춤 도시락입니다. </span>
       <span class="non-hide">, 특별한 행사에 참석하신 귀한<br />손님들에게 준비해드리기 좋은 맞춤 도시락입니다.</span>`,
@@ -432,6 +432,7 @@ export default class Catering extends Vue {
       pcPath: `catering-page/custom-lunch-box/WEB/1.jpg`,
       tabletPath: "",
       mobilePath: `catering-page/custom-lunch-box/Mobile/1.jpg`,
+      name: "",
       title: "맞춤 도시락",
       price: `20,000원 이상 (1인) <span class="hide">/ </span> <br />메뉴 구성 및 용기는 모두 고객 맞춤형으로<span class="hide> 귀한 손님들에게 준비해드리는 맞춤 도시락입니다. </span>
       <span class="non-hide">, 특별한 행사에 참석하신 귀한<br />손님들에게 준비해드리기 좋은 맞춤 도시락입니다.</span>`,
@@ -442,6 +443,7 @@ export default class Catering extends Vue {
       pcPath: `catering-page/custom-lunch-box/WEB/2.jpg`,
       tabletPath: "",
       mobilePath: `catering-page/custom-lunch-box/Mobile/2.jpg`,
+      name: "",
       title: "",
       price: "",
       info: ""
@@ -451,6 +453,7 @@ export default class Catering extends Vue {
       pcPath: `catering-page/custom-lunch-box/WEB/2.jpg`,
       tabletPath: "",
       mobilePath: `catering-page/custom-lunch-box/Mobile/2.jpg`,
+      name: "",
       title: "",
       price: "",
       info: ""
@@ -460,6 +463,7 @@ export default class Catering extends Vue {
       pcPath: `catering-page/custom-lunch-box/WEB/3.jpg`,
       tabletPath: "",
       mobilePath: "",
+      name: "",
       title: "",
       price: "",
       info: ""
@@ -478,6 +482,7 @@ export default class Catering extends Vue {
         pcPath: `catering-page/additional-menu/WEB/${i + 1}.jpg`,
         tabletPath: "",
         mobilePath: `catering-page/additional-menu/Mobile/${i + 1}.jpg`,
+        name: "",
         title: additionalTitle[i],
         price: additionalPrice[i],
         info: ""
@@ -525,7 +530,7 @@ export default class Catering extends Vue {
   }
 
   handleResize(/* e : Event */) {
-    this.isMobile = Breakpoint.tablet > window.innerWidth ? true : false;
+    this.isMobile = screenSize.tablet > window.innerWidth ? true : false;
 
     this.responseComponents();
   }

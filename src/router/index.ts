@@ -5,6 +5,9 @@ import Brand from "../views/Brand.vue";
 import Store from "../views/Store.vue";
 import Catering from "../views/Catering.vue";
 import Admin from "../views/Admin.vue";
+import AdminMainSlide from "../views/Admin/MainSlide.vue";
+import AdminOnlineMall from "../views/Admin/OnlineMall.vue";
+import AdminStore from "../views/Admin/Store.vue";
 
 Vue.use(VueRouter);
 
@@ -32,7 +35,21 @@ const routes: Array<RouteConfig> = [
   {
     path: "/admin",
     name: "Admin",
-    component: Admin
+    component: Admin,
+    children: [
+      {
+        path: "mainslide",
+        component: AdminMainSlide
+      },
+      {
+        path: "onlinemall",
+        component: AdminOnlineMall
+      },
+      {
+        path: "store",
+        component: AdminStore
+      }
+    ]
   }
   // {
   //   path: "/about",
