@@ -11,7 +11,6 @@
     :navigationPrevLabel="carouselNavigationPrev"
     :autoplay="true"
     :loop="true"
-    :spacePadding="-20"
     paginationColor="#c9caca"
     :paginationActiveColor="carouselPaginationActiveColor"
     @page-change="handleCarouselChange"
@@ -163,14 +162,26 @@ export default class CarouselContent extends Vue {
 }
 
 .carousel {
-  // 매장 이미지들의 사이 간격
+  // 매장 이미지들의 사이 간.
+  VueCarousel-slide {
+    width: 22.917vw;
+
+    @include mobile {
+      width: 81.667vw;
+    }
+  }
   .VueCarousel-slide > div {
-    padding-right: 1.354vw;
+    width: 22.917vw;
+
+    @include mobile {
+      width: 81.667vw;
+    }
+
     img {
       width: 22.917vw;
 
       @include mobile {
-        width: 100%;
+        width: 81.667vw;
       }
     }
   }

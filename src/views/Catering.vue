@@ -116,7 +116,7 @@
         <input type="text" placeholder="단체명" />
         <div class="dateWrap">
           날짜
-          <select id="year" v-model="selectedYear">
+          <select id="year" @change="onChangeYear()" v-model="selectedYear">
             <option value="0" selected disabled>
               <span v-if="!isMobile">년</span>
             </option>
@@ -129,8 +129,8 @@
             </option>
             <option v-for="index in 12" :key="index" :value="index">{{index}}월</option>
           </select>
-          <select id="day">
-            <option selected disabled>
+          <select id="day" v-model="selectedDay">
+            <option selected disabled value="0">
               <span v-if="!isMobile">일</span>
             </option>
             <option v-for="d in 28" :key="d">{{d}}일</option>
@@ -170,37 +170,37 @@
         </div>
         <input type="text" placeholder="이메일" />
         <input type="text" placeholder="주소" />
-        <select id="category" v-model="seletedValue" @change="onChange()">
+        <select id="category" v-model="selectedValue" @change="onChange()">
           <option value="0" selected disabled>카테고리</option>
           <option value="1">방문 케이터링</option>
           <option value="2">박스 케이터링</option>
           <option value="3">간편 도시락</option>
           <option value="4">맞춤 도시락</option>
         </select>
-        <select id="menuComposition">
-          <option selected disabled>메뉴구성</option>
+        <select id="menuComposition" v-model="selectedMenu">
+          <option selected disabled value="0">메뉴구성</option>
           <option v-show="isCatering">실속형</option>
           <option v-show="isCatering">일반형</option>
           <option v-show="isCatering">고급형</option>
-          <option v-show="seletedValue==3">고춧가루제육볶음 한 상 도시락</option>
-          <option v-show="seletedValue==3">돼지갈비찜 한 상 도시락</option>
-          <option v-show="seletedValue==3">소불고기 한 상 도시락</option>
-          <option v-show="seletedValue==4">선택 없음</option>
+          <option v-show="selectedValue==3">고춧가루제육볶음 한 상 도시락</option>
+          <option v-show="selectedValue==3">돼지갈비찜 한 상 도시락</option>
+          <option v-show="selectedValue==3">소불고기 한 상 도시락</option>
+          <option v-show="selectedValue==4">선택 없음</option>
         </select>
         <select id="menuItem">
           <option selected disabled>메뉴항목</option>
           <option>식사</option>
           <option>다과</option>
         </select>
-        <select id="additionalMenu">
-          <option selected disabled>
+        <select id="additionalMenu" v-model="selectedAdditionalMenu">
+          <option value="0" selected disabled>
             추가메뉴
             <span v-if="!isMobile">(도시락만 해당)</span>
           </option>
           <option v-show="isCatering">선택 없음</option>
           <option v-show="!isCatering">재래식장국</option>
           <option v-show="!isCatering">들깨미역국</option>
-          <option v-show="!isCatering">컵셀러드</option>
+          <option v-show="!isCatering">컵샐러드</option>
           <option v-show="!isCatering">컵과일</option>
           <option v-show="!isCatering">발효청</option>
           <option v-show="!isCatering">산나물차</option>
@@ -219,7 +219,7 @@
         개인정보 수집 및 이용 동의
         <div>내용 보기</div>
       </div>
-      <input type="button" value="상담 예약" />
+      <input type="button" value="상담 예약" onclick="alert('상담을 예약해주셔서 감사드립니다. 빠른시간 안에 직접 연락드리도록 하겠습니다.');" />
     </section>
     <Footer class="footer" />
   </main>
@@ -288,9 +288,12 @@ export default class Catering extends Vue {
   private year = 10;
   private month = 12;
   private day = 29;
-  private seletedValue = 0;
+  private selectedValue = 0;
   private selectedYear = 0;
   private selectedMonth = 0;
+  private selectedDay = 0;
+  private selectedMenu = 0;
+  private selectedAdditionalMenu = 0;
   private storeCarouselPerPage = 1;
   private homeContentCarouselPaginationActiveColor = "black";
 
@@ -511,13 +514,21 @@ export default class Catering extends Vue {
   }
 
   onChange(/*event*/) {
-    if (this.seletedValue == 1 || this.seletedValue == 2)
+    this.selectedMenu = 0;
+    this.selectedAdditionalMenu = 0;
+    if (this.selectedValue == 1 || this.selectedValue == 2)
       this.isCatering = true;
     else this.isCatering = false;
   }
 
+  onChangeYear(/* event */) {
+    this.selectedMonth = 0;
+    this.selectedDay = 0;
+  }
+
   onChangeDate(/*event*/) {
     const sel = this.selectedMonth;
+    this.selectedDay = 0;
     if ((sel <= 7 && sel % 2 == 1) || (sel > 7 && sel % 2 == 0))
       this.isMonthWith31Days = true;
     else this.isMonthWith31Days = false;

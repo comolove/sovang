@@ -11,7 +11,7 @@
     :navigationPrevLabel="carouselNavigationPrev"
     :autoplay="true"
     :loop="true"
-    :spacePadding="-20"
+    :spacePadding="0"
     paginationColor="#c9caca"
     :paginationActiveColor="carouselPaginationActiveColor"
     @page-change="handleCarouselChange"
@@ -21,7 +21,6 @@
       :key="index"
       :data-index="index"
       data-name="DataName"
-      @slideclick="handleSlideClick"
     >
       <div>
         <AssetImage :src="isMobile ? data.mobilePath : data.pcPath" />
@@ -66,6 +65,7 @@ class CateringContentData extends ImgPath {
 })
 export default class CateringContent extends Vue {
   @Prop() contentData!: CateringContentData[];
+  @Prop() slidePadding!: number;
 
   private carouselPerPage = 1;
   private curIndex = 0;
@@ -79,12 +79,6 @@ export default class CateringContent extends Vue {
   mounted() {
     this.handleResize();
     this.responseComponents();
-  }
-
-  handleSlideClick(dataset: { index: string }) {
-    this.curIndex = parseInt(dataset.index);
-    // index 값으로 주면 해당 인덱스가 왼쪽(start)에 붙게되서 - 1 인덱스로 해주어서 선택한 인덱스가 가운데로 오도록 함
-    (this.$refs.carousel as Carousel).goToPage(this.curIndex - 1);
   }
 
   handleResize(/* e : Event */) {
@@ -217,8 +211,20 @@ export default class CateringContent extends Vue {
 
 .carousel {
   // 매장 이미지들의 사이 간격
+  .VueCarousel-slide {
+    width: 22.917vw;
+
+    @include mobile {
+      width: 81.667vw;
+    }
+  }
   .VueCarousel-slide > div {
-    padding-right: 1.354vw;
+    width: 22.917vw;
+
+    @include mobile {
+      width: 81.667vw;
+    }
+
     img {
       width: 22.917vw;
 
