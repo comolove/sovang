@@ -23,8 +23,14 @@
       @slideclick="handleSlideClick"
     >
       <div class="additionalContent">
-        <AssetImage class="mono" :src="isMobile ? data.mobileMonoPath : data.pcMonoPath" />
-        <AssetImage class="color" :src="isMobile ? data.mobilePath : data.pcPath" />
+        <AssetImage
+          class="mono"
+          :src="isMobile ? data.mobileMonoPath : data.pcMonoPath"
+        />
+        <AssetImage
+          class="color"
+          :src="isMobile ? data.mobilePath : data.pcPath"
+        />
         <p>
           {{ data.cateringStoryName1 }}
           <br />
@@ -39,7 +45,6 @@
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { Carousel, Slide } from "vue-carousel";
 import { AssetImage } from "@/components";
-import Breakpoint from "@/utils/screenSize";
 import ScreenSize from "@/utils/screenSize";
 
 class ImgPath {
@@ -88,7 +93,7 @@ export default class CarouselContent extends Vue {
   }
 
   handleResize(/* e : Event */) {
-    this.isMobile = Breakpoint.tablet > window.innerWidth ? true : false;
+    this.isMobile = ScreenSize.tablet > window.innerWidth ? true : false;
 
     this.responseComponents();
   }

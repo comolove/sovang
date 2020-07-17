@@ -26,8 +26,7 @@
       </section>
       <div class="info info-1" data-aos="fade-up">
         청정지역의 제철먹거리와 함께
-        <br v-if="isMobile" />특별하고 의미있는 모임을 기획하는 가장 쉬운
-        방법.
+        <br v-if="isMobile" />특별하고 의미있는 모임을 기획하는 가장 쉬운 방법.
         <br />소녀방앗간과 함께 어떤 특별함을 만들 수 있을까요?
       </div>
     </section>
@@ -39,15 +38,16 @@
         :src="'catering-page/illustration' + (isMobile ? '-m.jpg' : '-pc.jpg')"
       />
       <HomeContent title="청정케이터링 이야기" data-aos="fade-up">
-        <CarouselContent :slideData="cateringStorySlideData" :isMobile="isMobile" />
+        <CarouselContent
+          :slideData="cateringStorySlideData"
+          :isMobile="isMobile"
+        />
       </HomeContent>
       <div class="info info-1" data-aos="fade-up">
         2017년부터 지금까지 여러 공기관과 대기업, 그리고
-        <br v-if="isMobile" />사회적경제의
-        스타트업까지
+        <br v-if="isMobile" />사회적경제의 스타트업까지
         <br v-if="!isMobile" />다양한 공간에서 소녀방앗간과
-        <br v-if="isMobile" />함께 청정케이터링 서비스를 경험하고
-        있습니다.
+        <br v-if="isMobile" />함께 청정케이터링 서비스를 경험하고 있습니다.
       </div>
       <AssetImage
         class="logo"
@@ -58,59 +58,113 @@
 
     <section class="content-2">
       <div class="info info-2" data-aos="fade-up">청정케이터링</div>
-      <HomeContent class="catering-visit-large" title="방문 케이터링(30인 이상)" data-aos="fade-up">
-        <CateringContent class="contentsWrap-1" :contentData="cateringVisitSlideData" />
+      <HomeContent
+        class="catering-visit-large"
+        title="방문 케이터링(30인 이상)"
+        data-aos="fade-up"
+      >
+        <CateringContent
+          class="contentsWrap-1"
+          :contentData="cateringVisitSlideData"
+        />
       </HomeContent>
-      <HomeContent title="방문 케이터링(30인 이하)" class="catering-visit-small" data-aos="fade-up">
-        <CateringContent class="contentsWrap-2" :contentData="cateringBoxSlideData" />
+      <HomeContent
+        title="방문 케이터링(30인 이하)"
+        class="catering-visit-small"
+        data-aos="fade-up"
+      >
+        <CateringContent
+          class="contentsWrap-2"
+          :contentData="cateringBoxSlideData"
+        />
       </HomeContent>
     </section>
 
     <section class="content-3">
       <div class="info info-2" data-aos="fade-up">청정도시락</div>
-      <HomeContent class="easy-lunch-box" title="간편 도시락(10인 이상)" data-aos="fade-up">
-        <CateringContent class="contentsWrap-3" :contentData="easyLunchBoxSlideData" />
+      <HomeContent
+        class="easy-lunch-box"
+        title="간편 도시락(10인 이상)"
+        data-aos="fade-up"
+      >
+        <CateringContent
+          class="contentsWrap-3"
+          :contentData="easyLunchBoxSlideData"
+        />
       </HomeContent>
-      <HomeContent title="맞춤 도시락(10인 이상)" data-aos="fade-up" class="custom-lunch-box">
-        <CateringContent class="contentsWrap-4" :contentData="isMobile ? customLunchBoxSlideDataMobile : customLunchBoxSlideDataPC" />
+      <HomeContent
+        title="맞춤 도시락(10인 이상)"
+        data-aos="fade-up"
+        class="custom-lunch-box"
+      >
+        <CateringContent
+          class="contentsWrap-4"
+          :contentData="
+            isMobile ? customLunchBoxSlideDataMobile : customLunchBoxSlideDataPC
+          "
+        />
       </HomeContent>
 
-      <HomeContent title="추가 메뉴(도시락만 해당)" data-aos="fade-up" class="additional-menu">
-        <CateringContent class="contentsWrap-5" :contentData="additionalMenuSlideData" />
+      <HomeContent
+        title="추가 메뉴(도시락만 해당)"
+        data-aos="fade-up"
+        class="additional-menu"
+      >
+        <CateringContent
+          class="contentsWrap-5"
+          :contentData="additionalMenuSlideData"
+        />
       </HomeContent>
     </section>
 
     <section class="content-4">
       <div class="info info-2" data-aos="fade-up">주문 안내</div>
       <div class="info-6" data-aos="fade-up">
-        <span class="bold">특별한 케이터링을 위해 소녀방앗간에 문의해보셔요 :)</span>
+        <span class="bold"
+          >특별한 케이터링을 위해 소녀방앗간에 문의해보셔요 :)</span
+        >
         <br />
         <span v-if="!isMobile">아래의</span>상담 예약을 먼저 완료해주시면
         <span v-if="!isMobile">더</span>빠른 소통이 가능합니다.
       </div>
       <div class="info-7" data-aos="fade-up">
         <span class="bold-2">1) 주문시간</span> : 행사일 기준,
-        <span class="red">케이터링/맞춤도시락은 최소 1주 전, 간편도시락은 3일 전</span> 메뉴확정이 필요합니다.
+        <span class="red"
+          >케이터링/맞춤도시락은 최소 1주 전, 간편도시락은 3일 전</span
+        >
+        메뉴확정이 필요합니다.
         <br v-if="!isMobile" />
-        <span class="blank">(하단의 상담 예약을 하신 당일 혹은 익일 연락드려 소통하게 됩니다.)</span>
+        <span class="blank"
+          >(하단의 상담 예약을 하신 당일 혹은 익일 연락드려 소통하게
+          됩니다.)</span
+        >
         <br />
         <br v-if="isMobile" />
-        <span class="bold-2">2) 메뉴구성</span> : 행사와 계절에 맞게 제철메뉴로 제안드리며, 충분히 소통하여 조율 가능합니다.
+        <span class="bold-2">2) 메뉴구성</span> : 행사와 계절에 맞게 제철메뉴로
+        제안드리며, 충분히 소통하여 조율 가능합니다.
         <br />
         <br v-if="isMobile" />
         <span class="bold-2">3) 최소인원</span> :
-        <span class="red">박스케이터링/도시락은 10인 이상, 방문 케이터링은 30인 이상</span>부터 준비 가능합니다.
+        <span class="red"
+          >박스케이터링/도시락은 10인 이상, 방문 케이터링은 30인 이상</span
+        >부터 준비 가능합니다.
         <br />
         <br v-if="isMobile" />
-        <span class="bold-2">4) 배송진행</span> : 박스케이터링/도시락은 지정업체에서 퀵배송해드리며, 방문케이터링은 직접 방문해 준비해드립니다.
+        <span class="bold-2">4) 배송진행</span> : 박스케이터링/도시락은
+        지정업체에서 퀵배송해드리며, 방문케이터링은 직접 방문해 준비해드립니다.
         <br />
         <br v-if="isMobile" />
-        <span class="bold-2">5) 견적문의</span> : 식사견적 외에 배송 및 현장운영 비용은 인원 / 위치에 따라 별도로 적용됩니다.
+        <span class="bold-2">5) 견적문의</span> : 식사견적 외에 배송 및 현장운영
+        비용은 인원 / 위치에 따라 별도로 적용됩니다.
         <br />
         <br v-if="isMobile" />
-        <span class="bold-2">6) 결제방법</span> : 계좌이체, 카드결제 중 편하신 방법으로 선택해주시면 됩니다.
+        <span class="bold-2">6) 결제방법</span> : 계좌이체, 카드결제 중 편하신
+        방법으로 선택해주시면 됩니다.
         <br v-if="!isMobile" />
-        <span class="blank">(단, 퀵배송의 경우 카드결제는 BC/우리/국민/농협카드만 가능합니다.)</span>
+        <span class="blank"
+          >(단, 퀵배송의 경우 카드결제는 BC/우리/국민/농협카드만
+          가능합니다.)</span
+        >
       </div>
       <div class="contentsWrap-6" data-aos="fade-up">
         <input type="text" placeholder="단체명" />
@@ -120,22 +174,24 @@
             <option value="0" selected disabled>
               <span v-if="!isMobile">년</span>
             </option>
-            <option v-for="y in 11" :key="y">{{(2019 + parseInt(y))}}년</option>
+            <option v-for="y in 11" :key="y">{{ 2019 + parseInt(y) }}년</option>
             <option>이후 10년</option>
           </select>
           <select id="month" @change="onChangeDate()" v-model="selectedMonth">
             <option value="0" selected disabled>
               <span v-if="!isMobile">월</span>
             </option>
-            <option v-for="index in 12" :key="index" :value="index">{{index}}월</option>
+            <option v-for="index in 12" :key="index" :value="index"
+              >{{ index }}월</option
+            >
           </select>
           <select id="day" v-model="selectedDay">
             <option selected disabled value="0">
               <span v-if="!isMobile">일</span>
             </option>
-            <option v-for="d in 28" :key="d">{{d}}일</option>
-            <option v-show="selectedMonth!=2">29일</option>
-            <option v-show="selectedMonth!=2">30일</option>
+            <option v-for="d in 28" :key="d">{{ d }}일</option>
+            <option v-show="selectedMonth != 2">29일</option>
+            <option v-show="selectedMonth != 2">30일</option>
             <option v-show="isMonthWith31Days">31일</option>
           </select>
         </div>
@@ -150,13 +206,13 @@
             <option>오전 10시</option>
             <option>오전 11시</option>
             <option>오전 12시</option>
-            <option v-for="h in 12" :key="h">오후 {{h}}시</option>
+            <option v-for="h in 12" :key="h">오후 {{ h }}시</option>
           </select>
           <select id="min">
             <option selected disabled>
               <span v-if="!isMobile">분</span>
             </option>
-            <option v-for="m in 60" :key="m">{{m}}분</option>
+            <option v-for="m in 60" :key="m">{{ m }}분</option>
           </select>
         </div>
         <input type="text" placeholder="연락처" />
@@ -182,10 +238,12 @@
           <option v-show="isCatering">실속형</option>
           <option v-show="isCatering">일반형</option>
           <option v-show="isCatering">고급형</option>
-          <option v-show="selectedValue==3">고춧가루제육볶음 한 상 도시락</option>
-          <option v-show="selectedValue==3">돼지갈비찜 한 상 도시락</option>
-          <option v-show="selectedValue==3">소불고기 한 상 도시락</option>
-          <option v-show="selectedValue==4">선택 없음</option>
+          <option v-show="selectedValue == 3"
+            >고춧가루제육볶음 한 상 도시락</option
+          >
+          <option v-show="selectedValue == 3">돼지갈비찜 한 상 도시락</option>
+          <option v-show="selectedValue == 3">소불고기 한 상 도시락</option>
+          <option v-show="selectedValue == 4">선택 없음</option>
         </select>
         <select id="menuItem">
           <option selected disabled>메뉴항목</option>
@@ -208,7 +266,11 @@
         </select>
         <textarea
           class="large"
-          :placeholder="isMobile ? '추가메세지: 이 외 궁금하신 사항이 있다면 문의주셔요.' : '추가메세지: 이 외 궁금하신 내용이 있다면 문의해주셔요:)'"
+          :placeholder="
+            isMobile
+              ? '추가메세지: 이 외 궁금하신 사항이 있다면 문의주셔요.'
+              : '추가메세지: 이 외 궁금하신 내용이 있다면 문의해주셔요:)'
+          "
         />
       </div>
       <div class="privacyCondition">
@@ -219,7 +281,11 @@
         개인정보 수집 및 이용 동의
         <div>내용 보기</div>
       </div>
-      <input type="button" value="상담 예약" onclick="alert('상담을 예약해주셔서 감사드립니다. 빠른시간 안에 직접 연락드리도록 하겠습니다.');" />
+      <input
+        type="button"
+        value="상담 예약"
+        onclick="alert('상담을 예약해주셔서 감사드립니다. 빠른시간 안에 직접 연락드리도록 하겠습니다.');"
+      />
     </section>
     <Footer class="footer" />
   </main>
@@ -465,7 +531,8 @@ export default class Catering extends Vue {
     this.customLunchBoxSlideDataPC.push({
       pcPath: `catering-page/custom-lunch-box/WEB/3.jpg`,
       tabletPath: "",
-      mobilePath: "",
+      // 에러가 발생하니 아무 이미지 링크를 넣어줌
+      mobilePath: "catering-page/custom-lunch-box/WEB/3.jpg",
       name: "",
       title: "",
       price: "",

@@ -8,7 +8,6 @@ import CarouselWithNavCarousel from "@/components/CarouselWithNavCarousel.vue";
 import CarouselContent from "@/components/CarouselContent.vue";
 import CateringContent from "@/components/CateringContent.vue";
 
-
 export {
   Header,
   Footer,
