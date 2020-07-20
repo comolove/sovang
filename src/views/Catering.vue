@@ -8,12 +8,13 @@
           :per-page="1"
           :mouseDrag="false"
           :autoplay="true"
-          :autoplayTimeout="6000"
+          :autoplayTimeout="3000"
           :autoplayHoverPause="false"
           :loop="true"
-          paginationPosition="bottom-overlay"
-          paginationColor="#c9caca"
-          paginationActiveColor="white"
+          :paginationEnabled="false"
+          :navigationEnabled="true"
+          :navigationNextLabel="mainCarouselNavigationNext"
+          :navigationPrevLabel="mainCarouselNavigationPrev"
         >
           <Slide
             v-for="(data, index) of mainSlideData"
@@ -38,10 +39,7 @@
         :src="'catering-page/illustration' + (isMobile ? '-m.jpg' : '-pc.jpg')"
       />
       <HomeContent title="청정케이터링 이야기" data-aos="fade-up">
-        <CarouselContent
-          :slideData="cateringStorySlideData"
-          :isMobile="isMobile"
-        />
+        <CarouselContent :slideData="cateringStorySlideData" :isMobile="isMobile" />
       </HomeContent>
       <div class="info info-1" data-aos="fade-up">
         2017년부터 지금까지 여러 공기관과 대기업, 그리고
@@ -58,100 +56,77 @@
 
     <section class="content-2">
       <div class="info info-2" data-aos="fade-up">청정케이터링</div>
-      <HomeContent
-        class="catering-visit-large"
-        title="방문 케이터링(30인 이상)"
-        data-aos="fade-up"
-      >
-        <CateringContent
-          class="contentsWrap-1"
-          :contentData="cateringVisitSlideData"
-        />
+      <HomeContent class="catering-visit-large" title="방문 케이터링 (30인 이상)" data-aos="fade-up">
+        <CateringContent class="contentsWrap-1" :contentData="cateringVisitSlideData" />
       </HomeContent>
-      <HomeContent
-        title="방문 케이터링(30인 이하)"
-        class="catering-visit-small"
-        data-aos="fade-up"
-      >
-        <CateringContent
-          class="contentsWrap-2"
-          :contentData="cateringBoxSlideData"
-        />
+      <HomeContent title="방문 케이터링 (30인 이하)" class="catering-visit-small" data-aos="fade-up">
+        <CateringContent class="contentsWrap-2" :contentData="cateringBoxSlideData" />
       </HomeContent>
     </section>
 
     <section class="content-3">
       <div class="info info-2" data-aos="fade-up">청정도시락</div>
-      <HomeContent
-        class="easy-lunch-box"
-        title="간편 도시락(10인 이상)"
-        data-aos="fade-up"
-      >
-        <CateringContent
-          class="contentsWrap-3"
-          :contentData="easyLunchBoxSlideData"
-        />
+      <HomeContent class="easy-lunch-box" title="간편 도시락 (10인 이상)" data-aos="fade-up">
+        <CateringContent class="contentsWrap-3" :contentData="easyLunchBoxSlideData" />
       </HomeContent>
-      <HomeContent
-        title="맞춤 도시락(10인 이상)"
-        data-aos="fade-up"
-        class="custom-lunch-box"
-      >
+      <HomeContent title="맞춤 도시락 (10인 이상)" data-aos="fade-up" class="custom-lunch-box">
         <CateringContent
           class="contentsWrap-4"
           :contentData="
             isMobile ? customLunchBoxSlideDataMobile : customLunchBoxSlideDataPC
           "
         />
+        <div class="info-3">
+          <div class="info-4">
+            <span class="bold">맞춤 도시락</span>
+            <span class="price">
+              20,000원 이상 (1인)
+              <span class="hide">/</span>
+              <br />메뉴 구성 및 용기는 모두 고객 맞춤형으로
+              <span class="hide">귀한 손님들에게 준비해드리는 맞춤 도시락입니다.</span>
+              <span class="non-hide">
+                , 특별한 행사에 참석하신 귀한
+                <br />손님들에게 준비해드리기 좋은 맞춤 도시락입니다.
+              </span>
+            </span>
+          </div>
+        </div>
       </HomeContent>
 
-      <HomeContent
-        title="추가 메뉴(도시락만 해당)"
-        data-aos="fade-up"
-        class="additional-menu"
-      >
-        <CateringContent
-          class="contentsWrap-5"
-          :contentData="additionalMenuSlideData"
-        />
+      <HomeContent title="추가 메뉴 (도시락만 해당)" data-aos="fade-up" class="additional-menu">
+        <CateringContent class="contentsWrap-5" :contentData="additionalMenuSlideData" />
       </HomeContent>
     </section>
 
     <section class="content-4">
       <div class="info info-2" data-aos="fade-up">주문 안내</div>
       <div class="info-6" data-aos="fade-up">
-        <span class="bold"
-          >특별한 케이터링을 위해 소녀방앗간에 문의해보셔요 :)</span
-        >
+        <span class="bold">특별한 케이터링을 위해 소녀방앗간에 문의해보셔요 :)</span>
         <br />
         <span v-if="!isMobile">아래의</span>상담 예약을 먼저 완료해주시면
         <span v-if="!isMobile">더</span>빠른 소통이 가능합니다.
       </div>
       <div class="info-7" data-aos="fade-up">
         <span class="bold-2">1) 주문시간</span> : 행사일 기준,
-        <span class="red"
-          >케이터링/맞춤도시락은 최소 1주 전, 간편도시락은 3일 전</span
-        >
+        <span class="red">케이터링/맞춤도시락은 최소 1주 전, 간편도시락은 3일 전</span>
         메뉴확정이 필요합니다.
         <br v-if="!isMobile" />
-        <span class="blank"
-          >(하단의 상담 예약을 하신 당일 혹은 익일 연락드려 소통하게
-          됩니다.)</span
-        >
+        <span class="blank">
+          (하단의 상담 예약을 하신 당일 혹은 익일 연락드려 소통하게
+          됩니다.)
+        </span>
         <br />
         <br v-if="isMobile" />
         <span class="bold-2">2) 메뉴구성</span> : 행사와 계절에 맞게 제철메뉴로
         제안드리며, 충분히 소통하여 조율 가능합니다.
         <br />
         <br v-if="isMobile" />
-        <span class="bold-2">3) 최소인원</span> :
-        <span class="red"
-          >박스케이터링/도시락은 10인 이상, 방문 케이터링은 30인 이상</span
-        >부터 준비 가능합니다.
+        <span class="bold-2 wider-3">3) 최소인원</span> :
+        <span class="red"><span class="wider-3">박스케이터링/도시락은 10인 이상, 방문</span> 케이터링은 30인 이상</span>부터 준비 가능합니다.
         <br />
         <br v-if="isMobile" />
-        <span class="bold-2">4) 배송진행</span> : 박스케이터링/도시락은
-        지정업체에서 퀵배송해드리며, 방문케이터링은 직접 방문해 준비해드립니다.
+        <span class="wider-4"><span class="bold-2">4) 배송진행</span> : 박스케이터링/도시락은
+        지정업체에서 </span><span class="wider-1">퀵배송해드리며, 방문케이터링은 직접 방문해</span> 준비해드립니다.
         <br />
         <br v-if="isMobile" />
         <span class="bold-2">5) 견적문의</span> : 식사견적 외에 배송 및 현장운영
@@ -161,13 +136,16 @@
         <span class="bold-2">6) 결제방법</span> : 계좌이체, 카드결제 중 편하신
         방법으로 선택해주시면 됩니다.
         <br v-if="!isMobile" />
-        <span class="blank"
-          >(단, 퀵배송의 경우 카드결제는 BC/우리/국민/농협카드만
-          가능합니다.)</span
-        >
+        <span class="blank">
+          <span class="wider-2">(단, 퀵배송의 경우 카드결제는 </span>BC/우리/국민/농협카드만
+          가능합니다.)
+        </span>
       </div>
       <div class="contentsWrap-6" data-aos="fade-up">
         <input type="text" placeholder="단체명" />
+        <input type="text" placeholder="담당자" v-if="isMobile" />
+        <input type="text" placeholder="연락처" v-if="isMobile" />
+        <input type="text" placeholder="이메일" v-if="isMobile" />
         <div class="dateWrap">
           날짜
           <select id="year" @change="onChangeYear()" v-model="selectedYear">
@@ -181,9 +159,7 @@
             <option value="0" selected disabled>
               <span v-if="!isMobile">월</span>
             </option>
-            <option v-for="index in 12" :key="index" :value="index"
-              >{{ index }}월</option
-            >
+            <option v-for="index in 12" :key="index" :value="index">{{ index }}월</option>
           </select>
           <select id="day" v-model="selectedDay">
             <option selected disabled value="0">
@@ -195,7 +171,7 @@
             <option v-show="isMonthWith31Days">31일</option>
           </select>
         </div>
-        <input type="text" placeholder="담당자" />
+        <input type="text" placeholder="담당자" v-if="!isMobile" />
         <div class="timeWrap">
           시간
           <select id="hour">
@@ -215,7 +191,7 @@
             <option v-for="m in 60" :key="m">{{ m }}분</option>
           </select>
         </div>
-        <input type="text" placeholder="연락처" />
+        <input type="text" placeholder="연락처" v-if="!isMobile" />
         <div class="miniWrap">
           <input type="text" class="mini" placeholder="인원(10인 이상 입력)" />
           <select class="mini">
@@ -224,7 +200,7 @@
             <option>계좌이체</option>
           </select>
         </div>
-        <input type="text" placeholder="이메일" />
+        <input type="text" placeholder="이메일" v-if="!isMobile" />
         <input type="text" placeholder="주소" />
         <select id="category" v-model="selectedValue" @change="onChange()">
           <option value="0" selected disabled>카테고리</option>
@@ -238,9 +214,7 @@
           <option v-show="isCatering">실속형</option>
           <option v-show="isCatering">일반형</option>
           <option v-show="isCatering">고급형</option>
-          <option v-show="selectedValue == 3"
-            >고춧가루제육볶음 한 상 도시락</option
-          >
+          <option v-show="selectedValue == 3">고춧가루제육볶음 한 상 도시락</option>
           <option v-show="selectedValue == 3">돼지갈비찜 한 상 도시락</option>
           <option v-show="selectedValue == 3">소불고기 한 상 도시락</option>
           <option v-show="selectedValue == 4">선택 없음</option>
@@ -362,9 +336,9 @@ export default class Catering extends Vue {
   private selectedAdditionalMenu = 0;
   private storeCarouselPerPage = 1;
   private homeContentCarouselPaginationActiveColor = "black";
-
   private curStoreIndex = 0;
   private infoBreak = false;
+  private elem = "";
 
   created() {
     window.addEventListener("resize", this.handleResize);
@@ -491,9 +465,8 @@ export default class Catering extends Vue {
       tabletPath: "",
       mobilePath: `catering-page/custom-lunch-box/Mobile/1.jpg`,
       name: "",
-      title: "맞춤 도시락",
-      price: `20,000원 이상 (1인) <span class="hide">/ </span> <br />메뉴 구성 및 용기는 모두 고객 맞춤형으로<span class="hide> 귀한 손님들에게 준비해드리는 맞춤 도시락입니다. </span>
-      <span class="non-hide">, 특별한 행사에 참석하신 귀한<br />손님들에게 준비해드리기 좋은 맞춤 도시락입니다.</span>`,
+      title: "",
+      price: "",
       info: ""
     });
 
@@ -502,9 +475,8 @@ export default class Catering extends Vue {
       tabletPath: "",
       mobilePath: `catering-page/custom-lunch-box/Mobile/1.jpg`,
       name: "",
-      title: "맞춤 도시락",
-      price: `20,000원 이상 (1인) <span class="hide">/ </span> <br />메뉴 구성 및 용기는 모두 고객 맞춤형으로<span class="hide> 귀한 손님들에게 준비해드리는 맞춤 도시락입니다. </span>
-      <span class="non-hide">, 특별한 행사에 참석하신 귀한<br />손님들에게 준비해드리기 좋은 맞춤 도시락입니다.</span>`,
+      title: "",
+      price: "",
       info: ""
     });
 
@@ -718,6 +690,13 @@ article {
     font-size: 0.99vw;
     line-height: 1.53;
     color: #747171;
+
+    @include mobile {
+      padding: 3.194vw 0 0 2.778vw;
+      font-size: 2.778vw;
+      line-height: 1.7;
+      color: #595757;
+    }
   }
 
   &-5 {
@@ -745,17 +724,35 @@ article {
     font-size: 0.99vw;
     line-height: 2;
     margin: 2.148vw 0 4.609vw;
-    letter-spacing: -0.005vw;
+    letter-spacing: -0.03vw;
 
     @include mobile {
       font-size: 2.778vw;
       line-height: 1.7;
       background: white;
-      letter-spacing: normal;
+      letter-spacing: 0.09vw;
       padding: 5.833vw 5vw;
       text-align: justify;
-      word-break: keep-all;
       margin: 8.056vw 0 9.444vw;
+      word-break: keep-all;
+
+      .wider {
+        &-1{
+          letter-spacing: 0.85vw;
+        }
+
+        &-2 {
+          letter-spacing: 0.6vw;
+        }
+
+        &-3 {
+          letter-spacing: 0.35vw;
+        }
+
+        &-4 {
+          letter-spacing: 0.45vw;
+        }
+      }
     }
   }
 }
@@ -783,7 +780,7 @@ article {
       .VueCarousel-navigation-prev {
         transform: unset;
         left: 3.229vw;
-        top: 17.188vw;
+        top: 17.708vw;
 
         img {
           width: 1.458vw;
@@ -802,7 +799,7 @@ article {
       .VueCarousel-navigation-next {
         transform: unset;
         right: 3.229vw;
-        top: 17.188vw;
+        top: 17.708vw;
 
         img {
           width: 1.458vw;
@@ -891,14 +888,14 @@ article {
 
 .content-1 {
   .illust {
-    margin: 7.156vw 0 10.281vw 21.581vw;
-    width: 55.438vw;
+    margin: 7.156vw 0 10.281vw 22.581vw;
+    width: 53.438vw;
     height: 17.875vw;
 
     @include mobile {
-      margin: 26.389vw 0 30vw 11.667vw;
+      margin: 26.389vw 0 34vw 11.667vw;
       width: 76.667vw;
-      height: 79.444vw;
+      height: 75.444vw;
     }
   }
 
@@ -1020,7 +1017,9 @@ article {
     margin-top: 10.573vw;
     &::v-deep {
       .info-3 {
+        position: relative;
         background: unset;
+        bottom: 3.85vw;
         .info-4 {
           width: 22.917vw;
           white-space: nowrap;
@@ -1038,9 +1037,10 @@ article {
     }
     @include mobile {
       height: 81.667vw;
-      margin-top: 19.861vw;
+      margin-top: 23.861vw;
       &::v-deep {
         .info-3 {
+          bottom: 9.3vw;
           .info-4 {
             padding: 2.639vw 0 0 0;
             .non-hide {
@@ -1054,18 +1054,12 @@ article {
             }
           }
         }
-
-        .VueCarousel-slide {
-          &:nth-child(3) {
-            display: none;
-          }
-        }
       }
     }
   }
   .additional-menu {
     height: 17.135vw;
-    margin-top: 10.417vw;
+    margin-top: 10.573vw;
     margin-bottom: 11.042vw;
     .contentsWrap-5 {
       &::v-deep {
@@ -1195,8 +1189,6 @@ article {
     > select {
       background: #ededee;
       color: #001845;
-      font-size: 1.146vw;
-      font-weight: 300;
       line-height: 1.73;
       cursor: pointer;
       width: 22.135vw;
@@ -1207,7 +1199,6 @@ article {
       @include mobile {
         width: 50%;
         height: 7.5vw;
-        font-size: 3.472vw;
         line-height: 7.361vw;
       }
     }
@@ -1297,7 +1288,7 @@ article {
     .large {
       color: #797777;
       line-height: 1.73;
-      font: 300 1.146vw NotoSansCjKr;
+      font: 300 1.006vw NotoSansCjKr;
       width: 100%;
       height: 4.896vw;
       padding: 0;
