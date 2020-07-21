@@ -174,7 +174,6 @@ export default class CarouselContent extends Vue {
     @include mobile {
       width: 81.667vw;
     }
-
   }
   .VueCarousel-slide > div {
     width: 22.917vw;

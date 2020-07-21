@@ -4,5 +4,14 @@ import BaseResImgObj from "@/utils/BaseResImgObj";
 import MainSlide from "@/utils/MainSlide";
 import OnlineMallItem from "@/utils/OnlineMallItem";
 import Store from "@/utils/Store";
+import CateringOrder from "@/utils/CateringOrder";
 
-export { ImgPath, screenSize, BaseResImgObj, MainSlide, OnlineMallItem, Store };
+export {
+  ImgPath,
+  screenSize,
+  BaseResImgObj,
+  MainSlide,
+  OnlineMallItem,
+  Store,
+  CateringOrder
+};
