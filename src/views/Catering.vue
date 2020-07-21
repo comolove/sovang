@@ -153,7 +153,6 @@
               <span v-if="!isMobile">년</span>
             </option>
             <option v-for="y in 11" :key="y">{{ 2019 + parseInt(y) }}년</option>
-            <option>이후 10년</option>
           </select>
           <select id="month" @change="onChangeDate()" v-model="selectedMonth">
             <option value="0" selected disabled>
@@ -188,7 +187,7 @@
             <option selected disabled>
               <span v-if="!isMobile">분</span>
             </option>
-            <option v-for="m in 60" :key="m">{{ m }}분</option>
+            <option v-for="m in 6" :key="m">{{ (10*(m-1)) }}분</option>
           </select>
         </div>
         <input type="text" placeholder="연락처" v-if="!isMobile" />
@@ -219,10 +218,11 @@
           <option v-show="selectedValue == 3">소불고기 한 상 도시락</option>
           <option v-show="selectedValue == 4">선택 없음</option>
         </select>
-        <select id="menuItem">
-          <option selected disabled>메뉴항목</option>
-          <option>식사</option>
-          <option>다과</option>
+        <select id="menuItem" v-model="selectedItem">
+          <option selected disabled value="0">메뉴항목</option>
+          <option v-show="selectedValue != 3">식사</option>
+          <option v-show="selectedValue != 3">다과</option>
+          <option v-show="selectedValue == 3">선택 없음</option>
         </select>
         <select id="additionalMenu" v-model="selectedAdditionalMenu">
           <option value="0" selected disabled>
@@ -333,6 +333,7 @@ export default class Catering extends Vue {
   private selectedMonth = 0;
   private selectedDay = 0;
   private selectedMenu = 0;
+  private selectedItem = 0;
   private selectedAdditionalMenu = 0;
   private storeCarouselPerPage = 1;
   private homeContentCarouselPaginationActiveColor = "black";
@@ -555,6 +556,7 @@ export default class Catering extends Vue {
   onChange(/*event*/) {
     this.selectedMenu = 0;
     this.selectedAdditionalMenu = 0;
+    this.selectedItem = 0;
     if (this.selectedValue == 1 || this.selectedValue == 2)
       this.isCatering = true;
     else this.isCatering = false;
@@ -888,12 +890,11 @@ article {
 
 .content-1 {
   .illust {
-    margin: 7.156vw 0 10.281vw 22.581vw;
-    width: 53.438vw;
-    height: 17.875vw;
+    margin: 6.51vw 0 9.635vw 21.979vw;
+    width: 56.042vw;
 
     @include mobile {
-      margin: 26.389vw 0 34vw 11.667vw;
+      margin: 26.389vw 0 31.111vw 11.667vw;
       width: 76.667vw;
       height: 75.444vw;
     }
@@ -1250,7 +1251,8 @@ article {
       }
 
       #year {
-        width: 7.292vw;
+        width: 5.292vw;
+        margin-left: 2vw;
         @include mobile {
           width: 27.778vw;
         }
@@ -1258,7 +1260,8 @@ article {
 
       #month,
       #day {
-        width: 5.879vw;
+        width: 4.879vw;
+        margin-left: 1vw;
         @include mobile {
           width: 21.111vw;
         }
@@ -1271,14 +1274,16 @@ article {
       }
 
       #hour {
-        width: 13.171vw;
+        width: 7.171vw;
+        margin-left: 6vw;
         @include mobile {
           width: 27.778vw;
         }
       }
 
       #min {
-        width: 5.879vw;
+        width: 4.879vw;
+        margin-left: 1vw;
         @include mobile {
           width: 42.222vw;
         }

@@ -168,12 +168,13 @@ export default class CarouselContent extends Vue {
 
 .carousel {
   // 매장 이미지들의 사이 간.
-  VueCarousel-slide {
+  .VueCarousel-slide {
     width: 22.917vw;
 
     @include mobile {
       width: 81.667vw;
     }
+
   }
   .VueCarousel-slide > div {
     width: 22.917vw;
