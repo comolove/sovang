@@ -36,7 +36,7 @@
       <AssetImage
         data-aos="fade-up"
         class="illust"
-        :src="'catering-page/illustration' + (isMobile ? '-m.jpg' : '-pc.jpg')"
+        :src="'catering-page/illustration' + (isMobile ? '-m.png' : '-pc.png')"
       />
       <HomeContent title="청정케이터링 이야기" data-aos="fade-up">
         <CarouselContent :slideData="cateringStorySlideData" :isMobile="isMobile" />
@@ -59,7 +59,7 @@
       <HomeContent class="catering-visit-large" title="방문 케이터링 (30인 이상)" data-aos="fade-up">
         <CateringContent class="contentsWrap-1" :contentData="cateringVisitSlideData" />
       </HomeContent>
-      <HomeContent title="방문 케이터링 (30인 이하)" class="catering-visit-small" data-aos="fade-up">
+      <HomeContent title="박스 케이터링 (30인 이하)" class="catering-visit-small" data-aos="fade-up">
         <CateringContent class="contentsWrap-2" :contentData="cateringBoxSlideData" />
       </HomeContent>
     </section>
@@ -328,6 +328,7 @@ export default class Catering extends Vue {
   private year = 10;
   private month = 12;
   private day = 29;
+
   private selectedValue = 0;
   private selectedYear = 0;
   private selectedMonth = 0;
@@ -335,11 +336,11 @@ export default class Catering extends Vue {
   private selectedMenu = 0;
   private selectedItem = 0;
   private selectedAdditionalMenu = 0;
+  
   private storeCarouselPerPage = 1;
   private homeContentCarouselPaginationActiveColor = "black";
   private curStoreIndex = 0;
   private infoBreak = false;
-  private elem = "";
 
   created() {
     window.addEventListener("resize", this.handleResize);

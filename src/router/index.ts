@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import Brand from "../views/Brand.vue";
 import Store from "../views/Store.vue";
 import Catering from "../views/Catering.vue";
+import Present from "../views/Present.vue";
 import Admin from "../views/Admin.vue";
 import AdminMainSlide from "../views/Admin/MainSlide.vue";
 import AdminOnlineMall from "../views/Admin/OnlineMall.vue";
@@ -31,6 +32,11 @@ const routes: Array<RouteConfig> = [
     path: "/catering",
     name: "Catering",
     component: Catering
+  },
+  {
+    path: "/present",
+    name: "Present",
+    component: Present
   },
   {
     path: "/admin",
