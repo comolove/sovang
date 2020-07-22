@@ -39,7 +39,10 @@
         :src="'catering-page/illustration' + (isMobile ? '-m.png' : '-pc.png')"
       />
       <HomeContent title="청정케이터링 이야기" data-aos="fade-up">
-        <CarouselContent :slideData="cateringStorySlideData" :isMobile="isMobile" />
+        <CarouselContent
+          :slideData="cateringStorySlideData"
+          :isMobile="isMobile"
+        />
       </HomeContent>
       <div class="info info-1" data-aos="fade-up">
         2017년부터 지금까지 여러 공기관과 대기업, 그리고
@@ -56,20 +59,50 @@
 
     <section class="content-2">
       <div class="info info-2" data-aos="fade-up">청정케이터링</div>
-      <HomeContent class="catering-visit-large" title="방문 케이터링 (30인 이상)" data-aos="fade-up">
-        <CateringContent class="contentsWrap-1" :contentData="cateringVisitSlideData" />
+      <HomeContent
+        class="catering-visit-large"
+        title="방문 케이터링 (30인 이상)"
+        data-aos="fade-up"
+      >
+        <CateringContent
+          class="contentsWrap-1"
+          :contentData="cateringVisitSlideData"
+        />
       </HomeContent>
+<<<<<<< HEAD
       <HomeContent title="박스 케이터링 (30인 이하)" class="catering-visit-small" data-aos="fade-up">
         <CateringContent class="contentsWrap-2" :contentData="cateringBoxSlideData" />
+=======
+      <HomeContent
+        title="방문 케이터링 (30인 이하)"
+        class="catering-visit-small"
+        data-aos="fade-up"
+      >
+        <CateringContent
+          class="contentsWrap-2"
+          :contentData="cateringBoxSlideData"
+        />
+>>>>>>> d612a8625f895e1d384f853f252aa5df956957a4
       </HomeContent>
     </section>
 
     <section class="content-3">
       <div class="info info-2" data-aos="fade-up">청정도시락</div>
-      <HomeContent class="easy-lunch-box" title="간편 도시락 (10인 이상)" data-aos="fade-up">
-        <CateringContent class="contentsWrap-3" :contentData="easyLunchBoxSlideData" />
+      <HomeContent
+        class="easy-lunch-box"
+        title="간편 도시락 (10인 이상)"
+        data-aos="fade-up"
+      >
+        <CateringContent
+          class="contentsWrap-3"
+          :contentData="easyLunchBoxSlideData"
+        />
       </HomeContent>
-      <HomeContent title="맞춤 도시락 (10인 이상)" data-aos="fade-up" class="custom-lunch-box">
+      <HomeContent
+        title="맞춤 도시락 (10인 이상)"
+        data-aos="fade-up"
+        class="custom-lunch-box"
+      >
         <CateringContent
           class="contentsWrap-4"
           :contentData="
@@ -83,7 +116,9 @@
               20,000원 이상 (1인)
               <span class="hide">/</span>
               <br />메뉴 구성 및 용기는 모두 고객 맞춤형으로
-              <span class="hide">귀한 손님들에게 준비해드리는 맞춤 도시락입니다.</span>
+              <span class="hide"
+                >귀한 손님들에게 준비해드리는 맞춤 도시락입니다.</span
+              >
               <span class="non-hide">
                 , 특별한 행사에 참석하신 귀한
                 <br />손님들에게 준비해드리기 좋은 맞춤 도시락입니다.
@@ -93,27 +128,37 @@
         </div>
       </HomeContent>
 
-      <HomeContent title="추가 메뉴 (도시락만 해당)" data-aos="fade-up" class="additional-menu">
-        <CateringContent class="contentsWrap-5" :contentData="additionalMenuSlideData" />
+      <HomeContent
+        title="추가 메뉴 (도시락만 해당)"
+        data-aos="fade-up"
+        class="additional-menu"
+      >
+        <CateringContent
+          class="contentsWrap-5"
+          :contentData="additionalMenuSlideData"
+        />
       </HomeContent>
     </section>
 
     <section class="content-4">
       <div class="info info-2" data-aos="fade-up">주문 안내</div>
       <div class="info-6" data-aos="fade-up">
-        <span class="bold">특별한 케이터링을 위해 소녀방앗간에 문의해보셔요 :)</span>
+        <span class="bold"
+          >특별한 케이터링을 위해 소녀방앗간에 문의해보셔요 :)</span
+        >
         <br />
         <span v-if="!isMobile">아래의</span>상담 예약을 먼저 완료해주시면
         <span v-if="!isMobile">더</span>빠른 소통이 가능합니다.
       </div>
       <div class="info-7" data-aos="fade-up">
         <span class="bold-2">1) 주문시간</span> : 행사일 기준,
-        <span class="red">케이터링/맞춤도시락은 최소 1주 전, 간편도시락은 3일 전</span>
+        <span class="red"
+          >케이터링/맞춤도시락은 최소 1주 전, 간편도시락은 3일 전</span
+        >
         메뉴확정이 필요합니다.
         <br v-if="!isMobile" />
         <span class="blank">
-          (하단의 상담 예약을 하신 당일 혹은 익일 연락드려 소통하게
-          됩니다.)
+          (하단의 상담 예약을 하신 당일 혹은 익일 연락드려 소통하게 됩니다.)
         </span>
         <br />
         <br v-if="isMobile" />
@@ -122,11 +167,17 @@
         <br />
         <br v-if="isMobile" />
         <span class="bold-2 wider-3">3) 최소인원</span> :
-        <span class="red"><span class="wider-3">박스케이터링/도시락은 10인 이상, 방문</span> 케이터링은 30인 이상</span>부터 준비 가능합니다.
+        <span class="red"
+          ><span class="wider-3">박스케이터링/도시락은 10인 이상, 방문</span>
+          케이터링은 30인 이상</span
+        >부터 준비 가능합니다.
         <br />
         <br v-if="isMobile" />
-        <span class="wider-4"><span class="bold-2">4) 배송진행</span> : 박스케이터링/도시락은
-        지정업체에서 </span><span class="wider-1">퀵배송해드리며, 방문케이터링은 직접 방문해</span> 준비해드립니다.
+        <span class="wider-4"
+          ><span class="bold-2">4) 배송진행</span> : 박스케이터링/도시락은
+          지정업체에서 </span
+        ><span class="wider-1">퀵배송해드리며, 방문케이터링은 직접 방문해</span>
+        준비해드립니다.
         <br />
         <br v-if="isMobile" />
         <span class="bold-2">5) 견적문의</span> : 식사견적 외에 배송 및 현장운영
@@ -137,95 +188,130 @@
         방법으로 선택해주시면 됩니다.
         <br v-if="!isMobile" />
         <span class="blank">
-          <span class="wider-2">(단, 퀵배송의 경우 카드결제는 </span>BC/우리/국민/농협카드만
-          가능합니다.)
+          <span class="wider-2">(단, 퀵배송의 경우 카드결제는 </span
+          >BC/우리/국민/농협카드만 가능합니다.)
         </span>
       </div>
       <div class="contentsWrap-6" data-aos="fade-up">
-        <input type="text" placeholder="단체명" />
-        <input type="text" placeholder="담당자" v-if="isMobile" />
-        <input type="text" placeholder="연락처" v-if="isMobile" />
-        <input type="text" placeholder="이메일" v-if="isMobile" />
+        <input type="text" placeholder="단체명" v-model="organization" />
+        <input
+          type="text"
+          placeholder="담당자"
+          v-model="personInCharge"
+          v-if="isMobile"
+        />
+        <input type="text" placeholder="연락처" v-model="hp" v-if="isMobile" />
+        <input
+          type="text"
+          placeholder="이메일"
+          v-model="email"
+          v-if="isMobile"
+        />
         <div class="dateWrap">
           날짜
           <select id="year" @change="onChangeYear()" v-model="selectedYear">
             <option value="0" selected disabled>
               <span v-if="!isMobile">년</span>
             </option>
-            <option v-for="y in 11" :key="y">{{ 2019 + parseInt(y) }}년</option>
+            <option v-for="y in 11" :key="y" :value="2019 + y"
+              >{{ 2019 + parseInt(y) }}년</option
+            >
           </select>
           <select id="month" @change="onChangeDate()" v-model="selectedMonth">
             <option value="0" selected disabled>
               <span v-if="!isMobile">월</span>
             </option>
-            <option v-for="index in 12" :key="index" :value="index">{{ index }}월</option>
+            <option v-for="index in 12" :key="index" :value="index"
+              >{{ index }}월</option
+            >
           </select>
           <select id="day" v-model="selectedDay">
             <option selected disabled value="0">
               <span v-if="!isMobile">일</span>
             </option>
-            <option v-for="d in 28" :key="d">{{ d }}일</option>
-            <option v-show="selectedMonth != 2">29일</option>
-            <option v-show="selectedMonth != 2">30일</option>
-            <option v-show="isMonthWith31Days">31일</option>
+            <option v-for="d in 28" :key="d" :value="d">{{ d }}일</option>
+            <option v-show="selectedMonth != 2" :value="29">29일</option>
+            <option v-show="selectedMonth != 2" :value="30">30일</option>
+            <option v-show="isMonthWith31Days" :value="31">31일</option>
           </select>
         </div>
-        <input type="text" placeholder="담당자" v-if="!isMobile" />
+        <input
+          type="text"
+          placeholder="담당자"
+          v-model="personInCharge"
+          v-if="!isMobile"
+        />
         <div class="timeWrap">
           시간
-          <select id="hour">
-            <option selected disabled>
+          <select id="hour" v-model="selectedHour">
+            <option selected disabled :value="-1">
               <span v-if="!isMobile">시</span>
             </option>
-            <option>오전 9시</option>
-            <option>오전 10시</option>
-            <option>오전 11시</option>
-            <option>오전 12시</option>
-            <option v-for="h in 12" :key="h">오후 {{ h }}시</option>
+            <option :value="9">오전 9시</option>
+            <option :value="10">오전 10시</option>
+            <option :value="11">오전 11시</option>
+            <option :value="12">오전 12시</option>
+            <option v-for="h in 12" :key="h" :value="12 + h"
+              >오후 {{ h }}시</option
+            >
           </select>
-          <select id="min">
-            <option selected disabled>
+          <select id="min" v-model="selectedMin">
+            <option selected disabled :value="-1">
               <span v-if="!isMobile">분</span>
             </option>
-            <option v-for="m in 6" :key="m">{{ (10*(m-1)) }}분</option>
+            <option v-for="m in 6" :key="m" :value="10 * (m - 1)"
+              >{{ 10 * (m - 1) }}분</option
+            >
           </select>
         </div>
-        <input type="text" placeholder="연락처" v-if="!isMobile" />
+        <input type="text" placeholder="연락처" v-model="hp" v-if="!isMobile" />
         <div class="miniWrap">
-          <input type="text" class="mini" placeholder="인원(10인 이상 입력)" />
-          <select class="mini">
-            <option selected disabled>결제방법</option>
+          <input
+            type="text"
+            class="mini"
+            placeholder="인원(10인 이상 입력)"
+            v-model="headcount"
+          />
+          <select class="mini" v-model="payType">
+            <option selected disabled value="">결제방법</option>
             <option>카드결제</option>
             <option>계좌이체</option>
           </select>
         </div>
-        <input type="text" placeholder="이메일" v-if="!isMobile" />
-        <input type="text" placeholder="주소" />
-        <select id="category" v-model="selectedValue" @change="onChange()">
-          <option value="0" selected disabled>카테고리</option>
-          <option value="1">방문 케이터링</option>
-          <option value="2">박스 케이터링</option>
-          <option value="3">간편 도시락</option>
-          <option value="4">맞춤 도시락</option>
+        <input
+          type="text"
+          placeholder="이메일"
+          v-model="email"
+          v-if="!isMobile"
+        />
+        <input type="text" placeholder="주소" v-model="address" />
+        <select id="category" v-model="selectedCategory" @change="onChange()">
+          <option :value="0" selected disabled>카테고리</option>
+          <option :value="1">방문 케이터링</option>
+          <option :value="2">박스 케이터링</option>
+          <option :value="3">간편 도시락</option>
+          <option :value="4">맞춤 도시락</option>
         </select>
         <select id="menuComposition" v-model="selectedMenu">
-          <option selected disabled value="0">메뉴구성</option>
+          <option selected disabled value="">메뉴구성</option>
           <option v-show="isCatering">실속형</option>
           <option v-show="isCatering">일반형</option>
           <option v-show="isCatering">고급형</option>
-          <option v-show="selectedValue == 3">고춧가루제육볶음 한 상 도시락</option>
-          <option v-show="selectedValue == 3">돼지갈비찜 한 상 도시락</option>
-          <option v-show="selectedValue == 3">소불고기 한 상 도시락</option>
-          <option v-show="selectedValue == 4">선택 없음</option>
+          <option v-show="isEasyLaunchbox"
+            >고춧가루제육볶음 한 상 도시락</option
+          >
+          <option v-show="isEasyLaunchbox">돼지갈비찜 한 상 도시락</option>
+          <option v-show="isEasyLaunchbox">소불고기 한 상 도시락</option>
+          <option v-show="isCustomLaunchbox">선택 없음</option>
         </select>
         <select id="menuItem" v-model="selectedItem">
-          <option selected disabled value="0">메뉴항목</option>
-          <option v-show="selectedValue != 3">식사</option>
-          <option v-show="selectedValue != 3">다과</option>
-          <option v-show="selectedValue == 3">선택 없음</option>
+          <option selected disabled value="">메뉴항목</option>
+          <option v-show="!isEasyLaunchbox">식사</option>
+          <option v-show="!isEasyLaunchbox">다과</option>
+          <option v-show="isEasyLaunchbox">선택 없음</option>
         </select>
         <select id="additionalMenu" v-model="selectedAdditionalMenu">
-          <option value="0" selected disabled>
+          <option value="" selected disabled>
             추가메뉴
             <span v-if="!isMobile">(도시락만 해당)</span>
           </option>
@@ -245,21 +331,18 @@
               ? '추가메세지: 이 외 궁금하신 사항이 있다면 문의주셔요.'
               : '추가메세지: 이 외 궁금하신 내용이 있다면 문의해주셔요:)'
           "
+          v-model="extraMessage"
         />
       </div>
       <div class="privacyCondition">
-        <input type="checkbox" id="privacy" />
+        <input type="checkbox" id="privacy" v-model="isPrivacyChecked" />
         <label for="privacy">
           <AssetImage src="catering-page/privacy.png" />
         </label>
         개인정보 수집 및 이용 동의
         <div>내용 보기</div>
       </div>
-      <input
-        type="button"
-        value="상담 예약"
-        onclick="alert('상담을 예약해주셔서 감사드립니다. 빠른시간 안에 직접 연락드리도록 하겠습니다.');"
-      />
+      <input type="button" value="상담 예약" @click="handleSubmitCatering" />
     </section>
     <Footer class="footer" />
   </main>
@@ -269,6 +352,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Carousel, Slide } from "vue-carousel";
 import { VueAgile } from "vue-agile";
+import axios from "axios";
 import {
   Header,
   Footer,
@@ -279,7 +363,7 @@ import {
   CarouselContent,
   CateringContent
 } from "@/components";
-import { screenSize, ImgPath } from "@/utils";
+import { screenSize, ImgPath, CateringOrder } from "@/utils";
 
 class CateringStoryData extends ImgPath {
   public pcMonoPath = "";
@@ -322,13 +406,12 @@ export default class Catering extends Vue {
   private additionalMenuSlideData: CateringContentData[] = [];
 
   private isMobile = false;
-  private isCatering = false;
-  private isMonthWith31Days = false;
 
   private year = 10;
   private month = 12;
   private day = 29;
 
+<<<<<<< HEAD
   private selectedValue = 0;
   private selectedYear = 0;
   private selectedMonth = 0;
@@ -337,6 +420,28 @@ export default class Catering extends Vue {
   private selectedItem = 0;
   private selectedAdditionalMenu = 0;
   
+=======
+  private organization = "";
+  private hp = "";
+  private email = "";
+  private personInCharge = "";
+  private headcount = "";
+  private address = "";
+  private payType = "";
+
+  private selectedCategory = 0;
+  private selectedYear = 0;
+  private selectedMonth = 0;
+  private selectedDay = 0;
+  private selectedHour = -1;
+  private selectedMin = -1;
+  private selectedMenu = "";
+  private selectedItem = "";
+  private selectedAdditionalMenu = "";
+  private extraMessage = "";
+  private isPrivacyChecked = false;
+
+>>>>>>> d612a8625f895e1d384f853f252aa5df956957a4
   private storeCarouselPerPage = 1;
   private homeContentCarouselPaginationActiveColor = "black";
   private curStoreIndex = 0;
@@ -555,12 +660,9 @@ export default class Catering extends Vue {
   }
 
   onChange(/*event*/) {
-    this.selectedMenu = 0;
-    this.selectedAdditionalMenu = 0;
-    this.selectedItem = 0;
-    if (this.selectedValue == 1 || this.selectedValue == 2)
-      this.isCatering = true;
-    else this.isCatering = false;
+    this.selectedMenu = "";
+    this.selectedAdditionalMenu = "";
+    this.selectedItem = "";
   }
 
   onChangeYear(/* event */) {
@@ -569,11 +671,7 @@ export default class Catering extends Vue {
   }
 
   onChangeDate(/*event*/) {
-    const sel = this.selectedMonth;
     this.selectedDay = 0;
-    if ((sel <= 7 && sel % 2 == 1) || (sel > 7 && sel % 2 == 0))
-      this.isMonthWith31Days = true;
-    else this.isMonthWith31Days = false;
   }
 
   handleStoreSlideClick(dataset: { index: string }) {
@@ -592,6 +690,87 @@ export default class Catering extends Vue {
     this.curStoreIndex = index;
   }
 
+  handleSubmitCatering() {
+    if (!this.isPrivacyChecked) {
+      alert("개인정보 수집 및 이용 동의를 체크해주세요.");
+      return;
+    }
+
+    if (this.personInCharge == "") {
+      alert("담당자");
+      return;
+    }
+
+    if (this.hp == "") {
+      alert("연락처");
+      return;
+    }
+
+    if (
+      this.selectedYear == 0 ||
+      this.selectedMonth == 0 ||
+      this.selectedDay == 0
+    ) {
+      alert("날짜");
+      return;
+    }
+
+    if (this.selectedHour == -1 || this.selectedMin == -1) {
+      alert("시간");
+      return;
+    }
+
+    if (this.headcount == "") {
+      alert("인원");
+      return;
+    }
+
+    if (this.CategoryToString(this.selectedCategory) == "") {
+      alert("카테고리");
+      return;
+    }
+
+    if (this.selectedMenu == "") {
+      alert("메뉴 구성");
+      return;
+    }
+
+    if (this.selectedItem == "") {
+      alert("메뉴 항목");
+      return;
+    }
+
+    const order = new CateringOrder();
+    order.organization = this.organization;
+    order.personInCharge = this.personInCharge;
+    order.hp = this.hp;
+    order.email = this.email;
+    order.date = `${this.selectedYear}-${this.selectedMonth}-${this.selectedDay} ${this.selectedHour}:${this.selectedMin}`;
+    order.headcount = this.headcount;
+    order.payType = this.payType;
+    order.address = this.address;
+    order.category = this.CategoryToString(this.selectedCategory);
+    order.menuItem = this.selectedItem;
+    order.menuSet = this.selectedMenu;
+    order.extraMenu = this.selectedAdditionalMenu;
+    order.extraMessage = this.extraMessage;
+
+    axios
+      .post("/insertCateringOrder.php", {
+        ...order
+      })
+      .then(result => {
+        alert(
+          "상담을 예약해주셔서 감사드립니다. 빠른시간 안에 직접 연락드리도록 하겠습니다."
+        );
+        location.reload();
+      })
+      .catch(error => {
+        alert("실패");
+        console.log(error);
+      });
+  }
+
   responseComponents() {
     if (this.isMobile) {
       this.storeCarouselPerPage = 1;
@@ -601,6 +780,69 @@ export default class Catering extends Vue {
       this.storeCarouselPerPage = 3;
       this.infoBreak = false;
       this.homeContentCarouselPaginationActiveColor = "black";
+    }
+  }
+
+  private CategoryToString(category: number): string {
+    switch (category) {
+      case 1:
+        return "방문 케이터링";
+      case 2:
+        return "박스 케이터링";
+      case 3:
+        return "간편 도시락";
+      case 4:
+        return "맞춤 도시락";
+      default:
+        return "";
+    }
+  }
+
+  private ExtraMenuToString(menu: number): string {
+    switch (menu) {
+      case 1:
+        return "방문 케이터링";
+      case 2:
+        return "박스 케이터링";
+      case 3:
+        return "간편 도시락";
+      case 4:
+        return "맞춤 도시락";
+      default:
+        return "";
+    }
+  }
+
+  public get isCatering(): boolean {
+    if (this.selectedCategory == 1 || this.selectedCategory == 2) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public get isEasyLaunchbox(): boolean {
+    if (this.selectedCategory == 3) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public get isCustomLaunchbox(): boolean {
+    if (this.selectedCategory == 4) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public get isMonthWith31Days(): boolean {
+    const sel = this.selectedMonth;
+    if ((sel <= 7 && sel % 2 == 1) || (sel > 7 && sel % 2 == 0)) {
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -740,7 +982,7 @@ article {
       word-break: keep-all;
 
       .wider {
-        &-1{
+        &-1 {
           letter-spacing: 0.85vw;
         }
 
