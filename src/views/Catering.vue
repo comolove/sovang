@@ -69,10 +69,6 @@
           :contentData="cateringVisitSlideData"
         />
       </HomeContent>
-<<<<<<< HEAD
-      <HomeContent title="박스 케이터링 (30인 이하)" class="catering-visit-small" data-aos="fade-up">
-        <CateringContent class="contentsWrap-2" :contentData="cateringBoxSlideData" />
-=======
       <HomeContent
         title="방문 케이터링 (30인 이하)"
         class="catering-visit-small"
@@ -82,7 +78,6 @@
           class="contentsWrap-2"
           :contentData="cateringBoxSlideData"
         />
->>>>>>> d612a8625f895e1d384f853f252aa5df956957a4
       </HomeContent>
     </section>
 
@@ -411,16 +406,6 @@ export default class Catering extends Vue {
   private month = 12;
   private day = 29;
 
-<<<<<<< HEAD
-  private selectedValue = 0;
-  private selectedYear = 0;
-  private selectedMonth = 0;
-  private selectedDay = 0;
-  private selectedMenu = 0;
-  private selectedItem = 0;
-  private selectedAdditionalMenu = 0;
-  
-=======
   private organization = "";
   private hp = "";
   private email = "";
@@ -441,7 +426,6 @@ export default class Catering extends Vue {
   private extraMessage = "";
   private isPrivacyChecked = false;
 
->>>>>>> d612a8625f895e1d384f853f252aa5df956957a4
   private storeCarouselPerPage = 1;
   private homeContentCarouselPaginationActiveColor = "black";
   private curStoreIndex = 0;
@@ -759,7 +743,7 @@ export default class Catering extends Vue {
       .post("/insertCateringOrder.php", {
         ...order
       })
-      .then(result => {
+      .then(() => {
         alert(
           "상담을 예약해주셔서 감사드립니다. 빠른시간 안에 직접 연락드리도록 하겠습니다."
         );

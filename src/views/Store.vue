@@ -36,8 +36,9 @@
       <HomeContent data-aos="fade-up" title="서울숲시작점">
         <a
           class="searchIcon"
-          href="https://store.naver.com/restaurants/detail?id=35848947"
+          href="https://map.naver.com/v5/entry/place/35848947?c=14142015.8974389,4515574.7737180,15,0,0,0,dh"
         >
+          <span>지도보기</span>
           <img src="@/assets/images/icon-searching.png" />
         </a>
         <CarouselWithNavCarousel
@@ -49,8 +50,9 @@
       <HomeContent data-aos="fade-up" title="현대백화점 신도림점">
         <a
           class="searchIcon"
-          href="https://store.naver.com/restaurants/detail?id=37253784"
+          href="https://map.naver.com/v5/search/%EC%86%8C%EB%85%80%EB%B0%A9%EC%95%97%EA%B0%84%20%EC%8B%A0%EB%8F%84%EB%A6%BC/place/37253784?c=14125097.3440636,4510237.5273203,17,0,0,0,dh"
         >
+          <span>지도보기</span>
           <img src="@/assets/images/icon-searching.png" />
         </a>
         <CarouselWithNavCarousel
@@ -62,8 +64,9 @@
       <HomeContent data-aos="fade-up" title="이화여대점">
         <a
           class="searchIcon"
-          href="https://store.naver.com/restaurants/detail?entry=plt&id=38232807&query=%EC%86%8C%EB%85%80%EB%B0%A9%EC%95%97%EA%B0%84%20%EC%9D%B4%ED%99%94%EC%97%AC%EB%8C%80%EC%A0%90"
+          href="https://map.naver.com/v5/entry/place/38232807?c=14131011.3540230,4517378.2098541,15,0,0,0,dh"
         >
+          <span>지도보기</span>
           <img src="@/assets/images/icon-searching.png" />
         </a>
         <CarouselWithNavCarousel
@@ -75,8 +78,9 @@
       <HomeContent data-aos="fade-up" title="마로니에점">
         <a
           class="searchIcon"
-          href="https://store.naver.com/restaurants/detail?id=1712003259"
+          href="https://map.naver.com/v5/search/%EC%86%8C%EB%85%80%EB%B0%A9%EC%95%97%EA%B0%84%20%EB%A7%88%EB%A1%9C%EB%8B%88%EC%97%90%EC%A0%90/place/1712003259?c=14137137.2782940,4520714.1490470,14,0,0,0,dh"
         >
+          <span>지도보기</span>
           <img src="@/assets/images/icon-searching.png" />
         </a>
         <CarouselWithNavCarousel
@@ -88,8 +92,9 @@
       <HomeContent data-aos="fade-up" title="서울고속터미널점">
         <a
           class="searchIcon"
-          href="https://store.naver.com/restaurants/detail?id=1440926417"
+          href="https://map.naver.com/v5/search/%EC%86%8C%EB%85%80%EB%B0%A9%EC%95%97%EA%B0%84%20%EC%84%9C%EC%9A%B8%EA%B3%A0%EC%86%8D%ED%84%B0%EB%AF%B8%EB%84%90%EC%A0%90/place/1440926417?c=14137760.4054034,4509828.4134291,15,0,0,0,dh"
         >
+          <span>지도보기</span>
           <img src="@/assets/images/icon-searching.png" />
         </a>
         <CarouselWithNavCarousel
@@ -101,8 +106,9 @@
       <HomeContent data-aos="fade-up" title="현대백화점 킨텍스점">
         <a
           class="searchIcon"
-          href="https://store.naver.com/restaurants/detail?id=1996930133"
+          href="https://map.naver.com/v5/search/%EC%86%8C%EB%85%80%EB%B0%A9%EC%95%97%EA%B0%84%20%ED%98%84%EB%8C%80%EB%B0%B1%ED%99%94%EC%A0%90%20%ED%82%A8%ED%85%8D%EC%8A%A4%EC%A0%90/place/1996930133?c=14109777.1349530,4532681.4959836,17,0,0,0,dh"
         >
+          <span>지도보기</span>
           <img src="@/assets/images/icon-searching.png" />
         </a>
         <CarouselWithNavCarousel
@@ -114,8 +120,9 @@
       <HomeContent data-aos="fade-up" title="중곡시장점">
         <a
           class="searchIcon"
-          href="https://store.naver.com/restaurants/detail?id=1513302117"
+          href="https://map.naver.com/v5/search/%EC%86%8C%EB%85%80%EB%B0%A9%EC%95%97%EA%B0%84%20%EC%A4%91%EA%B3%A1%EC%8B%9C%EC%9E%A5/place/1513302117?c=14145920.2131341,4517978.9440177,15,0,0,0,dh"
         >
+          <span>지도보기</span>
           <img src="@/assets/images/icon-searching.png" />
         </a>
         <CarouselWithNavCarousel
@@ -387,7 +394,6 @@ export default class Store extends Vue {
     }
 
     @include mobile {
-      margin-top: -1.667vw;
       padding: 0;
     }
   }
@@ -460,11 +466,26 @@ export default class Store extends Vue {
 
     .searchIcon {
       position: absolute;
+      text-decoration: none;
       top: 0;
       right: 0;
 
       img {
         width: 1.719vw;
+      }
+
+      span {
+        position: relative;
+        bottom: 0.6vw;
+        right: 0.469vw;
+        font-size: 0.99vw;
+        color: #001845;
+
+        @include mobile {
+          bottom: 1.7vw;
+          right: 0.9vw;
+          font-size: 2.7vw;
+        }
       }
 
       @include mobile {

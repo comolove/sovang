@@ -27,28 +27,42 @@
       </Carousel>
     </section>
     <section class="content-1">
-      <HomeContent title="오지에서 온 선물">
+      <HomeContent title="오지에서 온 선물" data-aos="fade-up">
         <AssetImage
-          :src="'present-page/' + (isMobile ? 'Mobile' : 'Web') + '/backcountry-present.jpg'"
+          :src="
+            'present-page/' +
+              (isMobile ? 'Mobile' : 'Web') +
+              '/backcountry-present.jpg'
+          "
         />
         <div>
-          소녀방앗간은 청정지역 어르신들과 함께 식재료를 어떻게 생산할지 고민하며 한 해를 시작합니다.
+          소녀방앗간은 청정지역 어르신들과 함께 식재료를 어떻게 생산할지
+          고민하며 한 해를 시작합니다.
           <br />
-          <br />산 속에 핀 수많은 풀 중에 먹을 것을 골라내기 위해 수십년 산을 타 온 어르신들을 마주할 때 - 매 해 이른 봄, 오랫동안
+          <br />산 속에 핀 수많은 풀 중에 먹을 것을 골라내기 위해 수십년 산을 타
+          온 어르신들을 마주할 때 - 매 해 이른 봄, 오랫동안
           <span
             class="wider-1"
-          >이어온 옛 방식으로 발효음식의 전통을 빚어오는</span> 장인분들을 마주할 때 - 매일의 순간이 모여 역사와 혜안을 만든다는 것을 배웁니다.
+          >이어온 옛 방식으로 발효음식의 전통을 빚어오는</span>
+          장인분들을 마주할 때 - 매일의 순간이 모여 역사와 혜안을 만든다는 것을
+          배웁니다.
           <br />
           <br />
-          <span class="wider-2">모두가 매일의 순간을 사랑하는 한 해를 기원하며 소녀방앗간은 늘 건강과 풍요를 위해 마음을 담아 준비합니다.</span>
+          <span class="wider-2">
+            모두가 매일의 순간을 사랑하는 한 해를 기원하며 소녀방앗간은 늘
+            건강과 풍요를 위해 마음을 담아 준비합니다.
+          </span>
         </div>
       </HomeContent>
     </section>
     <section class="content-2">
-      <HomeContent title="소녀방앗간 명절선물">
-        <span>낭비없는 생산을 위하여 해마다 준비하는 명절 선물의 품목과 종류가 다를 수 있습니다 :)</span>
+      <HomeContent title="소녀방앗간 명절선물" data-aos="fade-up">
+        <span>
+          낭비없는 생산을 위하여 해마다 준비하는 명절 선물의 품목과 종류가 다를
+          수 있습니다 :)
+        </span>
         <div class="flexWrap" v-if="!isMobile">
-          <div v-for="(data , index) of holidayPresentData" :key="index">
+          <div v-for="(data, index) of holidayPresentData" :key="index">
             <AssetImage class="before" :src="data.pcPath" />
             <AssetImage class="after" :src="data.pcPathAfter" />
             <p v-html="data.info" />
@@ -80,15 +94,23 @@
       </HomeContent>
     </section>
     <section class="content-3">
-      <span>지역동행 청정재료 선물기획</span>
-      <p>
-        산지직송 청정재료로 만드는 "고객 맞춤형" 선물세트를<br v-if="isMobile" /> 기획부터 구성, <span v-if="isMobile">그리고 </span>포장까지 전 과정을 진행합니다.
-        <br />귀한 손님에게 귀사만의 브랜드 아이덴티티를 온전하게<br v-if="isMobile" /> 담은 특별한 청정재료 선물보따리를 전하셔요 :)
+      <span data-aos="fade-up">지역동행 청정재료 선물기획</span>
+      <p data-aos="fade-up">
+        산지직송 청정재료로 만드는 "고객 맞춤형" 선물세트를
+        <br v-if="isMobile" />기획부터 구성,
+        <span v-if="isMobile">그리고</span>포장까지 전 과정을 진행합니다.
+        <br />귀한 손님에게 귀사만의 브랜드 아이덴티티를 온전하게
+        <br v-if="isMobile" />담은 특별한 청정재료 선물보따리를 전하셔요 :)
       </p>
-      <AssetImage :src="'present-page/' + (isMobile ? 'Mobile' : 'Web') + '/presentAI.png'" />
+      <AssetImage
+        data-aos="fade-up"
+        :src="
+          'present-page/' + (isMobile ? 'Mobile' : 'Web') + '/presentAI.png'
+        "
+      />
     </section>
     <section class="content-4">
-      <HomeContent title="명절선물 기획 프로젝트">
+      <HomeContent title="명절선물 기획 프로젝트" data-aos="fade-up">
         <span>맞춤형 선물세트의 최소 제작 수량은 500개부터 가능합니다 :)</span>
         <Carousel
           ref="projectCarousel"
@@ -120,36 +142,73 @@
       </HomeContent>
     </section>
     <section class="content-5">
-      <div>
+      <div data-aos="fade-up">
         감사한 분들께 건강한 재료로 정성을 선물하고 싶다면
         <br />소녀방앗간과 함께 고민해보셔요 :)
       </div>
-      <form name="consulting">
+      <form name="consulting" data-aos="fade-up">
         <div class="flexWrap">
-          <input type="text" placeholder="단체명" />
-          <input type="text" placeholder="담당자" />
-          <input type="text" placeholder="연락처" />
-          <input type="text" placeholder="이메일" />
-          <textarea v-if="!isMobile"
-            placeholder="문의내용 : 
-식재료, 수량, 예산 등 구체적인 내용으로
-문의해주시면 빠른 상담이 가능합니다 :)
-          "
+          <InputText placeholder="단체명" name="groupName" :isRequired="false" />
+          <InputText
+            placeholder="담당자"
+            name="manager"
+            :isRequired="true"
+            @empty="emptyEvent"
+            @non-empty="nonEmptyEvent"
           />
-          <textarea v-if="isMobile" placeholder="추가메세지 : 식재료, 수량, 예산 등 구체적인 내용으로
-문의해주시면 빠른 상담이 가능합니다 :)" />
+          <InputText
+            placeholder="연락처"
+            name="contact"
+            :isRequired="true"
+            @empty="emptyEvent"
+            @non-empty="nonEmptyEvent"
+          />
+          <InputText placeholder="이메일" name="groupName" :isRequired="false" />
+          <TextareaWithRedAsterisk
+            v-if="!isMobile"
+            name="question-pc"
+            placeholder="문의내용<span style='color:red'>*</span>
+            <br />식재료, 수량, 예산 등 구체적인 내용으로
+            <br />문의해주시면 빠른 상담이 가능합니다 :)
+            "
+            @empty="emptyEvent"
+            @non-empty="nonEmptyEvent"
+          />
+          <textarea
+            v-if="isMobile"
+            placeholder="추가메세지 : 식재료, 수량, 예산 등 구체적인 내용으로
+문의해주시면 빠른 상담이 가능합니다 :)"
+          />
         </div>
+        <span>
+          <span style="color:red">*</span> 별표 표시 항목은 필수 입력사항입니다.
+        </span>
         <div class="privacyCondition">
-          <input type="checkbox" id="privacy" />
+          <input ref="privacyCheckbox" type="checkbox" id="privacy" @click="privacyAgree" />
           <label for="privacy">
             <AssetImage src="catering-page/privacy.png" />
           </label>
           개인정보 수집 및 이용 동의
           <div>내용 보기</div>
         </div>
-        <input type="button" value="상담 예약" onclick=" " />
+        <input type="button" value="상담 예약" @click="openModal" />
       </form>
     </section>
+    <Modal v-if="modal" class="modal">
+      <p v-show="isEmpty">
+        붉은색 별표 표시된 항목은 필수 입력사항입니다 :)
+      </p>
+      <p v-show="!isEmpty&&!isChecked">
+        개인정보 동의는 필수입니다 :) 
+      </p>
+      <p v-show="!isEmpty&&isChecked">
+        상담을 예약해주셔서 감사합니다 :)
+        <br />빠른 시일 내에 연락드리도록 하겠습니다.
+      </p>
+      <template slot="footer">
+        <button @click="closeModal">확인</button>
+      </template>
+    </Modal>
     <Footer class="footer" />
   </main>
 </template>
@@ -157,7 +216,15 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Carousel, Slide } from "vue-carousel";
-import { Header, Footer, HomeContent, AssetImage } from "@/components";
+import {
+  Header,
+  Footer,
+  HomeContent,
+  AssetImage,
+  Modal,
+  InputText,
+  TextareaWithRedAsterisk
+} from "@/components";
 import { screenSize, ImgPath } from "@/utils";
 
 class DoubleImgPath extends ImgPath {
@@ -175,7 +242,10 @@ class DoubleImgPath extends ImgPath {
     Carousel,
     Slide,
     HomeContent,
-    AssetImage
+    AssetImage,
+    Modal,
+    InputText,
+    TextareaWithRedAsterisk
   }
 })
 export default class Present extends Vue {
@@ -185,7 +255,11 @@ export default class Present extends Vue {
 
   private carouselPerPage = 1;
   private curIndex = 0;
+  
   private isMobile = false;
+  private isEmpty = true;
+  private isChecked = false;
+  private modal = false;
 
   created() {
     window.addEventListener("resize", this.handleResize);
@@ -296,6 +370,31 @@ export default class Present extends Vue {
     } else {
       this.carouselPerPage = 3;
     }
+  }
+
+  privacyAgree() {
+    this.isChecked = (this.$refs.privacyCheckbox as HTMLInputElement).checked
+      ? true
+      : false;
+      console.log('isChecked is ' + this.isChecked);
+  }
+
+  emptyEvent() {
+    this.isEmpty = true;
+    console.log('isEmpty is ' + this.isEmpty);
+  }
+
+  nonEmptyEvent() {
+    this.isEmpty = false;
+    console.log('isEmpty is ' + this.isEmpty);
+  }
+
+  openModal() {
+    this.modal = true;
+  }
+
+  closeModal() {
+    this.modal = false;
   }
 
   public get mainCarouselNavigationNext(): string {
@@ -523,7 +622,7 @@ article {
     margin-bottom: 7.917vw;
 
     @include mobile {
-      margin-bottom:5.278vw;
+      margin-bottom: 5.278vw;
     }
 
     > span {
@@ -675,7 +774,7 @@ article {
     color: #595757;
     text-align: center;
 
-    @include mobile{
+    @include mobile {
       font-size: 3.611vw;
       line-height: 1.62;
     }
@@ -789,46 +888,46 @@ article {
       }
 
       .VueCarousel-navigation-prev {
-          transform: unset;
-          left: 3.229vw;
-          top: 17.708vw;
+        transform: unset;
+        left: 3.229vw;
+        top: 17.708vw;
 
-          img {
-            width: 1.458vw;
-          }
-
-          @include mobile {
-            left: 4vw;
-            top: 21%;
-
-            img {
-              width: 3.889vw;
-            }
-          }
-        }
-
-        .VueCarousel-navigation-next {
-          transform: unset;
-          right: 3.229vw;
-          top: 17.708vw;
-
-          img {
-            width: 1.458vw;
-          }
-
-          @include mobile {
-            right: 4vw;
-            top: 21%;
-
-            img {
-              width: 3.889vw;
-            }
-          }
+        img {
+          width: 1.458vw;
         }
 
         @include mobile {
-          @include RightAlignPagination(-4.856vw);
+          left: 4vw;
+          top: 21%;
+
+          img {
+            width: 3.889vw;
+          }
         }
+      }
+
+      .VueCarousel-navigation-next {
+        transform: unset;
+        right: 3.229vw;
+        top: 17.708vw;
+
+        img {
+          width: 1.458vw;
+        }
+
+        @include mobile {
+          right: 4vw;
+          top: 21%;
+
+          img {
+            width: 3.889vw;
+          }
+        }
+      }
+
+      @include mobile {
+        @include RightAlignPagination(-4.856vw);
+      }
     }
   }
 }
@@ -838,8 +937,8 @@ article {
     center/cover;
 
   @include mobile {
-    background: url("../assets/images/present-page/Mobile/background.jpg") no-repeat
-    center/cover;
+    background: url("../assets/images/present-page/Mobile/background.jpg")
+      no-repeat center/cover;
   }
 
   > div {
@@ -858,6 +957,7 @@ article {
   }
 
   form {
+    position: relative;
     .flexWrap {
       display: flex;
       flex-direction: column;
@@ -873,48 +973,62 @@ article {
         margin-left: 9.167vw;
       }
 
-      input,
-      textarea {
-        font-size: 1.146vw;
-        font-family: NotoSansCJKKr;
-        line-height: 1.73;
+      &::v-deep {
+        input,
+        textarea {
+          font-size: 1.146vw;
+          font-family: NotoSansCJKKr;
+          line-height: 1.73;
 
-        @include mobile {
-          font-size: 3.611vw;
-          line-height: 1.62;
+          @include mobile {
+            font-size: 3.611vw;
+            line-height: 1.62;
+          }
+        }
+
+        input {
+          width: 21.458vw;
+          height: 2.604vw;
+          padding-left: 0.677vw;
+          border: 0;
+          color: #595757;
+
+          @include mobile {
+            width: 79.167vw;
+            height: 9.167vw;
+            padding-left: 2.222vw;
+            color: #797777;
+          }
+        }
+
+        textarea {
+          width: 20.259vw;
+          height: 12.99vw;
+          border: 0;
+          padding: 0.313vw 0.938vw;
+          letter-spacing: -0.15vw;
+          color: #797979;
+
+          @include mobile {
+            width: 75vw;
+            height: 18.333vw;
+            padding: 2.778vw 4.444vw 0 2.222vw;
+            letter-spacing: -0.39vw;
+            margin-top: 4.722vw;
+          }
         }
       }
+    }
 
-      input {
-        width: 21.458vw;
-        height: 2.604vw;
-        padding-left: 0.677vw;
-        border: 0;
-        color: #595757;
+    > span {
+      position: absolute;
+      font-size: 0.99vw;
+      left: 27.708vw;
+      top: 14.792vw;
+      color: #797777;
 
-        @include mobile {
-          width: 79.167vw;
-          height: 9.167vw;
-          padding-left: 2.222vw;
-          color: #797777;
-        }
-      }
-
-      textarea {
-        width: 20.259vw;
-        height: 12.99vw;
-        border: 0;
-        padding: 0.313vw 0.938vw;
-        letter-spacing: -0.15vw;
-        color: #797979;
-
-        @include mobile {
-          width: 75vw;
-          height: 18.333vw;
-          padding: 2.778vw 4.444vw 0 2.222vw;
-          letter-spacing: -0.39vw;
-          margin-top: 4.722vw;
-        }
+      @include mobile {
+        display: none;
       }
     }
 
@@ -1015,6 +1129,41 @@ article {
         border-radius: 3.861vw;
         font-size: 3.889vw;
       }
+    }
+  }
+}
+
+.modal {
+  p {
+    font-size: 1.146vw;
+    line-height: 1.5;
+    color: #001845;
+    text-align: center;
+
+    @include mobile {
+      font-size: 3.472vw;
+      line-height: 1.68;
+    }
+  }
+
+  button {
+    margin: 0 15.182vw 1.615vw;
+    border: 0;
+    border-radius: 0.859vw;
+    font-size: 1.146vw;
+    font-weight: 500;
+    line-height: 1.875vw;
+    padding: 0 1.38vw;
+    background: #001845;
+    color: white;
+    cursor: pointer;
+
+    @include mobile {
+      margin: 0 0 4.444vw 34.722vw;
+      width: 13.333vw;
+      font-size: 3.472vw;
+      line-height: 5.278vw;
+      border-radius: 2.139vw;
     }
   }
 }

@@ -38,7 +38,7 @@ footer {
   width: 100%;
   background-color: #ecebe8;
   padding: 2.865vw 0 8.802vw;
-  
+
   @include mobile {
     padding-top: 6.944vw;
     padding-bottom: 15vw;

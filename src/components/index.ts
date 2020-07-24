@@ -7,6 +7,9 @@ import ImageOverlayInfo from "@/components/ImageOverlayInfo.vue";
 import CarouselWithNavCarousel from "@/components/CarouselWithNavCarousel.vue";
 import CarouselContent from "@/components/CarouselContent.vue";
 import CateringContent from "@/components/CateringContent.vue";
+import Modal from "@/components/Modal.vue";
+import InputText from "@/components/InputText.vue";
+import TextareaWithRedAsterisk from "@/components/TextareaWithRedAsterisk.vue"
 
 export {
   Header,
@@ -17,5 +20,8 @@ export {
   ImageOverlayInfo,
   CarouselWithNavCarousel,
   CarouselContent,
-  CateringContent
+  CateringContent,
+  Modal,
+  InputText,
+  TextareaWithRedAsterisk
 };
