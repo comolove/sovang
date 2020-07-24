@@ -286,6 +286,7 @@ export default class Store extends Vue {
           img {
             width: 1.458vw;
             height: 3.438vw;
+            cursor: pointer;
 
             @include mobile {
               width: 3.889vw;
@@ -367,7 +368,6 @@ export default class Store extends Vue {
     }
 
     @include mobile {
-      margin-top: -1.667vw;
       padding: 0;
     }
   }

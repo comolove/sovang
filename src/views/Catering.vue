@@ -36,7 +36,7 @@
       <AssetImage
         data-aos="fade-up"
         class="illust"
-        :src="'catering-page/illustration' + (isMobile ? '-m.jpg' : '-pc.jpg')"
+        :src="'catering-page/illustration' + (isMobile ? '-m.png' : '-pc.png')"
       />
       <HomeContent title="청정케이터링 이야기" data-aos="fade-up">
         <CarouselContent
@@ -430,7 +430,6 @@ export default class Catering extends Vue {
   private homeContentCarouselPaginationActiveColor = "black";
   private curStoreIndex = 0;
   private infoBreak = false;
-  private elem = "";
 
   created() {
     window.addEventListener("resize", this.handleResize);
@@ -744,7 +743,7 @@ export default class Catering extends Vue {
       .post("/insertCateringOrder.php", {
         ...order
       })
-      .then(result => {
+      .then(() => {
         alert(
           "상담을 예약해주셔서 감사드립니다. 빠른시간 안에 직접 연락드리도록 하겠습니다."
         );

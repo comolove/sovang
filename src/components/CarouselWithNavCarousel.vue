@@ -162,6 +162,7 @@ export default class CarouselWithNavCarousel extends Vue {
     &__nav-button {
       background: transparent;
       border: none;
+      cursor: pointer;
 
       .main & {
         position: absolute;

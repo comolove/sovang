@@ -2,7 +2,10 @@
   <footer>
     <div class="wrap">
       <div class="header">
-        <h3>청정재료 한식밥집 소녀방앗간</h3>
+        <!-- <h3>청정재료 한식밥집 소녀방앗간</h3> -->
+        <router-link to="/">
+          <img src="../assets/images/logo-bottom.png" class="logo" />
+        </router-link>
         <div class="sns">
           <a href="https://www.facebook.com/sobanglife" class="facebook">
             <img src="../assets/images/icon-facebook.png" />
@@ -34,14 +37,11 @@ export default {};
 footer {
   width: 100%;
   background-color: #ecebe8;
+  padding: 2.865vw 0 8.802vw;
 
-  padding: {
-    top: 3.49vw;
-    bottom: 8.802vw;
-  }
   @include mobile {
-    padding-top: 6.111vw;
-    padding-bottom: 17.778vw;
+    padding-top: 6.944vw;
+    padding-bottom: 15vw;
   }
 }
 
@@ -50,7 +50,7 @@ footer {
   text-align: left;
 
   @include mobile {
-    margin-bottom: 5.278vw;
+    margin-bottom: 6.111vw;
   }
 
   h3 {
@@ -61,6 +61,17 @@ footer {
 
     @include mobile {
       font-size: 2.917vw;
+    }
+  }
+
+  .logo {
+    background: transparent;
+    width: 9.896vw;
+    height: 1.615vw;
+
+    @include mobile {
+      width: 28.056vw;
+      height: 4.444vw;
     }
   }
 
