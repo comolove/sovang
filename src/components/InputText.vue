@@ -42,12 +42,10 @@ export default class InputText extends Vue {
   showPlaceholder() {
     if(this.isEmpty) {
       this.$refs.label.innerHTML = this.placeholder + (this.isRequired ? '<span style="color:red">*</span>' : '');
-      this.$emit('empty');
-      console.log('empty')
+      this.$emit('empty', this);
     }
     else {
-      this.$emit('non-empty');
-      console.log('non-empty')
+      this.$emit('non-empty', this);
     }
   }
 }

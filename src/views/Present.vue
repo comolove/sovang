@@ -150,29 +150,26 @@
         <div class="flexWrap">
           <InputText placeholder="단체명" name="groupName" :isRequired="false" />
           <InputText
+            ref="input-manager"
             placeholder="담당자"
             name="manager"
             :isRequired="true"
-            @empty="emptyEvent"
-            @non-empty="nonEmptyEvent"
           />
           <InputText
+            ref="input-contact"
             placeholder="연락처"
             name="contact"
             :isRequired="true"
-            @empty="emptyEvent"
-            @non-empty="nonEmptyEvent"
           />
           <InputText placeholder="이메일" name="groupName" :isRequired="false" />
           <TextareaWithRedAsterisk
+            ref="input-question"
             v-if="!isMobile"
             name="question-pc"
             placeholder="문의내용<span style='color:red'>*</span>
             <br />식재료, 수량, 예산 등 구체적인 내용으로
             <br />문의해주시면 빠른 상담이 가능합니다 :)
             "
-            @empty="emptyEvent"
-            @non-empty="nonEmptyEvent"
           />
           <textarea
             v-if="isMobile"
@@ -257,7 +254,6 @@ export default class Present extends Vue {
   private curIndex = 0;
   
   private isMobile = false;
-  private isEmpty = true;
   private isChecked = false;
   private modal = false;
 
@@ -379,22 +375,25 @@ export default class Present extends Vue {
       console.log('isChecked is ' + this.isChecked);
   }
 
-  emptyEvent() {
-    this.isEmpty = true;
-    console.log('isEmpty is ' + this.isEmpty);
-  }
-
-  nonEmptyEvent() {
-    this.isEmpty = false;
-    console.log('isEmpty is ' + this.isEmpty);
-  }
-
   openModal() {
     this.modal = true;
   }
 
   closeModal() {
     this.modal = false;
+  }
+
+  get isEmpty() : boolean {
+
+    const question = this.$refs["input-question"] as TextareaWithRedAsterisk;
+    const contact = this.$refs["input-contact"] as InputText;
+    const manager = this.$refs["input-manager"] as InputText;
+
+    if (question.isEmpty || contact.isEmpty || manager.isEmpty) {
+      return true;
+    }
+
+    return false;
   }
 
   public get mainCarouselNavigationNext(): string {
