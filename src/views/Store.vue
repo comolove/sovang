@@ -34,12 +34,9 @@
     </section>
     <section class="contents">
       <HomeContent data-aos="fade-up" title="서울숲시작점">
-        <a
-          class="searchIcon"
-          href="https://store.naver.com/restaurants/detail?id=35848947"
-        >
-          <img src="@/assets/images/icon-searching.png" />
-        </a>
+        <MapLink
+          link="http://naver.me/5tLih2dr"
+        />
         <CarouselWithNavCarousel
           :mainSlides="store_1.main"
           :navSlides="store_1.thumbnail"
@@ -47,12 +44,9 @@
         />
       </HomeContent>
       <HomeContent data-aos="fade-up" title="현대백화점 신도림점">
-        <a
-          class="searchIcon"
-          href="https://store.naver.com/restaurants/detail?id=37253784"
-        >
-          <img src="@/assets/images/icon-searching.png" />
-        </a>
+        <MapLink
+          link="http://naver.me/5sEjnKGC"
+        />
         <CarouselWithNavCarousel
           :mainSlides="store_2.main"
           :navSlides="store_2.thumbnail"
@@ -60,12 +54,9 @@
         />
       </HomeContent>
       <HomeContent data-aos="fade-up" title="이화여대점">
-        <a
-          class="searchIcon"
-          href="https://store.naver.com/restaurants/detail?entry=plt&id=38232807&query=%EC%86%8C%EB%85%80%EB%B0%A9%EC%95%97%EA%B0%84%20%EC%9D%B4%ED%99%94%EC%97%AC%EB%8C%80%EC%A0%90"
-        >
-          <img src="@/assets/images/icon-searching.png" />
-        </a>
+        <MapLink
+          link="http://naver.me/x7tm87kt"
+        />
         <CarouselWithNavCarousel
           :mainSlides="store_3.main"
           :navSlides="store_3.thumbnail"
@@ -73,12 +64,9 @@
         />
       </HomeContent>
       <HomeContent data-aos="fade-up" title="마로니에점">
-        <a
-          class="searchIcon"
-          href="https://store.naver.com/restaurants/detail?id=1712003259"
-        >
-          <img src="@/assets/images/icon-searching.png" />
-        </a>
+        <MapLink
+          link="http://naver.me/G0OsI5jW"
+        />
         <CarouselWithNavCarousel
           :mainSlides="store_4.main"
           :navSlides="store_4.thumbnail"
@@ -86,12 +74,9 @@
         />
       </HomeContent>
       <HomeContent data-aos="fade-up" title="서울고속터미널점">
-        <a
-          class="searchIcon"
-          href="https://store.naver.com/restaurants/detail?id=1440926417"
-        >
-          <img src="@/assets/images/icon-searching.png" />
-        </a>
+        <MapLink
+          link="http://naver.me/IgtQYwn9"
+        />
         <CarouselWithNavCarousel
           :mainSlides="store_5.main"
           :navSlides="store_5.thumbnail"
@@ -99,12 +84,9 @@
         />
       </HomeContent>
       <HomeContent data-aos="fade-up" title="현대백화점 킨텍스점">
-        <a
-          class="searchIcon"
-          href="https://store.naver.com/restaurants/detail?id=1996930133"
-        >
-          <img src="@/assets/images/icon-searching.png" />
-        </a>
+        <MapLink
+          link="http://naver.me/xZxR9iTT"
+        />
         <CarouselWithNavCarousel
           :mainSlides="store_6.main"
           :navSlides="store_6.thumbnail"
@@ -112,12 +94,9 @@
         />
       </HomeContent>
       <HomeContent data-aos="fade-up" title="중곡시장점">
-        <a
-          class="searchIcon"
-          href="https://store.naver.com/restaurants/detail?id=1513302117"
-        >
-          <img src="@/assets/images/icon-searching.png" />
-        </a>
+        <MapLink
+          link="http://naver.me/FaVRZ1zr"
+        />
         <CarouselWithNavCarousel
           :mainSlides="store_7.main"
           :navSlides="store_7.thumbnail"
@@ -142,6 +121,7 @@ import {
   ImageOverlayInfo,
   CarouselWithNavCarousel
 } from "@/components";
+import { MapLink } from "@/components/Store";
 import { screenSize, ImgPath } from "@/utils";
 
 class ImgAndThumbnailPath {
@@ -161,6 +141,7 @@ class ImgAndThumbnailPath {
     AssetImage,
     ImageOverlayInfo,
     CarouselWithNavCarousel,
+    MapLink,
     agile: VueAgile
   }
 })
@@ -454,22 +435,6 @@ export default class Store extends Vue {
 
       @include mobile {
         margin-bottom: 20.833vw;
-      }
-    }
-
-    .searchIcon {
-      position: absolute;
-      top: 0;
-      right: 0;
-
-      img {
-        width: 1.719vw;
-      }
-
-      @include mobile {
-        img {
-          width: 4.444vw;
-        }
       }
     }
   }
