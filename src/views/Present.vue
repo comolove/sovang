@@ -372,7 +372,6 @@ export default class Present extends Vue {
     this.isChecked = (this.$refs.privacyCheckbox as HTMLInputElement).checked
       ? true
       : false;
-      console.log('isChecked is ' + this.isChecked);
   }
 
   openModal() {

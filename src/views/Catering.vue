@@ -39,10 +39,7 @@
         :src="'catering-page/illustration' + (isMobile ? '-m.png' : '-pc.png')"
       />
       <HomeContent title="청정케이터링 이야기" data-aos="fade-up">
-        <CarouselContent
-          :slideData="cateringStorySlideData"
-          :isMobile="isMobile"
-        />
+        <CarouselContent :slideData="cateringStorySlideData" :isMobile="isMobile" />
       </HomeContent>
       <div class="info info-1" data-aos="fade-up">
         2017년부터 지금까지 여러 공기관과 대기업, 그리고
@@ -59,45 +56,20 @@
 
     <section class="content-2">
       <div class="info info-2" data-aos="fade-up">청정케이터링</div>
-      <HomeContent
-        class="catering-visit-large"
-        title="방문 케이터링 (30인 이상)"
-        data-aos="fade-up"
-      >
-        <CateringContent
-          class="contentsWrap-1"
-          :contentData="cateringVisitSlideData"
-        />
+      <HomeContent class="catering-visit-large" title="방문 케이터링 (30인 이상)" data-aos="fade-up">
+        <CateringContent class="contentsWrap-1" :contentData="cateringVisitSlideData" />
       </HomeContent>
-      <HomeContent
-        title="방문 케이터링 (30인 이하)"
-        class="catering-visit-small"
-        data-aos="fade-up"
-      >
-        <CateringContent
-          class="contentsWrap-2"
-          :contentData="cateringBoxSlideData"
-        />
+      <HomeContent title="방문 케이터링 (30인 이하)" class="catering-visit-small" data-aos="fade-up">
+        <CateringContent class="contentsWrap-2" :contentData="cateringBoxSlideData" />
       </HomeContent>
     </section>
 
     <section class="content-3">
       <div class="info info-2" data-aos="fade-up">청정도시락</div>
-      <HomeContent
-        class="easy-lunch-box"
-        title="간편 도시락 (10인 이상)"
-        data-aos="fade-up"
-      >
-        <CateringContent
-          class="contentsWrap-3"
-          :contentData="easyLunchBoxSlideData"
-        />
+      <HomeContent class="easy-lunch-box" title="간편 도시락 (10인 이상)" data-aos="fade-up">
+        <CateringContent class="contentsWrap-3" :contentData="easyLunchBoxSlideData" />
       </HomeContent>
-      <HomeContent
-        title="맞춤 도시락 (10인 이상)"
-        data-aos="fade-up"
-        class="custom-lunch-box"
-      >
+      <HomeContent title="맞춤 도시락 (10인 이상)" data-aos="fade-up" class="custom-lunch-box">
         <CateringContent
           class="contentsWrap-4"
           :contentData="
@@ -111,9 +83,7 @@
               20,000원 이상 (1인)
               <span class="hide">/</span>
               <br />메뉴 구성 및 용기는 모두 고객 맞춤형으로
-              <span class="hide"
-                >귀한 손님들에게 준비해드리는 맞춤 도시락입니다.</span
-              >
+              <span class="hide">귀한 손님들에게 준비해드리는 맞춤 도시락입니다.</span>
               <span class="non-hide">
                 , 특별한 행사에 참석하신 귀한
                 <br />손님들에게 준비해드리기 좋은 맞춤 도시락입니다.
@@ -123,38 +93,25 @@
         </div>
       </HomeContent>
 
-      <HomeContent
-        title="추가 메뉴 (도시락만 해당)"
-        data-aos="fade-up"
-        class="additional-menu"
-      >
-        <CateringContent
-          class="contentsWrap-5"
-          :contentData="additionalMenuSlideData"
-        />
+      <HomeContent title="추가 메뉴 (도시락만 해당)" data-aos="fade-up" class="additional-menu">
+        <CateringContent class="contentsWrap-5" :contentData="additionalMenuSlideData" />
       </HomeContent>
     </section>
 
     <section class="content-4">
       <div class="info info-2" data-aos="fade-up">주문 안내</div>
       <div class="info-6" data-aos="fade-up">
-        <span class="bold"
-          >특별한 케이터링을 위해 소녀방앗간에 문의해보셔요 :)</span
-        >
+        <span class="bold">특별한 케이터링을 위해 소녀방앗간에 문의해보셔요 :)</span>
         <br />
         <span v-if="!isMobile">아래의</span>상담 예약을 먼저 완료해주시면
         <span v-if="!isMobile">더</span>빠른 소통이 가능합니다.
       </div>
       <div class="info-7" data-aos="fade-up">
         <span class="bold-2">1) 주문시간</span> : 행사일 기준,
-        <span class="red"
-          >케이터링/맞춤도시락은 최소 1주 전, 간편도시락은 3일 전</span
-        >
+        <span class="red">케이터링/맞춤도시락은 최소 1주 전, 간편도시락은 3일 전</span>
         메뉴확정이 필요합니다.
         <br v-if="!isMobile" />
-        <span class="blank">
-          (하단의 상담 예약을 하신 당일 혹은 익일 연락드려 소통하게 됩니다.)
-        </span>
+        <span class="blank">(하단의 상담 예약을 하신 당일 혹은 익일 연락드려 소통하게 됩니다.)</span>
         <br />
         <br v-if="isMobile" />
         <span class="bold-2">2) 메뉴구성</span> : 행사와 계절에 맞게 제철메뉴로
@@ -162,16 +119,17 @@
         <br />
         <br v-if="isMobile" />
         <span class="bold-2 wider-3">3) 최소인원</span> :
-        <span class="red"
-          ><span class="wider-3">박스케이터링/도시락은 10인 이상, 방문</span>
-          케이터링은 30인 이상</span
-        >부터 준비 가능합니다.
+        <span class="red">
+          <span class="wider-3">박스케이터링/도시락은 10인 이상, 방문</span>
+          케이터링은 30인 이상
+        </span>부터 준비 가능합니다.
         <br />
         <br v-if="isMobile" />
-        <span class="wider-4"
-          ><span class="bold-2">4) 배송진행</span> : 박스케이터링/도시락은
-          지정업체에서 </span
-        ><span class="wider-1">퀵배송해드리며, 방문케이터링은 직접 방문해</span>
+        <span class="wider-4">
+          <span class="bold-2">4) 배송진행</span> : 박스케이터링/도시락은
+          지정업체에서
+        </span>
+        <span class="wider-1">퀵배송해드리며, 방문케이터링은 직접 방문해</span>
         준비해드립니다.
         <br />
         <br v-if="isMobile" />
@@ -183,42 +141,60 @@
         방법으로 선택해주시면 됩니다.
         <br v-if="!isMobile" />
         <span class="blank">
-          <span class="wider-2">(단, 퀵배송의 경우 카드결제는 </span
-          >BC/우리/국민/농협카드만 가능합니다.)
+          <span class="wider-2">(단, 퀵배송의 경우 카드결제는</span>BC/우리/국민/농협카드만 가능합니다.)
         </span>
       </div>
       <div class="contentsWrap-6" data-aos="fade-up">
-        <input type="text" placeholder="단체명" v-model="organization" />
-        <input
+        <!-- <input type="text" placeholder="단체명" v-model="organization" /> -->
+        <InputText ref="input-groupID" name="groupID" placeholder="단체명" :isRequired="false" />
+        <!-- <input
           type="text"
           placeholder="담당자"
           v-model="personInCharge"
           v-if="isMobile"
+        />-->
+        <InputText
+          v-if="isMobile"
+          ref="input-manager-m"
+          name="manager"
+          placeholder="담당자"
+          :isRequired="true"
         />
-        <input type="text" placeholder="연락처" v-model="hp" v-if="isMobile" />
-        <input
+        <!-- <input type="text" placeholder="연락처" v-model="hp" v-if="isMobile" /> -->
+        <InputText
+          v-if="isMobile"
+          ref="input-contact-m"
+          name="contact"
+          placeholder="연락처"
+          :isRequired="true"
+        />
+        <!-- <input
           type="text"
           placeholder="이메일"
           v-model="email"
           v-if="isMobile"
+        />-->
+        <InputText
+          v-if="isMobile"
+          ref="input-email-m"
+          name="email"
+          placeholder="이메일"
+          :isRequired="true"
         />
         <div class="dateWrap">
           날짜
+          <span class="redAsterisk" style="margin-left: -0.2vw;">*</span>
           <select id="year" @change="onChangeYear()" v-model="selectedYear">
             <option value="0" selected disabled>
               <span v-if="!isMobile">년</span>
             </option>
-            <option v-for="y in 11" :key="y" :value="2019 + y"
-              >{{ 2019 + parseInt(y) }}년</option
-            >
+            <option v-for="y in 11" :key="y" :value="2019 + y">{{ 2019 + parseInt(y) }}년</option>
           </select>
           <select id="month" @change="onChangeDate()" v-model="selectedMonth">
             <option value="0" selected disabled>
               <span v-if="!isMobile">월</span>
             </option>
-            <option v-for="index in 12" :key="index" :value="index"
-              >{{ index }}월</option
-            >
+            <option v-for="index in 12" :key="index" :value="index">{{ index }}월</option>
           </select>
           <select id="day" v-model="selectedDay">
             <option selected disabled value="0">
@@ -230,14 +206,22 @@
             <option v-show="isMonthWith31Days" :value="31">31일</option>
           </select>
         </div>
-        <input
+        <!-- <input
           type="text"
           placeholder="담당자"
           v-model="personInCharge"
           v-if="!isMobile"
+        />-->
+        <InputText
+          v-if="!isMobile"
+          ref="input-manager-pc"
+          name="manager"
+          placeholder="담당자"
+          :isRequired="true"
         />
         <div class="timeWrap">
           시간
+          <span class="redAsterisk" style="margin-left: -0.2vw;">*</span>
           <select id="hour" v-model="selectedHour">
             <option selected disabled :value="-1">
               <span v-if="!isMobile">시</span>
@@ -246,79 +230,102 @@
             <option :value="10">오전 10시</option>
             <option :value="11">오전 11시</option>
             <option :value="12">오전 12시</option>
-            <option v-for="h in 12" :key="h" :value="12 + h"
-              >오후 {{ h }}시</option
-            >
+            <option v-for="h in 12" :key="h" :value="12 + h">오후 {{ h }}시</option>
           </select>
           <select id="min" v-model="selectedMin">
             <option selected disabled :value="-1">
               <span v-if="!isMobile">분</span>
             </option>
-            <option v-for="m in 6" :key="m" :value="10 * (m - 1)"
-              >{{ 10 * (m - 1) }}분</option
-            >
+            <option v-for="m in 6" :key="m" :value="10 * (m - 1)">{{ 10 * (m - 1) }}분</option>
           </select>
         </div>
-        <input type="text" placeholder="연락처" v-model="hp" v-if="!isMobile" />
+        <!-- <input type="text" placeholder="연락처" v-model="hp" v-if="!isMobile" /> -->
+        <InputText
+          v-if="!isMobile"
+          ref="input-contact-pc"
+          name="contact"
+          placeholder="연락처"
+          :isRequired="true"
+        />
         <div class="miniWrap">
-          <input
-            type="text"
-            class="mini"
+          <!-- <input type="text" class="mini" placeholder="인원(10인 이상 입력)" v-model="headcount" /> -->
+          <InputText
             placeholder="인원(10인 이상 입력)"
+            ref="people"
             v-model="headcount"
+            class="mini"
+            :isRequired="true"
+            name="people"
           />
           <select class="mini" v-model="payType">
-            <option selected disabled value="">결제방법</option>
+            <option selected disabled value>결제방법</option>
             <option>카드결제</option>
             <option>계좌이체</option>
           </select>
         </div>
-        <input
+        <!-- <input
           type="text"
           placeholder="이메일"
           v-model="email"
           v-if="!isMobile"
+        />-->
+        <InputText
+          v-if="!isMobile"
+          ref="input-email-pc"
+          name="email"
+          placeholder="이메일"
+          :isRequired="true"
         />
-        <input type="text" placeholder="주소" v-model="address" />
-        <select id="category" v-model="selectedCategory" @change="onChange()">
-          <option :value="0" selected disabled>카테고리</option>
-          <option :value="1">방문 케이터링</option>
-          <option :value="2">박스 케이터링</option>
-          <option :value="3">간편 도시락</option>
-          <option :value="4">맞춤 도시락</option>
-        </select>
-        <select id="menuComposition" v-model="selectedMenu">
-          <option selected disabled value="">메뉴구성</option>
-          <option v-show="isCatering">실속형</option>
-          <option v-show="isCatering">일반형</option>
-          <option v-show="isCatering">고급형</option>
-          <option v-show="isEasyLaunchbox"
-            >고춧가루제육볶음 한 상 도시락</option
-          >
-          <option v-show="isEasyLaunchbox">돼지갈비찜 한 상 도시락</option>
-          <option v-show="isEasyLaunchbox">소불고기 한 상 도시락</option>
-          <option v-show="isCustomLaunchbox">선택 없음</option>
-        </select>
-        <select id="menuItem" v-model="selectedItem">
-          <option selected disabled value="">메뉴항목</option>
-          <option v-show="!isEasyLaunchbox">식사</option>
-          <option v-show="!isEasyLaunchbox">다과</option>
-          <option v-show="isEasyLaunchbox">선택 없음</option>
-        </select>
-        <select id="additionalMenu" v-model="selectedAdditionalMenu">
-          <option value="" selected disabled>
-            추가메뉴
-            <span v-if="!isMobile">(도시락만 해당)</span>
-          </option>
-          <option v-show="isCatering">선택 없음</option>
-          <option v-show="!isCatering">재래식장국</option>
-          <option v-show="!isCatering">들깨미역국</option>
-          <option v-show="!isCatering">컵샐러드</option>
-          <option v-show="!isCatering">컵과일</option>
-          <option v-show="!isCatering">발효청</option>
-          <option v-show="!isCatering">산나물차</option>
-          <option v-show="!isCatering">커피</option>
-        </select>
+        <!-- <input type="text" placeholder="주소" v-model="address" /> -->
+        <InputText ref="input-adress" name="adress" placeholder="주소" :isRequired="true" />
+        <span>
+          <span v-show="selectedCategory==0" class="redAsterisk">*</span>
+          <select id="category" v-model="selectedCategory" @change="onChange()">
+            <option :value="0" selected disabled>카테고리</option>
+            <option :value="1">방문 케이터링</option>
+            <option :value="2">박스 케이터링</option>
+            <option :value="3">간편 도시락</option>
+            <option :value="4">맞춤 도시락</option>
+          </select>
+        </span>
+        <span>
+          <span v-show="selectedMenu==0" class="redAsterisk">*</span>
+          <select id="menuComposition" v-model="selectedMenu">
+            <option selected disabled value="">메뉴구성</option>
+            <option v-show="isCatering">실속형</option>
+            <option v-show="isCatering">일반형</option>
+            <option v-show="isCatering">고급형</option>
+            <option v-show="isEasyLaunchbox">고춧가루제육볶음 한 상 도시락</option>
+            <option v-show="isEasyLaunchbox">돼지갈비찜 한 상 도시락</option>
+            <option v-show="isEasyLaunchbox">소불고기 한 상 도시락</option>
+            <option v-show="isCustomLaunchbox">선택 없음</option>
+          </select>
+        </span>
+        <span>
+          <span v-show="selectedItem==''" class="redAsterisk">*</span>
+          <select id="menuItem" v-model="selectedItem">
+            <option selected disabled value="">메뉴항목</option>
+            <option v-show="!isEasyLaunchbox">식사</option>
+            <option v-show="!isEasyLaunchbox">다과</option>
+            <option v-show="isEasyLaunchbox">선택 없음</option>
+          </select>
+        </span>
+        <span>
+          <select id="additionalMenu" v-model="selectedAdditionalMenu">
+            <option value selected disabled>
+              추가메뉴
+              <span v-if="!isMobile">(도시락만 해당)</span>
+            </option>
+            <option v-show="isCatering">선택 없음</option>
+            <option v-show="!isCatering">재래식장국</option>
+            <option v-show="!isCatering">들깨미역국</option>
+            <option v-show="!isCatering">컵샐러드</option>
+            <option v-show="!isCatering">컵과일</option>
+            <option v-show="!isCatering">발효청</option>
+            <option v-show="!isCatering">산나물차</option>
+            <option v-show="!isCatering">커피</option>
+          </select>
+        </span>
         <textarea
           class="large"
           :placeholder="
@@ -335,10 +342,24 @@
           <AssetImage src="catering-page/privacy.png" />
         </label>
         개인정보 수집 및 이용 동의
-        <div>내용 보기</div>
+        <input class="privacyButton" type="button" value="내용 보기" @click="openPrivacyModal" />
       </div>
-      <input type="button" value="상담 예약" @click="handleSubmitCatering" />
+      <input class="consultButton" type="button" value="상담 예약" @click="handleSubmitCatering" />
     </section>
+    <Modal v-if="modal" class="modal">
+      <p v-show="isEmpty">붉은색 별표 표시된 항목은 필수 입력사항입니다 :)</p>
+      <p v-show="!isEmpty&&!isPrivacyChecked">개인정보 동의는 필수입니다 :)</p>
+      <p v-show="!isEmpty&&isPrivacyChecked">
+        상담을 예약해주셔서 감사합니다 :)
+        <br />빠른 시일 내에 연락드리도록 하겠습니다.
+      </p>
+      <template slot="footer">
+        <button @click="closeModal">확인</button>
+      </template>
+    </Modal>
+    <Modal @close="closePrivacyModal" v-show="privacyModal" class="privacyModal">
+      TODO
+    </Modal>
     <Footer class="footer" />
   </main>
 </template>
@@ -356,7 +377,10 @@ import {
   AssetImage,
   ImageOverlayInfo,
   CarouselContent,
-  CateringContent
+  CateringContent,
+  InputText,
+  TextareaWithRedAsterisk,
+  Modal
 } from "@/components";
 import { screenSize, ImgPath, CateringOrder } from "@/utils";
 
@@ -387,6 +411,9 @@ class CateringContentData extends ImgPath {
     ImageOverlayInfo,
     CarouselContent,
     CateringContent,
+    TextareaWithRedAsterisk,
+    InputText,
+    Modal,
     agile: VueAgile
   }
 })
@@ -413,6 +440,8 @@ export default class Catering extends Vue {
   private headcount = "";
   private address = "";
   private payType = "";
+  private modal = false;
+  private privacyModal = false;
 
   private selectedCategory = 0;
   private selectedYear = 0;
@@ -658,6 +687,18 @@ export default class Catering extends Vue {
     this.selectedDay = 0;
   }
 
+  openPrivacyModal() {
+    this.privacyModal = true;
+  }
+
+  closePrivacyModal() {
+    this.privacyModal = false;
+  }
+
+  closeModal() {
+    this.modal = false;
+  }
+
   handleStoreSlideClick(dataset: { index: string }) {
     this.curStoreIndex = parseInt(dataset.index);
     // index 값으로 주면 해당 인덱스가 왼쪽(start)에 붙게되서 - 1 인덱스로 해주어서 선택한 인덱스가 가운데로 오도록 함
@@ -675,6 +716,10 @@ export default class Catering extends Vue {
   }
 
   handleSubmitCatering() {
+    if(this.isMobile || !this.isMobile){
+      this.modal = true;
+      return;
+    }
     if (!this.isPrivacyChecked) {
       alert("개인정보 수집 및 이용 동의를 체크해주세요.");
       return;
@@ -795,6 +840,20 @@ export default class Catering extends Vue {
       default:
         return "";
     }
+  }
+
+  get isEmpty() : boolean {
+
+    const contact = this.$refs[this.isMobile ? "input-contact-m" : "input-contact-pc"] as InputText;
+    const manager = this.$refs[this.isMobile ? "input-manager-m" : "input-manager-pc"] as InputText;
+    const email = this.$refs[this.isMobile ? "input-email-m" : "input-email-pc"] as InputText;
+    const people = this.$refs["people"] as InputText;
+    const adress = this.$refs["input-adress"] as InputText
+
+    if (people.isEmpty || contact.isEmpty || manager.isEmpty || email.isEmpty || adress.isEmpty || this.selectedCategory==0 || this.selectedYear==0 || this.selectedMonth==0 || this.selectedDay==0 || this.selectedHour==-1 || this.selectedMin==-1 || this.selectedMenu=="" || this.selectedItem=="") {
+      return true;
+    }
+    return false;
   }
 
   public get isCatering(): boolean {
@@ -1404,38 +1463,31 @@ article {
         width: 100%;
       }
     }
+    > span {
+      display: block;
+      position: relative;
 
-    > input {
-      width: 21.458vw;
-      padding-left: 0.677vw;
-      @include mobile {
-        width: 79.444vw;
-        padding-left: 2.222vw;
+      .redAsterisk {
+        position: absolute;
+        left: 4.3vw;
+        top: 0.2vw;
       }
-    }
 
-    > select {
-      background: #ededee;
-      color: #001845;
-      line-height: 1.73;
-      cursor: pointer;
-      width: 22.135vw;
-      height: 2.083vw;
-      border: 0;
-      border-bottom: 0.052vw solid black;
+      & > select {
+        background: #ededee;
+        color: #001845;
+        line-height: 1.73;
+        cursor: pointer;
+        width: 22.135vw;
+        height: 2.083vw;
+        border: 0;
+        border-bottom: 0.052vw solid black;
 
-      @include mobile {
-        width: 50%;
-        height: 7.5vw;
-        line-height: 7.361vw;
-      }
-    }
-
-    > div {
-      padding-left: 0.677vw;
-
-      @include mobile {
-        padding-left: 2.222vw;
+        @include mobile {
+          width: 50%;
+          height: 7.5vw;
+          line-height: 7.361vw;
+        }
       }
     }
 
@@ -1449,23 +1501,27 @@ article {
       padding: 0;
       background: #ededee;
 
-      .mini {
+      .mini::v-deep {
         display: inline-block;
         background: white;
         border: 0;
         padding: 0;
         width: 10.781vw;
 
-        &:first-child {
-          padding-left: 0.677vw;
+        input[type="text"] {
+          width: 100%;
+          height: 100%;
+        }
+
+        label {
           width: 10.104vw;
+          letter-spacing: -0.09vw;
         }
 
         @include mobile {
           width: 39.722vw;
 
-          &:first-child {
-            padding-left: 2.222vw;
+          label {
             width: 37.5vw;
           }
         }
@@ -1473,13 +1529,19 @@ article {
     }
 
     .dateWrap {
+      padding-left: 0.677vw;
+
+      @include mobile {
+        padding-left: 2.222vw;
+      }
+
       > select {
         text-align-last: right;
       }
 
       #year {
         width: 5.292vw;
-        margin-left: 2vw;
+        margin-left: 1vw;
         @include mobile {
           width: 27.778vw;
         }
@@ -1496,13 +1558,19 @@ article {
     }
 
     .timeWrap {
+      padding-left: 0.677vw;
+
+      @include mobile {
+        padding-left: 2.222vw;
+      }
+
       > select {
         text-align-last: right;
       }
 
       #hour {
         width: 7.171vw;
-        margin-left: 6vw;
+        margin-left: 5vw;
         @include mobile {
           width: 27.778vw;
         }
@@ -1533,6 +1601,22 @@ article {
         font-size: 3.611vw;
         line-height: 1.62;
         letter-spacing: -0.35vw;
+      }
+    }
+
+    &::v-deep {
+      label {
+        width: 100%;
+        height: 100%;
+        top: 0.313vw;
+        background: transparent;
+        color: #595757;
+      }
+
+      span > input[type="text"] {
+        padding-left: 0.677vw;
+        width: 21.458vw;
+        height: 100%;
       }
     }
   }
@@ -1598,12 +1682,14 @@ article {
       }
     }
 
-    div {
+    .privacyButton {
       display: inline-block;
       border-radius: 0.755vw;
       border: 0.052vw solid #001845;
-      padding: 0 0.703vw;
-      margin-left: 0.521vw;
+      padding: 0 0.677vw;
+      margin-left: 0.3vw;
+      font-size: 0.99vw;
+      line-height: 1.667vw;
 
       @include mobile {
         border-radius: 2.278vw;
@@ -1613,7 +1699,7 @@ article {
     }
   }
 
-  input[type="button"] {
+  .consultButton {
     width: 9.531vw;
     height: 2.656vw;
     margin: 3.906vw 0 0 18.125vw;
@@ -1632,6 +1718,48 @@ article {
       border-radius: 3.861vw;
       font-size: 3.889vw;
     }
+  }
+}
+
+.modal {
+  p {
+    font-size: 1.146vw;
+    line-height: 1.5;
+    color: #001845;
+    text-align: center;
+
+    @include mobile {
+      font-size: 3.472vw;
+      line-height: 1.68;
+    }
+  }
+
+  button {
+    margin: 0 15.182vw 1.615vw;
+    border: 0;
+    border-radius: 0.859vw;
+    font-size: 1.146vw;
+    font-weight: 500;
+    line-height: 1.875vw;
+    padding: 0 1.38vw;
+    background: #001845;
+    color: white;
+    cursor: pointer;
+
+    @include mobile {
+      margin: 0 0 4.444vw 34.722vw;
+      width: 13.333vw;
+      font-size: 3.472vw;
+      line-height: 5.278vw;
+      border-radius: 2.139vw;
+    }
+  }
+}
+
+.redAsterisk {
+  color: red;
+  &InSelect {
+    position: absolute;
   }
 }
 

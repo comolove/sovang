@@ -5,6 +5,7 @@
       <span v-if="isRequired">*</span>
     </label>
     <input
+      type="text"
       :name="name"
       ref="input"
       :id="name"
@@ -56,6 +57,12 @@ export default class InputText extends Vue {
 
 div {
   position: relative;
+
+  input {
+    border: 0;
+    padding: 0;
+  }
+
   label {
     position: absolute;
     cursor: text;
@@ -72,6 +79,7 @@ div {
 
     > span {
       color: red;
+      margin-left: -0.25vw;
     }
   }
 }

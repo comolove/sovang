@@ -202,6 +202,7 @@ export default class CarouselWithNavCarousel extends Vue {
   &--thumbnail {
     padding: 0 5px;
     transition: opacity 0.3s;
+    cursor: pointer;
 
     &.active {
       opacity: 0.58;
