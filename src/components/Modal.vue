@@ -35,6 +35,10 @@ export default class Modal extends Vue {}
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.3);
+
+    @include mobile {
+      background: rgba(0, 0, 0, 0.4);
+    }
   }
 
   &-window {

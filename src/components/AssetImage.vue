@@ -1,5 +1,5 @@
 <template>
-  <img :src="require(`@/assets/images/${src}`)" />
+  <img :src="require(`@/assets/images/${src}`)" @click="$emit('click')" />
 </template>
 
 <script lang="ts">

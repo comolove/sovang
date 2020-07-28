@@ -291,7 +291,7 @@
         <span>
           <span v-show="selectedMenu==0" class="redAsterisk">*</span>
           <select id="menuComposition" v-model="selectedMenu">
-            <option selected disabled value="">메뉴구성</option>
+            <option selected disabled value>메뉴구성</option>
             <option v-show="isCatering">실속형</option>
             <option v-show="isCatering">일반형</option>
             <option v-show="isCatering">고급형</option>
@@ -304,7 +304,7 @@
         <span>
           <span v-show="selectedItem==''" class="redAsterisk">*</span>
           <select id="menuItem" v-model="selectedItem">
-            <option selected disabled value="">메뉴항목</option>
+            <option selected disabled value>메뉴항목</option>
             <option v-show="!isEasyLaunchbox">식사</option>
             <option v-show="!isEasyLaunchbox">다과</option>
             <option v-show="isEasyLaunchbox">선택 없음</option>
@@ -342,11 +342,16 @@
           <AssetImage src="catering-page/privacy.png" />
         </label>
         개인정보 수집 및 이용 동의
-        <input class="privacyButton" type="button" value="내용 보기" @click="openPrivacyModal" />
+        <input
+          class="privacyButton"
+          type="button"
+          value="내용 보기"
+          @click="openPrivacyModal"
+        />
       </div>
       <input class="consultButton" type="button" value="상담 예약" @click="handleSubmitCatering" />
     </section>
-    <Modal v-if="modal" class="modal">
+    <Modal v-if="consultModal" class="consultModal">
       <p v-show="isEmpty">붉은색 별표 표시된 항목은 필수 입력사항입니다 :)</p>
       <p v-show="!isEmpty&&!isPrivacyChecked">개인정보 동의는 필수입니다 :)</p>
       <p v-show="!isEmpty&&isPrivacyChecked">
@@ -354,11 +359,33 @@
         <br />빠른 시일 내에 연락드리도록 하겠습니다.
       </p>
       <template slot="footer">
-        <button @click="closeModal">확인</button>
+        <button @click="closeConsultModal">확인</button>
       </template>
     </Modal>
-    <Modal @close="closePrivacyModal" v-show="privacyModal" class="privacyModal">
-      TODO
+    <Modal v-show="privacyModal" class="privacyModal">
+      <h2>개인정보 수집 및 이용<img src="@/assets/images/icon-close-darkblue.png" @click="closePrivacyModal" /></h2>
+      <p>
+        <span class="bold">[개인정보 수집 및 이용 동의 ]</span> 주식회사 방앗간컴퍼니는 개인정보 보호를 최우선의 가치로 삼으며 개인정보 보호와 관련한 국내외 모든 법령을 성실히 준수합니다. 주식회사 방앗간컴퍼니는 케이터링 & 도시락 상담 예약을 위하여, 아래와 같이 개인정보를 수집 및 이용합니다. 내용을 상세히 확인하신 후 동의 여부를 결정하여 주시기 바랍니다.
+        <br />
+        <br />
+        <span class="bold">1. 개인정보의 수집 및 이용 목적</span>
+        <br />케이터링/맞춤도시락 상담
+        <br />
+        <br />
+        <span class="bold">2. 수집하는 개인정보의 항목</span>
+        <br />단체명, 담당자명, 연락처, 이메일주소(선택)
+        <br />
+        <br />
+        <span class="bold">3. 개인정보의 보유 및 이용기간</span>
+        <br />정보 수집 및 이용 목적이 달성된 후 문의 내역관리를 위하여 문의 내용과 개인정보 입력항목에 대해서는 1년간 보유 이후 해당 정보를 파기합니다.
+        <br />
+        <br />
+        <span class="bold">4. 동의를 거부할 권리 및 동의 거부에 따른 불이익</span>
+        <br />서비스 제공을 위하여 기본 정보를 수집하고 있으며, 동의 거부시 상담 예약이 제한될 수 있습니다.
+        <br />
+        <br />
+        <span class="bold">본인은 [개인정보 수집 및 이용에 관한 동의]를 잘 읽어 보았으며, 개인정보수집 및 이용에 동의 합니다.</span>
+      </p>
     </Modal>
     <Footer class="footer" />
   </main>
@@ -440,7 +467,7 @@ export default class Catering extends Vue {
   private headcount = "";
   private address = "";
   private payType = "";
-  private modal = false;
+  private consultModal = false;
   private privacyModal = false;
 
   private selectedCategory = 0;
@@ -696,7 +723,7 @@ export default class Catering extends Vue {
   }
 
   closeModal() {
-    this.modal = false;
+    this.consultModal = false;
   }
 
   handleStoreSlideClick(dataset: { index: string }) {
@@ -716,8 +743,8 @@ export default class Catering extends Vue {
   }
 
   handleSubmitCatering() {
-    if(this.isMobile || !this.isMobile){
-      this.modal = true;
+    if (this.isMobile || !this.isMobile) {
+      this.consultModal = true;
       return;
     }
     if (!this.isPrivacyChecked) {
@@ -842,15 +869,34 @@ export default class Catering extends Vue {
     }
   }
 
-  get isEmpty() : boolean {
-
-    const contact = this.$refs[this.isMobile ? "input-contact-m" : "input-contact-pc"] as InputText;
-    const manager = this.$refs[this.isMobile ? "input-manager-m" : "input-manager-pc"] as InputText;
-    const email = this.$refs[this.isMobile ? "input-email-m" : "input-email-pc"] as InputText;
+  get isEmpty(): boolean {
+    const contact = this.$refs[
+      this.isMobile ? "input-contact-m" : "input-contact-pc"
+    ] as InputText;
+    const manager = this.$refs[
+      this.isMobile ? "input-manager-m" : "input-manager-pc"
+    ] as InputText;
+    const email = this.$refs[
+      this.isMobile ? "input-email-m" : "input-email-pc"
+    ] as InputText;
     const people = this.$refs["people"] as InputText;
-    const adress = this.$refs["input-adress"] as InputText
+    const adress = this.$refs["input-adress"] as InputText;
 
-    if (people.isEmpty || contact.isEmpty || manager.isEmpty || email.isEmpty || adress.isEmpty || this.selectedCategory==0 || this.selectedYear==0 || this.selectedMonth==0 || this.selectedDay==0 || this.selectedHour==-1 || this.selectedMin==-1 || this.selectedMenu=="" || this.selectedItem=="") {
+    if (
+      people.isEmpty ||
+      contact.isEmpty ||
+      manager.isEmpty ||
+      email.isEmpty ||
+      adress.isEmpty ||
+      this.selectedCategory == 0 ||
+      this.selectedYear == 0 ||
+      this.selectedMonth == 0 ||
+      this.selectedDay == 0 ||
+      this.selectedHour == -1 ||
+      this.selectedMin == -1 ||
+      this.selectedMenu == "" ||
+      this.selectedItem == ""
+    ) {
       return true;
     }
     return false;
@@ -1452,8 +1498,7 @@ article {
       }
     }
 
-    > input,
-    div {
+    > div {
       background: white;
       width: 22.135vw;
       border: none;
@@ -1466,11 +1511,17 @@ article {
     > span {
       display: block;
       position: relative;
+      width: 50%;
 
       .redAsterisk {
         position: absolute;
         left: 4.3vw;
         top: 0.2vw;
+
+        @include mobile {
+          top: 0.7vw;
+          left: 15vw;
+        }
       }
 
       & > select {
@@ -1484,7 +1535,7 @@ article {
         border-bottom: 0.052vw solid black;
 
         @include mobile {
-          width: 50%;
+          width: 100%;
           height: 7.5vw;
           line-height: 7.361vw;
         }
@@ -1493,6 +1544,26 @@ article {
 
     select {
       cursor: pointer;
+    }
+
+    &::v-deep {
+      label {
+        width: 100%;
+        height: 100%;
+        top: 0.313vw;
+        background: transparent;
+        color: #595757;
+      }
+
+      > div input {
+        padding-left: 0.677vw;
+        width: 21.458vw;
+        height: 100%;
+        @include mobile {
+          width: 78.611vw;
+          padding-left: 2.5vw;
+        }
+      }
     }
 
     .miniWrap {
@@ -1511,6 +1582,7 @@ article {
         input[type="text"] {
           width: 100%;
           height: 100%;
+          width: 10.104vw;
         }
 
         label {
@@ -1543,7 +1615,7 @@ article {
         width: 5.292vw;
         margin-left: 1vw;
         @include mobile {
-          width: 27.778vw;
+          width: 28.778vw;
         }
       }
 
@@ -1552,7 +1624,7 @@ article {
         width: 4.879vw;
         margin-left: 1vw;
         @include mobile {
-          width: 21.111vw;
+          width: 18.781vw;
         }
       }
     }
@@ -1572,7 +1644,7 @@ article {
         width: 7.171vw;
         margin-left: 5vw;
         @include mobile {
-          width: 27.778vw;
+          width: 24.818vw;
         }
       }
 
@@ -1580,7 +1652,7 @@ article {
         width: 4.879vw;
         margin-left: 1vw;
         @include mobile {
-          width: 42.222vw;
+          width: 38.53vw;
         }
       }
     }
@@ -1601,22 +1673,6 @@ article {
         font-size: 3.611vw;
         line-height: 1.62;
         letter-spacing: -0.35vw;
-      }
-    }
-
-    &::v-deep {
-      label {
-        width: 100%;
-        height: 100%;
-        top: 0.313vw;
-        background: transparent;
-        color: #595757;
-      }
-
-      span > input[type="text"] {
-        padding-left: 0.677vw;
-        width: 21.458vw;
-        height: 100%;
       }
     }
   }
@@ -1641,7 +1697,7 @@ article {
         position: absolute;
         width: 1.406vw;
         height: 1.406vw;
-        top: 0.24vw;
+        top: 0.22vw;
         right: 17.5vw;
         border: 0;
         border-radius: 50%;
@@ -1651,7 +1707,7 @@ article {
         @include mobile {
           width: 4.167vw;
           height: 4.167vw;
-          top: 0.833vw;
+          top: 0.563vw;
           right: 51.389vw;
         }
 
@@ -1694,6 +1750,8 @@ article {
       @include mobile {
         border-radius: 2.278vw;
         border-width: 0.278vw;
+        font-size: 2.917vw;
+        line-height: 1;
         padding: 0.833vw 2.222vw 0.833vw 1.667vw;
       }
     }
@@ -1721,7 +1779,7 @@ article {
   }
 }
 
-.modal {
+.consultModal {
   p {
     font-size: 1.146vw;
     line-height: 1.5;
@@ -1760,6 +1818,74 @@ article {
   color: red;
   &InSelect {
     position: absolute;
+  }
+}
+
+.privacyModal {
+  color: #001845;
+
+  &::v-deep {
+    .modal-window {
+      border-radius: 0.781vw;
+
+      button {
+        display: none;
+      }
+
+      .modal-content {
+        position: relative;
+        padding: 3.75vw 3.021vw 3.281vw 3.177vw;
+        width: 45.833vw;
+
+        @include mobile {
+          width: 82.222vw;
+          padding: 8.056vw 6.111vw 7.222vw 6.111vw;
+        }
+      }
+    }
+  }
+
+  h2 {
+    font-size: 1.719vw;
+    font-weight: 500;
+    line-height: 1;
+    padding-bottom: 1.875vw;
+    border-bottom: #001845 solid 0.104vw;
+
+    @include mobile {
+      font-size: 4.583vw;
+      font-weight: normal;
+    }
+  }
+
+  p {
+    padding-top: 1.458vw;
+    text-align: justify;
+    word-break: keep-all;
+    font-size: 0.99vw;
+    line-height: 1.74;
+    letter-spacing: -0.032vw;
+
+    @include mobile {
+      font-size: 2.778vw;
+      line-height: 1.7;
+      letter-spacing: -0.025vw;
+    }
+
+    .bold {
+      font-weight: bold;
+    }
+  }
+  img {
+    position: absolute;
+    top: 3.854vw;
+    right: 3.229vw;
+
+    @include mobile {
+      width: 4.444vw;
+      top: 8.056vw;
+      right: 6.111vw;
+    }
   }
 }
 

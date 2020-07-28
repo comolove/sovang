@@ -9,7 +9,8 @@ import CarouselContent from "@/components/CarouselContent.vue";
 import CateringContent from "@/components/CateringContent.vue";
 import Modal from "@/components/Modal.vue";
 import InputText from "@/components/InputText.vue";
-import TextareaWithRedAsterisk from "@/components/TextareaWithRedAsterisk.vue"
+import TextareaWithRedAsterisk from "@/components/TextareaWithRedAsterisk.vue";
+import PresentPopup from "@/components/PresentPopup.vue";
 
 export {
   Header,
@@ -23,5 +24,6 @@ export {
   CateringContent,
   Modal,
   InputText,
-  TextareaWithRedAsterisk
+  TextareaWithRedAsterisk,
+  PresentPopup
 };

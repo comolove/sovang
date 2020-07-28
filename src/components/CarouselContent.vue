@@ -20,7 +20,7 @@
       :key="index"
       :data-index="index"
       data-name="DataName"
-      @slideclick="handleSlideClick"
+      @slideclick="!isMobile?handleSlideClick:''"
     >
       <div class="additionalContent">
         <AssetImage
