@@ -11,6 +11,7 @@
     :navigationPrevLabel="carouselNavigationPrev"
     :autoplay="true"
     :loop="true"
+    :space-padding="-12.5"
     paginationColor="#c9caca"
     :paginationActiveColor="carouselPaginationActiveColor"
     @page-change="handleCarouselChange"
@@ -169,7 +170,6 @@ export default class CarouselContent extends Vue {
 .carousel {
   // 매장 이미지들의 사이 간.
   .VueCarousel-slide {
-    width: 22.917vw;
 
     @include mobile {
       width: 81.667vw;
@@ -237,7 +237,7 @@ export default class CarouselContent extends Vue {
 
     & > .color {
       opacity: 0;
-      transition: opacity 1s;
+      transition: opacity 0.3s;
     }
 
     &:hover > .color {

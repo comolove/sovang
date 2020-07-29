@@ -51,7 +51,7 @@
           :navigationPrevLabel="storeCarouselNavigationPrev"
           :autoplay="true"
           :loop="true"
-          :spacePadding="-20"
+          :spacePadding="-12"
           paginationColor="#c9caca"
           :paginationActiveColor="homeContentCarouselPaginationActiveColor"
           @page-change="handleStoreCarouselChange"
@@ -474,8 +474,6 @@ export default class Home extends Vue {
 
     @include mobile {
       font-size: 4.167vw;
-      margin-left: 17.361vw;
-      margin-right: 17.361vw;
       line-height: 1.67;
     }
   }
@@ -554,7 +552,6 @@ export default class Home extends Vue {
   .store-carousel {
     // 매장 이미지들의 사이 간격
     .VueCarousel-slide > div {
-      padding-right: 1.354vw;
       img {
         width: 22.917vw;
 

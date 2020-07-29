@@ -11,7 +11,7 @@
     :navigationPrevLabel="carouselNavigationPrev"
     :autoplay="true"
     :loop="true"
-    :spacePadding="0"
+    :spacePadding="-12.5"
     paginationColor="#c9caca"
     :paginationActiveColor="carouselPaginationActiveColor"
     @page-change="handleCarouselChange"
@@ -211,7 +211,6 @@ export default class CateringContent extends Vue {
 .carousel {
   // 매장 이미지들의 사이 간격
   .VueCarousel-slide {
-    width: 22.917vw;
 
     @include mobile {
       width: 81.667vw;

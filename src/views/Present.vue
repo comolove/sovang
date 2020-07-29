@@ -96,6 +96,7 @@
           v-show="holidayPresentModal[0]"
           src="present-page/Web/holiday-present/popup-img.jpg"
           @close="closePopup(0)"
+          :isMobile="isMobile"
         >
           <template slot="title">
             <span v-if="!isMobile">오지의 장 - 소녀방앗간의 시그니처, 오랜시간 고숙성한 ‘발효장’</span>
@@ -124,6 +125,7 @@
           v-show="holidayPresentModal[1]"
           src="present-page/Web/holiday-present/2-1.jpg"
           @close="closePopup(1)"
+          :isMobile="isMobile"
         >
           <template slot="title">
             <span v-if="!isMobile">오지의 맛 - 재료 본연의 맛에 집중한 완벽한 장인의 맛</span>
@@ -146,6 +148,7 @@
           v-show="holidayPresentModal[2]"
           src="present-page/Web/holiday-present/3-1.jpg"
           @close="closePopup(2)"
+          :isMobile="isMobile"
         >
           <template slot="title">
             <span v-if="!isMobile">오지의 향 - 국내산 참깨와 들깨를 저온착유한 전통기름과 직접 담은 재래식 간장</span>
@@ -170,6 +173,7 @@
           v-show="holidayPresentModal[3]"
           src="present-page/Web/holiday-present/4-1.jpg"
           @close="closePopup(3)"
+          :isMobile="isMobile"
         >
           <template slot="title">
             <span v-if="!isMobile">오지의 부각 - 귀한 손님 상에 올라온 한식별미, 찹쌀부각</span>
@@ -191,6 +195,7 @@
           v-show="holidayPresentModal[4]"
           src="present-page/Web/holiday-present/5-1.jpg"
           @close="closePopup(4)"
+          :isMobile="isMobile"
         >
           <template slot="title">
             <span v-if="!isMobile">오지의 약밥 - 집에서 간편하게 만들어 먹는 영양밥과 찰약밥</span>
@@ -212,6 +217,7 @@
           v-show="holidayPresentModal[5]"
           src="present-page/Web/holiday-present/6-1.jpg"
           @close="closePopup(5)"
+          :isMobile="isMobile"
         >
           <template slot="title">
             <span v-if="!isMobile">오지의 떡국 - 새해엔 떡국 한 그릇</span>

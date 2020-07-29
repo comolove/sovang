@@ -7,12 +7,13 @@
             <slot name="title" />
             <img src="@/assets/images/icon-close-darkblue.png" @click="$emit('close')" />
           </h2>
-          <div class="flexWrap">
+          <div class="flexWrap"  @scroll.once="hideArrow">
             <AssetImage :src="src" @click="$emit('click')" />
             <p>
               <slot />
             </p>
           </div>
+          <AssetImage class="arrow-bottom" src="arrow-bottom.png" v-if="isMobile&&!isHide" />
         </div>
       </div>
     </div>
@@ -30,6 +31,13 @@ import { AssetImage } from "@/components";
 })
 export default class PresentPopup extends Vue {
   @Prop() private src!: string;
+  @Prop() private isMobile!: boolean;
+
+  private isHide = false;
+
+  hideArrow() {
+    this.isHide = true;
+  }
 }
 </script>
 
@@ -48,6 +56,9 @@ export default class PresentPopup extends Vue {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.3);
+    @include mobile {
+      background: rgba(0, 0, 0, 0.4);
+    }
   }
 
   &-window {
@@ -141,6 +152,14 @@ export default class PresentPopup extends Vue {
           line-height: 1.7;
           width: 100%;
         }
+      }
+    }
+
+    .arrow-bottom {
+      @include mobile {
+        position: absolute;
+        left: 37.5vw;
+        top: 129.167vw;
       }
     }
   }

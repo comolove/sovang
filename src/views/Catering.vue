@@ -59,7 +59,7 @@
       <HomeContent class="catering-visit-large" title="방문 케이터링 (30인 이상)" data-aos="fade-up">
         <CateringContent class="contentsWrap-1" :contentData="cateringVisitSlideData" />
       </HomeContent>
-      <HomeContent title="방문 케이터링 (30인 이하)" class="catering-visit-small" data-aos="fade-up">
+      <HomeContent title="박스 케이터링 (30인 이하)" class="catering-visit-small" data-aos="fade-up">
         <CateringContent class="contentsWrap-2" :contentData="cateringBoxSlideData" />
       </HomeContent>
     </section>
@@ -722,7 +722,7 @@ export default class Catering extends Vue {
     this.privacyModal = false;
   }
 
-  closeModal() {
+  closeConsultModal() {
     this.consultModal = false;
   }
 
