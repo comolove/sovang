@@ -5,7 +5,7 @@
       ref="textarea"
       :id="name"
       :name="name"
-      @focus="hidePlaceholder"
+      @keydown="hidePlaceholder"
       @blur="showPlaceholder"
       @change="onChange"
     />
@@ -60,6 +60,7 @@ div {
     font-family: NotoSansCJKKr;
     letter-spacing: -0.1vw;
     line-height: 1.73;
+    font-weight: 300;
 
     @include mobile {
       font-size: 3.611vw;

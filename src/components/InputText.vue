@@ -9,7 +9,7 @@
       :name="name"
       ref="input"
       :id="name"
-      @focus="hidePlaceholder"
+      @keydown="hidePlaceholder"
       @blur="showPlaceholder"
       @change="onChange"
     />
@@ -70,6 +70,7 @@ div {
     top: 0.677vw;
     font-size: 1.146vw;
     color: #595757;
+    font-weight: 300;
 
     @include mobile {
       font-size: 3.611vw;

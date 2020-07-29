@@ -363,7 +363,10 @@
       </template>
     </Modal>
     <Modal v-show="privacyModal" class="privacyModal">
-      <h2>개인정보 수집 및 이용<img src="@/assets/images/icon-close-darkblue.png" @click="closePrivacyModal" /></h2>
+      <h2>
+        개인정보 수집 및 이용
+        <img src="@/assets/images/icon-close-darkblue.png" @click="closePrivacyModal" />
+      </h2>
       <p>
         <span class="bold">[개인정보 수집 및 이용 동의 ]</span> 주식회사 방앗간컴퍼니는 개인정보 보호를 최우선의 가치로 삼으며 개인정보 보호와 관련한 국내외 모든 법령을 성실히 준수합니다. 주식회사 방앗간컴퍼니는 케이터링 & 도시락 상담 예약을 위하여, 아래와 같이 개인정보를 수집 및 이용합니다. 내용을 상세히 확인하신 후 동의 여부를 결정하여 주시기 바랍니다.
         <br />
@@ -1666,6 +1669,7 @@ article {
       padding: 0;
       border: 0;
       padding: 0.521vw 0 0 0.677vw;
+      resize: none;
 
       @include mobile {
         padding: 1.667vw 2.083vw 0 2.083vw;
@@ -1730,6 +1734,13 @@ article {
         }
       }
 
+      &:hover + label {
+        background: #a4a4a4;
+        img {
+          filter: brightness(1);
+        }
+      }
+
       &:checked + label {
         background: #001845;
         img {
@@ -1746,6 +1757,7 @@ article {
       margin-left: 0.3vw;
       font-size: 0.99vw;
       line-height: 1.667vw;
+      cursor: pointer;
 
       @include mobile {
         border-radius: 2.278vw;
@@ -1753,6 +1765,11 @@ article {
         font-size: 2.917vw;
         line-height: 1;
         padding: 0.833vw 2.222vw 0.833vw 1.667vw;
+      }
+
+      &:hover {
+        background: #a4a4a4;
+        color: white;
       }
     }
   }

@@ -10,6 +10,7 @@
         :autoplayTimeout="3000"
         :autoplayHoverPause="false"
         :loop="true"
+        :paginationEnabled="false"
         :navigationEnabled="true"
         :navigationNextLabel="mainCarouselNavigationNext"
         :navigationPrevLabel="mainCarouselNavigationPrev"
@@ -58,13 +59,14 @@
     <section class="content-2">
       <HomeContent title="소녀방앗간 명절선물" data-aos="fade-up">
         <span>
-          낭비없는 생산을 위하여 해마다 준비하는 명절 선물의 품목과 종류가 다를
+          낭비없는 생산을 위해 해마다 준비하는 명절 선물의 품목과 종류가 다를
           수 있습니다 :)
         </span>
         <div class="flexWrap" v-if="!isMobile">
           <div v-for="(data, index) of holidayPresentData" :key="index" @click="openPopup(index)">
-            <AssetImage class="before" :src="data.pcPath" />
-            <AssetImage class="after" :src="data.pcPathAfter" />
+            <div>
+              <AssetImage class="before" :src="data.pcPath" />
+            </div>
             <p v-html="data.info" />
           </div>
         </div>
@@ -224,9 +226,7 @@
             <span v-if="isMobile">
               오지의 떡국
               <br />
-              <span class="subTitle">
-                새해엔 떡국 한 그릇
-              </span>
+              <span class="subTitle">새해엔 떡국 한 그릇</span>
             </span>
           </template>
           무색소, 무방부제, 무첨가물, 무보존료의 HACCP 관리 하에 바로 도정한 깨끗하고 건강한 떡국떡으로 만들어, 새해 가족과 함께 건강하게 드실 수 있도록 준비한 떡국 선물세트입니다.
@@ -426,7 +426,7 @@ export default class Present extends Vue {
       this.holidayPresentModal.push(false);
     }
 
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 1; i <= 2; i++) {
       this.mainSlideData.push({
         name: "",
         pcPath: `present-page/Web/main/${i}.jpg`,
@@ -441,7 +441,7 @@ export default class Present extends Vue {
       `2018 설 선물세트 _ 발효미학 (with 이노션)
       <br /><span>#된장, 옹기, 쌈장, 고추장, 간장, 매실청</span>`,
       `2018 추석 선물세트 _ INOCEAN (with 이노션)
-      <br /><span>#제주돌미역, 다시마, 건강밥톳, 홍새우, 함초소</span>금`
+      <br /><span>#제주돌미역, 다시마, 건강밥톳, 홍새우, 함초소금</span>`
     ];
 
     for (let i = 1; i <= 3; i++) {
@@ -726,9 +726,7 @@ article {
           width: 100%;
 
           @include mobile {
-            width: 90.833vw;
             height: 147.778vw;
-            margin-left: 4.722vw;
           }
 
           &:last-child {
@@ -815,9 +813,9 @@ article {
       @include mobile {
         left: 0;
         top: 79.222vw;
-        font-size: 2.222vw;
+        font-size: 2.36vw;
         padding-top: 1.389vw;
-        color: #9e9e9e;
+        color: #797979;
       }
     }
 
@@ -832,18 +830,28 @@ article {
         height: 21.875vw;
         position: relative;
 
-        img {
+        > div {
           position: absolute;
-          width: 100%;
+          display: inline-block;
+          overflow: hidden;
+          width: 22.917vw;
           height: 15.677vw;
+          img {
+            position: absolute;
+            cursor: pointer;
 
-          &.after {
-            transition: 1s opacity;
-            opacity: 0;
-          }
+            &.before {
+              transition: 0.6s all ease;
+              width: 22.917vw;
+              height: 15.677vw;
+              margin: 0;
+            }
 
-          &:hover.after {
-            opacity: 1;
+            &:hover.before {
+              width: 24.917vw;
+              height: 17.677vw;
+              margin: -1vw 0 0 -1vw;
+            }
           }
         }
 
@@ -876,11 +884,11 @@ article {
           > p {
             margin-top: 2.5vw;
             font-size: 3.611vw;
-            line-height: 5.7vw;
+            line-height: 5vw;
             color: #595757;
 
             > span {
-              font-size: 2.778vw;
+              font-size: 3.056vw;
             }
           }
         }
@@ -895,7 +903,7 @@ article {
           }
 
           @include mobile {
-            left: 4vw;
+            left: 2.6vw;
             top: 21%;
 
             img {
@@ -914,7 +922,7 @@ article {
           }
 
           @include mobile {
-            right: 4vw;
+            right: 2.6vw;
             top: 21%;
 
             img {
@@ -989,9 +997,9 @@ article {
 
       @include mobile {
         left: 0;
-        top: 80vw;
-        font-size: 2.222vw;
-        color: #9e9e9e;
+        top: 80.5vw;
+        font-size: 2.36vw;
+        color: #797979;
       }
     }
   }
@@ -1046,7 +1054,7 @@ article {
             line-height: 5.833vw;
           }
 
-          > span {
+          &::v-deep > span {
             color: #797777;
 
             @include mobile {
@@ -1077,7 +1085,7 @@ article {
         }
 
         @include mobile {
-          left: 4vw;
+          left: 2.6vw;
           top: 21%;
 
           img {
@@ -1096,7 +1104,7 @@ article {
         }
 
         @include mobile {
-          right: 4vw;
+          right: 2.6vw;
           top: 21%;
 
           img {
@@ -1183,11 +1191,12 @@ article {
 
         textarea {
           width: 20.259vw;
-          height: 12.99vw;
+          height: 12.574vw;
           border: 0;
-          padding: 0.313vw 0.938vw;
+          padding: 0.729vw 0.729vw 0.313vw 0.938vw;
           letter-spacing: -0.15vw;
           color: #797979;
+          resize: none;
 
           @include mobile {
             width: 75vw;
@@ -1265,6 +1274,13 @@ article {
           }
         }
 
+        &:hover + label {
+          background: #a4a4a4;
+          img {
+            filter: brightness(1);
+          }
+        }
+
         &:checked + label {
           background: #001845;
           img {
@@ -1286,6 +1302,11 @@ article {
           border-width: 0.278vw;
           padding: 0.333vw 1.2vw;
           margin-left: 2vw;
+        }
+
+        &:hover {
+          background: #a4a4a4;
+          color: white;
         }
       }
     }
