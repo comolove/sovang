@@ -1843,7 +1843,11 @@ article {
 
   &::v-deep {
     .modal-window {
-      border-radius: 0.781vw;
+      border-radius: 1.042vw;
+
+      @include mobile {
+        border-radius: 2.778vw;
+      }
 
       button {
         display: none;

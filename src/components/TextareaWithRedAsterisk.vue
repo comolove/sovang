@@ -57,10 +57,11 @@ div {
     top: 0.729vw;
     left: 0.938vw;
     font-size: 1.146vw;
-    font-family: NotoSansCJKKr;
+    font-family: Noto Sans KR;
     letter-spacing: -0.1vw;
     line-height: 1.73;
     font-weight: 300;
+    color: #797979;
 
     @include mobile {
       font-size: 3.611vw;

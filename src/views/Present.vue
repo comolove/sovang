@@ -307,7 +307,7 @@
           />
           <textarea
             v-if="isMobile"
-            placeholder="추가메세지 : 식재료, 수량, 예산 등 구체적인 내용으로
+            placeholder="문의내용 : 식재료, 수량, 예산 등 구체적인 내용으로
 문의해주시면 빠른 상담이 가능합니다 :)"
           />
         </div>
@@ -812,7 +812,7 @@ article {
 
       @include mobile {
         left: 0;
-        top: 79.222vw;
+        top: 80.222vw;
         font-size: 2.36vw;
         padding-top: 1.389vw;
         color: #797979;
@@ -1165,7 +1165,8 @@ article {
         input,
         textarea {
           font-size: 1.146vw;
-          font-family: NotoSansCJKKr;
+          font-family: Noto Sans KR;
+          font-weight: 300;
           line-height: 1.73;
 
           @include mobile {
@@ -1194,7 +1195,7 @@ article {
           height: 12.574vw;
           border: 0;
           padding: 0.729vw 0.729vw 0.313vw 0.938vw;
-          letter-spacing: -0.15vw;
+          
           color: #797979;
           resize: none;
 
@@ -1202,7 +1203,7 @@ article {
             width: 75vw;
             height: 18.333vw;
             padding: 2.778vw 4.444vw 0 2.222vw;
-            letter-spacing: -0.39vw;
+            
             margin-top: 4.722vw;
           }
         }
@@ -1374,7 +1375,11 @@ article {
 
   &::v-deep {
     .modal-window {
-      border-radius: 0.781vw;
+      border-radius: 1.042vw;
+
+      @include mobile {
+        border-radius: 2.778vw;
+      }
 
       button {
         display: none;
