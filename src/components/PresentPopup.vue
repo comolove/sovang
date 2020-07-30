@@ -87,7 +87,7 @@ export default class PresentPopup extends Vue {
       font-weight: 500;
       line-height: 1;
       padding-bottom: 0.938vw;
-      border-bottom: 0.104vw solid #001845;
+      border-bottom: 1px solid #001845;
       color: #001845;
 
       @include mobile {
