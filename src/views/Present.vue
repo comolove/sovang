@@ -1195,7 +1195,6 @@ article {
           height: 12.574vw;
           border: 0;
           padding: 0.729vw 0.729vw 0.313vw 0.938vw;
-          
           color: #797979;
           resize: none;
 
@@ -1203,7 +1202,6 @@ article {
             width: 75vw;
             height: 18.333vw;
             padding: 2.778vw 4.444vw 0 2.222vw;
-            
             margin-top: 4.722vw;
           }
         }
@@ -1439,8 +1437,9 @@ article {
 }
 
 .subTitle {
+  display: inline-block;
   font-size: 3.472vw;
-  line-height: 1.52;
+  padding-top: 0.694vw;
 }
 
 .bold {
