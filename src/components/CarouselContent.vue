@@ -21,7 +21,7 @@
       :key="index"
       :data-index="index"
       data-name="DataName"
-      @slideclick="!isMobile?handleSlideClick:''"
+      @slideclick="!isMobile ? handleSlideClick : ''"
     >
       <div class="additionalContent">
         <AssetImage
@@ -170,7 +170,6 @@ export default class CarouselContent extends Vue {
 .carousel {
   // 매장 이미지들의 사이 간.
   .VueCarousel-slide {
-
     @include mobile {
       width: 81.667vw;
     }

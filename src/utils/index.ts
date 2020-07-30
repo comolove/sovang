@@ -5,6 +5,7 @@ import MainSlide from "@/utils/MainSlide";
 import OnlineMallItem from "@/utils/OnlineMallItem";
 import Store from "@/utils/Store";
 import CateringOrder from "@/utils/CateringOrder";
+import PresentConsult from "@/utils/PresentConsult";
 
 export {
   ImgPath,
@@ -13,5 +14,6 @@ export {
   MainSlide,
   OnlineMallItem,
   Store,
-  CateringOrder
+  CateringOrder,
+  PresentConsult
 };

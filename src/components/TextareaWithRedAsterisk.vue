@@ -5,6 +5,7 @@
       ref="textarea"
       :id="name"
       :name="name"
+      v-model="value"
       @keydown="hidePlaceholder"
       @blur="showPlaceholder"
       @change="onChange"
@@ -21,6 +22,7 @@ export default class TextaredWithRedAsterisk extends Vue {
   @Prop() private placeholder!: string;
 
   public isEmpty = true;
+  public value = "";
 
   $refs!: {
     textarea: HTMLTextAreaElement;

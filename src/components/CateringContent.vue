@@ -211,7 +211,6 @@ export default class CateringContent extends Vue {
 .carousel {
   // 매장 이미지들의 사이 간격
   .VueCarousel-slide {
-
     @include mobile {
       width: 81.667vw;
     }

@@ -9,6 +9,7 @@
       :name="name"
       ref="input"
       :id="name"
+      v-model="value"
       @keydown="hidePlaceholder"
       @blur="showPlaceholder"
       @change="onChange"
@@ -26,6 +27,7 @@ export default class InputText extends Vue {
   @Prop() private isRequired!: boolean;
 
   public isEmpty = true;
+  public value = "";
 
   $refs!: {
     input: HTMLInputElement;
@@ -41,12 +43,13 @@ export default class InputText extends Vue {
   }
 
   showPlaceholder() {
-    if(this.isEmpty) {
-      this.$refs.label.innerHTML = this.placeholder + (this.isRequired ? '<span style="color:red">*</span>' : '');
-      this.$emit('empty', this);
-    }
-    else {
-      this.$emit('non-empty', this);
+    if (this.isEmpty) {
+      this.$refs.label.innerHTML =
+        this.placeholder +
+        (this.isRequired ? '<span style="color:red">*</span>' : "");
+      this.$emit("empty", this);
+    } else {
+      this.$emit("non-empty", this);
     }
   }
 }

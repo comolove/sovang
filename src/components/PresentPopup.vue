@@ -5,15 +5,22 @@
         <div class="modal-content">
           <h2>
             <slot name="title" />
-            <img src="@/assets/images/icon-close-darkblue.png" @click="$emit('close')" />
+            <img
+              src="@/assets/images/icon-close-darkblue.png"
+              @click="$emit('close')"
+            />
           </h2>
-          <div class="flexWrap"  @scroll.once="hideArrow">
+          <div class="flexWrap" @scroll.once="hideArrow">
             <AssetImage :src="src" @click="$emit('click')" />
             <p>
               <slot />
             </p>
           </div>
-          <AssetImage class="arrow-bottom" src="arrow-bottom.png" v-if="isMobile&&!isHide" />
+          <AssetImage
+            class="arrow-bottom"
+            src="arrow-bottom.png"
+            v-if="isMobile && !isHide"
+          />
         </div>
       </div>
     </div>
@@ -137,7 +144,7 @@ export default class PresentPopup extends Vue {
         }
       }
 
-      p{
+      p {
         text-align: justify;
         word-break: keep-all;
         width: 25.781vw;

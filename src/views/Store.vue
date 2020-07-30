@@ -34,9 +34,7 @@
     </section>
     <section class="contents">
       <HomeContent data-aos="fade-up" title="서울숲시작점">
-        <MapLink
-          link="http://naver.me/5tLih2dr"
-        />
+        <MapLink link="http://naver.me/5tLih2dr" />
         <CarouselWithNavCarousel
           :mainSlides="store_1.main"
           :navSlides="store_1.thumbnail"
@@ -44,9 +42,7 @@
         />
       </HomeContent>
       <HomeContent data-aos="fade-up" title="현대백화점 신도림점">
-        <MapLink
-          link="http://naver.me/5sEjnKGC"
-        />
+        <MapLink link="http://naver.me/5sEjnKGC" />
         <CarouselWithNavCarousel
           :mainSlides="store_2.main"
           :navSlides="store_2.thumbnail"
@@ -54,9 +50,7 @@
         />
       </HomeContent>
       <HomeContent data-aos="fade-up" title="이화여대점">
-        <MapLink
-          link="http://naver.me/x7tm87kt"
-        />
+        <MapLink link="http://naver.me/x7tm87kt" />
         <CarouselWithNavCarousel
           :mainSlides="store_3.main"
           :navSlides="store_3.thumbnail"
@@ -64,9 +58,7 @@
         />
       </HomeContent>
       <HomeContent data-aos="fade-up" title="마로니에점">
-        <MapLink
-          link="http://naver.me/G0OsI5jW"
-        />
+        <MapLink link="http://naver.me/G0OsI5jW" />
         <CarouselWithNavCarousel
           :mainSlides="store_4.main"
           :navSlides="store_4.thumbnail"
@@ -74,9 +66,7 @@
         />
       </HomeContent>
       <HomeContent data-aos="fade-up" title="서울고속터미널점">
-        <MapLink
-          link="http://naver.me/IgtQYwn9"
-        />
+        <MapLink link="http://naver.me/IgtQYwn9" />
         <CarouselWithNavCarousel
           :mainSlides="store_5.main"
           :navSlides="store_5.thumbnail"
@@ -84,9 +74,7 @@
         />
       </HomeContent>
       <HomeContent data-aos="fade-up" title="현대백화점 킨텍스점">
-        <MapLink
-          link="http://naver.me/xZxR9iTT"
-        />
+        <MapLink link="http://naver.me/xZxR9iTT" />
         <CarouselWithNavCarousel
           :mainSlides="store_6.main"
           :navSlides="store_6.thumbnail"
@@ -94,9 +82,7 @@
         />
       </HomeContent>
       <HomeContent data-aos="fade-up" title="중곡시장점">
-        <MapLink
-          link="http://naver.me/FaVRZ1zr"
-        />
+        <MapLink link="http://naver.me/FaVRZ1zr" />
         <CarouselWithNavCarousel
           :mainSlides="store_7.main"
           :navSlides="store_7.thumbnail"
