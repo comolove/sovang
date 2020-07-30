@@ -681,7 +681,7 @@ export default class Present extends Vue {
     console.log(consult);
 
     axios
-      .post("/insertCateringOrder.php", {
+      .post("/insertPresentConsult.php", {
         ...consult
       })
       .then(() => {
