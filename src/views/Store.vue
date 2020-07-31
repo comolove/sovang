@@ -33,59 +33,16 @@
       </div>
     </section>
     <section class="contents">
-      <HomeContent data-aos="fade-up" title="서울숲시작점">
-        <MapLink link="http://naver.me/5tLih2dr" />
+      <HomeContent
+        v-for="(store, index) in stores"
+        :key="index"
+        :title="store.storeName"
+        data-aos="fade-up"
+      >
+        <MapLink :link="store.link" />
         <CarouselWithNavCarousel
-          :mainSlides="store_1.main"
-          :navSlides="store_1.thumbnail"
-          :isMobile="isMobile"
-        />
-      </HomeContent>
-      <HomeContent data-aos="fade-up" title="현대백화점 신도림점">
-        <MapLink link="http://naver.me/5sEjnKGC" />
-        <CarouselWithNavCarousel
-          :mainSlides="store_2.main"
-          :navSlides="store_2.thumbnail"
-          :isMobile="isMobile"
-        />
-      </HomeContent>
-      <HomeContent data-aos="fade-up" title="이화여대점">
-        <MapLink link="http://naver.me/x7tm87kt" />
-        <CarouselWithNavCarousel
-          :mainSlides="store_3.main"
-          :navSlides="store_3.thumbnail"
-          :isMobile="isMobile"
-        />
-      </HomeContent>
-      <HomeContent data-aos="fade-up" title="마로니에점">
-        <MapLink link="http://naver.me/G0OsI5jW" />
-        <CarouselWithNavCarousel
-          :mainSlides="store_4.main"
-          :navSlides="store_4.thumbnail"
-          :isMobile="isMobile"
-        />
-      </HomeContent>
-      <HomeContent data-aos="fade-up" title="서울고속터미널점">
-        <MapLink link="http://naver.me/IgtQYwn9" />
-        <CarouselWithNavCarousel
-          :mainSlides="store_5.main"
-          :navSlides="store_5.thumbnail"
-          :isMobile="isMobile"
-        />
-      </HomeContent>
-      <HomeContent data-aos="fade-up" title="현대백화점 킨텍스점">
-        <MapLink link="http://naver.me/xZxR9iTT" />
-        <CarouselWithNavCarousel
-          :mainSlides="store_6.main"
-          :navSlides="store_6.thumbnail"
-          :isMobile="isMobile"
-        />
-      </HomeContent>
-      <HomeContent data-aos="fade-up" title="중곡시장점">
-        <MapLink link="http://naver.me/FaVRZ1zr" />
-        <CarouselWithNavCarousel
-          :mainSlides="store_7.main"
-          :navSlides="store_7.thumbnail"
+          :mainSlides="getMainSlideOfStore(store)"
+          :navSlides="getNavSlideOfStore(store)"
           :isMobile="isMobile"
         />
       </HomeContent>
@@ -107,12 +64,7 @@ import {
   CarouselWithNavCarousel
 } from "@/components";
 import { MapLink } from "@/components/Store";
-import { screenSize, ImgPath } from "@/utils";
-
-class ImgAndThumbnailPath {
-  public main: string[] = [];
-  public thumbnail: string[] = [];
-}
+import { AxiosHelper, screenSize, ImgPath, Store as StoreData } from "@/utils";
 
 @Component({
   name: "Store",
@@ -130,14 +82,11 @@ class ImgAndThumbnailPath {
   }
 })
 export default class Store extends Vue {
+  private axiosHelper: AxiosHelper = new AxiosHelper();
+
   private mainSlideData: ImgPath[] = [];
-  private store_1: ImgAndThumbnailPath = new ImgAndThumbnailPath();
-  private store_2: ImgAndThumbnailPath = new ImgAndThumbnailPath();
-  private store_3: ImgAndThumbnailPath = new ImgAndThumbnailPath();
-  private store_4: ImgAndThumbnailPath = new ImgAndThumbnailPath();
-  private store_5: ImgAndThumbnailPath = new ImgAndThumbnailPath();
-  private store_6: ImgAndThumbnailPath = new ImgAndThumbnailPath();
-  private store_7: ImgAndThumbnailPath = new ImgAndThumbnailPath();
+  private stores: StoreData[] = [];
+
   private isMobile = false;
   private mainSlidePadding = 0;
 
@@ -163,7 +112,7 @@ export default class Store extends Vue {
     }
   };
 
-  created() {
+  async created() {
     window.addEventListener("resize", this.handleResize);
 
     for (let i = 0; i < 6; i++) {
@@ -175,44 +124,35 @@ export default class Store extends Vue {
       });
     }
 
-    for (let i = 1; i <= 7; i++) {
-      this.store_1.main.push(`store-page/content-1/main/${i}.jpg`);
-      this.store_1.thumbnail.push(`store-page/content-1/thumbnail/${i}.jpg`);
-    }
-
-    for (let i = 1; i <= 5; i++) {
-      this.store_2.main.push(`store-page/content-2/main/${i}.jpg`);
-      this.store_2.thumbnail.push(`store-page/content-2/thumbnail/${i}.jpg`);
-    }
-
-    for (let i = 1; i <= 6; i++) {
-      this.store_3.main.push(`store-page/content-3/main/${i}.jpg`);
-      this.store_3.thumbnail.push(`store-page/content-3/thumbnail/${i}.jpg`);
-    }
-
-    for (let i = 1; i <= 7; i++) {
-      this.store_4.main.push(`store-page/content-4/main/${i}.jpg`);
-      this.store_4.thumbnail.push(`store-page/content-4/thumbnail/${i}.jpg`);
-    }
-
-    for (let i = 1; i <= 7; i++) {
-      this.store_5.main.push(`store-page/content-5/main/${i}.jpg`);
-      this.store_5.thumbnail.push(`store-page/content-5/thumbnail/${i}.jpg`);
-    }
-
-    for (let i = 1; i <= 6; i++) {
-      this.store_6.main.push(`store-page/content-6/main/${i}.jpg`);
-      this.store_6.thumbnail.push(`store-page/content-6/thumbnail/${i}.jpg`);
-    }
-
-    for (let i = 1; i <= 5; i++) {
-      this.store_7.main.push(`store-page/content-7/main/${i}.jpg`);
-      this.store_7.thumbnail.push(`store-page/content-7/thumbnail/${i}.jpg`);
-    }
+    await this.LoadStores();
   }
 
   mounted() {
     this.handleResize();
+  }
+
+  async LoadStores() {
+    try {
+      const { data } = await this.axiosHelper.GET("/getStore.php");
+      const list = data.data as StoreData[];
+
+      this.stores = list;
+    } catch (error) {
+      console.log("식사공간 로딩 실패");
+      console.log(error);
+    }
+  }
+
+  getMainSlideOfStore(store: StoreData): string[] {
+    return store.imgList.map(value => {
+      return value.pcPath;
+    });
+  }
+
+  getNavSlideOfStore(store: StoreData): string[] {
+    return store.imgList.map(value => {
+      return value.mobilePath;
+    });
   }
 
   handleResize(/* e : Event */) {
@@ -229,13 +169,13 @@ export default class Store extends Vue {
     }
   }
 
-  public get mainCarouselNavigationNext(): string {
+  get mainCarouselNavigationNext(): string {
     return `<img 
               src=${require("@/assets/images/arrow-right-white.png")}
             >`;
   }
 
-  public get mainCarouselNavigationPrev(): string {
+  get mainCarouselNavigationPrev(): string {
     return `<img 
               src=${require("@/assets/images/arrow-left-white.png")} 
             >`;

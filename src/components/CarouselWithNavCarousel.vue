@@ -13,7 +13,7 @@
         :key="index"
         :class="`slide--${index}`"
       >
-        <AssetImage :src="slide" />
+        <img :src="slide" />
       </div>
       <template slot="prevButton">
         <AssetImage src="arrow-left-white.png" />
@@ -39,7 +39,7 @@
           }
         "
       >
-        <AssetImage :src="slide" />
+        <img :src="slide" />
       </div>
     </agile>
   </div>
