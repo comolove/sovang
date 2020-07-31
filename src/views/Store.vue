@@ -102,7 +102,6 @@ import {
   Header,
   Footer,
   HomeContent,
-  HoverTextImage,
   AssetImage,
   ImageOverlayInfo,
   CarouselWithNavCarousel
@@ -123,7 +122,6 @@ class ImgAndThumbnailPath {
     Carousel,
     Slide,
     HomeContent,
-    HoverTextImage,
     AssetImage,
     ImageOverlayInfo,
     CarouselWithNavCarousel,

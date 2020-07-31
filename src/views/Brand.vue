@@ -101,7 +101,6 @@ import {
   Header,
   Footer,
   HomeContent,
-  HoverTextImage,
   AssetImage,
   ImageOverlayInfo
 } from "@/components";
@@ -113,7 +112,6 @@ import Breakpoint from "@/utils/screenSize";
     Header,
     Footer,
     HomeContent,
-    HoverTextImage,
     AssetImage,
     ImageOverlayInfo
   }

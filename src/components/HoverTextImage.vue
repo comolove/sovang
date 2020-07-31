@@ -4,7 +4,7 @@
     :class="{ 'cursor-pointer': hrefExist }"
     @click="handleClick"
   >
-    <AssetImage :src="src" />
+    <img :src="src" />
     <div class="overlay"></div>
     <span class="info"><slot></slot></span>
   </div>
@@ -12,13 +12,8 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import { AssetImage } from "@/components";
 
-@Component({
-  components: {
-    AssetImage
-  }
-})
+@Component({})
 export default class HoverTextImage extends Vue {
   @Prop() private src!: string;
   @Prop() private href!: string;

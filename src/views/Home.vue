@@ -22,7 +22,7 @@
           :key="index"
           :id="'main-carousel-slide-' + index"
         >
-          <AssetImage :src="isMobile ? data.mobilePath : data.pcPath" />
+          <img :src="isMobile ? data.img.mobilePath : data.img.pcPath" />
         </Slide>
       </Carousel>
     </section>
@@ -64,7 +64,7 @@
             @slideclick="handleStoreSlideClick"
           >
             <div class="store-content">
-              <AssetImage :src="isMobile ? data.mobilePath : data.pcPath" />
+              <img :src="isMobile ? data.img.mobilePath : data.img.pcPath" />
               <p>{{ data.storeName }}</p>
             </div>
           </Slide>
@@ -78,11 +78,11 @@
             :key="index"
           >
             <HoverTextImage
-              :src="isMobile ? data.mobilePath : data.pcPath"
+              :src="isMobile ? data.img.mobilePath : data.img.pcPath"
               :href="data.link"
             >
               <p>
-                {{ data.desc }}<br /><span>{{ data.name }}</span>
+                {{ data.itemDesc }}<br /><span>{{ data.itemName }}</span>
               </p>
             </HoverTextImage>
           </div>
@@ -110,9 +110,10 @@
               @slideclick="handleStoreSlideClick"
             >
               <div class="online-mall-content">
-                <AssetImage :src="isMobile ? data.mobilePath : data.pcPath" />
+                <img :src="isMobile ? data.img.mobilePath : data.img.pcPath" />
+                <!-- 여기는 온라인몰 링크가 없는가? -->
                 <p>
-                  {{ data.desc }}<br /><span>{{ data.name }}</span>
+                  {{ data.itemDesc }}<br /><span>{{ data.itemName }}</span>
                 </p>
               </div>
             </Slide>
@@ -163,16 +164,14 @@ import {
   AssetImage,
   ImageOverlayInfo
 } from "@/components";
-import { screenSize, ImgPath } from "@/utils";
-
-class StoreData extends ImgPath {
-  public storeName = "";
-}
-class OnlineMallData extends ImgPath {
-  public desc = "";
-  public name = "";
-  public link = "";
-}
+import {
+  AxiosHelper,
+  screenSize,
+  ImgPath,
+  MainSlide,
+  Store,
+  OnlineMallItem
+} from "@/utils";
 
 @Component({
   name: "Home",
@@ -188,9 +187,11 @@ class OnlineMallData extends ImgPath {
   }
 })
 export default class Home extends Vue {
-  private mainSlideData: ImgPath[] = [];
-  private storeSlideData: StoreData[] = [];
-  private onlineMallSlideData: OnlineMallData[] = [];
+  private axiosHelper: AxiosHelper = new AxiosHelper();
+
+  private mainSlideData: MainSlide[] = [];
+  private storeSlideData: Store[] = [];
+  private onlineMallSlideData: OnlineMallItem[] = [];
 
   private cateringImg: ImgPath = new ImgPath();
   private presentImg: ImgPath = new ImgPath();
@@ -206,7 +207,7 @@ export default class Home extends Vue {
     window.removeEventListener("resize", this.handleResize);
   }
 
-  created() {
+  async created() {
     window.addEventListener("resize", this.handleResize);
 
     this.cateringImg.pcPath = "catering.jpg";
@@ -215,89 +216,26 @@ export default class Home extends Vue {
     this.presentImg.pcPath = "present.jpg";
     this.presentImg.mobilePath = "present-m.jpg";
 
-    // TODO : Backend 개발 후 DB에서 불러오기
-    for (let i = 0; i < 4; i++) {
-      this.mainSlideData.push({
-        name: "",
-        pcPath: `slide/pc/main-slide-${i + 1}.jpg`,
-        tabletPath: "",
-        mobilePath: `slide/mobile/main-slide-${i + 1}.jpg`
-      });
-    }
-
-    const storeName = [
-      "서울숲시작점",
-      "현대백화점 신도림점",
-      "이화여대점",
-      "마로니에점",
-      "서울고속터미널점",
-      "현대백화점 킨텍스점",
-      "중곡시장점"
-    ];
-    for (let i = 0; i < storeName.length; i++) {
-      this.storeSlideData.push({
-        name: "",
-        pcPath: `store/store-${i + 1}.jpg`,
-        tabletPath: "",
-        mobilePath: `store/mobile/store-${i + 1}.jpg`,
-        storeName: storeName[i]
-      });
-    }
-
-    const onlineMallDesc = [
-      "청송 약수와 토종콩 메주로 담근",
-      "오랜 세월 깊어지는 맛",
-      "100% 국내산 고춧가루로 담근",
-      "태백산의 보물",
-      "임금님이 드시던 나물",
-      "봄나물의 대명사"
-    ];
-    const onlineMallName = [
-      "재래식 간장 (550ml)",
-      "재래식 된장 (450g)",
-      "찹쌀 고추장 (450g)",
-      "곤드레 (80g)",
-      "어수리 (80g)",
-      "취나물 (80g)"
-    ];
-    const onlineMallLink = [
-      "https://smartstore.naver.com/sovang/products/2665362069",
-      "https://smartstore.naver.com/sovang/products/2635127753",
-      "https://smartstore.naver.com/sovang/products/2663144160",
-      "https://smartstore.naver.com/sovang/products/2684757759",
-      "https://smartstore.naver.com/sovang/products/2684350052",
-      "https://smartstore.naver.com/sovang/products/2679556897"
-    ];
-    for (let i = 0; i < onlineMallName.length; i++) {
-      this.onlineMallSlideData.push({
-        pcPath: `online-mall/online-mall-${i + 1}.jpg`,
-        tabletPath: "",
-        mobilePath: `online-mall/mobile/online-mall-${i + 1}.jpg`,
-        desc: onlineMallDesc[i],
-        name: onlineMallName[i],
-        link: onlineMallLink[i]
-      });
-    }
+    await this.LoadImagesFromDB();
   }
 
   mounted() {
+    this.handleResize();
+    this.responseComponents();
+
     // vue-carousel mounted시 첫 번째 요소가 활성화 클래스 태그가 안붙는 문제가 있음
-    ((document as Document).getElementById(
-      "main-carousel-slide-0"
-    ) as Element).classList.add("VueCarousel-slide-active");
+    const firstSlideOfMain = document.getElementById("main-carousel-slide-0");
+    if (firstSlideOfMain) {
+      firstSlideOfMain.classList.add("VueCarousel-slide-active");
+    }
 
     setTimeout(() => {
       // 슬라이드가 바뀌어도 임의로 넣어준 active 클래스는 삭제가 안되서 n초후에 임의로 삭제
-      const firstSlide = (document as Document).getElementById(
-        "main-carousel-slide-0"
-      ) as Element;
+      const firstSlide = document.getElementById("main-carousel-slide-0");
       if (firstSlide) {
         firstSlide.classList.remove("VueCarousel-slide-active");
       }
     }, 6000);
-
-    this.handleResize();
-    this.responseComponents();
   }
 
   handleStoreSlideClick(dataset: { index: string }) {
@@ -328,19 +266,61 @@ export default class Home extends Vue {
     }
   }
 
-  public get mainCarouselNavigationNext(): string {
+  async LoadImagesFromDB() {
+    await this.LoadMainSlides();
+    await this.LoadStores();
+    await this.LoadOnlineMall();
+  }
+
+  async LoadMainSlides() {
+    try {
+      const { data } = await this.axiosHelper.GET("/getMainSlides.php");
+      const list = data.data as MainSlide[];
+
+      this.mainSlideData = list;
+    } catch (error) {
+      console.log("홈페이지 메인 슬라이드 로딩 실패");
+      console.log(error);
+    }
+  }
+
+  async LoadStores() {
+    try {
+      const { data } = await this.axiosHelper.GET("/getStore.php");
+      const list = data.data as Store[];
+
+      this.storeSlideData = list;
+    } catch (error) {
+      console.log("식사공간 로딩 실패");
+      console.log(error);
+    }
+  }
+
+  async LoadOnlineMall() {
+    try {
+      const { data } = await this.axiosHelper.GET("/getOnlineMallItems.php");
+      const list = data.data as OnlineMallItem[];
+
+      this.onlineMallSlideData = list;
+    } catch (error) {
+      console.log("홈페이지 온라인 몰 아이템 로딩 실패");
+      console.log(error);
+    }
+  }
+
+  get mainCarouselNavigationNext(): string {
     return `<img 
               src=${require("@/assets/images/arrow-right-white.png")}
             >`;
   }
 
-  public get mainCarouselNavigationPrev(): string {
+  get mainCarouselNavigationPrev(): string {
     return `<img 
               src=${require("@/assets/images/arrow-left-white.png")} 
             >`;
   }
 
-  public get storeCarouselNavigationNext(): string {
+  get storeCarouselNavigationNext(): string {
     if (this.isMobile) return "";
 
     return `<img 
@@ -349,7 +329,7 @@ export default class Home extends Vue {
             >`;
   }
 
-  public get storeCarouselNavigationPrev(): string {
+  get storeCarouselNavigationPrev(): string {
     if (this.curStoreIndex == 0 || this.isMobile) return "";
 
     return `<img 
