@@ -10,6 +10,7 @@ import AdminMainSlide from "../views/Admin/MainSlide.vue";
 import AdminOnlineMall from "../views/Admin/OnlineMall.vue";
 import AdminStore from "../views/Admin/Store.vue";
 import AdminCateringStory from "../views/Admin/CateringStory.vue";
+import AdminPresentProject from "../views/Admin/PresentProject.vue";
 
 Vue.use(VueRouter);
 
@@ -59,6 +60,10 @@ const routes: Array<RouteConfig> = [
       {
         path: "cateringstory",
         component: AdminCateringStory
+      },
+      {
+        path: "presentproject",
+        component: AdminPresentProject
       }
     ]
   }

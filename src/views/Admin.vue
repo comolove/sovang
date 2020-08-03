@@ -12,6 +12,11 @@
         <li>
           <router-link to="/admin/cateringstory">케이터링 이야기</router-link>
         </li>
+        <li>
+          <router-link to="/admin/presentproject"
+            >명절선물 기획 프로젝트</router-link
+          >
+        </li>
       </ul>
       <router-view></router-view>
     </div>

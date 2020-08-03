@@ -344,13 +344,19 @@
             data-name="DataName"
           >
             <div>
-              <AssetImage :src="isMobile ? data.mobilePath : data.pcPath" />
-              <AssetImage
-                v-if="!isMobile"
-                class="after"
-                :src="data.pcPathAfter"
+              <img
+                :src="
+                  isMobile ? data.frontImg.mobilePath : data.frontImg.pcPath
+                "
               />
-              <span v-html="data.info" />
+              <img v-if="!isMobile" class="after" :src="data.backImg.pcPath" />
+              <span>
+                {{ data.title }}
+                <br />
+                <span>
+                  {{ data.desc }}
+                </span>
+              </span>
             </div>
           </Slide>
         </Carousel>
@@ -493,7 +499,13 @@ import {
   TextareaWithRedAsterisk,
   PresentPopup
 } from "@/components";
-import { screenSize, ImgPath, PresentConsult } from "@/utils";
+import {
+  AxiosHelper,
+  screenSize,
+  ImgPath,
+  PresentConsult,
+  PresentProject
+} from "@/utils";
 
 class DoubleImgPath extends ImgPath {
   public pcPathAfter = "";
@@ -519,7 +531,7 @@ class DoubleImgPath extends ImgPath {
 })
 export default class Present extends Vue {
   private mainSlideData: ImgPath[] = [];
-  private projectData: DoubleImgPath[] = [];
+  private projectData: PresentProject[] = [];
   private holidayPresentData: DoubleImgPath[] = [];
 
   private carouselPerPage = 1;
@@ -531,7 +543,7 @@ export default class Present extends Vue {
   private privacyModal = false;
   private holidayPresentModal: boolean[] = [];
 
-  created() {
+  async created() {
     window.addEventListener("resize", this.handleResize);
 
     for (let i = 0; i < 6; i++) {
@@ -544,28 +556,6 @@ export default class Present extends Vue {
         pcPath: `present-page/Web/main/${i}.jpg`,
         tabletPath: "",
         mobilePath: `present-page/Mobile/main/${i}.jpg`
-      });
-    }
-
-    const projectInfo = [
-      `2016 설 선물세트 _ 우리쌀떡보따리 (with 이노션)
-      <br /><span>#떡국떡, 간장, 흑화고, 죽방멸치, 홍새우, 다시마</span>`,
-      `2018 설 선물세트 _ 발효미학 (with 이노션)
-      <br /><span>#된장, 옹기, 쌈장, 고추장, 간장, 매실청</span>`,
-      `2018 추석 선물세트 _ INOCEAN (with 이노션)
-      <br /><span>#제주돌미역, 다시마, 건강밥톳, 홍새우, 함초소금</span>`
-    ];
-
-    for (let i = 1; i <= 3; i++) {
-      this.projectData.push({
-        name: "",
-        pcPath: `present-page/Web/planning-project/${i}-1.jpg`,
-        tabletPath: "",
-        mobilePath: `present-page/Mobile/planning-project/${i}.jpg`,
-        pcPathAfter: `present-page/Web/planning-project/${i}-2.jpg`,
-        tabletPathAfter: "",
-        mobilePathAfter: "",
-        info: projectInfo[i - 1]
       });
     }
 
@@ -606,6 +596,19 @@ export default class Present extends Vue {
         mobilePathAfter: "",
         info: presentInfo[i - 1]
       });
+    }
+
+    await this.LoadPresentProject();
+  }
+
+  async LoadPresentProject() {
+    try {
+      const { data } = await AxiosHelper.GET("/getPresentProjects.php");
+      const list = data.data as PresentProject[];
+
+      this.projectData = list;
+    } catch (error) {
+      console.log("Present Project : ", error);
     }
   }
 
