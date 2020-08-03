@@ -39,10 +39,7 @@
         :src="'catering-page/illustration' + (isMobile ? '-m.png' : '-pc.png')"
       />
       <HomeContent title="청정케이터링 이야기" data-aos="fade-up">
-        <CarouselContent
-          :slideData="cateringStorySlideData"
-          :isMobile="isMobile"
-        />
+        <CarouselContent :slideData="cateringStorySlideData" :isMobile="isMobile" />
       </HomeContent>
       <div class="info info-1" data-aos="fade-up">
         2017년부터 지금까지 여러 공기관과 대기업, 그리고
@@ -59,45 +56,20 @@
 
     <section class="content-2">
       <div class="info info-2" data-aos="fade-up">청정케이터링</div>
-      <HomeContent
-        class="catering-visit-large"
-        title="방문 케이터링 (30인 이상)"
-        data-aos="fade-up"
-      >
-        <CateringContent
-          class="contentsWrap-1"
-          :contentData="cateringVisitSlideData"
-        />
+      <HomeContent class="catering-visit-large" title="방문 케이터링 (30인 이상)" data-aos="fade-up">
+        <CateringContent class="contentsWrap-1" :contentData="cateringVisitSlideData" />
       </HomeContent>
-      <HomeContent
-        title="박스 케이터링 (30인 이하)"
-        class="catering-visit-small"
-        data-aos="fade-up"
-      >
-        <CateringContent
-          class="contentsWrap-2"
-          :contentData="cateringBoxSlideData"
-        />
+      <HomeContent title="박스 케이터링 (30인 이하)" class="catering-visit-small" data-aos="fade-up">
+        <CateringContent class="contentsWrap-2" :contentData="cateringBoxSlideData" />
       </HomeContent>
     </section>
 
     <section class="content-3">
       <div class="info info-2" data-aos="fade-up">청정도시락</div>
-      <HomeContent
-        class="easy-lunch-box"
-        title="간편 도시락 (10인 이상)"
-        data-aos="fade-up"
-      >
-        <CateringContent
-          class="contentsWrap-3"
-          :contentData="easyLunchBoxSlideData"
-        />
+      <HomeContent class="easy-lunch-box" title="간편 도시락 (10인 이상)" data-aos="fade-up">
+        <CateringContent class="contentsWrap-3" :contentData="easyLunchBoxSlideData" />
       </HomeContent>
-      <HomeContent
-        title="맞춤 도시락 (10인 이상)"
-        data-aos="fade-up"
-        class="custom-lunch-box"
-      >
+      <HomeContent title="맞춤 도시락 (10인 이상)" data-aos="fade-up" class="custom-lunch-box">
         <CateringContent
           class="contentsWrap-4"
           :contentData="
@@ -111,9 +83,7 @@
               20,000원 이상 (1인)
               <span class="hide">/</span>
               <br />메뉴 구성 및 용기는 모두 고객 맞춤형으로
-              <span class="hide"
-                >귀한 손님들에게 준비해드리는 맞춤 도시락입니다.</span
-              >
+              <span class="hide">귀한 손님들에게 준비해드리는 맞춤 도시락입니다.</span>
               <span class="non-hide">
                 , 특별한 행사에 참석하신 귀한
                 <br />손님들에게 준비해드리기 좋은 맞춤 도시락입니다.
@@ -123,39 +93,28 @@
         </div>
       </HomeContent>
 
-      <HomeContent
-        title="추가 메뉴 (도시락만 해당)"
-        data-aos="fade-up"
-        class="additional-menu"
-      >
-        <CateringContent
-          class="contentsWrap-5"
-          :contentData="additionalMenuSlideData"
-        />
+      <HomeContent title="추가 메뉴 (도시락만 해당)" data-aos="fade-up" class="additional-menu">
+        <CateringContent class="contentsWrap-5" :contentData="additionalMenuSlideData" />
       </HomeContent>
     </section>
 
     <section class="content-4">
       <div class="info info-2" data-aos="fade-up">주문 안내</div>
       <div class="info-6" data-aos="fade-up">
-        <span class="bold"
-          >특별한 케이터링을 위해 소녀방앗간에 문의해보셔요 :)</span
-        >
+        <span class="bold">특별한 케이터링을 위해 소녀방앗간에 문의해보셔요 :)</span>
         <br />
         <span v-if="!isMobile">아래의</span>상담 예약을 먼저 완료해주시면
         <span v-if="!isMobile">더</span>빠른 소통이 가능합니다.
       </div>
       <div class="info-7" data-aos="fade-up">
         <span class="bold-2">1) 주문시간</span> : 행사일 기준,
-        <span class="red"
-          >케이터링/맞춤도시락은 최소 1주 전, 간편도시락은 3일 전</span
-        >
+        <span class="red">케이터링/맞춤도시락은 최소 1주 전, 간편도시락은 3일 전</span>
         메뉴확정이 필요합니다.
         <br v-if="!isMobile" />
-        <span class="blank"
-          >(하단의 상담 예약을 하신 당일 혹은 익일 연락드려 소통하게
-          됩니다.)</span
-        >
+        <span class="blank">
+          (하단의 상담 예약을 하신 당일 혹은 익일 연락드려 소통하게
+          됩니다.)
+        </span>
         <br />
         <br v-if="isMobile" />
         <span class="bold-2">2) 메뉴구성</span> : 행사와 계절에 맞게 제철메뉴로
@@ -165,8 +124,8 @@
         <span class="bold-2 wider-3">3) 최소인원</span> :
         <span class="red">
           <span class="wider-3">박스케이터링/도시락은 10인 이상, 방문</span>
-          케이터링은 30인 이상 </span
-        >부터 준비 가능합니다.
+          케이터링은 30인 이상
+        </span>부터 준비 가능합니다.
         <br />
         <br v-if="isMobile" />
         <span class="wider-4">
@@ -185,17 +144,14 @@
         방법으로 선택해주시면 됩니다.
         <br v-if="!isMobile" />
         <span class="blank">
-          <span class="wider-2">(단, 퀵배송의 경우 카드결제는</span
-          >BC/우리/국민/농협카드만 가능합니다.)
+          <span class="wider-2">(단, 퀵배송의 경우 카드결제는</span>BC/우리/국민/농협카드만 가능합니다.)
         </span>
       </div>
       <div class="contentsWrap-6" data-aos="fade-up">
-        <InputText
-          ref="input-groupID"
-          name="groupID"
-          placeholder="단체명"
-          :isRequired="false"
-        />
+        <span v-if="!isMobile" class="warning">
+          * 별표 표시 항목은 필수 입력사항입니다.
+        </span>
+        <InputText ref="input-groupID" name="groupID" placeholder="단체명" :isRequired="false" />
         <InputText
           v-if="isMobile"
           ref="input-manager-m"
@@ -215,7 +171,7 @@
           ref="input-email-m"
           name="email"
           placeholder="이메일"
-          :isRequired="true"
+          :isRequired="false"
         />
         <div class="dateWrap">
           날짜
@@ -224,17 +180,13 @@
             <option value="0" selected disabled>
               <span v-if="!isMobile">년</span>
             </option>
-            <option v-for="y in 11" :key="y" :value="2019 + y"
-              >{{ 2019 + parseInt(y) }}년</option
-            >
+            <option v-for="y in 11" :key="y" :value="2019 + y">{{ 2019 + parseInt(y) }}년</option>
           </select>
           <select id="month" @change="onChangeDate()" v-model="selectedMonth">
             <option value="0" selected disabled>
               <span v-if="!isMobile">월</span>
             </option>
-            <option v-for="index in 12" :key="index" :value="index"
-              >{{ index }}월</option
-            >
+            <option v-for="index in 12" :key="index" :value="index">{{ index }}월</option>
           </select>
           <select id="day" v-model="selectedDay">
             <option selected disabled value="0">
@@ -264,17 +216,13 @@
             <option :value="10">오전 10시</option>
             <option :value="11">오전 11시</option>
             <option :value="12">오전 12시</option>
-            <option v-for="h in 12" :key="h" :value="12 + h"
-              >오후 {{ h }}시</option
-            >
+            <option v-for="h in 12" :key="h" :value="12 + h">오후 {{ h }}시</option>
           </select>
           <select id="min" v-model="selectedMin">
             <option selected disabled :value="-1">
               <span v-if="!isMobile">분</span>
             </option>
-            <option v-for="m in 6" :key="m" :value="10 * (m - 1)"
-              >{{ 10 * (m - 1) }}분</option
-            >
+            <option v-for="m in 6" :key="m" :value="10 * (m - 1)">{{ 10 * (m - 1) }}분</option>
           </select>
         </div>
         <InputText
@@ -303,14 +251,9 @@
           ref="input-email-pc"
           name="email"
           placeholder="이메일"
-          :isRequired="true"
+          :isRequired="false"
         />
-        <InputText
-          ref="input-adress"
-          name="adress"
-          placeholder="주소"
-          :isRequired="true"
-        />
+        <InputText ref="input-adress" name="adress" placeholder="주소" :isRequired="false" />
         <span>
           <span v-show="selectedCategory == 0" class="redAsterisk">*</span>
           <select id="category" v-model="selectedCategory" @change="onChange()">
@@ -328,9 +271,7 @@
             <option v-show="isCatering">실속형</option>
             <option v-show="isCatering">일반형</option>
             <option v-show="isCatering">고급형</option>
-            <option v-show="isEasyLaunchbox"
-              >고춧가루제육볶음 한 상 도시락</option
-            >
+            <option v-show="isEasyLaunchbox">고춧가루제육볶음 한 상 도시락</option>
             <option v-show="isEasyLaunchbox">돼지갈비찜 한 상 도시락</option>
             <option v-show="isEasyLaunchbox">소불고기 한 상 도시락</option>
             <option v-show="isCustomLaunchbox">선택 없음</option>
@@ -384,18 +325,11 @@
           @click="openPrivacyModal"
         />
       </div>
-      <input
-        class="consultButton"
-        type="button"
-        value="상담 예약"
-        @click="handleSubmitCatering"
-      />
+      <input class="consultButton" type="button" value="상담 예약" @click="handleSubmitCatering" />
     </section>
     <Modal v-if="consultModal" class="consultModal">
       <p v-show="isEmpty">붉은색 별표 표시된 항목은 필수 입력사항입니다 :)</p>
-      <p v-show="!isEmpty && !isPrivacyChecked">
-        개인정보 동의는 필수입니다 :)
-      </p>
+      <p v-show="!isEmpty && !isPrivacyChecked">개인정보 동의는 필수입니다 :)</p>
       <p v-show="!isEmpty && isPrivacyChecked">
         상담을 예약해주셔서 감사합니다 :)
         <br />빠른 시일 내에 연락드리도록 하겠습니다.
@@ -407,10 +341,7 @@
     <Modal v-show="privacyModal" class="privacyModal">
       <h2>
         개인정보 수집 및 이용
-        <img
-          src="@/assets/images/icon-close-darkblue.png"
-          @click="closePrivacyModal"
-        />
+        <img src="@/assets/images/icon-close-darkblue.png" @click="closePrivacyModal" />
       </h2>
       <p>
         <span class="bold">[개인정보 수집 및 이용 동의 ]</span> 주식회사
@@ -422,11 +353,11 @@
         <br />
         <br />
         <span class="bold">1. 개인정보의 수집 및 이용 목적</span>
-        <br />케이터링/맞춤도시락 상담
+        <br />케이터링 & 맞춤도시락 상담
         <br />
         <br />
         <span class="bold">2. 수집하는 개인정보의 항목</span>
-        <br />단체명, 담당자명, 연락처, 이메일주소(선택)
+        <br />담당자명, 연락처, 이메일주소(선택)
         <br />
         <br />
         <span class="bold">3. 개인정보의 보유 및 이용기간</span>
@@ -435,17 +366,15 @@
         파기합니다.
         <br />
         <br />
-        <span class="bold"
-          >4. 동의를 거부할 권리 및 동의 거부에 따른 불이익</span
-        >
+        <span class="bold">4. 동의를 거부할 권리 및 동의 거부에 따른 불이익</span>
         <br />서비스 제공을 위하여 기본 정보를 수집하고 있으며, 동의 거부시 상담
         예약이 제한될 수 있습니다.
         <br />
         <br />
-        <span class="bold"
-          >본인은 [개인정보 수집 및 이용에 관한 동의]를 잘 읽어 보았으며,
-          개인정보수집 및 이용에 동의 합니다.</span
-        >
+        <span class="bold">
+          본인은 [개인정보 수집 및 이용에 관한 동의]를 잘 읽어 보았으며,
+          개인정보수집 및 이용에 동의 합니다.
+        </span>
       </p>
     </Modal>
     <Footer class="footer" />
@@ -1522,6 +1451,7 @@ article {
 
   .contentsWrap-6 {
     display: flex;
+    position: relative;
     justify-content: space-between;
     align-content: space-between;
     flex-wrap: wrap;
@@ -1529,6 +1459,18 @@ article {
 
     @include mobile {
       height: 131.667vw;
+    }
+
+    .warning {
+      position: absolute;
+      font-size: 0.99vw;
+      left: 0.6vw;
+      top: 28.9vw;
+      color: red;
+
+      @include mobile {
+        display: none;
+      }
     }
 
     input,
@@ -1566,7 +1508,7 @@ article {
       .redAsterisk {
         position: absolute;
         left: 4.3vw;
-        top: 0.2vw;
+        top: 0.45vw;
 
         @include mobile {
           top: 0.7vw;
