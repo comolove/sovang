@@ -80,7 +80,7 @@ export default class AdminCateringStory extends Vue {
     try {
       const { data } = await AxiosHelper.GET("/getCateringStories.php");
       const list = data.data as CateringStory[];
-      console.log(list);
+
       this.cateringStories = list;
     } catch (error) {
       alert("케이터링 이야기 로딩 실패");

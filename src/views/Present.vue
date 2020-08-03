@@ -608,7 +608,8 @@ export default class Present extends Vue {
 
       this.projectData = list;
     } catch (error) {
-      console.log("Present Project : ", error);
+      console.log("명절선물 기획 프로젝트 로딩 실패");
+      console.log(error);
     }
   }
 
