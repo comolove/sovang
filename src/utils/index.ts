@@ -5,6 +5,7 @@ import MainSlide from "@/utils/MainSlide";
 import OnlineMallItem from "@/utils/OnlineMallItem";
 import Store from "@/utils/Store";
 import CateringOrder from "@/utils/CateringOrder";
+import CateringStory from "@/utils/CateringStory";
 import PresentConsult from "@/utils/PresentConsult";
 import AxiosHelper from "@/utils/AxiosHelper";
 
@@ -17,5 +18,6 @@ export {
   OnlineMallItem,
   Store,
   CateringOrder,
+  CateringStory,
   PresentConsult
 };

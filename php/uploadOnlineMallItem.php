@@ -36,7 +36,7 @@ if ($imageUploader->IsFail())
     AlertAndRedirectToAdmin("이미지 업로드 실패");
 }
 
-$insertSQL = "INSERT INTO onlineMall (item_name,item_desc,link,imageIndex) VALUES ('$itemName', '$itemDesc', '$link' ,$result)";
+$insertSQL = "INSERT INTO online_mall (item_name,item_desc,link,imageIndex) VALUES ('$itemName', '$itemDesc', '$link' ,$result)";
 
 $conn = CreateConnection();
 if ($conn->query($insertSQL) !== TRUE)

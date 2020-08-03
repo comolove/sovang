@@ -5,7 +5,7 @@ import AssetImage from "@/components/AssetImage.vue";
 import HoverTextImage from "@/components/HoverTextImage.vue";
 import ImageOverlayInfo from "@/components/ImageOverlayInfo.vue";
 import CarouselWithNavCarousel from "@/components/CarouselWithNavCarousel.vue";
-import CarouselContent from "@/components/CarouselContent.vue";
+import CateringStoryContent from "@/components/CateringStoryContent.vue";
 import CateringContent from "@/components/CateringContent.vue";
 import Modal from "@/components/Modal.vue";
 import InputText from "@/components/InputText.vue";
@@ -20,7 +20,7 @@ export {
   HoverTextImage,
   ImageOverlayInfo,
   CarouselWithNavCarousel,
-  CarouselContent,
+  CateringStoryContent,
   CateringContent,
   Modal,
   InputText,

@@ -37,9 +37,8 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import axios from "axios";
 import { ScalingImgList } from "@/components/Admin";
-import { MainSlide } from "@/utils";
+import { AxiosHelper, MainSlide } from "@/utils";
 
 @Component({
   name: "AdminMainSlide",
@@ -56,7 +55,7 @@ export default class AdminMainSlide extends Vue {
 
   async LoadData() {
     try {
-      const { data } = await axios.get("/getMainSlides.php");
+      const { data } = await AxiosHelper.GET("/getMainSlides.php");
       const list = data.data;
 
       this.mainSlides = list;
@@ -69,7 +68,7 @@ export default class AdminMainSlide extends Vue {
   private async handleDeleteMainSlide(index: number) {
     try {
       if (confirm("삭제하시겠습니까?")) {
-        await axios.post("/deleteMainSlide.php", {
+        await AxiosHelper.POST("/deleteMainSlide.php", {
           index: index
         });
 

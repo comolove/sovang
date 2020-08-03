@@ -39,8 +39,8 @@
         :src="'catering-page/illustration' + (isMobile ? '-m.png' : '-pc.png')"
       />
       <HomeContent title="청정케이터링 이야기" data-aos="fade-up">
-        <CarouselContent
-          :slideData="cateringStorySlideData"
+        <CateringStoryContent
+          :stories="cateringStorySlideData"
           :isMobile="isMobile"
         />
       </HomeContent>
@@ -463,21 +463,19 @@ import {
   HomeContent,
   AssetImage,
   ImageOverlayInfo,
-  CarouselContent,
+  CateringStoryContent,
   CateringContent,
   InputText,
   TextareaWithRedAsterisk,
   Modal
 } from "@/components";
-import { screenSize, ImgPath, CateringOrder } from "@/utils";
-
-class CateringStoryData extends ImgPath {
-  public pcMonoPath = "";
-  public tabletMonoPath = "";
-  public mobileMonoPath = "";
-  public cateringStoryName1 = "";
-  public cateringStoryName2 = "";
-}
+import {
+  AxiosHelper,
+  screenSize,
+  ImgPath,
+  CateringOrder,
+  CateringStory
+} from "@/utils";
 
 class CateringContentData extends ImgPath {
   public title = "";
@@ -495,7 +493,7 @@ class CateringContentData extends ImgPath {
     HomeContent,
     AssetImage,
     ImageOverlayInfo,
-    CarouselContent,
+    CateringStoryContent,
     CateringContent,
     TextareaWithRedAsterisk,
     InputText,
@@ -505,7 +503,7 @@ class CateringContentData extends ImgPath {
 })
 export default class Catering extends Vue {
   private mainSlideData: ImgPath[] = [];
-  private cateringStorySlideData: CateringStoryData[] = [];
+  private cateringStorySlideData: CateringStory[] = [];
   private cateringVisitSlideData: CateringContentData[] = [];
   private cateringBoxSlideData: CateringContentData[] = [];
   private easyLunchBoxSlideData: CateringContentData[] = [];
@@ -540,42 +538,15 @@ export default class Catering extends Vue {
   private curStoreIndex = 0;
   private infoBreak = false;
 
-  created() {
+  async created() {
     window.addEventListener("resize", this.handleResize);
 
-    // TODO : Backend 개발 후 DB에서 불러오기
     for (let i = 0; i < 2; i++) {
       this.mainSlideData.push({
         name: "",
         pcPath: `catering-page/main/WEB/main-slide-${i + 1}.jpg`,
         tabletPath: "",
         mobilePath: `catering-page/main/Mobile/main-slide-${i + 1}.jpg`
-      });
-    }
-
-    const cateringStory1 = [
-      `한화 LIFE PLUS 컨퍼런스 2019`,
-      `2020 대법원 시무식`,
-      `스타트업의 옥상 박스 케이터링`
-    ];
-
-    const cateringStory2 = [
-      `Future Ways of [Living] - 로컬푸드 청정재료 이야기`,
-      `행사의 품격을 더해준 청정다과 케이터링 이야기`,
-      `특별하고 편리하게 즐기는 박스 케이터링 이야기`
-    ];
-
-    for (let i = 0; i < cateringStory1.length; i++) {
-      this.cateringStorySlideData.push({
-        name: "",
-        pcPath: `catering-page/catering-story/WEB/${i + 1}-color.jpg`,
-        tabletPath: "",
-        mobilePath: `catering-page/catering-story/Mobile/${i + 1}-color.jpg`,
-        pcMonoPath: `catering-page/catering-story/WEB/${i + 1}-mono.jpg`,
-        tabletMonoPath: "",
-        mobileMonoPath: `catering-page/catering-story/Mobile/${i + 1}-mono.jpg`,
-        cateringStoryName1: cateringStory1[i],
-        cateringStoryName2: cateringStory2[i]
       });
     }
 
@@ -729,6 +700,20 @@ export default class Catering extends Vue {
         price: additionalPrice[i],
         info: ""
       });
+    }
+
+    await this.LoadCateringStories();
+  }
+
+  async LoadCateringStories() {
+    try {
+      const { data } = await AxiosHelper.GET("/getCateringStories.php");
+      const list = data.data as CateringStory[];
+
+      this.cateringStorySlideData = list;
+    } catch (error) {
+      console.log("식사공간 로딩 실패");
+      console.log(error);
     }
   }
 

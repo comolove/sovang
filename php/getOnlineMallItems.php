@@ -4,7 +4,7 @@ require_once "db.php";
 
 $list = array();
 
-$selectSQL = "SELECT O.index AS `index`, O.item_name AS itemName, O.item_desc AS itemDesc, O.link AS `link` ,I.pc AS pcPath, I.mobile as mobilePath FROM onlineMall AS O INNER JOIN image AS I ON I.index=O.imageIndex;";
+$selectSQL = "SELECT O.index AS `index`, O.item_name AS itemName, O.item_desc AS itemDesc, O.link AS `link`, I.pc AS pcPath, I.mobile as mobilePath FROM online_mall AS O INNER JOIN image AS I ON I.index=O.imageIndex;";
 
 $conn = CreateConnection();
 if ($result = $conn->query($selectSQL))

@@ -66,4 +66,12 @@ function DeleteFileIfExists($path)
     }
 }
 
+function DeleteFilesIfExists(...$paths)
+{
+    foreach ($path as $paths) 
+    {
+        DeleteFileIfExists($path);
+    }
+}
+
 ?>
