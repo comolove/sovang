@@ -9,15 +9,6 @@
     >
       <h3>메인 슬라이드 추가</h3>
       <div class="input-wrap">
-        <label for="name">슬라이드 이름</label>
-        <input
-          name="name"
-          id="name"
-          type="text"
-          placeholder="빈칸만 아니면 됩니다."
-        />
-      </div>
-      <div class="input-wrap">
         <label for="pcImage">PC 이미지</label>
         <input name="pcImage" id="pcImage" type="file" accept="image/*" />
       </div>

@@ -3,19 +3,11 @@ require_once "utils.php";
 require_once "imageUploader.php";
 require_once "db.php";
 
-$name = isset($_POST["name"]) ? $_POST["name"] : "";
-
 $pcImage = isset($_FILES["pcImage"]) ? $_FILES["pcImage"] : "";
 $mobileImage = isset($_FILES["mobileImage"]) ? $_FILES["mobileImage"] : "";
 
-if (IsNullOrEmptyString($name))
-{
-    AlertAndRedirectToAdmin("name is null");
-    exit();
-}
-
 $imageUploader = new ImageUploader();
-$result = $imageUploader->UploadImages($name, $pcImage, $mobileImage);
+$result = $imageUploader->UploadImages($pcImage['name'] , $pcImage, $mobileImage);
 if ($imageUploader->IsFail())
 {
     Alert($result);
