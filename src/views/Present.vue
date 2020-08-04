@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main ref="main">
     <Header />
     <section class="main img-slider" data-aos="fade-up">
       <Carousel
@@ -475,6 +475,7 @@
         >
       </p>
     </Modal>
+    <AssetImage class="button-go-top" :class="{'button-go-top-visible': isVisible,'button-go-top-invisible': !isVisible}" @click="goTop" src="button-go-top.png" />
     <Footer class="footer" />
   </main>
 </template>
@@ -526,6 +527,7 @@ export default class Present extends Vue {
   private curIndex = 0;
 
   private isMobile = false;
+  private isVisible = false;
   private isChecked = false;
   private consultModal = false;
   private privacyModal = false;
@@ -533,6 +535,7 @@ export default class Present extends Vue {
 
   created() {
     window.addEventListener("resize", this.handleResize);
+    window.addEventListener("scroll", this.handleScroll);
 
     for (let i = 0; i < 6; i++) {
       this.holidayPresentModal.push(false);
@@ -628,6 +631,11 @@ export default class Present extends Vue {
     this.handleResize();
   }
 
+  destroyed() {
+    window.removeEventListener("resize", this.handleResize);
+    window.removeEventListener("scroll", this.handleScroll);
+  }
+
   openPopup(index: number) {
     Vue.set(this.holidayPresentModal, index, true);
   }
@@ -644,6 +652,20 @@ export default class Present extends Vue {
 
   handleCarouselChange(index: number) {
     this.curIndex = index;
+  }
+
+  handleScroll(/* e : Evuent */) {
+    if (window.scrollY > ((this.$refs.main as HTMLElement).clientHeight as number-window.innerHeight)/2)
+      this.isVisible = true;
+    else this.isVisible = false;
+  }
+
+  goTop() {
+    window.scroll({
+      top:0,
+      left:0,
+      behavior: "smooth"
+    });
   }
 
   responseComponents() {
@@ -1604,6 +1626,21 @@ article {
       top: 8.056vw;
       right: 6.111vw;
     }
+  }
+}
+
+.button-go-top {
+  position: fixed;
+  bottom: 22.292vw;
+  right: 2.188vw;
+  transition: opacity 0.5s;
+  opacity: 0;
+  cursor: pointer;
+  &-visible {
+    opacity: 1;
+  }
+  &-invisible {
+    opacity: 0;
   }
 }
 

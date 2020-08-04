@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main ref="main">
     <Header />
     <section class="main" data-aos="fade-up">
       <section class="img-slider">
@@ -148,9 +148,7 @@
         </span>
       </div>
       <div class="contentsWrap-6" data-aos="fade-up">
-        <span v-if="!isMobile" class="warning">
-          * 별표 표시 항목은 필수 입력사항입니다.
-        </span>
+        <span v-if="!isMobile" class="warning">* 별표 표시 항목은 필수 입력사항입니다.</span>
         <InputText ref="input-groupID" name="groupID" placeholder="단체명" :isRequired="false" />
         <InputText
           v-if="isMobile"
@@ -377,6 +375,7 @@
         </span>
       </p>
     </Modal>
+    <AssetImage class="button-go-top" :class="{'button-go-top-visible': isVisible,'button-go-top-invisible': !isVisible}" @click="goTop" src="button-go-top.png" />
     <Footer class="footer" />
   </main>
 </template>
@@ -443,6 +442,7 @@ export default class Catering extends Vue {
   private additionalMenuSlideData: CateringContentData[] = [];
 
   private isMobile = false;
+  private isVisible = false;
 
   private year = 10;
   private month = 12;
@@ -471,7 +471,7 @@ export default class Catering extends Vue {
 
   created() {
     window.addEventListener("resize", this.handleResize);
-
+    window.addEventListener("scroll", this.handleScroll);
     // TODO : Backend 개발 후 DB에서 불러오기
     for (let i = 0; i < 2; i++) {
       this.mainSlideData.push({
@@ -681,6 +681,11 @@ export default class Catering extends Vue {
     this.responseComponents();
   }
 
+  destroyed() {
+    window.removeEventListener("resize", this.handleResize);
+    window.removeEventListener("scroll", this.handleScroll);
+  }
+
   onChange(/*event*/) {
     this.selectedMenu = "";
     this.selectedAdditionalMenu = "";
@@ -762,6 +767,20 @@ export default class Catering extends Vue {
         alert("실패");
         console.log(error);
       });
+  }
+
+  handleScroll(/* e : Evuent */) {
+    if (window.scrollY > ((this.$refs.main as HTMLElement).clientHeight as number-window.innerHeight)/2)
+      this.isVisible = true;
+    else this.isVisible = false;
+  }
+
+  goTop() {
+    window.scroll({
+      top:0,
+      left:0,
+      behavior: "smooth"
+    });
   }
 
   responseComponents() {
@@ -1896,6 +1915,21 @@ article {
       top: 8.056vw;
       right: 6.111vw;
     }
+  }
+}
+
+.button-go-top {
+  position: fixed;
+  bottom: 22.292vw;
+  right: 2.188vw;
+  transition: opacity 0.5s;
+  opacity: 0;
+  cursor: pointer;
+  &-visible {
+    opacity: 1;
+  }
+  &-invisible {
+    opacity: 0;
   }
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <main class="store">
+  <main class="store" ref="main">
     <Header />
     <section class="main">
       <section data-aos="fade-up" class="img-slider">
@@ -47,6 +47,7 @@
         />
       </HomeContent>
     </section>
+    <AssetImage class="button-go-top" :class="{'button-go-top-visible': isVisible,'button-go-top-invisible': !isVisible}" @click="goTop" src="button-go-top.png" />
     <Footer />
   </main>
 </template>
@@ -88,6 +89,7 @@ export default class Store extends Vue {
   private stores: StoreData[] = [];
 
   private isMobile = false;
+  private isVisible= false;
   private mainSlidePadding = 0;
 
   private firstExtraImgTransition = "";
@@ -114,6 +116,7 @@ export default class Store extends Vue {
 
   async created() {
     window.addEventListener("resize", this.handleResize);
+    window.addEventListener("scroll", this.handleScroll);
 
     for (let i = 0; i < 6; i++) {
       this.mainSlideData.push({
@@ -143,6 +146,11 @@ export default class Store extends Vue {
     }
   }
 
+  destroyed() {
+    window.removeEventListener("resize", this.handleResize);
+    window.removeEventListener("scroll", this.handleScroll);
+  }
+
   getMainSlideOfStore(store: StoreData): string[] {
     return store.imgList.map(value => {
       return value.pcPath;
@@ -159,6 +167,20 @@ export default class Store extends Vue {
     this.isMobile = screenSize.tablet > window.innerWidth ? true : false;
 
     this.responseComponents();
+  }
+
+  handleScroll(/* e : Evuent */) {
+    if (window.scrollY > (this.$refs.main as HTMLElement).clientHeight/4)
+      this.isVisible = true;
+    else this.isVisible = false;
+  }
+
+  goTop() {
+    window.scroll({
+      top:0,
+      left:0,
+      behavior: "smooth"
+    });
   }
 
   responseComponents() {
@@ -361,6 +383,21 @@ export default class Store extends Vue {
         margin-bottom: 20.833vw;
       }
     }
+  }
+}
+
+.button-go-top {
+  position: fixed;
+  bottom: 22.292vw;
+  right: 2.188vw;
+  transition: opacity 0.5s;
+  opacity: 0;
+  cursor: pointer;
+  &-visible {
+    opacity: 1;
+  }
+  &-invisible {
+    opacity: 0;
   }
 }
 </style>

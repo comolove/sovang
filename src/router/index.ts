@@ -5,6 +5,7 @@ import Brand from "../views/Brand.vue";
 import Store from "../views/Store.vue";
 import Catering from "../views/Catering.vue";
 import Present from "../views/Present.vue";
+import Community from "../views/Community.vue"
 import Admin from "../views/Admin.vue";
 import AdminMainSlide from "../views/Admin/MainSlide.vue";
 import AdminOnlineMall from "../views/Admin/OnlineMall.vue";
@@ -37,6 +38,11 @@ const routes: Array<RouteConfig> = [
     path: "/present",
     name: "Present",
     component: Present
+  },
+  {
+    path: "/community",
+    name: "Community",
+    component: Community
   },
   {
     path: "/admin",

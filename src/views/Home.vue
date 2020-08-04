@@ -1,5 +1,5 @@
 <template>
-  <main class="home">
+  <main class="home" ref="main">
     <Header />
     <section data-aos="fade-up" class="img-slider">
       <Carousel
@@ -149,6 +149,7 @@
         </div>
       </HomeContent>
     </section>
+    <AssetImage class="button-go-top" :class="{'button-go-top-visible': isVisible,'button-go-top-invisible': !isVisible}" @click="goTop" src="button-go-top.png" />
     <Footer />
   </main>
 </template>
@@ -197,6 +198,7 @@ export default class Home extends Vue {
   private presentImg: ImgPath = new ImgPath();
 
   private isMobile = false;
+  private isVisible = false;
   private storeCarouselPerPage = 1;
   private homeContentCarouselPaginationActiveColor = "black";
 
@@ -205,10 +207,12 @@ export default class Home extends Vue {
 
   destroyed() {
     window.removeEventListener("resize", this.handleResize);
+    window.removeEventListener("scroll", this.handleScroll);
   }
 
   async created() {
     window.addEventListener("resize", this.handleResize);
+    window.addEventListener("scroll", this.handleScroll);
 
     this.cateringImg.pcPath = "catering.jpg";
     this.cateringImg.mobilePath = "catering-m.jpg";
@@ -252,6 +256,20 @@ export default class Home extends Vue {
 
   handleStoreCarouselChange(index: number) {
     this.curStoreIndex = index;
+  }
+
+  handleScroll(/* e : Evuent */) {
+    if (window.scrollY > ((this.$refs.main as HTMLElement).clientHeight as number-window.innerHeight)/2)
+      this.isVisible = true;
+    else this.isVisible = false;
+  }
+
+  goTop() {
+    window.scroll({
+      top:0,
+      left:0,
+      behavior: "smooth"
+    });
   }
 
   responseComponents() {
@@ -646,6 +664,21 @@ export default class Home extends Vue {
         }
       }
     }
+  }
+}
+
+.button-go-top {
+  position: fixed;
+  bottom: 22.292vw;
+  right: 2.188vw;
+  transition: opacity 0.5s;
+  opacity: 0;
+  cursor: pointer;
+  &-visible {
+    opacity: 1;
+  }
+  &-invisible {
+    opacity: 0;
   }
 }
 

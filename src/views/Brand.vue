@@ -1,5 +1,5 @@
 <template>
-  <main class="brand">
+  <main class="brand" ref="main">
     <Header />
     <section class="main">
       <AssetImage :src="mainImgPath" />
@@ -91,6 +91,7 @@
         />
       </HomeContent>
     </section>
+    <AssetImage class="button-go-top" :class="{'button-go-top-visible': isVisible,'button-go-top-invisible': !isVisible}" @click="goTop" src="button-go-top.png" />
     <Footer />
   </main>
 </template>
@@ -118,21 +119,42 @@ import Breakpoint from "@/utils/screenSize";
 })
 export default class Brand extends Vue {
   private isMobile = false;
+  private isVisible = false;
 
   private mainImgPath = "brand-page/Mobile/main.jpg";
 
   created() {
     window.addEventListener("resize", this.handleResize);
+    window.addEventListener("scroll", this.handleScroll);
   }
 
   mounted() {
     this.handleResize();
   }
 
+  destroyed() {
+    window.removeEventListener("resize", this.handleResize);
+    window.removeEventListener("scroll", this.handleScroll);
+  }
+
   handleResize(/* e : Event */) {
     this.isMobile = Breakpoint.tablet > window.innerWidth ? true : false;
 
     this.responseComponents();
+  }
+
+  handleScroll(/* e : Evuent */) {
+    if (window.scrollY > (((this.$refs.main as HTMLElement).scrollHeight as number)-window.innerHeight)/2)
+      this.isVisible = true;
+    else this.isVisible = false;
+  }
+
+  goTop() {
+    window.scroll({
+      top:0,
+      left:0,
+      behavior: "smooth"
+    });
   }
 
   responseComponents() {
@@ -390,6 +412,22 @@ main {
     }
   }
 }
+
+.button-go-top {
+  position: fixed;
+  bottom: 22.292vw;
+  right: 2.188vw;
+  transition: opacity 0.5s;
+  opacity: 0;
+  cursor: pointer;
+  &-visible {
+    opacity: 1;
+  }
+  &-invisible {
+    opacity: 0;
+  }
+}
+
 @keyframes pcMainImg {
   from {
     width: 120%;
