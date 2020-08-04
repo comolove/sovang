@@ -45,9 +45,8 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import axios from "axios";
 import { OnlineMallImgList } from "@/components/Admin";
-import { OnlineMallItem } from "@/utils";
+import { AxiosHelper, OnlineMallItem } from "@/utils";
 
 @Component({
   name: "AdminOnlineMall",
@@ -64,7 +63,7 @@ export default class AdminOnlineMall extends Vue {
 
   async LoadData() {
     try {
-      const { data } = await axios.get("/getOnlineMallItems.php");
+      const { data } = await AxiosHelper.GET("/getOnlineMallItems.php");
       const list = data.data;
 
       this.onlineMallItems = list;
@@ -77,7 +76,7 @@ export default class AdminOnlineMall extends Vue {
   private async handleDeleteOnlineMallItem(index: number) {
     try {
       if (confirm("삭제하시겠습니까?")) {
-        await axios.post("/deleteOnlineMallItem.php", {
+        await AxiosHelper.POST("/deleteOnlineMallItem.php", {
           index: index
         });
 

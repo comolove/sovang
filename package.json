@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "NODE_ENV=development && vue-cli-service serve",
     "build": "vue-cli-service build && npm run copy",
     "lint": "vue-cli-service lint",
     "copy": "scripts/CopyPHPFilesToDist.sh && scripts/CopyDistToDockerApp.sh"

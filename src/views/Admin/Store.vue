@@ -38,9 +38,8 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import axios from "axios";
 import { StoreList } from "@/components/Admin";
-import { Store } from "@/utils";
+import { AxiosHelper, Store } from "@/utils";
 
 @Component({
   name: "AdminStore",
@@ -57,7 +56,7 @@ export default class AdminStore extends Vue {
 
   async LoadData() {
     try {
-      const { data } = await axios.get("/getStore.php");
+      const { data } = await AxiosHelper.GET("/getStore.php");
       const list = data.data;
 
       this.stores = list;

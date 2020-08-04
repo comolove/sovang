@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import axios from "axios";
+import { AxiosHelper } from "@/utils";
 
 @Component
 export default class Login extends Vue {
@@ -20,7 +20,7 @@ export default class Login extends Vue {
 
   async handleLogin() {
     try {
-      const result = await axios.post("/auth.php", {
+      const result = await AxiosHelper.POST("/auth.php", {
         id: this.id,
         password: this.password
       });
@@ -29,6 +29,7 @@ export default class Login extends Vue {
       this.$cookies.set("login_data", data, 60 * 5); // 5분동안 로그인 유지
       location.reload();
     } catch (error) {
+      console.log(error);
       alert(error.response.data.msg);
     }
   }

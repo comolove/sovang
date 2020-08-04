@@ -83,8 +83,6 @@ import { AxiosHelper, screenSize, ImgPath, Store as StoreData } from "@/utils";
   }
 })
 export default class Store extends Vue {
-  private axiosHelper: AxiosHelper = new AxiosHelper();
-
   private mainSlideData: ImgPath[] = [];
   private stores: StoreData[] = [];
 
@@ -136,7 +134,7 @@ export default class Store extends Vue {
 
   async LoadStores() {
     try {
-      const { data } = await this.axiosHelper.GET("/getStore.php");
+      const { data } = await AxiosHelper.GET("/getStore.php");
       const list = data.data as StoreData[];
 
       this.stores = list;

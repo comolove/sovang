@@ -1,18 +1,30 @@
 <template>
   <div class="scaling-img-list">
-    <div class="slide" v-for="(value, index) in images" :key="index">
+    <div class="slide" v-for="(value, index) in stories" :key="index">
       <div class="content-wrap">
-        <p>상품 이름 : {{ value.itemName }}</p>
-        <p>상품 설명 : {{ value.itemDesc }}</p>
-        <p><a :href="value.link">상품 링크</a></p>
+        <p>이름 : {{ value.title }}</p>
+        <p>설명 : {{ value.desc }}</p>
       </div>
-      <div class="content-wrap">
-        <p>pc 이미지</p>
-        <img class="pc-img" :src="value.img.pcPath" />
+      <div class="mono">
+        <div class="content-wrap">
+          <p>PC 흑백 이미지</p>
+          <img class="pc-img" :src="value.frontImg.pcPath" />
+        </div>
+        <div class="content-wrap">
+          <p>모바일 흑백 이미지</p>
+          <img class="mobile-img" :src="value.frontImg.mobilePath" />
+        </div>
       </div>
-      <div class="content-wrap">
-        <p>모바일 이미지</p>
-        <img class="mobile-img" :src="value.img.mobilePath" />
+
+      <div class="color">
+        <div class="content-wrap">
+          <p>PC 컬러 이미지</p>
+          <img class="pc-img" :src="value.backImg.pcPath" />
+        </div>
+        <div class="content-wrap">
+          <p>모바일 컬러 이미지</p>
+          <img class="mobile-img" :src="value.backImg.mobilePath" />
+        </div>
       </div>
 
       <!-- <button @click="() => {handleModify(value.index)}">이미지 수정</button> -->
@@ -31,11 +43,11 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import { BaseResImgObj } from "@/utils";
+import { CateringStory } from "@/utils";
 
 @Component
 export default class ScalingImgList extends Vue {
-  @Prop() images!: BaseResImgObj[];
+  @Prop() stories!: CateringStory[];
 
   protected handleModify(index: number) {
     this.$emit("modify", index);

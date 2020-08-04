@@ -188,8 +188,6 @@ import {
   }
 })
 export default class Home extends Vue {
-  private axiosHelper: AxiosHelper = new AxiosHelper();
-
   private mainSlideData: MainSlide[] = [];
   private storeSlideData: Store[] = [];
   private onlineMallSlideData: OnlineMallItem[] = [];
@@ -292,7 +290,7 @@ export default class Home extends Vue {
 
   async LoadMainSlides() {
     try {
-      const { data } = await this.axiosHelper.GET("/getMainSlides.php");
+      const { data } = await AxiosHelper.GET("/getMainSlides.php");
       const list = data.data as MainSlide[];
 
       this.mainSlideData = list;
@@ -304,7 +302,7 @@ export default class Home extends Vue {
 
   async LoadStores() {
     try {
-      const { data } = await this.axiosHelper.GET("/getStore.php");
+      const { data } = await AxiosHelper.GET("/getStore.php");
       const list = data.data as Store[];
 
       this.storeSlideData = list;
@@ -316,7 +314,7 @@ export default class Home extends Vue {
 
   async LoadOnlineMall() {
     try {
-      const { data } = await this.axiosHelper.GET("/getOnlineMallItems.php");
+      const { data } = await AxiosHelper.GET("/getOnlineMallItems.php");
       const list = data.data as OnlineMallItem[];
 
       this.onlineMallSlideData = list;

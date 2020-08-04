@@ -17,25 +17,25 @@
     @page-change="handleCarouselChange"
   >
     <Slide
-      v-for="(data, index) of slideData"
+      v-for="(story, index) of stories"
       :key="index"
       :data-index="index"
       data-name="DataName"
       @slideclick="!isMobile ? handleSlideClick : ''"
     >
       <div class="additionalContent">
-        <AssetImage
+        <img
           class="mono"
-          :src="isMobile ? data.mobileMonoPath : data.pcMonoPath"
+          :src="isMobile ? story.frontImg.mobilePath : story.frontImg.pcPath"
         />
-        <AssetImage
+        <img
           class="color"
-          :src="isMobile ? data.mobilePath : data.pcPath"
+          :src="isMobile ? story.backImg.mobilePath : story.backImg.pcPath"
         />
         <p>
-          {{ data.cateringStoryName1 }}
+          {{ story.title }}
           <br />
-          <span>{{ data.cateringStoryName2 }}</span>
+          <span>{{ story.desc }}</span>
         </p>
       </div>
     </Slide>
@@ -46,21 +46,7 @@
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { Carousel, Slide } from "vue-carousel";
 import { AssetImage } from "@/components";
-import ScreenSize from "@/utils/screenSize";
-
-class ImgPath {
-  public pcPath = "";
-  public tabletPath = "";
-  public mobilePath = "";
-}
-
-class CateringStoryData extends ImgPath {
-  public pcMonoPath = "";
-  public tabletMonoPath = "";
-  public mobileMonoPath = "";
-  public cateringStoryName1 = "";
-  public cateringStoryName2 = "";
-}
+import { screenSize, CateringStory } from "@/utils";
 
 @Component({
   name: "CarouselContent",
@@ -70,8 +56,8 @@ class CateringStoryData extends ImgPath {
     Slide
   }
 })
-export default class CarouselContent extends Vue {
-  @Prop() slideData!: CateringStoryData[];
+export default class CateringStoryContent extends Vue {
+  @Prop() stories!: CateringStory[];
 
   private carouselPerPage = 1;
   private curIndex = 0;
@@ -94,7 +80,7 @@ export default class CarouselContent extends Vue {
   }
 
   handleResize(/* e : Event */) {
-    this.isMobile = ScreenSize.tablet > window.innerWidth ? true : false;
+    this.isMobile = screenSize.tablet > window.innerWidth ? true : false;
 
     this.responseComponents();
   }
