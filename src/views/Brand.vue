@@ -420,6 +420,14 @@ main {
   transition: opacity 0.5s;
   opacity: 0;
   cursor: pointer;
+
+  @include mobile {
+    width: 9.167vw;
+    height: 7.222vw;
+    bottom: 46.7vw;
+    right: 9.167vw;
+  }
+
   &-visible {
     opacity: 1;
   }

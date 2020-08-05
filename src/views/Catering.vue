@@ -189,10 +189,6 @@
         </span>
       </div>
       <div class="contentsWrap-6" data-aos="fade-up">
-<<<<<<< HEAD
-        <span v-if="!isMobile" class="warning">* 별표 표시 항목은 필수 입력사항입니다.</span>
-        <InputText ref="input-groupID" name="groupID" placeholder="단체명" :isRequired="false" />
-=======
         <span v-if="!isMobile" class="warning">
           * 별표 표시 항목은 필수 입력사항입니다.
         </span>
@@ -202,7 +198,6 @@
           placeholder="단체명"
           :isRequired="false"
         />
->>>>>>> f934fc2e85ef58530c84342f52692f9af532983f
         <InputText
           v-if="isMobile"
           ref="input-manager-m"
@@ -549,12 +544,8 @@ export default class Catering extends Vue {
 
   async created() {
     window.addEventListener("resize", this.handleResize);
-<<<<<<< HEAD
     window.addEventListener("scroll", this.handleScroll);
     // TODO : Backend 개발 후 DB에서 불러오기
-=======
-
->>>>>>> f934fc2e85ef58530c84342f52692f9af532983f
     for (let i = 0; i < 2; i++) {
       this.mainSlideData.push({
         name: "",
@@ -1995,6 +1986,14 @@ article {
   transition: opacity 0.5s;
   opacity: 0;
   cursor: pointer;
+
+  @include mobile {
+    width: 9.167vw;
+    height: 7.222vw;
+    bottom: 46.7vw;
+    right: 9.167vw;
+  }
+
   &-visible {
     opacity: 1;
   }

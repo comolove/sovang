@@ -168,7 +168,7 @@ export default class Store extends Vue {
   }
 
   handleScroll(/* e : Evuent */) {
-    if (window.scrollY > (this.$refs.main as HTMLElement).clientHeight/4)
+    if (window.scrollY > ((this.$refs.main as HTMLElement).clientHeight as number-window.innerHeight)/2)
       this.isVisible = true;
     else this.isVisible = false;
   }
@@ -391,6 +391,14 @@ export default class Store extends Vue {
   transition: opacity 0.5s;
   opacity: 0;
   cursor: pointer;
+
+  @include mobile {
+    width: 9.167vw;
+    height: 7.222vw;
+    bottom: 46.7vw;
+    right: 9.167vw;
+  }
+
   &-visible {
     opacity: 1;
   }
