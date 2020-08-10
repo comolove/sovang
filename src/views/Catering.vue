@@ -450,7 +450,15 @@
         </span>
       </p>
     </Modal>
-    <AssetImage class="button-go-top" :class="{'button-go-top-visible': isVisible,'button-go-top-invisible': !isVisible}" @click="goTop" src="button-go-top.png" />
+    <AssetImage
+      class="button-go-top"
+      :class="{
+        'button-go-top-visible': isVisible,
+        'button-go-top-invisible': !isVisible
+      }"
+      @click="goTop"
+      src="button-go-top.png"
+    />
     <Footer class="footer" />
   </main>
 </template>
@@ -831,15 +839,20 @@ export default class Catering extends Vue {
   }
 
   handleScroll(/* e : Evuent */) {
-    if (window.scrollY > ((this.$refs.main as HTMLElement).clientHeight as number-window.innerHeight)/2)
+    if (
+      window.scrollY >
+      (((this.$refs.main as HTMLElement).clientHeight as number) -
+        window.innerHeight) /
+        2
+    )
       this.isVisible = true;
     else this.isVisible = false;
   }
 
   goTop() {
     window.scroll({
-      top:0,
-      left:0,
+      top: 0,
+      left: 0,
       behavior: "smooth"
     });
   }

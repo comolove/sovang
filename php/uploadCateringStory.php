@@ -13,29 +13,29 @@ $backMobileImage = isset($_FILES["backMobileImage"]) ? $_FILES["backMobileImage"
 
 if (IsNullOrEmptyString($title))
 {
-    AlertAndRedirectToAdmin("title is null");
-    exit();
+    $message = MakeMessage(FALSE, "제목이 없습니다.");
+    Response(400, $message);
 }
 
 if (IsNullOrEmptyString($desc))
 {
-    AlertAndRedirectToAdmin("desc is null");
-    exit();
+    $message = MakeMessage(FALSE, "설명이 없습니다.");
+    Response(400, $message);
 }
 
 $imageUploader = new ImageUploader();
 $frontImageID = $imageUploader->UploadImages($title, $frontPcImage, $frontMobileImage);
 if ($imageUploader->IsFail())
 {
-    Alert($frontImageID);
-    AlertAndRedirectToAdmin("흑백 이미지 업로드 실패");
+    $message = MakeMessage(FALSE, "흑백 이미지 업로드 실패");
+    Response(500, $message);
 }
 
 $backImageID = $imageUploader->UploadImages($title, $backPcImage, $backMobileImage);
 if ($imageUploader->IsFail())
 {
-    Alert($backImageID);
-    AlertAndRedirectToAdmin("컬러 이미지 업로드 실패");
+    $message = MakeMessage(FALSE, "컬러 이미지 업로드 실패");
+    Response(500, $message);
 }
 
 $insertSQL = "INSERT INTO catering_story (title, `desc`, front_img, back_img) VALUES ('$title', '$desc', $frontImageID, $backImageID)";
@@ -43,9 +43,11 @@ $insertSQL = "INSERT INTO catering_story (title, `desc`, front_img, back_img) VA
 $conn = CreateConnection();
 if ($conn->query($insertSQL) !== TRUE)
 {
-    AlertAndRedirectToAdmin("이미지 업로드 쿼리 실패");
+    $message = MakeMessage(FALSE, "이미지 업로드 쿼리 실패");
+    Response(500, $message);
 }
 $conn->close();
 
-AlertAndRedirectToAdmin("업로드 성공");
+$message = MakeMessage(TRUE, "업로드 성공");
+Response(200, $message);
 ?>

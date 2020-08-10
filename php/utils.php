@@ -5,6 +5,8 @@ function Response($statusCode, $data)
     header('Content-type: application/json');
     http_response_code($statusCode);
     echo $data;
+
+    exit();
 }
 
 function MakeMessage($success, $message, $data = array())

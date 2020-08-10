@@ -12,28 +12,28 @@ $mobileImage = isset($_FILES["mobileImage"]) ? $_FILES["mobileImage"] : "";
 
 if (IsNullOrEmptyString($itemName))
 {
-    AlertAndRedirectToAdmin("name is null");
-    exit();
+    $message = MakeMessage(FALSE, "상품 이름이 없습니다.");
+    Response(400, $message);
 }
 
 if (IsNullOrEmptyString($itemDesc))
 {
-    AlertAndRedirectToAdmin("desc is null");
-    exit();
+    $message = MakeMessage(FALSE, "상품 설명이 없습니다.");
+    Response(400, $message);
 }
 
 if (IsNullOrEmptyString($link))
 {
-    AlertAndRedirectToAdmin("link is null");
-    exit();
+    $message = MakeMessage(FALSE, "상품 링크가 없습니다.");
+    Response(400, $message);
 }
 
 $imageUploader = new ImageUploader();
 $result = $imageUploader->UploadImages($itemName, $pcImage, $mobileImage);
 if ($imageUploader->IsFail())
 {
-    Alert($result);
-    AlertAndRedirectToAdmin("이미지 업로드 실패");
+    $message = MakeMessage(FALSE, "이미지 업로드 실패");
+    Response(500, $message);
 }
 
 $insertSQL = "INSERT INTO online_mall (item_name,item_desc,link,imageIndex) VALUES ('$itemName', '$itemDesc', '$link' ,$result)";
@@ -41,9 +41,11 @@ $insertSQL = "INSERT INTO online_mall (item_name,item_desc,link,imageIndex) VALU
 $conn = CreateConnection();
 if ($conn->query($insertSQL) !== TRUE)
 {
-    AlertAndRedirectToAdmin("이미지 업로드 쿼리 실패");
+    $message = MakeMessage(FALSE, "이미지 업로드 쿼리 실패");
+    Response(500, $message);
 }
 $conn->close();
 
-AlertAndRedirectToAdmin("업로드 성공");
+$message = MakeMessage(TRUE, "업로드 성공");
+Response(200, $message);
 ?>

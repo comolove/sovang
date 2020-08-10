@@ -10,8 +10,8 @@ $imageUploader = new ImageUploader();
 $result = $imageUploader->UploadImages($pcImage['name'] , $pcImage, $mobileImage);
 if ($imageUploader->IsFail())
 {
-    Alert($result);
-    AlertAndRedirectToAdmin("이미지 업로드 실패");
+    $message = MakeMessage(FALSE, "이미지 업로드 실패");
+    Response(500, $message);
 }
 
 $insertSQL = "INSERT INTO mainSlide (imageIndex) VALUES($result)";
@@ -19,9 +19,11 @@ $insertSQL = "INSERT INTO mainSlide (imageIndex) VALUES($result)";
 $conn = CreateConnection();
 if ($conn->query($insertSQL) !== TRUE)
 {
-    AlertAndRedirectToAdmin("이미지 업로드 쿼리 실패");
+    $message = MakeMessage(FALSE, "이미지 업로드 쿼리 실패");
+    Response(500, $message);
 }
 $conn->close();
 
-AlertAndRedirectToAdmin("업로드 성공");
+$message = MakeMessage(TRUE, "이미지 업로드 성공");
+Response(200, $message);
 ?>
