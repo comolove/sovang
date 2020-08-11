@@ -236,9 +236,11 @@ export default class Community extends Vue {
   }
 
   handleScroll(/* e : Evuent */) {
-    if (window.scrollY > ((this.$refs.main as HTMLElement).clientHeight as number - window.innerHeight)+(window.innerWidth*0.07849)-5)
+    if (window.scrollY > ((this.$refs.main as HTMLElement).clientHeight as number - window.innerHeight)+(window.innerWidth*(this.isMobile?0.06389:0.07849))-5)
       this.isVisible = true;
     else this.isVisible = false;
+    console.log(((this.$refs.main as HTMLElement).clientHeight as number - window.innerHeight)+(window.innerWidth*0.07849)-5);
+    console.log(window.scrollY);
   }
 
   goTop() {
@@ -544,7 +546,7 @@ h2 {
   @include mobile {
     width: 9.167vw;
     height: 7.222vw;
-    bottom: 49.166vw;
+    bottom: 49.611vw;
     right: 9.167vw;
   }
 
