@@ -76,7 +76,7 @@
 
       <div style="margin-top: 2.63vw;" v-if="!isMobile">
         <span class="subTitle">선정기간</span>
-        <p>매년 하반기 (8~9월) 예정</p>
+        <p>상시모집 및 개별공지</p>
       </div>
       <div style="margin-top: 6.389vw;" v-if="isMobile">
         <p>
@@ -84,22 +84,22 @@
         </p>
       </div>
       <div class="procedure">
-        <span v-if="!isMobile" class="subTitle">선정일자</span>
-        <span v-if="isMobile" class="blue">- 선정일자</span>
+        <span v-if="!isMobile" class="subTitle">선정절차</span>
+        <span v-if="isMobile" class="blue">- 선정절차</span>
         <div class="flexWrap">
           <div>
             <div>발굴</div>- 지역연계
             <br />- 추천 & 발굴
             <br />- 신규품목 제안
           </div>
-          <AssetImage src="arrow-right-black.png" />
+          <AssetImage src="contents-arrow.png" />
           <div>
             <div>선발 1차</div>- 지원농민 부합
             <br />
             <span class="indent">조건확인</span>
             <br />- 서류심사
           </div>
-          <AssetImage src="arrow-right-black.png" />
+          <AssetImage src="contents-arrow.png" />
           <div>
             <div>선발 2차</div>- 지원자 만남
             <br />
@@ -108,14 +108,14 @@
             <span class="indent">의지 확인)</span>
             <br />- 펠로우 선정
           </div>
-          <AssetImage src="arrow-right-black.png" v-if="!isMobile" />
+          <AssetImage src="contents-arrow.png" v-if="!isMobile" />
           <div>
             <div>사전계약</div>- 계약서 작성
             <br />- 예상품목, 기간,
             <br />
             <span class="indent">목표기준 확인</span>
           </div>
-          <AssetImage src="arrow-right-black.png" />
+          <AssetImage src="contents-arrow.png" />
           <div>
             <div>지속관리</div>- 농사 중 지속
             <br />
@@ -124,7 +124,7 @@
             <br />
             <span class="indent">집중</span>
           </div>
-          <AssetImage src="arrow-right-black.png" />
+          <AssetImage src="contents-arrow.png" />
           <div>
             <div>최종공급</div>- 유통/판매 계획
             <br />
@@ -236,12 +236,7 @@ export default class Community extends Vue {
   }
 
   handleScroll(/* e : Evuent */) {
-    if (
-      window.scrollY >
-      (((this.$refs.main as HTMLElement).clientHeight as number) -
-        window.innerHeight) /
-        2
-    )
+    if (window.scrollY > ((this.$refs.main as HTMLElement).clientHeight as number - window.innerHeight)+(window.innerWidth*0.07849)-5)
       this.isVisible = true;
     else this.isVisible = false;
   }
@@ -360,6 +355,7 @@ h2 {
       > .subTitle {
         position: absolute;
         left: 22.24vw;
+        font-weight: 400;
         color: #001845;
       }
 
@@ -538,8 +534,9 @@ h2 {
 
 .button-go-top {
   position: fixed;
-  bottom: 22.292vw;
-  right: 2.188vw;
+  width: 3.385vw;
+  bottom: 23.365vw;
+  right: 14.299vw;
   transition: opacity 0.5s;
   opacity: 0;
   cursor: pointer;
@@ -547,7 +544,7 @@ h2 {
   @include mobile {
     width: 9.167vw;
     height: 7.222vw;
-    bottom: 46.7vw;
+    bottom: 49.166vw;
     right: 9.167vw;
   }
 
