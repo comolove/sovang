@@ -31,10 +31,15 @@ export default class MapLink extends Vue {
 
   span {
     position: relative;
-    font-size: 0.99vw;
+    font-size: 1.042vw;
     color: #001845;
     right: 0.234vw;
-    bottom: 0.39vw;
+    bottom: 0.521vw;
+    @include mobile {
+      right: 0.7vw;
+      font-size: 2.778vw;
+      bottom: 0.92vw;
+    }
   }
 
   @include mobile {

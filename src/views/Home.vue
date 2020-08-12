@@ -265,12 +265,7 @@ export default class Home extends Vue {
   }
 
   handleScroll(/* e : Evuent */) {
-    if (
-      window.scrollY >
-      (((this.$refs.main as HTMLElement).clientHeight as number) -
-        window.innerHeight) /
-        2
-    )
+    if (window.scrollY > ((this.$refs.main as HTMLElement).clientHeight as number - window.innerHeight)+(window.innerWidth*(this.isMobile?0.06389:0.07849))-5)
       this.isVisible = true;
     else this.isVisible = false;
   }
@@ -680,8 +675,9 @@ export default class Home extends Vue {
 
 .button-go-top {
   position: fixed;
-  bottom: 22.292vw;
-  right: 2.188vw;
+  width: 3.385vw;
+  bottom: 23.365vw;
+  right: 14.299vw;
   transition: opacity 0.5s;
   opacity: 0;
   cursor: pointer;
@@ -689,7 +685,7 @@ export default class Home extends Vue {
   @include mobile {
     width: 9.167vw;
     height: 7.222vw;
-    bottom: 46.7vw;
+    bottom: 49.611vw;
     right: 9.167vw;
   }
 

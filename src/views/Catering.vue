@@ -190,7 +190,7 @@
       </div>
       <div class="contentsWrap-6" data-aos="fade-up">
         <span v-if="!isMobile" class="warning">
-          * 별표 표시 항목은 필수 입력사항입니다.
+          <span style="color:red;">*</span> 별표 표시 항목은 필수 입력사항입니다.
         </span>
         <InputText
           ref="input-groupID"
@@ -839,12 +839,7 @@ export default class Catering extends Vue {
   }
 
   handleScroll(/* e : Evuent */) {
-    if (
-      window.scrollY >
-      (((this.$refs.main as HTMLElement).clientHeight as number) -
-        window.innerHeight) /
-        2
-    )
+    if (window.scrollY > ((this.$refs.main as HTMLElement).clientHeight as number - window.innerHeight)+(window.innerWidth*(this.isMobile?0.06389:0.07849))-5)
       this.isVisible = true;
     else this.isVisible = false;
   }
@@ -1559,7 +1554,7 @@ article {
       font-size: 0.99vw;
       left: 0.6vw;
       top: 28.9vw;
-      color: red;
+      color: #797777;
 
       @include mobile {
         display: none;
@@ -1994,8 +1989,9 @@ article {
 
 .button-go-top {
   position: fixed;
-  bottom: 22.292vw;
-  right: 2.188vw;
+  width: 3.385vw;
+  bottom: 23.365vw;
+  right: 14.299vw;
   transition: opacity 0.5s;
   opacity: 0;
   cursor: pointer;
@@ -2003,7 +1999,7 @@ article {
   @include mobile {
     width: 9.167vw;
     height: 7.222vw;
-    bottom: 46.7vw;
+    bottom: 49.611vw;
     right: 9.167vw;
   }
 

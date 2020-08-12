@@ -41,7 +41,15 @@ footer {
 
   @include mobile {
     padding-top: 6.944vw;
-    padding-bottom: 15vw;
+    padding-bottom: 17.222vw;
+  }
+}
+
+.wrap{
+  height: 11.615vw;
+
+  @include mobile {
+    height: 25vw;
   }
 }
 

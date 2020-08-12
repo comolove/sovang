@@ -20,7 +20,7 @@
         <a href="https://smartstore.naver.com/sovang" class="menu">온라인몰</a>
         <router-link to="/catering" class="menu">케이터링</router-link>
         <router-link to="/present" class="menu">명절선물</router-link>
-        <router-link to="/community" class="menu">알립니다</router-link>
+        <router-link to="/community" class="menu">펠로우십</router-link>
         <img
           class="btn-close"
           src="@/assets/images/icon-close.png"
