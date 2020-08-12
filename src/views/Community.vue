@@ -3,12 +3,13 @@
     <Header />
     <section class="main">
       <AssetImage
+        data-aos="fade-up"
         :src="'community-page/' + (isMobile?'Mobile':'WEB') + '/main.jpg'"
         class="main-img"
       />
     </section>
     <section class="content-1">
-      <HomeContent title="지역과 동행하는 푸릇농펠로십">
+      <HomeContent title="지역과 동행하는 푸릇농펠로십"  data-aos="fade-up">
         <AssetImage
           :src="'community-page/' + (isMobile?'Mobile':'WEB') + '/fellowship.jpg'"
           class="fellowship"
@@ -31,24 +32,24 @@
       </HomeContent>
     </section>
     <section class="content-2">
-      <h2>
+      <h2  data-aos="fade-up">
         <span v-if="!isMobile">소녀방앗간</span>푸릇농펠로십, 이렇게 운영합니다.
       </h2>
-      <div v-if="!isMobile">
+      <div v-if="!isMobile"  data-aos="fade-up">
         <span class="subTitle">선정기준</span>
         <p>
           <span style="letter-spacing: 0.09vw;">가장 중요한 기준은 “소농의 푸릇한 양심"입니다. 영세/중소농업인 기준에 해당하는</span>
           <br />생산자분들 중 본인만의 철학으로 농사를 지으시는 농업 생산자분들에게 모두 열려있습니다.
         </p>
       </div>
-      <div v-if="isMobile">
+      <div v-if="isMobile"  data-aos="fade-up">
         <p>
           <span class="blue">- 선정기준 :</span>가장 중요한 기준은 “소농의 푸릇한
           <span style="letter-spacing: 0.3vw;">양심"입니다. 영세/중소농업인 기준에 해당하는</span> 생산자분들 중 본인만의 철학으로 농사를 지으시는 농업 생산자분들에게 모두 열려있습니다.
         </p>
       </div>
 
-      <div style="margin-top: 2.656vw;" v-if="!isMobile">
+      <div style="margin-top: 2.656vw;" v-if="!isMobile"  data-aos="fade-up">
         <p>
           <span class="bold">- 영세농업인 기준 :</span> 연소득 3천만원 이하 또는 경작면적 0.1ha 이상 - 0.5ha 이하
           <br />
@@ -56,7 +57,7 @@
           연소득 5천만원 이하 또는 경작면적 0.5ha 이상 - 2ha 이하
         </p>
       </div>
-      <div v-if="isMobile" style="margin-top: 5.278vw;">
+      <div v-if="isMobile" style="margin-top: 5.278vw;"  data-aos="fade-up">
         <p>
           <span class="blue">* 영세농업인 기준 :</span> 연소득 3천만원 이하 또는 경작면적 0.1ha 이상 - 0.5ha 이하
           <br />
@@ -64,26 +65,26 @@
         </p>
       </div>
 
-      <div class="warning" v-if="!isMobile">
+      <div class="warning" v-if="!isMobile"  data-aos="fade-up">
         <p>
           * 위 기준은 한국농촌경제연구원의 정책연구 보고 중 &lt;저소득 농가의 농가 경제 실태 분석&gt; 보고 자료와 청송군 농업 정책 중
           <br />농업인 소득배가정책 자료에 근거한 기준입니다. 위 기준은 농업 경제 현황 등에 따라 변동될 수 있습니다.
         </p>
       </div>
-      <div v-if="isMobile" class="warning">
+      <div v-if="isMobile" class="warning"  data-aos="fade-up">
         <p>(위 기준은 한국농촌경제연구원의 정책연구 보고 중 &lt;저소득 농가의 농가 경제 실태 분석&gt; 보고 자료와 청송군 농업 정책 중 농업인 소득배가정책 자료에 근거한 기준이며, 농업 경제 현황 등에 따라 변동될 수 있습니다.)</p>
       </div>
 
-      <div style="margin-top: 2.63vw;" v-if="!isMobile">
+      <div style="margin-top: 2.63vw;" v-if="!isMobile"  data-aos="fade-up">
         <span class="subTitle">선정기간</span>
         <p>상시모집 및 개별공지</p>
       </div>
-      <div style="margin-top: 6.389vw;" v-if="isMobile">
+      <div style="margin-top: 6.389vw;" v-if="isMobile" data-aos="fade-up">
         <p>
           <span class="blue">- 선정기간 :</span> 매년 하반기 (8~9월) 예정
         </p>
       </div>
-      <div class="procedure">
+      <div class="procedure" data-aos="fade-up">
         <span v-if="!isMobile" class="subTitle">선정절차</span>
         <span v-if="isMobile" class="blue">- 선정절차</span>
         <div class="flexWrap">
@@ -135,15 +136,16 @@
       </div>
     </section>
     <section class="content-3">
-      <h2>푸릇농펠로우 이야기</h2>
-      <p>
+      <h2 data-aos="fade-up">푸릇농펠로우 이야기</h2>
+      <p data-aos="fade-up">
         지속가능한 생산을 위한 동행의 길을 함께 걸어가실 농업생산자분들을 모십니다.
         <br />본인만의 철학으로 농사를 지으시는 모든 영세 농업생산자분들의 많은 가르침을 기다립니다.
       </p>
-      <div v-if="!isMobile">
+      <div v-if="!isMobile" data-aos="fade-up">
         <AssetImage v-for="i in 3" :key="i" :src="'community-page/story-'+i+'.png'" />
       </div>
       <Carousel
+          data-aos="fade-up"
           v-if="isMobile"
           class="fellow-carousel"
           :per-page="1"
@@ -170,7 +172,7 @@
     </section>
     <!-- 모바일 사진 넣기 -->
     <section class="content-4">
-      <AssetImage :src="'community-page/' + (isMobile?'Mobile':'WEB') + '/food.jpg'" />
+      <AssetImage :src="'community-page/' + (isMobile?'Mobile':'WEB') + '/food.jpg'" data-aos="fade-up" />
     </section>
     <AssetImage
       class="button-go-top"
@@ -239,8 +241,6 @@ export default class Community extends Vue {
     if (window.scrollY > ((this.$refs.main as HTMLElement).clientHeight as number - window.innerHeight)+(window.innerWidth*(this.isMobile?0.06389:0.07849))-5)
       this.isVisible = true;
     else this.isVisible = false;
-    console.log(((this.$refs.main as HTMLElement).clientHeight as number - window.innerHeight)+(window.innerWidth*0.07849)-5);
-    console.log(window.scrollY);
   }
 
   goTop() {
