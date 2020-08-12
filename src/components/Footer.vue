@@ -45,7 +45,7 @@ footer {
   }
 }
 
-.wrap{
+.wrap {
   height: 11.615vw;
 
   @include mobile {
