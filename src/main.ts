@@ -6,10 +6,12 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 import VueCookies from "vue-cookies";
+import VueScrollTo from "vue-scrollto";
 
 Vue.config.productionTip = false;
 
 Vue.use(VueCookies);
+Vue.use(VueScrollTo);
 
 new Vue({
   created() {

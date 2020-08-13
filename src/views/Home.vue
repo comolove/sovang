@@ -60,7 +60,8 @@
             v-for="(data, index) of storeSlideData"
             :key="index"
             :data-index="index"
-            data-name="DataName"
+            :data-name="data.storeName"
+            :data-store-index="data.index"
             @slideclick="handleStoreSlideClick"
           >
             <div class="store-content">
@@ -107,7 +108,7 @@
               :key="index"
               :data-index="index"
               data-name="DataName"
-              @slideclick="handleStoreSlideClick"
+              @slideclick="onSlideClickToMiddle"
             >
               <div class="online-mall-content">
                 <img :src="isMobile ? data.img.mobilePath : data.img.pcPath" />
@@ -248,7 +249,17 @@ export default class Home extends Vue {
     }, 6000);
   }
 
-  handleStoreSlideClick(dataset: { index: string }) {
+  handleStoreSlideClick(dataset: { name: string; storeIndex: number }) {
+    this.$router.push({
+      name: "Store",
+      params: {
+        storeName: dataset.name,
+        storeIndex: dataset.storeIndex.toString()
+      }
+    });
+  }
+
+  onSlideClickToMiddle(dataset: { index: string }) {
     this.curStoreIndex = parseInt(dataset.index);
     // index 값으로 주면 해당 인덱스가 왼쪽(start)에 붙게되서 - 1 인덱스로 해주어서 선택한 인덱스가 가운데로 오도록 함
     (this.$refs.storeCarousel as Carousel).goToPage(this.curStoreIndex - 1);

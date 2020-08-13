@@ -1,5 +1,5 @@
 <template>
-  <main class="store" ref="main">
+  <main id="store" class="store" ref="main">
     <Header />
     <section class="main">
       <section data-aos="fade-up" class="img-slider">
@@ -27,7 +27,7 @@
         매일 다른 제철반찬과 향긋하게 윤기나는
         <br />산나물밥을 단정한 한 그릇에 담습니다.
       </div>
-      <div data-aos="fade-up" class="info-2">
+      <div data-aos="fade-up" class="info-2" id="t">
         식사공간에서는 편안하고 건강한 한 끼를 드실 수 있도록
         <br />설명하지 않아도 더 깊은 정보와 경험을 전하고자 합니다.
       </div>
@@ -37,7 +37,9 @@
         v-for="(store, index) in stores"
         :key="index"
         :title="store.storeName"
+        :id="'store-' + store.index"
         data-aos="fade-up"
+        :ref="'store-' + store.index"
       >
         <MapLink :link="store.link" />
         <CarouselWithNavCarousel
@@ -101,24 +103,7 @@ export default class Store extends Vue {
   private firstExtraImgTransition = "";
   private lastExtraImgTransition = "";
 
-  private storeSlides = {
-    "seoul-forest": {
-      main: [
-        "store-page/seoul-forest/main/1.png",
-        "store-page/seoul-forest/main/2.png",
-        "store-page/seoul-forest/main/3.png",
-        "store-page/seoul-forest/main/4.png",
-        "store-page/seoul-forest/main/5.png"
-      ],
-      thumbnail: [
-        "store-page/seoul-forest/thumbnail/1.png",
-        "store-page/seoul-forest/thumbnail/2.png",
-        "store-page/seoul-forest/thumbnail/3.png",
-        "store-page/seoul-forest/thumbnail/4.png",
-        "store-page/seoul-forest/thumbnail/5.png"
-      ]
-    }
-  };
+  private once = false;
 
   async created() {
     window.addEventListener("resize", this.handleResize);
@@ -138,6 +123,21 @@ export default class Store extends Vue {
 
   mounted() {
     this.handleResize();
+  }
+
+  updated() {
+    if (!this.once && this.$route.params.storeIndex) {
+      this.$scrollTo("#store-" + this.$route.params.storeIndex, {
+        duration: 500,
+        easing: "linear",
+        offset: -100,
+        force: true,
+        x: false,
+        y: true
+      });
+
+      this.once = true;
+    }
   }
 
   async LoadStores() {
@@ -176,15 +176,19 @@ export default class Store extends Vue {
   }
 
   handleScroll(/* e : Evuent */) {
-    if (
-      window.scrollY >
-      ((this.$refs.main as HTMLElement).clientHeight as number) -
-        window.innerHeight +
-        window.innerWidth * (this.isMobile ? 0.06389 : 0.07849) -
-        5
-    )
-      this.isVisible = true;
-    else this.isVisible = false;
+    const mainTagElement = this.$refs.main as HTMLElement;
+    if (mainTagElement) {
+      const scrollFactor = this.isMobile ? 0.06389 : 0.07849;
+      const clientHeight = mainTagElement.clientHeight;
+      if (
+        window.scrollY >
+        clientHeight - window.innerHeight + window.innerWidth * scrollFactor - 5
+      ) {
+        // this.isVisible = true;
+      } else {
+        // this.isVisible = false;
+      }
+    }
   }
 
   goTop() {
