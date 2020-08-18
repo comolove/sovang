@@ -129,7 +129,7 @@ export default class Store extends Vue {
   updated() {
     if (!this.once && this.$route.params.storeIndex) {
       this.$scrollTo("#store-" + this.$route.params.storeIndex, {
-        duration: 500,
+        duration: 0,
         easing: "linear",
         offset: -100,
         force: true,
