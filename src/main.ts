@@ -17,8 +17,8 @@ new Vue({
   created() {
     AOS.init({
       duration: 1000,
-      delay: 300,
-      offset: 400
+      delay: 100,
+      offset: 300
     });
   },
   router,

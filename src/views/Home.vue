@@ -109,11 +109,10 @@
               :key="index"
               :data-index="index"
               data-name="DataName"
-              @slideclick="onSlideClickToMiddle"
+              @slideclick="() => { openLink(data.link) }"
             >
               <div class="online-mall-content">
                 <img :src="isMobile ? data.img.mobilePath : data.img.pcPath" />
-                <!-- 여기는 온라인몰 링크가 없는가? -->
                 <p>
                   {{ data.itemDesc }}<br /><span>{{ data.itemName }}</span>
                 </p>
@@ -295,6 +294,10 @@ export default class Home extends Vue {
       if (firstSlide) {
         firstSlide.classList.remove("VueCarousel-slide-active");
       }
+  }
+
+  openLink(link : string ) {
+    window.open(link);
   }
 
   goTop() {
