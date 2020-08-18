@@ -13,6 +13,7 @@
         :navigationNextLabel="mainCarouselNavigationNext"
         :navigationPrevLabel="mainCarouselNavigationPrev"
         :loop="true"
+        @navigation-click="handleNavClick"
         paginationPosition="bottom-overlay"
         paginationColor="#c9caca"
         paginationActiveColor="white"
@@ -226,10 +227,12 @@ export default class Home extends Vue {
     this.responseComponents();
 
     // vue-carousel mounted시 첫 번째 요소가 활성화 클래스 태그가 안붙는 문제가 있음
-    const firstSlideOfMain = document.getElementById("main-carousel-slide-0");
-    if (firstSlideOfMain) {
-      firstSlideOfMain.classList.add("VueCarousel-slide-active");
-    }
+    setTimeout(() => {
+      const firstSlideOfMain = document.getElementById("main-carousel-slide-0");
+      if (firstSlideOfMain) {
+        firstSlideOfMain.classList.add("VueCarousel-slide-active");
+      }
+    }, 1000);
 
     setTimeout(() => {
       // 슬라이드가 바뀌어도 임의로 넣어준 active 클래스는 삭제가 안되서 n초후에 임의로 삭제
@@ -237,7 +240,7 @@ export default class Home extends Vue {
       if (firstSlide) {
         firstSlide.classList.remove("VueCarousel-slide-active");
       }
-    }, 6000);
+    }, 5000);
   }
 
   handleStoreSlideClick(dataset: { index: string }) {
@@ -260,6 +263,13 @@ export default class Home extends Vue {
     if (window.scrollY > ((this.$refs.main as HTMLElement).clientHeight as number - window.innerHeight)+(window.innerWidth*(this.isMobile?0.06389:0.07849))-5)
       this.isVisible = true;
     else this.isVisible = false;
+  }
+
+  handleNavClick(/* e : Evuent */) {
+    const firstSlide = document.getElementById("main-carousel-slide-0");
+      if (firstSlide) {
+        firstSlide.classList.remove("VueCarousel-slide-active");
+      }
   }
 
   goTop() {
@@ -668,7 +678,7 @@ export default class Home extends Vue {
 .button-go-top {
   position: fixed;
   width: 3.385vw;
-  bottom: 23.365vw;
+  bottom: 23.281vw;
   right: 14.299vw;
   transition: opacity 0.5s;
   opacity: 0;
@@ -677,7 +687,7 @@ export default class Home extends Vue {
   @include mobile {
     width: 9.167vw;
     height: 7.222vw;
-    bottom: 49.611vw;
+    bottom: 49.167vw;
     right: 9.167vw;
   }
 

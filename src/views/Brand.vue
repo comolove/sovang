@@ -416,7 +416,7 @@ main {
 .button-go-top {
   position: fixed;
   width: 3.385vw;
-  bottom: 23.365vw;
+  bottom: 23.281vw;
   right: 14.299vw;
   transition: opacity 0.5s;
   opacity: 0;
@@ -425,7 +425,7 @@ main {
   @include mobile {
     width: 9.167vw;
     height: 7.222vw;
-    bottom: 49.611vw;
+    bottom: 49.167vw;
     right: 9.167vw;
   }
 

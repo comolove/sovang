@@ -71,7 +71,7 @@ div {
     cursor: text;
     left: 0.667vw;
     top: 0.677vw;
-    font-size: 1.146vw;
+    font-size: 1.006vw;
     color: #595757;
     font-weight: 300;
 
@@ -83,7 +83,7 @@ div {
 
     > span {
       color: red;
-      margin-left: -0.25vw;
+      margin-left: -0.15vw;
     }
   }
 }

@@ -42,9 +42,9 @@
           <br />
           <br />산 속에 핀 수많은 풀 중에 먹을 것을 골라내기 위해 수십년 산을 타
           온 어르신들을 마주할 때 - 매 해 이른 봄, 오랫동안
-          <span class="wider-1"
-            >이어온 옛 방식으로 발효음식의 전통을 빚어오는</span
-          >
+          <span
+            class="wider-1"
+          >이어온 옛 방식으로 발효음식의 전통을 빚어오는</span>
           장인분들을 마주할 때 - 매일의 순간이 모여 역사와 혜안을 만든다는 것을
           배웁니다.
           <br />
@@ -63,11 +63,7 @@
           있습니다 :)
         </span>
         <div class="flexWrap" v-if="!isMobile">
-          <div
-            v-for="(data, index) of holidayPresentData"
-            :key="index"
-            @click="openPopup(index)"
-          >
+          <div v-for="(data, index) of holidayPresentData" :key="index" @click="openPopup(index)">
             <div>
               <AssetImage class="before" :src="data.pcPath" />
             </div>
@@ -93,10 +89,7 @@
             :key="index"
             :id="'main-carousel-slide-' + index"
           >
-            <AssetImage
-              :src="isMobile ? data.mobilePath : data.pcPath"
-              @click="openPopup(index)"
-            />
+            <AssetImage :src="isMobile ? data.mobilePath : data.pcPath" @click="openPopup(index)" />
             <p v-html="data.info" />
           </Slide>
         </Carousel>
@@ -108,10 +101,10 @@
           :isMobile="isMobile"
         >
           <template slot="title">
-            <span v-if="!isMobile"
-              >오지의 장 - 소녀방앗간의 시그니처, 오랜시간 고숙성한
-              ‘발효장’</span
-            >
+            <span v-if="!isMobile">
+              오지의 장 - 소녀방앗간의 시그니처, 오랜시간 고숙성한
+              ‘발효장’
+            </span>
             <span v-if="isMobile">
               오지의 장
               <br />
@@ -152,9 +145,7 @@
           :isMobile="isMobile"
         >
           <template slot="title">
-            <span v-if="!isMobile"
-              >오지의 맛 - 재료 본연의 맛에 집중한 완벽한 장인의 맛</span
-            >
+            <span v-if="!isMobile">오지의 맛 - 재료 본연의 맛에 집중한 완벽한 장인의 맛</span>
             <span v-if="isMobile">
               오지의 맛
               <br />
@@ -185,10 +176,10 @@
           :isMobile="isMobile"
         >
           <template slot="title">
-            <span v-if="!isMobile"
-              >오지의 향 - 국내산 참깨와 들깨를 저온착유한 전통기름과 직접 담은
-              재래식 간장</span
-            >
+            <span v-if="!isMobile">
+              오지의 향 - 국내산 참깨와 들깨를 저온착유한 전통기름과 직접 담은
+              재래식 간장
+            </span>
             <span v-if="isMobile">
               오지의 향
               <br />
@@ -222,9 +213,7 @@
           :isMobile="isMobile"
         >
           <template slot="title">
-            <span v-if="!isMobile"
-              >오지의 부각 - 귀한 손님 상에 올라온 한식별미, 찹쌀부각</span
-            >
+            <span v-if="!isMobile">오지의 부각 - 귀한 손님 상에 올라온 한식별미, 찹쌀부각</span>
             <span v-if="isMobile">
               오지의 부각
               <br />
@@ -252,9 +241,7 @@
           :isMobile="isMobile"
         >
           <template slot="title">
-            <span v-if="!isMobile"
-              >오지의 약밥 - 집에서 간편하게 만들어 먹는 영양밥과 찰약밥</span
-            >
+            <span v-if="!isMobile">오지의 약밥 - 집에서 간편하게 만들어 먹는 영양밥과 찰약밥</span>
             <span v-if="isMobile">
               오지의 약밥
               <br />
@@ -309,7 +296,7 @@
       <p data-aos="fade-up">
         산지직송 청정재료로 만드는 "고객 맞춤형" 선물세트를
         <br v-if="isMobile" />기획부터 구성,
-        <span v-if="isMobile">그리고</span>포장까지 전 과정을 진행합니다.
+        <span v-if="isMobile"> 그리고</span> 포장까지 전 과정을 진행합니다.
         <br />귀한 손님에게 귀사만의 브랜드 아이덴티티를 온전하게
         <br v-if="isMobile" />담은 특별한 청정재료 선물보따리를 전하셔요 :)
       </p>
@@ -353,9 +340,7 @@
               <span>
                 {{ data.title }}
                 <br />
-                <span>
-                  {{ data.desc }}
-                </span>
+                <span>{{ data.desc }}</span>
               </span>
             </div>
           </Slide>
@@ -369,30 +354,10 @@
       </div>
       <form name="consulting" data-aos="fade-up">
         <div class="flexWrap">
-          <InputText
-            ref="input-group"
-            placeholder="단체명"
-            name="groupName"
-            :isRequired="false"
-          />
-          <InputText
-            ref="input-manager"
-            placeholder="담당자"
-            name="manager"
-            :isRequired="true"
-          />
-          <InputText
-            ref="input-contact"
-            placeholder="연락처"
-            name="contact"
-            :isRequired="true"
-          />
-          <InputText
-            ref="input-email"
-            placeholder="이메일"
-            name="groupName"
-            :isRequired="false"
-          />
+          <InputText ref="input-group" placeholder="단체명" name="groupName" :isRequired="false" />
+          <InputText ref="input-manager" placeholder="담당자" name="manager" :isRequired="true" />
+          <InputText ref="input-contact" placeholder="연락처" name="contact" :isRequired="true" />
+          <InputText ref="input-email" placeholder="이메일" name="groupName" :isRequired="false" />
           <TextareaWithRedAsterisk
             ref="input-question"
             v-if="!isMobile"
@@ -412,12 +377,7 @@
           <span style="color:red">*</span> 별표 표시 항목은 필수 입력사항입니다.
         </span>
         <div class="privacyCondition">
-          <input
-            ref="privacyCheckbox"
-            type="checkbox"
-            id="privacy"
-            @click="privacyAgree"
-          />
+          <input ref="privacyCheckbox" type="checkbox" id="privacy" @click="privacyAgree" />
           <label for="privacy">
             <AssetImage src="catering-page/privacy.png" />
           </label>
@@ -441,10 +401,7 @@
     <Modal v-show="privacyModal" class="privacyModal">
       <h2>
         개인정보 수집 및 이용
-        <img
-          src="@/assets/images/icon-close-darkblue.png"
-          @click="closePrivacyModal"
-        />
+        <img src="@/assets/images/icon-close-darkblue.png" @click="closePrivacyModal" />
       </h2>
       <p>
         <span class="bold">[개인정보 수집 및 이용 동의 ]</span> 주식회사
@@ -468,20 +425,23 @@
         파기합니다.
         <br />
         <br />
-        <span class="bold"
-          >4. 동의를 거부할 권리 및 동의 거부에 따른 불이익</span
-        >
+        <span class="bold">4. 동의를 거부할 권리 및 동의 거부에 따른 불이익</span>
         <br />서비스 제공을 위하여 기본 정보를 수집하고 있으며, 동의 거부시 상담
         예약이 제한될 수 있습니다.
         <br />
         <br />
-        <span class="bold"
-          >본인은 [개인정보 수집 및 이용에 관한 동의]를 잘 읽어 보았으며,
-          개인정보수집 및 이용에 동의 합니다.</span
-        >
+        <span class="bold">
+          본인은 [개인정보 수집 및 이용에 관한 동의]를 잘 읽어 보았으며,
+          개인정보수집 및 이용에 동의 합니다.
+        </span>
       </p>
     </Modal>
-    <AssetImage class="button-go-top" :class="{'button-go-top-visible': isVisible,'button-go-top-invisible': !isVisible}" @click="goTop" src="button-go-top.png" />
+    <AssetImage
+      class="button-go-top"
+      :class="{'button-go-top-visible': isVisible,'button-go-top-invisible': !isVisible}"
+      @click="goTop"
+      src="button-go-top.png"
+    />
     <Footer class="footer" />
   </main>
 </template>
@@ -659,15 +619,21 @@ export default class Present extends Vue {
   }
 
   handleScroll(/* e : Evuent */) {
-    if (window.scrollY > ((this.$refs.main as HTMLElement).clientHeight as number - window.innerHeight)+(window.innerWidth*(this.isMobile?0.06389:0.07849))-5)
+    if (
+      window.scrollY >
+      ((this.$refs.main as HTMLElement).clientHeight as number) -
+        window.innerHeight +
+        window.innerWidth * (this.isMobile ? 0.06389 : 0.07849) -
+        5
+    )
       this.isVisible = true;
     else this.isVisible = false;
   }
 
   goTop() {
     window.scroll({
-      top:0,
-      left:0,
+      top: 0,
+      left: 0,
       behavior: "smooth"
     });
   }
@@ -1636,7 +1602,7 @@ article {
 .button-go-top {
   position: fixed;
   width: 3.385vw;
-  bottom: 23.365vw;
+  bottom: 23.281vw;
   right: 14.299vw;
   transition: opacity 0.5s;
   opacity: 0;
@@ -1645,7 +1611,7 @@ article {
   @include mobile {
     width: 9.167vw;
     height: 7.222vw;
-    bottom: 49.611vw;
+    bottom: 49.167vw;
     right: 9.167vw;
   }
 
