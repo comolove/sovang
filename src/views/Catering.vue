@@ -227,7 +227,7 @@
             <option value="0" selected disabled>
               <span v-if="!isMobile">년</span>
             </option>
-            <option v-for="y in 11" :key="y" :value="2019 + y"
+            <option v-for="y in 6" :key="y" :value="2019 + y"
               >{{ 2019 + parseInt(y) }}년</option
             >
           </select>
@@ -1608,7 +1608,10 @@ article {
     > span {
       display: block;
       position: relative;
-      width: 50%;
+
+      @include mobile {
+        width: 50%;
+      }
 
       .redAsterisk {
         position: absolute;
@@ -1647,7 +1650,7 @@ article {
       label {
         width: 100%;
         height: 100%;
-        top: 0.313vw;
+        top: 0.383vw;
         background: transparent;
         color: #595757;
       }
@@ -2007,7 +2010,7 @@ article {
 .button-go-top {
   position: fixed;
   width: 3.385vw;
-  bottom: 23.365vw;
+  bottom: 23.281vw;
   right: 14.299vw;
   transition: opacity 0.5s;
   opacity: 0;
@@ -2016,7 +2019,7 @@ article {
   @include mobile {
     width: 9.167vw;
     height: 7.222vw;
-    bottom: 49.611vw;
+    bottom: 49.167vw;
     right: 9.167vw;
   }
 

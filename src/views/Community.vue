@@ -38,29 +38,20 @@
       </HomeContent>
     </section>
     <section class="content-2">
-      <h2 data-aos="fade-up">
-        <span v-if="!isMobile">소녀방앗간</span>푸릇농펠로십, 이렇게 운영합니다.
+      <h2  data-aos="fade-up">
+        <span v-if="!isMobile">소녀방앗간</span> 푸릇농펠로십, 이렇게 운영합니다.
       </h2>
-      <div v-if="!isMobile" data-aos="fade-up">
-        <span class="subTitle">선정기준</span>
-        <p>
-          <span style="letter-spacing: 0.09vw;"
-            >가장 중요한 기준은 “소농의 푸릇한 양심"입니다. 영세/중소농업인
-            기준에 해당하는</span
-          >
-          <br />생산자분들 중 본인만의 철학으로 농사를 지으시는 농업
-          생산자분들에게 모두 열려있습니다.
+      <div v-if="!isMobile">
+        <span class="subTitle" data-aos="fade-up">선정기준</span>
+        <p data-aos="fade-up">
+          <span style="letter-spacing: 0.09vw;">가장 중요한 기준은 “소농의 푸릇한 양심"입니다. 영세/중소농업인 기준에 해당하는</span>
+          <br />생산자분들 중 본인만의 철학으로 농사를 지으시는 농업 생산자분들에게 모두 열려있습니다.
         </p>
       </div>
       <div v-if="isMobile" data-aos="fade-up">
         <p>
-          <span class="blue">- 선정기준 :</span>가장 중요한 기준은 “소농의
-          푸릇한
-          <span style="letter-spacing: 0.3vw;"
-            >양심"입니다. 영세/중소농업인 기준에 해당하는</span
-          >
-          생산자분들 중 본인만의 철학으로 농사를 지으시는 농업 생산자분들에게
-          모두 열려있습니다.
+          <span class="blue">- 선정기준 :</span> 가장 중요한 기준은 “소농의 푸릇한
+          <span style="letter-spacing: 0.3vw;">양심"입니다. 영세/중소농업인 기준에 해당하는</span> 생산자분들 중 본인만의 철학으로 농사를 지으시는 농업 생산자분들에게 모두 열려있습니다.
         </p>
       </div>
 
@@ -100,17 +91,19 @@
         </p>
       </div>
 
-      <div style="margin-top: 2.63vw;" v-if="!isMobile" data-aos="fade-up">
-        <span class="subTitle">선정기간</span>
-        <p>상시모집 및 개별공지</p>
+      <div style="margin-top: 2.63vw;" v-if="!isMobile">
+        <span class="subTitle" data-aos="fade-up">선정기간</span>
+        <p data-aos="fade-up">상시모집 및 개별공지</p>
       </div>
       <div style="margin-top: 6.389vw;" v-if="isMobile" data-aos="fade-up">
-        <p><span class="blue">- 선정기간 :</span> 매년 하반기 (8~9월) 예정</p>
+        <p>
+          <span class="blue">- 선정기간 :</span> 상시모집 및 개별공지
+        </p>
       </div>
-      <div class="procedure" data-aos="fade-up">
-        <span v-if="!isMobile" class="subTitle">선정절차</span>
-        <span v-if="isMobile" class="blue">- 선정절차</span>
-        <div class="flexWrap">
+      <div class="procedure">
+        <span v-if="!isMobile" class="subTitle" data-aos="fade-up">선정절차</span>
+        <span v-if="isMobile" class="blue" data-aos="fade-up">- 선정절차</span>
+        <div class="flexWrap" data-aos="fade-up">
           <div>
             <div>발굴</div>
             - 지역연계 <br />- 추천 & 발굴 <br />- 신규품목 제안
@@ -200,7 +193,6 @@
         </Slide>
       </Carousel>
     </section>
-    <!-- 모바일 사진 넣기 -->
     <section class="content-4">
       <AssetImage
         :src="'community-page/' + (isMobile ? 'Mobile' : 'WEB') + '/food.jpg'"
@@ -334,7 +326,7 @@ export default class Community extends Vue {
 }
 
 h2 {
-  padding: 8.281vw 0 3.75vw;
+  padding: 8.281vw 0 0;
   text-align: center;
   font-size: 1.719vw;
   font-weight: 500;
@@ -577,7 +569,7 @@ h2 {
 .button-go-top {
   position: fixed;
   width: 3.385vw;
-  bottom: 23.365vw;
+  bottom: 23.281vw;
   right: 14.299vw;
   transition: opacity 0.5s;
   opacity: 0;
@@ -586,7 +578,7 @@ h2 {
   @include mobile {
     width: 9.167vw;
     height: 7.222vw;
-    bottom: 49.611vw;
+    bottom: 49.167vw;
     right: 9.167vw;
   }
 

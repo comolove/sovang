@@ -58,7 +58,7 @@ div {
     cursor: text;
     top: 0.729vw;
     left: 0.938vw;
-    font-size: 1.146vw;
+    font-size: 1.006vw;
     font-family: Noto Sans KR;
     letter-spacing: -0.1vw;
     line-height: 1.73;
