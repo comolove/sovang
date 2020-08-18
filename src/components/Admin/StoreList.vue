@@ -1,6 +1,11 @@
 <template>
   <div class="store-list">
-    <StoreView :store="value" v-for="(value, index) in stores" :key="index" />
+    <StoreView
+      :store="value"
+      v-for="(value, index) in stores"
+      :key="index"
+      @LoadData="LoadData"
+    />
   </div>
 </template>
 
@@ -16,6 +21,10 @@ import { Store } from "@/utils";
 })
 export default class StoreList extends Vue {
   @Prop() stores!: Store[];
+
+  private LoadData() {
+    this.$emit("LoadData");
+  }
 }
 </script>
 

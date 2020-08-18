@@ -61,7 +61,8 @@
             v-for="(data, index) of storeSlideData"
             :key="index"
             :data-index="index"
-            data-name="DataName"
+            :data-name="data.storeName"
+            :data-store-index="data.index"
             @slideclick="handleStoreSlideClick"
           >
             <div class="store-content">
@@ -108,7 +109,7 @@
               :key="index"
               :data-index="index"
               data-name="DataName"
-              @slideclick="handleStoreSlideClick"
+              @slideclick="onSlideClickToMiddle"
             >
               <div class="online-mall-content">
                 <img :src="isMobile ? data.img.mobilePath : data.img.pcPath" />
@@ -150,7 +151,15 @@
         </div>
       </HomeContent>
     </section>
-    <AssetImage class="button-go-top" :class="{'button-go-top-visible': isVisible,'button-go-top-invisible': !isVisible}" @click="goTop" src="button-go-top.png" />
+    <AssetImage
+      class="button-go-top"
+      :class="{
+        'button-go-top-visible': isVisible,
+        'button-go-top-invisible': !isVisible
+      }"
+      @click="goTop"
+      src="button-go-top.png"
+    />
     <Footer />
   </main>
 </template>
@@ -243,7 +252,17 @@ export default class Home extends Vue {
     }, 5000);
   }
 
-  handleStoreSlideClick(dataset: { index: string }) {
+  handleStoreSlideClick(dataset: { name: string; storeIndex: number }) {
+    this.$router.push({
+      name: "Store",
+      params: {
+        storeName: dataset.name,
+        storeIndex: dataset.storeIndex.toString()
+      }
+    });
+  }
+
+  onSlideClickToMiddle(dataset: { index: string }) {
     this.curStoreIndex = parseInt(dataset.index);
     // index 값으로 주면 해당 인덱스가 왼쪽(start)에 붙게되서 - 1 인덱스로 해주어서 선택한 인덱스가 가운데로 오도록 함
     (this.$refs.storeCarousel as Carousel).goToPage(this.curStoreIndex - 1);
@@ -260,7 +279,13 @@ export default class Home extends Vue {
   }
 
   handleScroll(/* e : Evuent */) {
-    if (window.scrollY > ((this.$refs.main as HTMLElement).clientHeight as number - window.innerHeight)+(window.innerWidth*(this.isMobile?0.06389:0.07849))-5)
+    if (
+      window.scrollY >
+      ((this.$refs.main as HTMLElement).clientHeight as number) -
+        window.innerHeight +
+        window.innerWidth * (this.isMobile ? 0.06389 : 0.07849) -
+        5
+    )
       this.isVisible = true;
     else this.isVisible = false;
   }
@@ -274,8 +299,8 @@ export default class Home extends Vue {
 
   goTop() {
     window.scroll({
-      top:0,
-      left:0,
+      top: 0,
+      left: 0,
       behavior: "smooth"
     });
   }

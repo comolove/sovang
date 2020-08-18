@@ -2,20 +2,16 @@
   <div class="title-slides">
     <h2>메인 페이지 - 메인 슬라이드</h2>
     <ScalingImgList :images="mainSlides" @delete="handleDeleteMainSlide" />
-    <form
-      action="/uploadMainSlide.php"
-      enctype="multipart/form-data"
-      method="POST"
-    >
+    <form v-on:submit.prevent="onSubmit">
       <h3>메인 슬라이드 추가</h3>
       <div class="input-wrap">
         <label for="pcImage">PC 이미지</label>
-        <input name="pcImage" id="pcImage" type="file" accept="image/*" />
+        <input ref="pcImage" id="pcImage" type="file" accept="image/*" />
       </div>
       <div class="input-wrap">
         <label for="mobileImage">모바일 이미지</label>
         <input
-          name="mobileImage"
+          ref="mobileImage"
           id="mobileImage"
           type="file"
           accept="image/*"
@@ -56,6 +52,50 @@ export default class AdminMainSlide extends Vue {
     }
   }
 
+  private async onSubmit() {
+    const pcImage = this.$refs["pcImage"] as HTMLInputElement;
+    const mobileImage = this.$refs["mobileImage"] as HTMLInputElement;
+
+    if (!pcImage.files || !mobileImage.files) {
+      alert("이미지를 업로드 해주세요");
+      return;
+    }
+
+    if (pcImage.files.length > 0 && mobileImage.files.length > 0) {
+      const pcImageFile = pcImage.files[0];
+      const mobileImageFile = mobileImage.files[0];
+
+      const formData = new FormData();
+      formData.append("pcImage", pcImageFile);
+      formData.append("mobileImage", mobileImageFile);
+
+      try {
+        const { data } = await AxiosHelper.POST(
+          "/uploadMainSlide.php",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data"
+            }
+          }
+        );
+
+        alert(data.msg);
+      } catch (error) {
+        console.log("Upload Error : ", error);
+
+        alert(error.response.data.msg);
+      }
+
+      pcImage.value = pcImage.defaultValue;
+      mobileImage.value = mobileImage.defaultValue;
+
+      await this.LoadData();
+    } else {
+      alert("이미지를 선택해 주세요");
+    }
+  }
+
   private async handleDeleteMainSlide(index: number) {
     try {
       if (confirm("삭제하시겠습니까?")) {
@@ -64,12 +104,12 @@ export default class AdminMainSlide extends Vue {
         });
 
         alert("이미지 삭제에 성공 했습니다.");
-        location.reload();
       }
     } catch (error) {
       alert("이미지 삭제에 실패 했습니다.");
-      location.reload();
     }
+
+    await this.LoadData();
   }
 }
 </script>

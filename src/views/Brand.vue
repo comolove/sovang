@@ -91,7 +91,15 @@
         />
       </HomeContent>
     </section>
-    <AssetImage class="button-go-top" :class="{'button-go-top-visible': isVisible,'button-go-top-invisible': !isVisible}" @click="goTop" src="button-go-top.png" />
+    <AssetImage
+      class="button-go-top"
+      :class="{
+        'button-go-top-visible': isVisible,
+        'button-go-top-invisible': !isVisible
+      }"
+      @click="goTop"
+      src="button-go-top.png"
+    />
     <Footer />
   </main>
 </template>
@@ -144,15 +152,21 @@ export default class Brand extends Vue {
   }
 
   handleScroll(/* e : Evuent */) {
-    if (window.scrollY > ((this.$refs.main as HTMLElement).clientHeight as number - window.innerHeight)+(window.innerWidth*(this.isMobile?0.06389:0.07849))-5)
+    if (
+      window.scrollY >
+      ((this.$refs.main as HTMLElement).clientHeight as number) -
+        window.innerHeight +
+        window.innerWidth * (this.isMobile ? 0.06389 : 0.07849) -
+        5
+    )
       this.isVisible = true;
     else this.isVisible = false;
   }
 
   goTop() {
     window.scroll({
-      top:0,
-      left:0,
+      top: 0,
+      left: 0,
       behavior: "smooth"
     });
   }

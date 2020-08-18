@@ -17,7 +17,8 @@
     "vue-carousel": "^0.18.0",
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^8.4.2",
-    "vue-router": "^3.2.0"
+    "vue-router": "^3.2.0",
+    "vue-scrollto": "^2.18.2"
   },
   "devDependencies": {
     "@types/aos": "^3.0.3",

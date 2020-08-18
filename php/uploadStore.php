@@ -11,22 +11,22 @@ $mobileImage = isset($_FILES["mobileImage"]) ? $_FILES["mobileImage"] : "";
 
 if (IsNullOrEmptyString($storeName))
 {
-    AlertAndRedirectToAdmin("store name is null");
-    exit();
+    $message = MakeMessage(FALSE, "매장 이름이 없습니다.");
+    Response(400, $message);
 }
 
 if (IsNullOrEmptyString($link))
 {
-    AlertAndRedirectToAdmin("link is null");
-    exit();
+    $message = MakeMessage(FALSE, "매장 링크가 없습니다.");
+    Response(400, $message);
 }
 
 $imageUploader = new ImageUploader();
 $result = $imageUploader->UploadImages($storeName."-home-image", $pcImage, $mobileImage);
 if ($imageUploader->IsFail())
 {
-    Alert($result);
-    AlertAndRedirectToAdmin("업로드 실패");
+    $message = MakeMessage(FALSE, "이미지 업로드 실패");
+    Response(500, $message);
 }
 
 $insertSQL = "INSERT INTO store (store_name,home_image,link) VALUES ('$storeName', $result, '$link')";
@@ -34,9 +34,11 @@ $insertSQL = "INSERT INTO store (store_name,home_image,link) VALUES ('$storeName
 $conn = CreateConnection();
 if ($conn->query($insertSQL) !== TRUE)
 {
-    AlertAndRedirectToAdmin("업로드 쿼리 실패");
+    $message = MakeMessage(FALSE, "이미지 업로드 쿼리 실패");
+    Response(500, $message);
 }
 $conn->close();
 
-AlertAndRedirectToAdmin("업로드 성공");
+$message = MakeMessage(TRUE, "업로드 성공");
+Response(200, $message);
 ?>

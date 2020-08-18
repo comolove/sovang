@@ -10,8 +10,8 @@ $mobileImage = isset($_FILES["mobileImage"]) ? $_FILES["mobileImage"] : "";
 
 if (IsNullOrEmptyString($storeIndex))
 {
-    AlertAndRedirectToAdmin("store index is null");
-    exit();
+    $message = MakeMessage(FALSE, "store index is null.");
+    Response(400, $message);
 }
 
 $imgList = array();
@@ -20,8 +20,8 @@ $imageUploader = new ImageUploader();
 $result = $imageUploader->UploadImages($storeIndex, $pcImage, $mobileImage);
 if ($imageUploader->IsFail())
 {
-    Alert($result);
-    AlertAndRedirectToAdmin("이미지 업로드 실패");
+    $message = MakeMessage(FALSE, "이미지 업로드 실패");
+    Response(500, $message);
 }
 $imgIndex = $result;
 
@@ -42,10 +42,11 @@ $strImgList = implode(",", $imgList);
 $updateSQL = "UPDATE store SET img_list = '$strImgList' WHERE `index` = $storeIndex";
 if ($conn->query($updateSQL) !== TRUE)
 {
-    AlertAndRedirectToAdmin("업로드 쿼리 실패");
-    exit();
+    $message = MakeMessage(FALSE, "이미지 업로드 쿼리 실패");
+    Response(500, $message);
 }
 $conn->close();
 
-AlertAndRedirectToAdmin("업로드 성공");
+$message = MakeMessage(TRUE, "업로드 성공");
+Response(200, $message);
 ?>
