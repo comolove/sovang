@@ -8,11 +8,23 @@
       <p>메인 페이지 매장 이미지</p>
       <div class="content-wrap">
         <p>PC 이미지</p>
-        <img class="pc-img" :src="store.img.pcPath" />
+        <ModifiableImage
+          class="pc-img"
+          type="pc"
+          :index="store.img.index"
+          :src="store.img.pcPath"
+          @modify="onModify"
+        />
       </div>
       <div class="content-wrap">
         <p>모바일 이미지</p>
-        <img class="mobile-img" :src="store.img.mobilePath" />
+        <ModifiableImage
+          class="mobile-img"
+          type="mobile"
+          :index="store.img.index"
+          :src="store.img.mobilePath"
+          @modify="onModify"
+        />
       </div>
     </div>
     <p>식사 공간 페이지 매장 이미지 목록</p>
@@ -23,9 +35,21 @@
         :key="index"
       >
         <p>PC 이미지</p>
-        <img class="pc-img" :src="value.pcPath" />
+        <ModifiableImage
+          class="pc-img"
+          type="pc"
+          :index="value.index"
+          :src="value.pcPath"
+          @modify="onModify"
+        />
         <p>모바일 이미지</p>
-        <img class="mobile-img" :src="value.mobilePath" />
+        <ModifiableImage
+          class="mobile-img"
+          type="mobile"
+          :index="value.index"
+          :src="value.mobilePath"
+          @modify="onModify"
+        />
         <button
           @click="
             () => {
@@ -73,7 +97,13 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { AxiosHelper, Store } from "@/utils";
 
-@Component
+import ModifiableImage from "@/components/Admin/ModifiableImage.vue";
+
+@Component({
+  components: {
+    ModifiableImage
+  }
+})
 export default class StoreView extends Vue {
   @Prop() store!: Store;
 
@@ -137,6 +167,10 @@ export default class StoreView extends Vue {
     pcImage.value = pcImage.defaultValue;
     mobileImage.value = mobileImage.defaultValue;
 
+    this.$emit("LoadData");
+  }
+
+  private onModify() {
     this.$emit("LoadData");
   }
 

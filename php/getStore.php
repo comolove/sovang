@@ -8,13 +8,14 @@ $queryStoreSQL = "SELECT
                 S.index AS `index`, 
                 S.store_name AS storeName, 
                 S.link AS link, 
+                I.`index` AS homeImageIndex,
                 I.pc AS homeImagePcPath, 
                 I.mobile as homeImageMobilePath,
                 S.img_list AS imgList
             FROM store AS S 
                 INNER JOIN image AS I ON I.index=S.home_image";
 
-$queryImgListTemplate = "SELECT pc AS pcPath, mobile AS mobilePath FROM image WHERE `index` IN ";
+$queryImgListTemplate = "SELECT pc AS pcPath, mobile AS mobilePath, `index` FROM image WHERE `index` IN ";
 
 $conn = CreateConnection();
 if ($result = $conn->query($queryStoreSQL))
@@ -26,6 +27,7 @@ if ($result = $conn->query($queryStoreSQL))
             "storeName" => $row["storeName"],
             "link" => $row["link"],
             "img" => array(
+                "index" => $row["homeImageIndex"],
                 "pcPath" => $row["homeImagePcPath"],
                 "mobilePath" => $row["homeImageMobilePath"]
             ),
@@ -42,6 +44,7 @@ if ($result = $conn->query($queryStoreSQL))
                 while($imgQueryRow = $imgQueryResult->fetch_assoc())
                 {
                     array_push($imgList, array(
+                        "index" => $imgQueryRow["index"],
                         "pcPath" => $imgQueryRow["pcPath"],
                         "mobilePath" => $imgQueryRow["mobilePath"]
                     ));

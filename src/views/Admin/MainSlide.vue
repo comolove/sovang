@@ -2,12 +2,9 @@
   <div class="title-slides">
     <h2>메인 페이지 - 메인 슬라이드</h2>
     <div class="main-slide-selector">
-      <select 
-        ref="mainSlideSelector"
-        @change="onSlideSelect"
-      >
+      <select ref="mainSlideSelector" @change="onSlideSelect">
         <option
-          v-for="(mainSlide, index) in mainSlides" 
+          v-for="(mainSlide, index) in mainSlides"
           :key="index"
           :value="index"
         >
@@ -15,7 +12,11 @@
         </option>
       </select>
     </div>
-    <MainSlideView :image="selectedMainSlide" @modify="onModify" @delete="onDelete"/>
+    <MainSlideView
+      :image="selectedMainSlide"
+      @modify="onModify"
+      @delete="onDelete"
+    />
     <form v-on:submit.prevent="onSubmit">
       <h3>메인 슬라이드 추가</h3>
       <div class="input-wrap">
@@ -48,10 +49,10 @@ import { AxiosHelper, MainSlide } from "@/utils";
   }
 })
 export default class AdminMainSlide extends Vue {
-  @Ref() readonly mainSlideSelector! : HTMLSelectElement;
+  @Ref() readonly mainSlideSelector!: HTMLSelectElement;
 
   private mainSlides: MainSlide[] = [];
-  private selectedMainSlide : MainSlide = new MainSlide();
+  private selectedMainSlide: MainSlide = new MainSlide();
 
   async created() {
     await this.LoadData();
@@ -65,7 +66,7 @@ export default class AdminMainSlide extends Vue {
     try {
       const { data } = await AxiosHelper.GET("/getMainSlides.php");
       const list = data.data;
-      
+
       this.mainSlides = list;
     } catch (error) {
       alert("홈페이지 메인 슬라이드 로딩 실패");
@@ -127,11 +128,12 @@ export default class AdminMainSlide extends Vue {
   }
 
   private onSlideSelect() {
-    this.selectSlide(); 
+    this.selectSlide();
   }
 
   private selectSlide() {
     let index = 0;
+
     if (this.mainSlideSelector) {
       index = parseInt(this.mainSlideSelector.value);
 
@@ -139,8 +141,11 @@ export default class AdminMainSlide extends Vue {
         index = 0;
       }
     }
-    if (this.mainSlides.length === 0 || this.mainSlides.length < index) {
+
+    if (this.mainSlides.length === 0) {
       this.selectedMainSlide = new MainSlide();
+    } else if (this.mainSlides.length < index) {
+      index = 0;
     }
 
     this.selectedMainSlide = this.mainSlides[index];

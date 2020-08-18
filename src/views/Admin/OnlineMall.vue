@@ -1,9 +1,21 @@
 <template>
   <div class="onlinemall-slides">
     <h2>홈 페이지 온라인 몰 슬라이드</h2>
-    <OnlineMallImgList
-      :images="onlineMallItems"
-      @delete="handleDeleteOnlineMallItem"
+    <div class="mall-item-selector">
+      <select ref="mallItemSelector" @change="onSlideSelect">
+        <option
+          v-for="(item, index) in onlineMallItems"
+          :key="index"
+          :value="index"
+        >
+          {{ index + 1 }}
+        </option>
+      </select>
+    </div>
+    <OnlineMallView
+      :item="selectedItem"
+      @modify="onModify"
+      @delete="onDelete"
     />
     <form v-on:submit.prevent="onSubmit">
       <h3>상품 추가</h3>
@@ -39,21 +51,29 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { OnlineMallImgList } from "@/components/Admin";
+import { Component, Vue, Ref, Watch } from "vue-property-decorator";
+import { OnlineMallView } from "@/components/Admin";
 import { AxiosHelper, OnlineMallItem } from "@/utils";
 
 @Component({
   name: "AdminOnlineMall",
   components: {
-    OnlineMallImgList
+    OnlineMallView
   }
 })
 export default class AdminOnlineMall extends Vue {
+  @Ref() mallItemSelector!: HTMLSelectElement;
+
   private onlineMallItems: OnlineMallItem[] = [];
+  private selectedItem: OnlineMallItem = new OnlineMallItem();
 
   async created() {
     await this.LoadData();
+  }
+
+  @Watch("onlineMallItems")
+  private async onChangeItems() {
+    this.selectSlide();
   }
 
   async LoadData() {
@@ -66,6 +86,34 @@ export default class AdminOnlineMall extends Vue {
       alert("홈페이지 온라인 몰 아이템 로딩 실패");
       console.log(error);
     }
+  }
+
+  private async onModify() {
+    await this.LoadData();
+  }
+
+  private onSlideSelect() {
+    this.selectSlide();
+  }
+
+  private selectSlide() {
+    let index = 0;
+
+    if (this.mallItemSelector) {
+      index = parseInt(this.mallItemSelector.value);
+
+      if (isNaN(index) || !index) {
+        index = 0;
+      }
+    }
+
+    if (this.onlineMallItems.length === 0) {
+      this.selectedItem = new OnlineMallItem();
+    } else if (this.onlineMallItems.length < index) {
+      index = 0;
+    }
+
+    this.selectedItem = this.onlineMallItems[index];
   }
 
   private async onSubmit() {
@@ -124,7 +172,7 @@ export default class AdminOnlineMall extends Vue {
     await this.LoadData();
   }
 
-  private async handleDeleteOnlineMallItem(index: number) {
+  private async onDelete(index: number) {
     try {
       if (confirm("삭제하시겠습니까?")) {
         await AxiosHelper.POST("/deleteOnlineMallItem.php", {
@@ -132,6 +180,7 @@ export default class AdminOnlineMall extends Vue {
         });
 
         alert("삭제에 성공 했습니다.");
+        await this.LoadData();
       }
     } catch (error) {
       alert("삭제에 실패 했습니다.");

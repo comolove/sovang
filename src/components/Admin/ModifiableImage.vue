@@ -1,10 +1,16 @@
 <template>
   <div class="modifiable-image" @click="onClick">
-    <img :src="prefixSrc"/>
+    <img :src="prefixSrc" />
     <div class="overlay">
       <p>클릭 시 이미지를 변경합니다.</p>
     </div>
-    <input ref="replaceImage" id="replaceImage" type="file" accept="image/*" @change="onChangeImage"/>
+    <input
+      ref="replaceImage"
+      id="replaceImage"
+      type="file"
+      accept="image/*"
+      @change="onChangeImage"
+    />
   </div>
 </template>
 
@@ -16,7 +22,7 @@ import { AxiosHelper } from "@/utils";
   name: "AdminModifiableImage"
 })
 export default class ModifiableImage extends Vue {
-  @Ref() readonly replaceImage! : HTMLInputElement;
+  @Ref() readonly replaceImage!: HTMLInputElement;
 
   @Prop() src!: string;
   @Prop() type!: string;
@@ -43,15 +49,11 @@ export default class ModifiableImage extends Vue {
       formData.append("index", this.index.toString());
 
       try {
-        const { data } = await AxiosHelper.POST(
-          "/modifyImage.php",
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data"
-            }
+        const { data } = await AxiosHelper.POST("/modifyImage.php", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data"
           }
-        );
+        });
 
         this.$emit("modify");
         alert(data.msg);
@@ -69,7 +71,7 @@ export default class ModifiableImage extends Vue {
   private get prefixSrc() {
     if (!process) return this.src;
     if (!process.env) return this.src;
-    
+
     const mode = process.env["NODE_ENV"] as string;
     if (mode) {
       if (mode.trim().toLowerCase() == "development") {

@@ -1,12 +1,17 @@
 <template>
-  <div class="main-slide" v-if="image">
+  <div class="online-mall-view" v-if="item">
+    <div class="content-wrap">
+      <p>상품 이름 : {{ item.itemName }}</p>
+      <p>상품 설명 : {{ item.itemDesc }}</p>
+      <p><a :href="item.link">상품 링크</a></p>
+    </div>
     <div class="content-wrap">
       <p>PC 이미지</p>
       <ModifiableImage
         class="pc-img"
         type="pc"
-        :index="image.img.index"
-        :src="image.img.pcPath"
+        :index="item.img.index"
+        :src="item.img.pcPath"
         @modify="onModify"
       />
     </div>
@@ -15,8 +20,8 @@
       <ModifiableImage
         class="mobile-img"
         type="mobile"
-        :index="image.img.index"
-        :src="image.img.mobilePath"
+        :index="item.img.index"
+        :src="item.img.mobilePath"
         @modify="onModify"
       />
     </div>
@@ -24,7 +29,7 @@
     <button
       @click="
         () => {
-          handleDelete(image.index);
+          handleDelete(item.index);
         }
       "
     >
@@ -35,18 +40,18 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import { BaseResImgObj } from "@/utils";
+import { OnlineMallItem } from "@/utils";
 
 import ModifiableImage from "@/components/Admin/ModifiableImage.vue";
 
 @Component({
-  name: "MainSlideView",
+  name: "OnlineMallView",
   components: {
     ModifiableImage
   }
 })
-export default class MainSlideView extends Vue {
-  @Prop() image!: BaseResImgObj;
+export default class OnlineMallView extends Vue {
+  @Prop() item!: OnlineMallItem;
 
   protected handleDelete(index: number) {
     this.$emit("delete", index);

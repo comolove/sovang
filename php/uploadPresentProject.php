@@ -5,6 +5,7 @@ require_once "db.php";
 
 $title = isset($_POST["title"]) ? $_POST["title"] : "";
 $desc = isset($_POST["desc"]) ? $_POST["desc"] : "";
+$link = isset($_POST["link"]) ? $_POST["link"] : "";
 
 $frontPcImage = isset($_FILES["frontPcImage"]) ? $_FILES["frontPcImage"] : "";
 $backPcImage = isset($_FILES["backPcImage"]) ? $_FILES["backPcImage"] : "";
@@ -37,7 +38,7 @@ if ($imageUploader->IsFail())
     Response(500, $message);
 }
 
-$insertSQL = "INSERT INTO present_project (title, `desc`, front_img, back_img) VALUES ('$title', '$desc', $frontImageID, $backImageID)";
+$insertSQL = "INSERT INTO present_project (title, `desc`, link, front_img, back_img) VALUES ('$title', '$desc', '$link', $frontImageID, $backImageID)";
 
 $conn = CreateConnection();
 if ($conn->query($insertSQL) !== TRUE)

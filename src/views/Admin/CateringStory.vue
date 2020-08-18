@@ -1,7 +1,22 @@
 <template>
   <div class="catering_story">
     <h2>케이터링 이야기</h2>
-    <CateringStoryList :stories="cateringStories" @delete="handleDeleteStory" />
+    <div class="catering-story-selector">
+      <select ref="storySelector" @change="selectStory">
+        <option
+          v-for="(item, index) in cateringStories"
+          :key="index"
+          :value="index"
+        >
+          {{ index + 1 }}
+        </option>
+      </select>
+    </div>
+    <CateringStoryView
+      :story="selectedStory"
+      @modify="onModify"
+      @delete="onDelete"
+    />
     <form v-on:submit.prevent="onSubmit">
       <h3>추가</h3>
       <div class="input-wrap">
@@ -11,6 +26,10 @@
       <div class="input-wrap">
         <label for="desc">설명</label>
         <input ref="desc" id="desc" type="text" />
+      </div>
+      <div class="input-wrap">
+        <label for="link">블로그 링크(빈칸 가능)</label>
+        <input ref="link" id="link" type="text" />
       </div>
       <div class="input-wrap">
         <label for="frontPcImage">PC 흑백 이미지</label>
@@ -55,20 +74,28 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
-import { CateringStoryList } from "@/components/Admin";
+import { Vue, Component, Ref, Watch } from "vue-property-decorator";
+import { CateringStoryView } from "@/components/Admin";
 import { AxiosHelper, CateringStory } from "@/utils";
 
 @Component({
   components: {
-    CateringStoryList
+    CateringStoryView
   }
 })
 export default class AdminCateringStory extends Vue {
+  @Ref() storySelector!: HTMLSelectElement;
+
   private cateringStories: CateringStory[] = [];
+  private selectedStory: CateringStory = new CateringStory();
 
   async created() {
     await this.LoadData();
+  }
+
+  @Watch("cateringStories")
+  private async onChangeItems() {
+    this.selectStory();
   }
 
   async LoadData() {
@@ -76,6 +103,7 @@ export default class AdminCateringStory extends Vue {
       const { data } = await AxiosHelper.GET("/getCateringStories.php");
       const list = data.data as CateringStory[];
 
+      console.log(list);
       this.cateringStories = list;
     } catch (error) {
       alert("케이터링 이야기 로딩 실패");
@@ -83,9 +111,34 @@ export default class AdminCateringStory extends Vue {
     }
   }
 
+  private async onModify() {
+    await this.LoadData();
+  }
+
+  private selectStory() {
+    let index = 0;
+
+    if (this.storySelector) {
+      index = parseInt(this.storySelector.value);
+
+      if (isNaN(index) || !index) {
+        index = 0;
+      }
+    }
+
+    if (this.cateringStories.length === 0) {
+      this.selectedStory = new CateringStory();
+    } else if (this.cateringStories.length < index) {
+      index = 0;
+    }
+
+    this.selectedStory = this.cateringStories[index];
+  }
+
   private async onSubmit() {
     const title = this.$refs["title"] as HTMLInputElement;
     const desc = this.$refs["desc"] as HTMLInputElement;
+    const link = this.$refs["link"] as HTMLInputElement;
     const frontPcImage = this.$refs["frontPcImage"] as HTMLInputElement;
     const frontMobileImage = this.$refs["frontMobileImage"] as HTMLInputElement;
     const backPcImage = this.$refs["backPcImage"] as HTMLInputElement;
@@ -112,6 +165,7 @@ export default class AdminCateringStory extends Vue {
       const formData = new FormData();
       formData.append("title", title.value);
       formData.append("desc", desc.value);
+      formData.append("link", link.value);
       formData.append("frontPcImage", frontPcImage.files[0]);
       formData.append("frontMobileImage", frontMobileImage.files[0]);
       formData.append("backPcImage", backPcImage.files[0]);
@@ -148,7 +202,7 @@ export default class AdminCateringStory extends Vue {
     await this.LoadData();
   }
 
-  async handleDeleteStory(index: number) {
+  async onDelete(index: number) {
     try {
       if (confirm("삭제하시겠습니까?")) {
         await AxiosHelper.POST("/deleteCateringStory.php", {
