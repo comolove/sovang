@@ -241,7 +241,7 @@
           :isMobile="isMobile"
         >
           <template slot="title">
-            <span v-if="!isMobile">오지의 약밥 - 집에서 간편하게 만들어 먹는 영양밥과 찰약밥</span>
+            <span v-if="!isMobile">오지의 약밥 - 집에서 간편하게 만들어 먹는 찰약밥과 영양밥</span>
             <span v-if="isMobile">
               오지의 약밥
               <br />

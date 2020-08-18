@@ -20,7 +20,7 @@ export default class HoverTextImage extends Vue {
 
   handleClick(/* e : Event */) {
     if (this.hrefExist) {
-      location.href = this.href;
+      window.open(this.href);
     }
   }
 

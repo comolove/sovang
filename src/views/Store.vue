@@ -185,9 +185,9 @@ export default class Store extends Vue {
         window.scrollY >
         clientHeight - window.innerHeight + window.innerWidth * scrollFactor - 5
       ) {
-        // this.isVisible = true;
+        this.isVisible = true;
       } else {
-        // this.isVisible = false;
+        this.isVisible = false;
       }
     }
   }

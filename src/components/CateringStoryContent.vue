@@ -100,11 +100,12 @@ export default class CateringStoryContent extends Vue {
   }
 
   public get carouselNavigationNext(): string {
-    if (this.isMobile)
+    if (this.isMobile) {
       return `<img 
               src=${require("@/assets/images/arrow-right-white.png")} 
               style="width:3.889vw;"
             >`;
+    }
 
     return `<img 
               src=${require("@/assets/images/arrow-right-black.png")} 
@@ -113,11 +114,12 @@ export default class CateringStoryContent extends Vue {
   }
 
   public get carouselNavigationPrev(): string {
-    if (this.curIndex == 0 || this.isMobile)
+    if (this.curIndex == 0 || this.isMobile) {
       return `<img 
               src=${require("@/assets/images/arrow-left-white.png")} 
               style="width:3.889vw;"
             >`;
+    }
 
     return `<img 
               src=${require("@/assets/images/arrow-left-black.png")} 

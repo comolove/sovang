@@ -16,7 +16,9 @@ Vue.use(VueScrollTo);
 new Vue({
   created() {
     AOS.init({
-      duration: 1000
+      duration: 1000,
+      delay: 300,
+      offset: 400
     });
   },
   router,
