@@ -57,6 +57,65 @@ class ImageUploader
         return $lastInsertId;
     }
 
+    public function ModifyImage($index, $type, $newImage)
+    {
+        $conn = CreateConnection();
+        
+        $pcPath = "";
+        $mobilePath = "";
+
+        $selectSQL = "SELECT pc AS pcPath, mobile AS mobilePath FROM `image` WHERE `index`=".$index;
+        if ($result = $conn->query($selectSQL))
+        {
+            while($row = $result->fetch_assoc())
+            {
+                $pcPath = $row["pcPath"];
+                $mobilePath = $row["mobilePath"];
+            }
+        }
+        else
+        {
+            $this->fail = TRUE;
+            return "failed to get image path";
+        }
+        
+        if ($type == "pc")
+        {
+            DeleteFileIfExists($pcPath);
+            $newImagePath = $this->UploadImage($newImage);
+            $newImagePath = substr($newImagePath, 1);
+
+            $updateSQL = "UPDATE `image` SET `pc` = '".$newImagePath."' WHERE `index` = ".$index;
+            if ($conn->query($updateSQL) !== TRUE)
+            {
+                $this->fail = TRUE;
+                return "failed to upload new pc image";
+            }
+        }
+        else if ($type == "mobile")
+        {
+            DeleteFileIfExists($mobilePath);
+            $newImagePath = $this->UploadImage($newImage);
+            $newImagePath = substr($newImagePath, 1);
+
+            $updateSQL = "UPDATE `image` SET `mobile` = '".$newImagePath."' WHERE `index` = ".$index;
+            if ($conn->query($updateSQL) !== TRUE)
+            {
+                $this->fail = TRUE;
+                return "failed to upload new mobile image";
+            }
+        }
+        else
+        {
+            $this->fail = TRUE;
+            return "unvalid type";
+        }
+
+        $conn->close();
+
+        return TRUE;
+    }
+
     public function IsFail()
     {
         return $this->fail;

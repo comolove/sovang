@@ -563,6 +563,7 @@ export default class Present extends Vue {
 
     for (let i = 1; i <= 2; i++) {
       this.mainSlideData.push({
+        index: -1,
         name: "",
         pcPath: `present-page/Web/main/${i}.jpg`,
         tabletPath: "",
@@ -598,6 +599,7 @@ export default class Present extends Vue {
     ];
     for (let i = 1; i <= 6; i++) {
       this.holidayPresentData.push({
+        index: -1,
         name: "",
         pcPath: `present-page/Web/holiday-present/${i}-1.jpg`,
         tabletPath: "",

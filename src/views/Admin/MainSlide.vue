@@ -1,7 +1,21 @@
 <template>
   <div class="title-slides">
     <h2>메인 페이지 - 메인 슬라이드</h2>
-    <ScalingImgList :images="mainSlides" @delete="handleDeleteMainSlide" />
+    <div class="main-slide-selector">
+      <select 
+        ref="mainSlideSelector"
+        @change="onSlideSelect"
+      >
+        <option
+          v-for="(mainSlide, index) in mainSlides" 
+          :key="index"
+          :value="index"
+        >
+          {{ index + 1 }}
+        </option>
+      </select>
+    </div>
+    <MainSlideView :image="selectedMainSlide" @modify="onModify" @delete="onDelete"/>
     <form v-on:submit.prevent="onSubmit">
       <h3>메인 슬라이드 추가</h3>
       <div class="input-wrap">
@@ -23,33 +37,45 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { ScalingImgList } from "@/components/Admin";
+import { Component, Vue, Ref, Watch } from "vue-property-decorator";
+import { MainSlideView } from "@/components/Admin";
 import { AxiosHelper, MainSlide } from "@/utils";
 
 @Component({
   name: "AdminMainSlide",
   components: {
-    ScalingImgList
+    MainSlideView
   }
 })
 export default class AdminMainSlide extends Vue {
+  @Ref() readonly mainSlideSelector! : HTMLSelectElement;
+
   private mainSlides: MainSlide[] = [];
+  private selectedMainSlide : MainSlide = new MainSlide();
 
   async created() {
     await this.LoadData();
+
+    if (this.mainSlides.length > 0) {
+      this.selectedMainSlide = this.mainSlides[0];
+    }
   }
 
   async LoadData() {
     try {
       const { data } = await AxiosHelper.GET("/getMainSlides.php");
       const list = data.data;
-
+      
       this.mainSlides = list;
     } catch (error) {
       alert("홈페이지 메인 슬라이드 로딩 실패");
       console.log(error);
     }
+  }
+
+  @Watch("mainSlides")
+  private async onChangeMainSlides() {
+    this.selectSlide();
   }
 
   private async onSubmit() {
@@ -96,7 +122,31 @@ export default class AdminMainSlide extends Vue {
     }
   }
 
-  private async handleDeleteMainSlide(index: number) {
+  private async onModify() {
+    await this.LoadData();
+  }
+
+  private onSlideSelect() {
+    this.selectSlide(); 
+  }
+
+  private selectSlide() {
+    let index = 0;
+    if (this.mainSlideSelector) {
+      index = parseInt(this.mainSlideSelector.value);
+
+      if (isNaN(index) || !index) {
+        index = 0;
+      }
+    }
+    if (this.mainSlides.length === 0 || this.mainSlides.length < index) {
+      this.selectedMainSlide = new MainSlide();
+    }
+
+    this.selectedMainSlide = this.mainSlides[index];
+  }
+
+  private async onDelete(index: number) {
     try {
       if (confirm("삭제하시겠습니까?")) {
         await AxiosHelper.POST("/deleteMainSlide.php", {

@@ -111,6 +111,7 @@ export default class Store extends Vue {
 
     for (let i = 0; i < 6; i++) {
       this.mainSlideData.push({
+        index: -1,
         name: "",
         pcPath: `store-page/main/WEB/main-slide-${i + 1}.jpg`,
         tabletPath: "",

@@ -557,6 +557,7 @@ export default class Catering extends Vue {
     // TODO : Backend 개발 후 DB에서 불러오기
     for (let i = 0; i < 2; i++) {
       this.mainSlideData.push({
+        index: -1,
         name: "",
         pcPath: `catering-page/main/WEB/main-slide-${i + 1}.jpg`,
         tabletPath: "",
@@ -580,6 +581,7 @@ export default class Catering extends Vue {
 
     for (let i = 0; i < visitTitle.length; i++) {
       this.cateringVisitSlideData.push({
+        index: -1,
         pcPath: `catering-page/catering-visit/WEB/${i + 1}.jpg`,
         tabletPath: "",
         mobilePath: `catering-page/catering-visit/Mobile/${i + 1}.jpg`,
@@ -607,6 +609,7 @@ export default class Catering extends Vue {
 
     for (let i = 0; i < boxInfo.length; i++) {
       this.cateringBoxSlideData.push({
+        index: -1,
         pcPath: `catering-page/catering-box/WEB/${i + 1}.jpg`,
         tabletPath: "",
         mobilePath: `catering-page/catering-box/Mobile/${i + 1}.jpg`,
@@ -635,6 +638,7 @@ export default class Catering extends Vue {
 
     for (let i = 0; i < easyInfo.length; i++) {
       this.easyLunchBoxSlideData.push({
+        index: -1,
         pcPath: `catering-page/easy-lunch-box/WEB/${i + 1}.jpg`,
         tabletPath: "",
         mobilePath: `catering-page/easy-lunch-box/Mobile/${i + 1}.jpg`,
@@ -646,6 +650,7 @@ export default class Catering extends Vue {
     }
 
     this.customLunchBoxSlideDataPC.push({
+      index: -1,
       pcPath: `catering-page/custom-lunch-box/WEB/1.jpg`,
       tabletPath: "",
       mobilePath: `catering-page/custom-lunch-box/Mobile/1.jpg`,
@@ -656,6 +661,7 @@ export default class Catering extends Vue {
     });
 
     this.customLunchBoxSlideDataMobile.push({
+      index: -1,
       pcPath: `catering-page/custom-lunch-box/WEB/1.jpg`,
       tabletPath: "",
       mobilePath: `catering-page/custom-lunch-box/Mobile/1.jpg`,
@@ -666,6 +672,7 @@ export default class Catering extends Vue {
     });
 
     this.customLunchBoxSlideDataPC.push({
+      index: -1,
       pcPath: `catering-page/custom-lunch-box/WEB/2.jpg`,
       tabletPath: "",
       mobilePath: `catering-page/custom-lunch-box/Mobile/2.jpg`,
@@ -676,6 +683,7 @@ export default class Catering extends Vue {
     });
 
     this.customLunchBoxSlideDataMobile.push({
+      index: -1,
       pcPath: `catering-page/custom-lunch-box/WEB/2.jpg`,
       tabletPath: "",
       mobilePath: `catering-page/custom-lunch-box/Mobile/2.jpg`,
@@ -686,6 +694,7 @@ export default class Catering extends Vue {
     });
 
     this.customLunchBoxSlideDataPC.push({
+      index: -1,
       pcPath: `catering-page/custom-lunch-box/WEB/3.jpg`,
       tabletPath: "",
       // 에러가 발생하니 아무 이미지 링크를 넣어줌
@@ -706,6 +715,7 @@ export default class Catering extends Vue {
 
     for (let i = 0; i < additionalPrice.length; i++) {
       this.additionalMenuSlideData.push({
+        index: -1,
         pcPath: `catering-page/additional-menu/WEB/${i + 1}.jpg`,
         tabletPath: "",
         mobilePath: `catering-page/additional-menu/Mobile/${i + 1}.jpg`,
