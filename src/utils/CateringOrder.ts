@@ -12,4 +12,5 @@ export default class CateringOrder {
   public menuSet = "";
   public extraMenu = "";
   public extraMessage = "";
+  public createdAt = "";
 }

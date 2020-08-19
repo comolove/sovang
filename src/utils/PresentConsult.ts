@@ -4,4 +4,5 @@ export default class PresentConsult {
   public hp = "";
   public email = "";
   public question = "";
+  public createdAt = "";
 }

@@ -395,11 +395,11 @@
       />
     </section>
     <Modal v-if="consultModal" class="consultModal">
-      <p v-show="isEmpty">붉은색 별표 표시된 항목은 필수 입력사항입니다 :)</p>
-      <p v-show="!isEmpty && !isPrivacyChecked">
+      <p v-if="!isPrivacyChecked">
         개인정보 동의는 필수입니다 :)
       </p>
-      <p v-show="!isEmpty && isPrivacyChecked">
+      <p v-else-if="isEmpty">붉은색 별표 표시된 항목은 필수 입력사항입니다 :)</p>
+      <p v-else>
         상담을 예약해주셔서 감사합니다 :)
         <br />빠른 시일 내에 연락드리도록 하겠습니다.
       </p>
@@ -468,7 +468,6 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Carousel, Slide } from "vue-carousel";
 import { VueAgile } from "vue-agile";
-import axios from "axios";
 import {
   Header,
   Footer,
@@ -554,7 +553,7 @@ export default class Catering extends Vue {
   async created() {
     window.addEventListener("resize", this.handleResize);
     window.addEventListener("scroll", this.handleScroll);
-    // TODO : Backend 개발 후 DB에서 불러오기
+
     for (let i = 0; i < 2; i++) {
       this.mainSlideData.push({
         index: -1,
@@ -809,7 +808,7 @@ export default class Catering extends Vue {
     this.curStoreIndex = index;
   }
 
-  handleSubmitCatering() {
+  async handleSubmitCatering() {
     if (!this.isPrivacyChecked) {
       this.consultModal = true;
       return;
@@ -836,17 +835,14 @@ export default class Catering extends Vue {
     order.extraMessage = this.extraMessage;
     console.log(order);
 
-    axios
-      .post("/insertCateringOrder.php", {
-        ...order
-      })
-      .then(() => {
-        this.consultModal = true;
-      })
-      .catch(error => {
-        alert("실패");
-        console.log(error);
-      });
+    try {
+      await AxiosHelper.POST("/insertCateringOrder.php", { ...order });
+      this.consultModal = true;
+    }
+    catch(error) {
+      alert("실패");
+      console.log(error);
+    }
   }
 
   handleScroll(/* e : Evuent */) {
@@ -960,18 +956,12 @@ export default class Catering extends Vue {
     const manager = this.$refs[
       this.isMobile ? "input-manager-m" : "input-manager-pc"
     ] as InputText;
-    const email = this.$refs[
-      this.isMobile ? "input-email-m" : "input-email-pc"
-    ] as InputText;
     const people = this.$refs["people"] as InputText;
-    const adress = this.$refs["input-adress"] as InputText;
 
     if (
       people.isEmpty ||
       contact.isEmpty ||
       manager.isEmpty ||
-      email.isEmpty ||
-      adress.isEmpty ||
       this.selectedCategory == 0 ||
       this.selectedYear == 0 ||
       this.selectedMonth == 0 ||
@@ -983,6 +973,7 @@ export default class Catering extends Vue {
     ) {
       return true;
     }
+
     return false;
   }
 

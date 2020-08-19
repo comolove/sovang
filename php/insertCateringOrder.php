@@ -1,6 +1,9 @@
 <?php
 require_once "utils.php";
 require_once "db.php";
+require_once "utils/CateringOrderXLSXWriter.php";
+require_once "utils/MailSender.php";
+require_once "utils/MessageSender.php";
 
 $_POST = json_decode(file_get_contents("php://input"), true);
 
@@ -32,7 +35,8 @@ INSERT INTO `catering_order`
 `menu_item`,
 `menu_set`,
 `extra_menu`,
-`extra_message`)
+`extra_message`,
+`created_at`)
 VALUES
 ('$organization',
 '$personInCharge',
@@ -46,7 +50,8 @@ VALUES
 '$menuItem',
 '$menuSet',
 '$extraMenu',
-'$extraMessage')
+'$extraMessage',
+NOW())
 ";
 
 $conn = CreateConnection();
@@ -55,11 +60,30 @@ if ($conn->query($insertSQL) !== TRUE)
 {
     $message = MakeMessage(FALSE, "삽입 실패");
     Response(500, $message);
+    $conn->close();
     exit();
 }
 
+$writer = new CateringOrderXLSXWriter();
+$list = $writer->LoadDataFromDB($conn);
+$filepath = $writer->Write($list);
+
+$mailSender = new MailSender();
+$result = $mailSender->SendTo("yikolden@naver.com", "케이터링 주문", "새로운 케이터링 주문건이 접수되었습니다.", array($filepath));
+
+if ($result == FALSE) 
+{
+    $message = MakeMessage(FALSE, "이메일 발송 실패", $result->GetError());
+    Response(500, $message);
+    $conn->close();
+    exit();
+}
+
+$messageSender = new MessageSender();
+$result = $messageSender->SendMessage("새로운 케이터링 주문건이 접수되었습니다.", "01034210329", /* Test Mode */"Y");
+
 $conn->close();
 
-$message = MakeMessage(TRUE, "insert success");
+$message = MakeMessage(TRUE, "insert success", array("message_result" => $result));
 Response(200, $message);
 ?>

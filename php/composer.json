@@ -1,7 +1,8 @@
 {
-    "name": "sovang-php",
+    "name": "sovang",
     "description": "new sovang web php",
     "require": {
-        "vlucas/phpdotenv": "^4.1"
+        "vlucas/phpdotenv": "^4.1",
+        "phpmailer/phpmailer": "^6.1"
     }
 }
