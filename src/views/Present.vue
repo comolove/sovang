@@ -654,7 +654,7 @@ export default class Present extends Vue {
       : false;
   }
 
-  handleClickConsult() {
+  async handleClickConsult() {
     if (!this.isChecked) {
       this.consultModal = true;
       return;
@@ -674,17 +674,14 @@ export default class Present extends Vue {
 
     console.log(consult);
 
-    axios
-      .post("/insertPresentConsult.php", {
-        ...consult
-      })
-      .then(() => {
-        this.consultModal = true;
-      })
-      .catch(error => {
-        alert("실패");
-        console.log(error);
-      });
+    try {
+      await AxiosHelper.POST("/insertPresentConsult.php", { ...consult });
+      this.consultModal = true;
+    }
+    catch(error) {
+      alert("실패");
+      console.log(error);
+    }
   }
 
   closeConsultModal() {
