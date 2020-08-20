@@ -18,10 +18,10 @@
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^8.4.2",
     "vue-router": "^3.2.0",
-    "vue-scrollto": "^2.18.2",
-    "xlsx": "^0.16.6"
+    "vue-scrollto": "^2.18.2"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.11.0",
     "@types/aos": "^3.0.3",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",

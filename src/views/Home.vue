@@ -638,8 +638,9 @@ export default class Home extends Vue {
   // 온라인 몰
   .online-mall-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 1.354vw 1.354vw;
+    grid-gap: 1.354vw 1.354vw;
 
     .item {
       p {
@@ -654,6 +655,20 @@ export default class Home extends Vue {
 
       img {
         width: 100%;
+      }
+    }
+
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+      // Grid fixes for IE goes here...
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .item {
+        margin-right: 1.354vw;
+        margin-bottom: 1.354vw;
+        width: 31.11%;
       }
     }
 
