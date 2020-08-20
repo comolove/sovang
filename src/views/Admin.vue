@@ -35,10 +35,10 @@
         </li>
         <li><router-link to="/admin/store">식사 공간 (매장 정보)</router-link></li>
         <li>
-          <a href="/downloadCateringOrders.php">케이터링 문의 목록 다운로드</a>
+          <strong><a href="/downloadCateringOrders.php">케이터링 문의 목록 다운로드</a></strong>
         </li>
         <li>
-          <a href="/downloadPresentOrders.php">명절선물 상담 목록 다운로드</a>
+          <strong><a href="/downloadPresentOrders.php">명절선물 상담 목록 다운로드</a></strong>
         </li>
       </ul>
       <router-view></router-view>

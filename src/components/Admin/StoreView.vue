@@ -188,7 +188,7 @@ export default class StoreView extends Vue {
 }
 
 .store-imgs-container {
-  width: 80%;
+  width: 35%;
   overflow-x: scroll;
   
   .store-imgs {

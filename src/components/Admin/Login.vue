@@ -1,11 +1,11 @@
 <template>
   <div class="login">
-    <div class="content">
+    <form v-on:submit.prevent="handleLogin" class="content">
       <h3>Login</h3>
       <input v-model="id" placeholder="ID" />
       <input v-model="password" type="password" placeholder="Password" />
-      <button @click="handleLogin">로그인</button>
-    </div>
+      <button>로그인</button>
+    </form>
   </div>
 </template>
 
@@ -38,18 +38,13 @@ export default class Login extends Vue {
 
 <style scoped lang="scss">
 .login {
-  position: absolute;
+  display: flex;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  display: flex;
   align-items: center;
   justify-content: center;
-
-  display: -webkit-flex;
-  -webkit-align-item: center;
-  -webkit-justify-content: center;
 
   .content {
     h3 {
