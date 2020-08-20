@@ -146,6 +146,7 @@ article {
       text-decoration: none;
       padding: 0.104vw 0.833vw;
       border: 1px solid #a19b95;
+      cursor: pointer;
 
       @include mobile {
         font-size: 2.778vw;

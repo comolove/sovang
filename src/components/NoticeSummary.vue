@@ -27,7 +27,7 @@ export default class NoticeSummary extends Vue {
   @Prop() private isMobile !: boolean;
 
   mounted() {
-    if(parseInt(this.index) == 1) {
+    if(parseInt(this.index) == 1 && this.isMobile) {
       (this.$refs.notice as HTMLDivElement).style.borderTop="1px solid #a19b95";
     }
   }
@@ -48,6 +48,8 @@ export default class NoticeSummary extends Vue {
   background: #f3f0ed;
   font-size: 1.146vw;
   line-height: 3.958vw;
+  white-space: nowrap;  
+  cursor: pointer;
 
   @include mobile {
     font-size: 3.333vw;
@@ -65,7 +67,7 @@ export default class NoticeSummary extends Vue {
 
     &.index {
       width: 4.323vw;
-      margin-right: 1.667vw;
+      margin-right: 1vw;
     }
 
     &.title {
@@ -81,7 +83,7 @@ export default class NoticeSummary extends Vue {
     }
 
     &.author {
-      width: 6.406vw;
+      width: 6.356vw;
 
       @include mobile {
         width: auto;

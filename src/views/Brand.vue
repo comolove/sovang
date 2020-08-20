@@ -503,7 +503,7 @@ main {
               }
 
               &.author {
-                padding-left: 24.323vw;
+                padding-left: 23.723vw;
               }
 
               &.date {
