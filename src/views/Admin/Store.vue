@@ -1,7 +1,10 @@
 <template>
-  <div class="store">
-    <h2>식사 공간</h2>
+  <div class="manage-container">
+    <header>
+      <h2>식사 공간</h2>
+    </header>
     <StoreList :stores="stores" @LoadData="LoadData" />
+    <hr/>
     <form v-on:submit.prevent="onSubmit">
       <h3>매장 추가</h3>
       <div class="input-wrap">
@@ -26,7 +29,7 @@
         />
       </div>
 
-      <button type="submit">업로드</button>
+      <button class="green-button" type="submit">업로드</button>
     </form>
   </div>
 </template>
@@ -112,11 +115,5 @@ export default class AdminStore extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/styles/layouts";
-
-h2 {
-  font-size: 20px;
-}
-
-@include form-type-1;
+@import "../../assets/styles/admin/manage-container";
 </style>

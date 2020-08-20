@@ -1,14 +1,17 @@
 <template>
-  <div class="catering_story">
-    <h2>케이터링 이야기</h2>
-    <div class="catering-story-selector">
+  <div class="manage-container">
+    <header>
+      <h2>청청케이터링 이야기</h2>
+    </header>
+    <div class="selector">
       <select ref="storySelector" @change="selectStory">
+        <option value="-1">케이터링 이야기를 선택해 주세요</option>  
         <option
           v-for="(item, index) in cateringStories"
           :key="index"
           :value="index"
         >
-          {{ index + 1 }}
+          {{ item.title }}
         </option>
       </select>
     </div>
@@ -17,10 +20,11 @@
       @modify="onModify"
       @delete="onDelete"
     />
+    <hr/>
     <form v-on:submit.prevent="onSubmit">
-      <h3>추가</h3>
+      <h3>청정케이터링 이야기 추가</h3>
       <div class="input-wrap">
-        <label for="title">이름</label>
+        <label for="title">제목</label>
         <input ref="title" id="title" type="text" />
       </div>
       <div class="input-wrap">
@@ -28,8 +32,8 @@
         <input ref="desc" id="desc" type="text" />
       </div>
       <div class="input-wrap">
-        <label for="link">블로그 링크(빈칸 가능)</label>
-        <input ref="link" id="link" type="text" />
+        <label for="link">블로그 링크</label>
+        <input ref="link" id="link" type="text" placeholder="빈칸 가능"/>
       </div>
       <div class="input-wrap">
         <label for="frontPcImage">PC 흑백 이미지</label>
@@ -68,7 +72,7 @@
         />
       </div>
 
-      <button type="submit">업로드</button>
+      <button class="green-button" type="submit">업로드</button>
     </form>
   </div>
 </template>
@@ -103,7 +107,6 @@ export default class AdminCateringStory extends Vue {
       const { data } = await AxiosHelper.GET("/getCateringStories.php");
       const list = data.data as CateringStory[];
 
-      console.log(list);
       this.cateringStories = list;
     } catch (error) {
       alert("케이터링 이야기 로딩 실패");
@@ -221,11 +224,5 @@ export default class AdminCateringStory extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/styles/layouts";
-
-h2 {
-  font-size: 20px;
-}
-
-@include form-type-1;
+@import "../../assets/styles/admin/manage-container";
 </style>

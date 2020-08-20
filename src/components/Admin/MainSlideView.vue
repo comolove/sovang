@@ -1,30 +1,12 @@
 <template>
   <div class="main-slide" v-if="image">
-    <div class="content-wrap">
-      <p>PC 이미지</p>
-      <ModifiableImage
-        class="pc-img"
-        type="pc"
-        :index="image.img.index"
-        :src="image.img.pcPath"
-        @modify="onModify"
-      />
-    </div>
-    <div class="content-wrap">
-      <p>모바일 이미지</p>
-      <ModifiableImage
-        class="mobile-img"
-        type="mobile"
-        :index="image.img.index"
-        :src="image.img.mobilePath"
-        @modify="onModify"
-      />
-    </div>
+    <SwapModifiableImage :image="image.img" @modify="onModify"/>
 
     <button
+      class="red-button"
       @click="
         () => {
-          handleDelete(image.index);
+          onDelete(image.index);
         }
       "
     >
@@ -37,18 +19,18 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { BaseResImgObj } from "@/utils";
 
-import ModifiableImage from "@/components/Admin/ModifiableImage.vue";
+import SwapModifiableImage from "@/components/Admin/SwapModifiableImage.vue";
 
 @Component({
   name: "MainSlideView",
   components: {
-    ModifiableImage
+    SwapModifiableImage
   }
 })
 export default class MainSlideView extends Vue {
   @Prop() image!: BaseResImgObj;
 
-  protected handleDelete(index: number) {
+  protected onDelete(index: number) {
     this.$emit("delete", index);
   }
 
@@ -60,10 +42,10 @@ export default class MainSlideView extends Vue {
 
 <style scoped lang="scss">
 @import "../../assets/styles/layouts";
-
-button {
-  display: block;
-}
-
 @include content-wrap;
+
+.main-slide {
+  display: inline-block;
+  margin-bottom: 40px;
+}
 </style>

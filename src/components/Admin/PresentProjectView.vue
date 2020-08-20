@@ -1,23 +1,28 @@
 <template>
-  <div class="online-mall-view" v-if="project">
+  <div class="present-project-view" v-if="project">
     <div class="content-wrap">
-      <p>이름 : {{ project.title }}</p>
-      <p>설명 : {{ project.desc }}</p>
-      <p><a :href="project.link">블로그 링크</a></p>
+      <div class="text-wrap">
+        <p class="subject">제목</p>
+        <p class="text">{{ project.title }}</p>
+      </div>
+      <div class="text-wrap">
+        <p class="subject">설명</p>
+        <p class="text">{{ project.desc }}</p>
+      </div>
+      <div class="text-wrap">
+        <p class="subject">블로그 링크</p>
+        <p class="text"><a :href="project.link">{{project.link}}</a></p>
+      </div>
     </div>
     <div class="front">
+      <p>전면 이미지</p>
+      <SwapModifiableImage :image="project.frontImg" @modify="onModify"/>
+    </div>
+
+    <div class="back">
+      <p>후면 이미지</p>
       <div class="content-wrap">
-        <p>PC 앞 이미지</p>
-        <ModifiableImage
-          class="pc-img"
-          type="pc"
-          :index="project.frontImg.index"
-          :src="project.frontImg.pcPath"
-          @modify="onModify"
-        />
-      </div>
-      <div class="content-wrap">
-        <p>PC 뒷 이미지</p>
+        <p>PC 이미지</p>
         <ModifiableImage
           class="pc-img"
           type="pc"
@@ -28,20 +33,8 @@
       </div>
     </div>
 
-    <div class="back">
-      <div class="content-wrap">
-        <p>모바일 이미지</p>
-        <ModifiableImage
-          class="mobile-img"
-          type="mobile"
-          :index="project.frontImg.index"
-          :src="project.frontImg.mobilePath"
-          @modify="onModify"
-        />
-      </div>
-    </div>
-
     <button
+      class="red-button"
       @click="
         () => {
           handleDelete(project.index);
@@ -58,11 +51,13 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 import { PresentProject } from "@/utils";
 
 import ModifiableImage from "@/components/Admin/ModifiableImage.vue";
+import SwapModifiableImage from "@/components/Admin/SwapModifiableImage.vue";
 
 @Component({
   name: "PresentProjectView",
   components: {
-    ModifiableImage
+    ModifiableImage,
+    SwapModifiableImage
   }
 })
 export default class PresentProjectView extends Vue {
@@ -80,10 +75,10 @@ export default class PresentProjectView extends Vue {
 
 <style scoped lang="scss">
 @import "../../assets/styles/layouts";
-
-button {
-  display: block;
-}
-
 @include content-wrap;
+
+.present-project-view {
+  display: inline-block;
+  margin-bottom: 40px;
+}
 </style>

@@ -1,87 +1,64 @@
 <template>
-  <div class="store">
+  <div class="store-view">
     <div class="content-wrap">
-      <p>매장 이름 : {{ store.storeName }}</p>
-      <p><a :href="store.link">매장 링크</a></p>
+      <div class="text-wrap">
+        <p class="subject">매장 이름</p>
+        <p class="text">{{ store.storeName }}</p>
+      </div>
+      <div class="text-wrap">
+        <p class="subject">매장 링크</p>
+        <p class="text"><a :href="store.link">{{store.link}}</a></p>
+      </div>
     </div>
-    <div class="content-wrap">
+    <div class="content-wrap main-store-img">
       <p>메인 페이지 매장 이미지</p>
-      <div class="content-wrap">
-        <p>PC 이미지</p>
-        <ModifiableImage
-          class="pc-img"
-          type="pc"
-          :index="store.img.index"
-          :src="store.img.pcPath"
-          @modify="onModify"
-        />
-      </div>
-      <div class="content-wrap">
-        <p>모바일 이미지</p>
-        <ModifiableImage
-          class="mobile-img"
-          type="mobile"
-          :index="store.img.index"
-          :src="store.img.mobilePath"
-          @modify="onModify"
-        />
-      </div>
+      <SwapModifiableImage :image="store.img" @modify="onModify"/>
     </div>
-    <p>식사 공간 페이지 매장 이미지 목록</p>
-    <div class="store-imgs">
-      <div
-        class="content-wrap image"
-        v-for="(value, index) in store.imgList"
-        :key="index"
-      >
-        <p>PC 이미지</p>
-        <ModifiableImage
-          class="pc-img"
-          type="pc"
-          :index="value.index"
-          :src="value.pcPath"
-          @modify="onModify"
-        />
-        <p>모바일 이미지</p>
-        <ModifiableImage
-          class="mobile-img"
-          type="mobile"
-          :index="value.index"
-          :src="value.mobilePath"
-          @modify="onModify"
-        />
-        <button
-          @click="
-            () => {
-              handleDeleteImage(store.index, index);
-            }
-          "
+    <div class="content-wrap store-imgs-container">
+      <p>식사 공간 페이지 매장 이미지 목록</p>
+      <div class="store-imgs">
+        <div
+          class="image"
+          v-for="(value, index) in store.imgList"
+          :key="index"
         >
-          이미지 삭제
-        </button>
+          <SwapModifiableImage :image="value" @modify="onModify"/>
+          <button
+            class="red-button"
+            @click="
+              () => {
+                handleDeleteImage(store.index, index);
+              }
+            "
+          >
+            이미지 삭제
+          </button>
+        </div>
+        
+        <form v-on:submit.prevent="onSubmit">
+          <h3>식사공간 페이지 이미지 추가</h3>
+          <input type="hidden" ref="storeIndex" :value="store.index" />
+          <div class="input-wrap">
+            <label for="pcImage">PC 이미지</label>
+            <input ref="pcImage" id="pcImage" type="file" accept="image/*" />
+          </div>
+          <div class="input-wrap">
+            <label for="mobileImage">모바일 이미지</label>
+            <input
+              ref="mobileImage"
+              id="mobileImage"
+              type="file"
+              accept="image/*"
+            />
+          </div>
+
+          <button class="green-button" style="width:400px" type="submit">이미지 업로드</button>
+        </form>
       </div>
-
-      <form v-on:submit.prevent="onSubmit">
-        <h3>식사공간 페이지 이미지 추가</h3>
-        <input type="hidden" ref="storeIndex" :value="store.index" />
-        <div class="input-wrap">
-          <label for="pcImage">PC 이미지</label>
-          <input ref="pcImage" id="pcImage" type="file" accept="image/*" />
-        </div>
-        <div class="input-wrap">
-          <label for="mobileImage">모바일 이미지</label>
-          <input
-            ref="mobileImage"
-            id="mobileImage"
-            type="file"
-            accept="image/*"
-          />
-        </div>
-
-        <button type="submit">업로드</button>
-      </form>
     </div>
+
     <button
+      class="red-button"
       @click="
         () => {
           handleDeleteStore(store.index);
@@ -98,10 +75,12 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 import { AxiosHelper, Store } from "@/utils";
 
 import ModifiableImage from "@/components/Admin/ModifiableImage.vue";
+import SwapModifiableImage from "@/components/Admin/SwapModifiableImage.vue";
 
 @Component({
   components: {
-    ModifiableImage
+    ModifiableImage,
+    SwapModifiableImage
   }
 })
 export default class StoreView extends Vue {
@@ -194,22 +173,35 @@ export default class StoreView extends Vue {
 </script>
 
 <style scoped lang="scss">
-@import "../../assets/styles/layouts";
+@import "../../assets/styles/admin/manage-container";
+@include content-wrap;
 
-button {
-  display: block;
+
+.store-view {
+  display: inline-block;
+  margin-bottom: 40px;
 }
 
-.store-imgs {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 10px;
+.main-store-img {
+  display: inline-block;
+  margin-bottom: 32px !important;
+}
 
-  .image {
-    margin-right: 20px;
+.store-imgs-container {
+  width: 80%;
+  overflow-x: scroll;
+  
+  .store-imgs {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+
+    .image {
+      display: inline-block;
+      margin-right: 20px;
+    }
   }
 }
 
-@include form-type-1;
 @include content-wrap;
 </style>

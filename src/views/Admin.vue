@@ -1,30 +1,44 @@
 <template>
-  <div class="admin">
-    <h1>소녀방앗간 관리자 페이지</h1>
+  <div class="admin-container">
+    <header>
+      <h1>소녀방앗간 관리자 페이지</h1>
+    </header>
     <div class="login-form" v-if="!isLogin">
       <Login />
     </div>
-    <div class="manage-list" v-else>
-      <ul class="menu-list">
-        <li><router-link to="/admin/mainslide">메인 슬라이드</router-link></li>
-        <li><router-link to="/admin/onlinemall">온라인 몰</router-link></li>
-        <li><router-link to="/admin/store">식사 공간</router-link></li>
+    <div class="manage-view" v-else>
+      <ul class="menu-list-d1">
         <li>
-          <router-link to="/admin/cateringstory">케이터링 이야기</router-link>
+          메인 페이지
+          <ul class="menu-list-d2">
+            <li><router-link to="/admin/mainslide">메인 슬라이드</router-link></li>
+            <li><router-link to="/admin/onlinemall">온라인 몰</router-link></li>
+          </ul>
         </li>
         <li>
-          <router-link to="/admin/presentproject"
-            >명절선물 기획 프로젝트</router-link
-          >
+          브랜드 페이지
+          <ul class="menu-list-d2">
+            <li><router-link to="/admin/notice">알립니다</router-link></li>
+          </ul>
         </li>
         <li>
-          <router-link to="/admin/notice">알립니다</router-link>
+          케이터링 페이지
+          <ul class="menu-list-d2">
+            <li><router-link to="/admin/cateringstory">청정케이터링 이야기</router-link></li>
+          </ul>
         </li>
         <li>
-          <a href="/downloadCateringOrders.php">다운로드 케이터링 주문</a>
+          명절선물 페이지
+          <ul class="menu-list-d2">
+            <li><router-link to="/admin/presentproject">명절선물 기획 프로젝트</router-link></li>
+          </ul>
+        </li>
+        <li><router-link to="/admin/store">식사 공간 (매장 정보)</router-link></li>
+        <li>
+          <a href="/downloadCateringOrders.php">케이터링 문의 목록 다운로드</a>
         </li>
         <li>
-          <a href="/downloadPresentOrders.php">다운로드 명절선물 컨설팅</a>
+          <a href="/downloadPresentOrders.php">명절선물 상담 목록 다운로드</a>
         </li>
       </ul>
       <router-view></router-view>
@@ -58,107 +72,66 @@ export default class Admin extends Vue {
       this.isLogin = false;
     }
   }
-
-  /*
-
-  async downloadCatering() {
-    console.log("Download catering");
-
-    try {
-      const workbook = XLSX.utils.book_new();
-
-      const { data } = await AxiosHelper.GET("/getCateringOrders.php");
-      
-      const cateringOrders = data.data.map((element : CateringOrder) => {
-        return {
-          "단체명" : element.organization,
-          "담당자" : element.personInCharge,
-          "연락처" : element.hp,
-          "이메일" : element.email,
-          "날짜/시간" : element.date,
-          "인원" : element.headcount,
-          "결제방법" : element.payType,
-          "주소" : element.address,
-          "카테고리" : element.category,
-          "메뉴구성" : element.menuSet,
-          "메뉴항목" : element.menuItem,
-          "추가메뉴" : element.extraMenu,
-          "추가메시지" : element.extraMessage,
-          "문의 날짜" : element.createdAt
-        }
-      });
-
-      const sheet = XLSX.utils.json_to_sheet(cateringOrders);
-      XLSX.utils.book_append_sheet(workbook, sheet, "케이터링 주문");
-
-      XLSX.writeFile(workbook, "케이터링 주문.xlsx");
-    }
-    catch (error) {
-      console.log(error);
-      alert("케이터링 데이터 로드 실패");
-    }
-  }
-
-  async downloadPresent() {
-    console.log("Download present");
-
-    try {
-      const workbook = XLSX.utils.book_new();
-
-      const { data } = await AxiosHelper.GET("/getPresentOrders.php");
-
-      const presentConsult = data.data.map((element : PresentConsult) => {
-        return {
-          "단체명" : element.organization,
-          "담당자" : element.personInCharge,
-          "연락처" : element.hp,
-          "이메일" : element.email,
-          "문의내용" : element.question,
-          "문의 날짜" : element.createdAt
-        }
-      });
-
-      const sheet = XLSX.utils.json_to_sheet(presentConsult);
-      XLSX.utils.book_append_sheet(workbook, sheet, "명절선물 컨설팅");
-
-      XLSX.writeFile(workbook, "명절선물 컨설팅.xlsx");
-    }
-    catch (error) {
-      console.log(error);
-      alert("명절선물 데이터 로드 실패");
-    }
-  }
-
-  */
 }
 </script>
 
 <style lang="scss" scoped>
-h1 {
-  font-size: 24px;
-}
+.admin-container {
+  display: block;
+  position: relative;
 
-h2 {
-  font-size: 20px;
-}
-
-.manage-list {
   width: 100%;
   height: 100%;
-  padding: 0 5%;
+  padding: 24px;
+  
+  header {
+    display: block;
+    margin-bottom: 30px;
 
-  .menu-list {
-    display: flex;
-    flex-direction: row;
+    h1 {
+      font-size: 24px;
+    }
+  }
+}
 
-    li {
-      list-style-type: circle;
-      margin-right: 30px;
+.manage-view {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  margin-right: 30px;
+  padding-left: 24px;
+
+  a {
+    color: black;
+    text-decoration: none;
+
+    &:hover {
+      font-weight: bold;
     }
   }
 
-  & > * {
-    margin: 16px 0;
+  li {
+    margin-top: 8px;
+    font-size: 16px;
+  }
+
+  .menu-list-d1 {
+    display: inline-block;
+    position: absolute;
+    width: 20%;
+
+    > li {
+      list-style-type: square;
+    }
+  }
+
+  .menu-list-d2 {
+    padding-left: 24px;
+    margin-bottom: 10px;
+
+    > li {
+      list-style-type: disc;
+    }
   }
 }
 </style>

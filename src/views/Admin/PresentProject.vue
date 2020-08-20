@@ -1,14 +1,17 @@
 <template>
-  <div class="present-project">
-    <h2>명절선물 기획 프로젝트</h2>
-    <div class="present-project-selector">
+  <div class="manage-container">
+    <header>
+      <h2>명절선물 기획 프로젝트</h2>
+    </header>
+    <div class="selector">
       <select ref="projectSelector" @change="selectProject">
+        <option value="-1">명절선물 기획 프로젝트를 선택해 주세요</option>
         <option
           v-for="(item, index) in presentProjects"
           :key="index"
           :value="index"
         >
-          {{ index + 1 }}
+          {{ item.title }}
         </option>
       </select>
     </div>
@@ -17,10 +20,11 @@
       @modify="onModify"
       @delete="onDelete"
     />
+    <hr/>
     <form v-on:submit.prevent="onSubmit">
-      <h3>추가</h3>
+      <h3>명절선물 기획 프로젝트 추가</h3>
       <div class="input-wrap">
-        <label for="title">이름</label>
+        <label for="title">제목</label>
         <input ref="title" id="title" type="text" />
       </div>
       <div class="input-wrap">
@@ -28,11 +32,11 @@
         <input ref="desc" id="desc" type="text" />
       </div>
       <div class="input-wrap">
-        <label for="link">블로그 링크(빈칸 가능)</label>
-        <input ref="link" id="link" type="text" />
+        <label for="link">블로그 링크</label>
+        <input ref="link" id="link" type="text" placeholder="빈칸 가능"/>
       </div>
       <div class="input-wrap">
-        <label for="frontPcImage">PC 앞 이미지</label>
+        <label for="frontPcImage">PC 전면 이미지</label>
         <input
           ref="frontPcImage"
           id="frontPcImage"
@@ -41,7 +45,7 @@
         />
       </div>
       <div class="input-wrap">
-        <label for="backPcImage">PC 뒷 이미지</label>
+        <label for="backPcImage">PC 후면 이미지</label>
         <input
           ref="backPcImage"
           id="backPcImage"
@@ -50,7 +54,7 @@
         />
       </div>
       <div class="input-wrap">
-        <label for="mobileImage">모바일 이미지</label>
+        <label for="mobileImage">모바일 전면 이미지</label>
         <input
           ref="mobileImage"
           id="mobileImage"
@@ -59,7 +63,7 @@
         />
       </div>
 
-      <button type="submit">업로드</button>
+      <button class="green-button" type="submit">업로드</button>
     </form>
   </div>
 </template>
@@ -203,11 +207,5 @@ export default class AdminPresentProject extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/styles/layouts";
-
-h2 {
-  font-size: 20px;
-}
-
-@include form-type-1;
+@import "../../assets/styles/admin/manage-container";
 </style>

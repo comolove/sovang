@@ -7,6 +7,7 @@ import CateringStoryView from "@/components/Admin/CateringStoryView.vue";
 import PresentProjectView from "@/components/Admin/PresentProjectView.vue";
 import StoreList from "@/components/Admin/StoreList.vue";
 import ModifiableImage from "@/components/Admin/ModifiableImage.vue";
+import SwapModifiableImage from "@/components/Admin/SwapModifiableImage.vue";
 
 export {
   Login,
@@ -16,5 +17,6 @@ export {
   CateringStoryView,
   PresentProjectView,
   StoreList,
-  ModifiableImage
+  ModifiableImage,
+  SwapModifiableImage
 };

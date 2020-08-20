@@ -95,8 +95,10 @@ export default class ModifiableImage extends Vue {
   position: absolute;
   width: 100%;
   height: 100%;
-  left: 0;
-  top: 0;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   background-color: rgb(0, 0, 0);
   opacity: 0;
   color: white;
@@ -104,7 +106,7 @@ export default class ModifiableImage extends Vue {
   transition: all 1s;
 
   p {
-    transform: translateY(300%);
+    margin: 32px;
   }
 }
 
@@ -117,11 +119,12 @@ img {
 .modifiable-image:hover {
   .overlay {
     cursor: pointer;
-    opacity: 0.3;
+    opacity: 0.6;
   }
 }
 
 #replaceImage {
   display: none;
 }
+
 </style>

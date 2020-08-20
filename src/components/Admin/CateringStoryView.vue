@@ -1,60 +1,34 @@
 <template>
-  <div class="online-mall-view" v-if="story">
+  <div class="catering-story-view" v-if="story">
     <div class="content-wrap">
-      <p>이름 : {{ story.title }}</p>
-      <p>설명 : {{ story.desc }}</p>
-      <p><a :href="story.link">블로그 링크</a></p>
+      <div class="text-wrap">
+        <p class="subject">제목</p>
+        <p class="text">{{ story.title }}</p>
+      </div>
+      <div class="text-wrap">
+        <p class="subject">설명</p>
+        <p class="text">{{ story.desc }}</p>
+      </div>
+      <div class="text-wrap">
+        <p class="subject">블로그 링크</p>
+        <p class="text"><a :href="story.link">{{story.link}}</a></p>
+      </div>
     </div>
     <div class="mono">
-      <div class="content-wrap">
-        <p>PC 흑백 이미지</p>
-        <ModifiableImage
-          class="pc-img"
-          type="pc"
-          :index="story.frontImg.index"
-          :src="story.frontImg.pcPath"
-          @modify="onModify"
-        />
-      </div>
-      <div class="content-wrap">
-        <p>모바일 흑백 이미지</p>
-        <ModifiableImage
-          class="mobile-img"
-          type="mobile"
-          :index="story.frontImg.index"
-          :src="story.frontImg.mobilePath"
-          @modify="onModify"
-        />
-      </div>
+      <p>흑백</p>
+      <SwapModifiableImage :image="story.frontImg" @modify="onModify"/>
     </div>
 
     <div class="color">
-      <div class="content-wrap">
-        <p>PC 컬러 이미지</p>
-        <ModifiableImage
-          class="pc-img"
-          type="pc"
-          :index="story.backImg.index"
-          :src="story.backImg.pcPath"
-          @modify="onModify"
-        />
-      </div>
-      <div class="content-wrap">
-        <p>모바일 컬러 이미지</p>
-        <ModifiableImage
-          class="mobile-img"
-          type="mobile"
-          :index="story.backImg.index"
-          :src="story.backImg.mobilePath"
-          @modify="onModify"
-        />
-      </div>
+      <p>컬러</p>
+      <SwapModifiableImage :image="story.backImg" @modify="onModify"/>
     </div>
 
     <button
+      class="red-button"
       @click="
         () => {
-          handleDelete(story.index);
+          onDelete(story.index);
         }
       "
     >
@@ -67,18 +41,18 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { CateringStory } from "@/utils";
 
-import ModifiableImage from "@/components/Admin/ModifiableImage.vue";
+import SwapModifiableImage from "@/components/Admin/SwapModifiableImage.vue";
 
 @Component({
   name: "CateringStoryView",
   components: {
-    ModifiableImage
+    SwapModifiableImage
   }
 })
 export default class CateringStoryView extends Vue {
   @Prop() story!: CateringStory;
 
-  protected handleDelete(index: number) {
+  protected onDelete(index: number) {
     this.$emit("delete", index);
   }
 
@@ -90,10 +64,10 @@ export default class CateringStoryView extends Vue {
 
 <style scoped lang="scss">
 @import "../../assets/styles/layouts";
-
-button {
-  display: block;
-}
-
 @include content-wrap;
+
+.catering-story-view {
+  display: inline-block;
+  margin-bottom: 40px;
+}
 </style>

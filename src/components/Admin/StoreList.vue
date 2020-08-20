@@ -1,6 +1,6 @@
 <template>
   <div class="store-list">
-    <div class="mall-item-selector">
+    <div class="selector">
       <select ref="storeSelector" @change="selectStore">
         <option v-for="(store, index) in stores" :key="index" :value="index">
           {{ store.storeName }}
@@ -60,13 +60,15 @@ export default class StoreList extends Vue {
 </script>
 
 <style scoped lang="scss">
-.store-list {
-  display: flex;
-  flex-direction: column;
-  margin-top: 10px;
+@import "../../assets/styles/admin/manage-container";
 
-  .store {
-    margin-right: 20px;
-  }
-}
+// .store-list {
+//   display: flex;
+//   flex-direction: column;
+//   margin-top: 10px;
+
+//   .store {
+//     margin-right: 20px;
+//   }
+// }
 </style>

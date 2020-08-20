@@ -1,8 +1,11 @@
 <template>
-  <div class="title-slides">
-    <h2>메인 페이지 - 메인 슬라이드</h2>
-    <div class="main-slide-selector">
+  <div class="manage-container">
+    <header>
+      <h2>메인 슬라이드</h2>
+    </header>
+    <div class="selector">
       <select ref="mainSlideSelector" @change="onSlideSelect">
+        <option value="-1">슬라이드를 선택해 주세요</option>  
         <option
           v-for="(mainSlide, index) in mainSlides"
           :key="index"
@@ -17,6 +20,7 @@
       @modify="onModify"
       @delete="onDelete"
     />
+    <hr />
     <form v-on:submit.prevent="onSubmit">
       <h3>메인 슬라이드 추가</h3>
       <div class="input-wrap">
@@ -32,7 +36,7 @@
           accept="image/*"
         />
       </div>
-      <button type="submit">업로드</button>
+      <button class="green-button" type="submit">업로드</button>
     </form>
   </div>
 </template>
@@ -52,14 +56,10 @@ export default class AdminMainSlide extends Vue {
   @Ref() readonly mainSlideSelector!: HTMLSelectElement;
 
   private mainSlides: MainSlide[] = [];
-  private selectedMainSlide: MainSlide = new MainSlide();
+  private selectedMainSlide: MainSlide | null = null;
 
   async created() {
     await this.LoadData();
-
-    if (this.mainSlides.length > 0) {
-      this.selectedMainSlide = this.mainSlides[0];
-    }
   }
 
   async LoadData() {
@@ -132,23 +132,18 @@ export default class AdminMainSlide extends Vue {
   }
 
   private selectSlide() {
-    let index = 0;
+    let index = -1;
 
     if (this.mainSlideSelector) {
       index = parseInt(this.mainSlideSelector.value);
-
-      if (isNaN(index) || !index) {
-        index = 0;
-      }
     }
 
-    if (this.mainSlides.length === 0) {
-      this.selectedMainSlide = new MainSlide();
-    } else if (this.mainSlides.length < index) {
-      index = 0;
+    if (this.mainSlides.length > 0 && this.mainSlides.length > index && index > -1) {
+      this.selectedMainSlide = this.mainSlides[index];
     }
-
-    this.selectedMainSlide = this.mainSlides[index];
+    else {
+      this.selectedMainSlide = null;
+    }
   }
 
   private async onDelete(index: number) {
@@ -170,11 +165,5 @@ export default class AdminMainSlide extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/styles/layouts";
-
-h2 {
-  font-size: 20px;
-}
-
-@include form-type-1;
+@import "../../assets/styles/admin/manage-container";
 </style>

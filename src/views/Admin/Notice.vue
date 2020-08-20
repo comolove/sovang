@@ -1,9 +1,11 @@
 <template>
-  <div class="notice-editor">
-    <h2>알립니다</h2>
-    <div class="notice-selector">
+  <div class="manage-container">
+    <header>
+      <h2>알립니다</h2>
+    </header>
+    <div class="selector">
       <select ref="noticeSelector" @change="onNoticeSelect">
-        <option value="-1">새 알립니다 생성</option>
+        <option value="-1">새 알립니다 만들기</option>
         <option
           v-for="(notice, index) in noticeList"
           :key="index"
@@ -14,17 +16,29 @@
       </select>
     </div>
     <form v-on:submit.prevent="onSubmit">
-      <input 
-        v-model="title"
-        type="text" 
-        name="title" />
-      <button v-if="index >= 0" @click="onNoticeDelete">삭제</button>
+      <div class="input-wrap">
+        <label for="title">제목</label>
+        <input 
+          v-model="title"
+          type="text" 
+          name="title"
+          placeholder="이곳에 알립니다 공지 제목을 써주세요"
+          />
+      </div>
       <quill-editor
         ref="myQuillEditor"
         v-model="content"
         :options="editorOption"
       />
-      <button type="submit">{{index >= 0 ? "변경" : "업로드"}}</button>
+      <div>
+        <button 
+          :class="index >= 0 ? 'blue-button half' : 'green-button'"
+          type="submit"
+        >
+          {{index >= 0 ? "변경" : "업로드"}}
+        </button>
+        <button type="button" class="red-button half" v-if="index >= 0" @click="onNoticeDelete">삭제</button>
+      </div>
     </form>
   </div>
 </template>
@@ -46,7 +60,6 @@ import { quillEditor } from 'vue-quill-editor'
   }
 })
 export default class Notice extends Vue {
-
     noticeList = [];
 
     index = -1;
@@ -60,15 +73,18 @@ export default class Notice extends Vue {
     }
 
     async LoadData() {
+      this.noticeList = [];
+
       try {
         const { data } = await AxiosHelper.GET("/getNotice.php");
 
         this.noticeList = data.data;
-        console.log(this.noticeList);
       } catch (error) {
         console.log("로딩 실패");
         console.log(error.response);
       }
+
+      this.selectNotice();
     }
 
     async onSubmit() {
@@ -133,7 +149,7 @@ export default class Notice extends Vue {
         this.index = parseInt(noticeSelector.value);
       }
 
-      if (this.index >= 0) {
+      if (this.index >= 0 && this.noticeList.length > 0) {
         this.title = this.noticeList[this.index].title;
         this.content = this.noticeList[this.index].content;
       }
@@ -147,11 +163,19 @@ export default class Notice extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/styles/layouts";
+@import "../../assets/styles/admin/manage-container";
 
-h2 {
-  font-size: 20px;
+button {
+  margin-top: 24px;
+  transition: none;
+  width: 50%;
+
+  &.green-button {
+    width: 100%;
+  }
 }
 
-@include form-type-1;
+.half {
+  display: inline !important;
+}
 </style>

@@ -1,14 +1,17 @@
 <template>
-  <div class="onlinemall-slides">
-    <h2>홈 페이지 온라인 몰 슬라이드</h2>
-    <div class="mall-item-selector">
+  <div class="manage-container">
+    <header>
+      <h2>온라인 몰 물품</h2>
+    </header>
+    <div class="selector">
       <select ref="mallItemSelector" @change="onSlideSelect">
+        <option value="-1">온라인 몰 물품을 선택해 주세요</option>  
         <option
           v-for="(item, index) in onlineMallItems"
           :key="index"
           :value="index"
         >
-          {{ index + 1 }}
+          {{ item.itemName }}
         </option>
       </select>
     </div>
@@ -17,26 +20,27 @@
       @modify="onModify"
       @delete="onDelete"
     />
+    <hr />
     <form v-on:submit.prevent="onSubmit">
-      <h3>상품 추가</h3>
+      <h3>물품 추가</h3>
       <div class="input-wrap">
-        <label for="itemName">상품 이름</label>
+        <label for="itemName">물품 이름</label>
         <input ref="itemName" id="itemName" type="text" />
       </div>
       <div class="input-wrap">
-        <label for="itemDesc">상품 설명</label>
+        <label for="itemDesc">물품 설명</label>
         <input ref="itemDesc" id="itemDesc" type="text" />
       </div>
       <div class="input-wrap">
-        <label for="link">상품 링크</label>
+        <label for="link">물품 링크</label>
         <input ref="link" id="link" type="text" />
       </div>
       <div class="input-wrap">
-        <label for="pcImage">PC 사이즈 이미지</label>
+        <label for="pcImage">PC 이미지</label>
         <input ref="pcImage" id="pcImage" type="file" accept="image/*" />
       </div>
       <div class="input-wrap">
-        <label for="mobileImage">모바일 사이즈 이미지</label>
+        <label for="mobileImage">모바일 이미지</label>
         <input
           ref="mobileImage"
           id="mobileImage"
@@ -45,7 +49,7 @@
         />
       </div>
 
-      <button type="submit">업로드</button>
+      <button class="green-button" type="submit">업로드</button>
     </form>
   </div>
 </template>
@@ -190,11 +194,5 @@ export default class AdminOnlineMall extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/styles/layouts";
-
-h2 {
-  font-size: 20px;
-}
-
-@include form-type-1;
+@import "../../assets/styles/admin/manage-container";
 </style>
