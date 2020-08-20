@@ -326,7 +326,7 @@ export default class Community extends Vue {
 }
 
 h2 {
-  padding: 8.281vw 0 0;
+  padding: 8.281vw 0 3.75vw;
   text-align: center;
   font-size: 1.719vw;
   font-weight: 500;
@@ -569,7 +569,7 @@ h2 {
 .button-go-top {
   position: fixed;
   width: 3.385vw;
-  bottom: 23.281vw;
+  bottom: 23.365vw;
   right: 14.299vw;
   transition: opacity 0.5s;
   opacity: 0;
