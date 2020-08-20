@@ -128,16 +128,20 @@ export default class Store extends Vue {
 
   updated() {
     if (!this.once && this.$route.params.storeIndex) {
-      this.$scrollTo("#store-" + this.$route.params.storeIndex, {
-        duration: 0,
-        easing: "linear",
-        offset: -100,
-        force: true,
-        x: false,
-        y: true
-      });
+      const element = document.getElementById("store-" + this.$route.params.storeIndex);
+      if (element !== null) {
+        this.$scrollTo("#store-" + this.$route.params.storeIndex, {
+          duration: 0,
+          easing: "linear",
+          offset: -100,
+          force: true,
+          x: false,
+          y: true
+        });
 
-      this.once = true;
+        this.once = true;
+      }
+      console.log("FIND ELEMENT :", element);
     }
   }
 
