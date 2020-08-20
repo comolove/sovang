@@ -1,7 +1,7 @@
 <template>
   <main class="home" ref="main">
     <Header />
-    <section data-aos="fade-up" class="img-slider">
+    <section class="img-slider">
       <Carousel
         class="main-carousel"
         :per-page="1"
