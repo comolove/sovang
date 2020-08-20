@@ -1,10 +1,10 @@
 <template>
   <main class="brand" ref="main">
     <Header />
-    <section class="main">
+    <section class="main" ref="mainImg">
       <AssetImage :src="mainImgPath" />
     </section>
-    <section class="contents">
+    <section class="contents" ref="contents">
       <HomeContent data-aos="fade-up" title="농촌과 도시를 잇다">
         <AssetImage
           :src="
@@ -90,6 +90,30 @@
           "
         />
       </HomeContent>
+      <HomeContent data-aos="fade-up" title="알립니다">
+        <div class="summary-wrap" ref="list">
+          <div class="classification" v-if="!isMobile">
+            <span class="index">번호</span>
+            <span class="title">글제목</span>
+            <span class="author">작성자</span>
+            <span class="date">작성일</span>
+          </div>
+          <NoticeSummary 
+            v-for="(data, index) of summary"
+            :key="index"
+            :index="index+1"
+            :title="data.title"
+            :author="data.author"
+            :date="data.date"
+            :currentPage="currentPage"
+            :isMobile="isMobile"
+          />
+        </div>
+        <div class="pagination">
+          <span v-for="page in numOfPage" @click="currentPage=page" :key="page">{{page}}</span>
+          <AssetImage src="go-to-next.png" @click="currentPage<numOfPage?currentPage++:currentPage" />
+        </div>
+      </HomeContent>
     </section>
     <AssetImage
       class="button-go-top"
@@ -111,9 +135,16 @@ import {
   Footer,
   HomeContent,
   AssetImage,
-  ImageOverlayInfo
+  ImageOverlayInfo,
+  NoticeSummary
 } from "@/components";
 import Breakpoint from "@/utils/screenSize";
+
+class Summary {
+  public title = "";
+  public author = "";
+  public date = "";
+}
 
 @Component({
   name: "Brand",
@@ -122,7 +153,8 @@ import Breakpoint from "@/utils/screenSize";
     Footer,
     HomeContent,
     AssetImage,
-    ImageOverlayInfo
+    ImageOverlayInfo,
+    NoticeSummary
   }
 })
 export default class Brand extends Vue {
@@ -130,10 +162,36 @@ export default class Brand extends Vue {
   private isVisible = false;
 
   private mainImgPath = "brand-page/Mobile/main.jpg";
+  private summary: Summary[] = [];
+  private numOfPage = 0;
+  private currentPage = 1;
 
   created() {
     window.addEventListener("resize", this.handleResize);
     window.addEventListener("scroll", this.handleScroll);
+
+    const titles = [
+      `[알림] 소녀방앗간은 공식홈페이지 리뉴얼 소식을 전합니다.`
+    ]
+
+    const authors = [
+      `소녀방앗간`
+    ]
+
+    const dates = [
+      `2020. 08. 22`
+    ]
+
+    for(let i = 0 ; i < titles.length ; i++) {
+      this.summary.push({
+        title : titles[i],
+        author : authors[i],
+        date : dates[i]
+      })
+    }
+
+    this.numOfPage = Math.floor((this.summary.length-1)/5 + 1);
+
   }
 
   mounted() {
@@ -164,11 +222,13 @@ export default class Brand extends Vue {
   }
 
   goTop() {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: "smooth"
-    });
+    if(this.isVisible) {
+      window.scroll({
+       top: 0,
+       left: 0,
+       behavior: "smooth"
+      });
+    }
   }
 
   responseComponents() {
@@ -415,6 +475,75 @@ main {
           }
         }
       }
+
+      &:nth-child(6) {
+        height: auto;
+        margin-bottom: 8.125vw;
+
+        .summary-wrap{
+          display: flex;
+          flex-direction: column;
+
+          .classification {
+            background: #f3f0ed;
+            border-top: 1px solid #a19b95;
+            border-bottom: 1px solid #a19b95;
+
+            span {
+              font-size: 1.146vw;
+              line-height: 3.958vw;
+              color: #595757;
+
+              &.index {
+                padding-left: 1.146vw;
+              }
+
+              &.title {
+                padding-left: 27.188vw;
+              }
+
+              &.author {
+                padding-left: 24.323vw;
+              }
+
+              &.date {
+                padding-left: 4.792vw;
+              }
+            }
+          }
+        }
+        .pagination {
+          text-align: right;
+          font-size: 1.146vw;
+          padding-top: 1.042vw;
+
+          @include mobile {
+            font-size: 3.333vw;
+            padding-top: 3.056vw;
+          }
+
+          span {
+            position: relative;
+            padding-right: 0.938vw;
+            cursor: pointer;
+
+            @include mobile {
+              padding: 0 2.778vw 0 0;
+              bottom: 0.833vw;
+            }
+          }
+
+          img {
+            width: 1.146vw;
+            cursor: pointer;
+            position: static;
+
+            @include mobile {
+              width: 5vw;
+            }
+          }
+        }
+      }
     }
   }
 
@@ -432,7 +561,7 @@ main {
   width: 3.385vw;
   bottom: 23.281vw;
   right: 14.299vw;
-  transition: opacity 0.5s;
+  transition: all 0.5s;
   opacity: 0;
   cursor: pointer;
 
