@@ -6,6 +6,7 @@ import Store from "../views/Store.vue";
 import Catering from "../views/Catering.vue";
 import Present from "../views/Present.vue";
 import Community from "../views/Community.vue";
+import Notice from "../views/Notice.vue";
 import Admin from "../views/Admin.vue";
 import AdminMainSlide from "../views/Admin/MainSlide.vue";
 import AdminOnlineMall from "../views/Admin/OnlineMall.vue";
@@ -45,6 +46,11 @@ const routes: Array<RouteConfig> = [
     path: "/community",
     name: "Community",
     component: Community
+  },
+  {
+    path: "/notice/:index",
+    name: "Notice",
+    component: Notice
   },
   {
     path: "/admin",

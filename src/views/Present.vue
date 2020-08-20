@@ -322,7 +322,7 @@
           :navigationPrevLabel="projectCarouselNavigationPrev"
           :autoplay="true"
           :loop="true"
-          :spacePadding="0"
+          :spacePadding="-12.5"
         >
           <Slide
             v-for="(data, index) of projectData"
@@ -1242,11 +1242,11 @@ article {
 
       .VueCarousel-navigation-prev {
         transform: unset;
-        left: 3.229vw;
-        top: 17.708vw;
+        left: -3.75vw;
+        top: 6.354vw;
 
         img {
-          width: 1.458vw;
+          width: 1.042vw;
         }
 
         @include mobile {
@@ -1261,11 +1261,11 @@ article {
 
       .VueCarousel-navigation-next {
         transform: unset;
-        right: 3.229vw;
-        top: 17.708vw;
+        right: -3.75vw;
+        top: 6.354vw;
 
         img {
-          width: 1.458vw;
+          width: 1.042vw;
         }
 
         @include mobile {
