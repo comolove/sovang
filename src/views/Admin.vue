@@ -18,6 +18,9 @@
           >
         </li>
         <li>
+          <router-link to="/admin/notice">알립니다</router-link>
+        </li>
+        <li>
           <a href="/downloadCateringOrders.php">다운로드 케이터링 주문</a>
         </li>
         <li>

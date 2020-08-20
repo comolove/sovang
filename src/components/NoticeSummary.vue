@@ -1,40 +1,53 @@
 <template>
   <div class="notice-wrap" v-if="isInCurrentPage"
-    ref="notice"
-    @click="() => {
-      this.$router.push(`/notice/${index}`);
-    }"
+    ref="noticeItem"
+    @click="toNoticePage"
   >
     <span class="index" v-if="!isMobile">{{index}}</span>
-    <span class="title">{{title}}</span>
-    <span class="author">{{author}}</span>
-    <span class="date">{{date}}</span>
+    <span class="title">{{notice.title}}</span>
+    <span class="author">{{notice.author}}</span>
+    <span class="date">{{notice.createdAt}}</span>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Prop, Component } from "vue-property-decorator";
+import { Vue, Prop, Component, Ref } from "vue-property-decorator";
+import { NoticeData } from "@/utils";
 
 @Component({
   name: "NoticeSummary"
 })
 export default class NoticeSummary extends Vue {
+  @Ref() noticeItem! : HTMLDivElement;
+
+  @Prop() private notice!: NoticeData
   @Prop() private index !: string;
-  @Prop() private title !: string;
-  @Prop() private author !: string;
-  @Prop() private date !: string;
   @Prop() private currentPage !: number;
   @Prop() private isMobile !: boolean;
 
   mounted() {
     if(parseInt(this.index) == 1 && this.isMobile) {
-      (this.$refs.notice as HTMLDivElement).style.borderTop="1px solid #a19b95";
+      this.noticeItem.style.borderTop = "1px solid #a19b95";
     }
+  }
+
+  toNoticePage() {
+    this.$router.push({
+      name: "Notice",
+      params : {
+        index : this.index,
+        title: this.notice.title,
+        content : this.notice.content,
+        author : this.notice.author,
+        createdAt : this.notice.createdAt
+      }
+    });
   }
 
   get isInCurrentPage() : boolean {
     const currentIndex = parseInt(this.index);
-    return this.currentPage==Math.floor((currentIndex-1)/5+1);
+
+    return this.currentPage == Math.floor((currentIndex - 1) / 5 + 1);
   }
 }
 </script>

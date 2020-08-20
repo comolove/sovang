@@ -99,12 +99,10 @@
             <span class="date">작성일</span>
           </div>
           <NoticeSummary 
-            v-for="(data, index) of summary"
+            v-for="(notice, index) of noticeList"
             :key="index"
-            :index="index+1"
-            :title="data.title"
-            :author="data.author"
-            :date="data.date"
+            :notice="notice"
+            :index="index + 1"
             :currentPage="currentPage"
             :isMobile="isMobile"
           />
@@ -139,12 +137,7 @@ import {
   NoticeSummary
 } from "@/components";
 import Breakpoint from "@/utils/screenSize";
-
-class Summary {
-  public title = "";
-  public author = "";
-  public date = "";
-}
+import { AxiosHelper, NoticeData } from "@/utils";
 
 @Component({
   name: "Brand",
@@ -162,36 +155,15 @@ export default class Brand extends Vue {
   private isVisible = false;
 
   private mainImgPath = "brand-page/Mobile/main.jpg";
-  private summary: Summary[] = [];
+  private noticeList: NoticeData[] = [];
   private numOfPage = 0;
   private currentPage = 1;
 
-  created() {
+  async created() {
     window.addEventListener("resize", this.handleResize);
     window.addEventListener("scroll", this.handleScroll);
 
-    const titles = [
-      `[알림] 소녀방앗간은 공식홈페이지 리뉴얼 소식을 전합니다.`
-    ]
-
-    const authors = [
-      `소녀방앗간`
-    ]
-
-    const dates = [
-      `2020. 08. 22`
-    ]
-
-    for(let i = 0 ; i < titles.length ; i++) {
-      this.summary.push({
-        title : titles[i],
-        author : authors[i],
-        date : dates[i]
-      })
-    }
-
-    this.numOfPage = Math.floor((this.summary.length-1)/5 + 1);
-
+    await this.LoadData();
   }
 
   mounted() {
@@ -201,6 +173,19 @@ export default class Brand extends Vue {
   destroyed() {
     window.removeEventListener("resize", this.handleResize);
     window.removeEventListener("scroll", this.handleScroll);
+  }
+
+  async LoadData() {
+    try {
+      const { data } = await AxiosHelper.GET("/getNotice.php");
+
+      this.noticeList = data.data as NoticeData[];
+
+      this.numOfPage = Math.floor((this.noticeList.length - 1) / 5 + 1);
+    } catch (error) {
+      console.log("로딩 실패");
+      console.log(error.response);
+    }
   }
 
   handleResize(/* e : Event */) {

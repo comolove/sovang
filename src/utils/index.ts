@@ -9,6 +9,7 @@ import CateringStory from "@/utils/CateringStory";
 import PresentProject from "@/utils/PresentProject";
 import PresentConsult from "@/utils/PresentConsult";
 import AxiosHelper from "@/utils/AxiosHelper";
+import NoticeData from "@/utils/NoticeData";
 
 export {
   AxiosHelper,
@@ -21,5 +22,6 @@ export {
   CateringOrder,
   CateringStory,
   PresentConsult,
-  PresentProject
+  PresentProject,
+  NoticeData
 };

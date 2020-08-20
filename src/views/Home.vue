@@ -640,7 +640,6 @@ export default class Home extends Vue {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1.354vw 1.354vw;
-    grid-gap: 1.354vw 1.354vw;
 
     .item {
       p {

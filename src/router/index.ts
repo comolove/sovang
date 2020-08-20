@@ -13,6 +13,7 @@ import AdminOnlineMall from "../views/Admin/OnlineMall.vue";
 import AdminStore from "../views/Admin/Store.vue";
 import AdminCateringStory from "../views/Admin/CateringStory.vue";
 import AdminPresentProject from "../views/Admin/PresentProject.vue";
+import AdminNotice from "../views/Admin/Notice.vue";
 
 Vue.use(VueRouter);
 
@@ -48,7 +49,7 @@ const routes: Array<RouteConfig> = [
     component: Community
   },
   {
-    path: "/notice/:index",
+    path: "/notice",
     name: "Notice",
     component: Notice
   },
@@ -76,6 +77,10 @@ const routes: Array<RouteConfig> = [
       {
         path: "presentproject",
         component: AdminPresentProject
+      },
+      {
+        path: "notice",
+        component: AdminNotice
       }
     ]
   }

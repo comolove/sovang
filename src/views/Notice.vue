@@ -3,19 +3,12 @@
     <Header />
     <HomeContent title="알립니다">
       <div class="title">
-        [알림] 소녀방앗간 공식홈페이지 리뉴얼 소식을 전합니다.
+        {{title}}
       </div>
-      <div class="content">
-        2020년 8월, 소녀방앗간 공식홈페이지가 새롭게 리뉴얼 되었습니다.
-        <br /><br />2014년 10월부터 많은 분들이 소녀방앗간을 아껴주신 덕분에 지난 5년간 저희는 식사공간
-        <br v-if="!isMobile" />이상으로 다양한 서비스를 시도하며 조금씩이나마 다방면으로 더욱 성장해올 수 있었습니다.
-        <br /><br />소녀방앗간을 아껴주시는 많은 고객, 기업, 단체들에서 저희가 제공하는 서비스를 조금 더
-        <br v-if="!isMobile" />편리하게 접하시고, 경험하실 수  있도록 리뉴얼을 하였습니다. 고객분들과의 소통에 더욱
-        <br v-if="!isMobile" />힘쓰며, 앞으로도 꾸준한 소녀방앗간이 되겠습니다. 감사합니다 :)  
-      </div>
+      <div class="content" v-html="content"></div>
       <div class="written-by">
-        <span class="author">소녀방앗간</span>
-        <span class="date">2020 - 08 - 22</span>
+        <span class="author">{{author}}</span>
+        <span class="date">{{createdAt}}</span>
       </div>
       <div class="goList">
         <a @click="goBack">목록</a>
@@ -26,35 +19,41 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { Header, Footer, HomeContent, NoticeSummary } from "@/components";
-import Breakpoint from "@/utils/screenSize";
+import { Component, Vue, Prop } from "vue-property-decorator";
+import { Header, Footer, HomeContent } from "@/components";
+import { screenSize } from "@/utils";
 
 @Component({
   name: "Notice",
   components: {
     Header,
     Footer,
-    HomeContent,
-    NoticeSummary
+    HomeContent
   }
 })
 export default class Notice extends Vue {
-  private currentIndex = "";
+
+  private title = "";
+  private content = "";
+  private author = "";
+  private createdAt = "";
+
   private isMobile = false;
 
   created() {
-    this.currentIndex = this.$route.params.index;
+    this.title = this.$route.params.title;
+    this.content = this.$route.params.content;
+    this.author = this.$route.params.author;
+    this.createdAt = this.$route.params.createdAt;
   }
 
   mounted() {
-    this.isMobile = Breakpoint.tablet > window.innerWidth ? true : false;
+    this.isMobile = screenSize.tablet > window.innerWidth ? true : false;
   }
 
   goBack() {
     window.history.back();
   }
-  //DB에서 currentIndex에 해당하는 정보 가져오기
 }
 </script>
 
