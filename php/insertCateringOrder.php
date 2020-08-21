@@ -69,7 +69,7 @@ $list = $writer->LoadDataFromDB($conn);
 $filepath = $writer->Write($list);
 
 $mailSender = new MailSender();
-$result = $mailSender->SendTo("yikolden@naver.com", "케이터링 주문", "새로운 케이터링 주문건이 접수되었습니다.", array($filepath));
+$result = $mailSender->SendTo("sobang@millcompany.co.kr", "케이터링 상담예약", "신규 케이터링 상담예약이 접수되었습니다 :)", array($filepath));
 
 if ($result == FALSE) 
 {
@@ -80,7 +80,7 @@ if ($result == FALSE)
 }
 
 $messageSender = new MessageSender();
-$result = $messageSender->SendMessage("새로운 케이터링 주문건이 접수되었습니다.", "01034210329", /* Test Mode */"Y");
+$result = $messageSender->SendMessage("신규 케이터링 상담예약이 접수되었습니다 :)", "01047210778", /* Test Mode */"N");
 
 $conn->close();
 

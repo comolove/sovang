@@ -44,18 +44,18 @@ $list = $writer->LoadDataFromDB($conn);
 $filepath = $writer->Write($list);
 
 $mailSender = new MailSender();
-$result = $mailSender->SendTo("yikolden@naver.com", "명절선물 컨설팅", "새로운 명절선물 컨설팅이 접수되었습니다.", array($filepath));
+$result = $mailSender->SendTo("sobang@millcompany.co.kr", "명절선물 상담예약", "신규 명절선물 상담예약이 접수되었습니다 :)", array($filepath));
 
 if ($result == FALSE) 
 {
-    $message = MakeMessage(FALSE, "failed", $result->GetError());
+    $message = MakeMessage(FALSE, "이메일 발송 실패", $result->GetError());
     Response(500, $message);
     $conn->close();
     exit();
 }
 
 $messageSender = new MessageSender();
-$result = $messageSender->SendMessage("새로운 명절선물 컨설팅이 접수되었습니다.", "01034210329", /* Test Mode */"Y");
+$result = $messageSender->SendMessage("신규 명절선물 상담예약이 접수되었습니다 :)", "01047210778", /* Test Mode */"N");
 
 $conn->close();
 
