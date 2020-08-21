@@ -4,6 +4,7 @@ require_once "db.php";
 require_once "utils/PresentProjectXLSXWriter.php";
 require_once "utils/MailSender.php";
 require_once "utils/MessageSender.php";
+require_once "utils/SheetWriter.php";
 
 $_POST = json_decode(file_get_contents("php://input"), true);
 
@@ -43,6 +44,14 @@ $writer = new PresentProjectXLSXWriter();
 $list = $writer->LoadDataFromDB($conn);
 $filepath = $writer->Write($list);
 
+$result = array();
+
+$lastListData = null;
+if (count($list) > 0)
+{
+    $lastListData = $list[count($list) - 1];
+}
+
 $mailSender = new MailSender();
 $result = $mailSender->SendTo("sobang@millcompany.co.kr", "명절선물 상담예약", "신규 명절선물 상담예약이 접수되었습니다 :)", array($filepath));
 
@@ -56,6 +65,24 @@ if ($result == FALSE)
 
 $messageSender = new MessageSender();
 $result = $messageSender->SendMessage("신규 명절선물 상담예약이 접수되었습니다 :)", "01047210778", /* Test Mode */"N");
+
+if ($lastListData != null) {
+    $sheetWriter = new SheetWriter();
+    $data = array(
+        "type" => "present",
+        "색인" => $lastListData["index"],
+        "단체명" => $lastListData["organization"],
+        "담당자" => $lastListData["personInCharge"],
+        "연락처" => $lastListData["hp"],
+        "이메일" => $lastListData["email"],
+        "문의내용" => $lastListData["question"],
+        "문의 날짜" => $lastListData["createdAt"]
+    );
+
+    $sheetResult = $sheetWriter->WriteToSheet($data);
+
+    array_push($result, array("sheetResult" => $sheetResult));
+}
 
 $conn->close();
 
