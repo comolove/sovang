@@ -61,12 +61,14 @@ export default class Notice extends Vue {
 @import "../assets/styles/layouts";
 
 article {
-  margin: 4.688vw 0 3.646vw 14.323vw;
+  margin: 0 0 0 14.323vw;
   width: 71.354vw; 
+  padding: 4.688vw 0 3.906vw 0;
 
   @include mobile {
-    margin: 6.944vw 0 11.677vw 8.889vw;
+    margin: 12.5vw 0 17.222vw 8.889vw;
     width: 81.944vw;
+    padding: 0;
   }
 
   div {
@@ -83,7 +85,7 @@ article {
     }
 
     &.title {
-      font-weight: bold;
+      font-weight: 500;
       padding: 1.302vw 0 1.146vw;
       border-top: 1px solid #a19b95;
       border-bottom: 1px solid #a19b95;
@@ -111,7 +113,7 @@ article {
 
       @include mobile {
         padding: 3.611vw 0;
-        font-size: 2.778vw;
+        font-size: 3.333vw;
       }
 
       .author {
@@ -149,7 +151,7 @@ article {
 
       @include mobile {
         font-size: 2.778vw;
-        padding: 0 1.944vw;
+        padding: 0.2vw 2.244vw;
       }
     }
   }
