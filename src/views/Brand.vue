@@ -481,6 +481,10 @@ main {
         height: auto;
         margin-bottom: 8.125vw;
 
+        @include mobile {
+          margin-bottom: 16.944vw;
+        }
+
         .summary-wrap{
           display: flex;
           flex-direction: column;
@@ -492,6 +496,7 @@ main {
 
             span {
               font-size: 1.146vw;
+              font-weight: 300;
               line-height: 3.958vw;
               color: #595757;
 

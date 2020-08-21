@@ -61,6 +61,7 @@ export default class NoticeSummary extends Vue {
   border-bottom: 1px solid #a19b95;
   background: #f3f0ed;
   font-size: 1.146vw;
+  font-weight: 300;
   line-height: 3.958vw;
   white-space: nowrap;  
   cursor: pointer;
@@ -88,7 +89,7 @@ export default class NoticeSummary extends Vue {
     &.title {
       width: 50.104vw;
       text-align: left;
-      font-weight: bold;
+      font-weight: 500;
 
       @include mobile {
         width: 100%;
