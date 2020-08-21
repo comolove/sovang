@@ -99,10 +99,10 @@
             <span class="date">작성일</span>
           </div>
           <NoticeSummary 
-            v-for="(notice, index) of noticeList"
+            v-for="index in numOfNoticeWithCurrentPage"
             :key="index"
-            :notice="notice"
-            :index="index + 1"
+            :notice="noticeList[(currentPage-1)*5+index-1]"
+            :index="index"
             :currentPage="currentPage"
             :isMobile="isMobile"
           />
@@ -170,9 +170,19 @@ export default class Brand extends Vue {
     this.handleResize();
   }
 
+  updated() {
+    this.responseComponents();
+  }
+
   destroyed() {
     window.removeEventListener("resize", this.handleResize);
     window.removeEventListener("scroll", this.handleScroll);
+  }
+  
+  get numOfNoticeWithCurrentPage() {
+    if (this.numOfPage == 0) return 0;
+
+    return this.currentPage == this.numOfPage ? this.noticeList.length % 5 : 5;
   }
 
   async LoadData() {
@@ -195,15 +205,7 @@ export default class Brand extends Vue {
   }
 
   handleScroll(/* e : Evuent */) {
-    if (
-      window.scrollY >
-      ((this.$refs.main as HTMLElement).clientHeight as number) -
-        window.innerHeight +
-        window.innerWidth * (this.isMobile ? 0.06389 : 0.07849) -
-        5
-    )
-      this.isVisible = true;
-    else this.isVisible = false;
+    this.responseComponents();
   }
 
   goTop() {
@@ -222,6 +224,20 @@ export default class Brand extends Vue {
     } else {
       this.mainImgPath = "brand-page/WEB/main.jpg";
     }
+
+    if (
+      window.scrollY >
+      ((this.$refs.main as HTMLElement).clientHeight as number) -
+        window.innerHeight +
+        window.innerWidth * (this.isMobile ? 0.06389 : 0.07849) -
+        5
+    )
+      this.isVisible = true;
+    else this.isVisible = false;
+  }
+
+  getNoticeWithCurrentPage(index : number) : NoticeData | null {
+    return this.noticeList[(this.currentPage-1)*5+index-1];
   }
 }
 </script>
