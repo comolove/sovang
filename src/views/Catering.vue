@@ -143,7 +143,7 @@
         >
         <br />
         <span v-if="!isMobile">아래의</span>상담 예약을 먼저 완료해주시면
-        <span v-if="!isMobile">더</span>빠른 소통이 가능합니다.
+        <span v-if="!isMobile">더 </span>빠른 소통이 가능합니다.
       </div>
       <div class="info-7" data-aos="fade-up">
         <span class="bold-2">1) 주문시간</span> : 행사일 기준,
@@ -164,7 +164,7 @@
         <span class="bold-2 wider-3">3) 최소인원</span> :
         <span class="red">
           <span class="wider-3">박스케이터링/도시락은 10인 이상, 방문</span>
-          케이터링은 30인 이상 </span
+          케이터링은 30인 이상</span
         >부터 준비 가능합니다.
         <br />
         <br v-if="isMobile" />
@@ -447,7 +447,7 @@
         <br />
         <span class="bold">
           본인은 [개인정보 수집 및 이용에 관한 동의]를 잘 읽어 보았으며,
-          개인정보수집 및 이용에 동의 합니다.
+          개인정보 수집 및 이용에 동의 합니다.
         </span>
       </p>
     </Modal>
