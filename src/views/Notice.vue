@@ -113,7 +113,7 @@ article {
 
       @include mobile {
         padding: 3.611vw 0;
-        font-size: 2.778vw;
+        font-size: 3.333vw;
       }
 
       .author {
@@ -151,7 +151,7 @@ article {
 
       @include mobile {
         font-size: 2.778vw;
-        padding: 0 1.944vw;
+        padding: 0.2vw 2.244vw;
       }
     }
   }
