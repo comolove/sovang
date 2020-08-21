@@ -26,6 +26,7 @@ export default class NoticeSummary extends Vue {
   @Prop() private isMobile !: boolean;
 
   mounted() {
+    console.log(this.notice);
     if(parseInt(this.index) == 1 && this.isMobile) {
       this.noticeItem.style.borderTop = "1px solid #a19b95";
     }
@@ -67,6 +68,7 @@ export default class NoticeSummary extends Vue {
   @include mobile {
     font-size: 3.333vw;
     line-height: 1.42;
+    white-space: normal;  
   }
 
   span {
