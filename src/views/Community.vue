@@ -163,10 +163,10 @@
         가르침을 기다립니다.
       </p>
       <div v-if="!isMobile" data-aos="fade-up">
-        <AssetImage
-          v-for="i in 3"
-          :key="i"
-          :src="'community-page/story-' + i + '.png'"
+        <img 
+          v-for="(people, index) in fellowshipPeople"
+          :key="index" 
+          :src="people.img.pcPath" 
         />
       </div>
       <Carousel
@@ -185,11 +185,13 @@
         :navigationPrevLabel="fellowCarouselNavigationPrev"
       >
         <Slide
-          v-for="index in 3"
+          v-for="(people, index) in fellowshipPeople"
           :key="index"
           :id="'fellow-carousel-slide-' + index"
         >
-          <AssetImage :src="'community-page/story-' + index + '.png'" />
+          <img 
+            :src="people.img.pcPath" 
+          />
         </Slide>
       </Carousel>
     </section>
@@ -225,7 +227,7 @@ import {
   TextareaWithRedAsterisk,
   PresentPopup
 } from "@/components";
-import { screenSize } from "@/utils";
+import { screenSize, FellowshipPeople, AxiosHelper } from "@/utils";
 @Component({
   name: "Community",
   components: {
@@ -247,9 +249,25 @@ export default class Community extends Vue {
 
   private height = 0;
 
-  created() {
+  private fellowshipPeople: FellowshipPeople[] = [];
+
+  async created() {
     window.addEventListener("resize", this.handleResize);
     window.addEventListener("scroll", this.handleScroll);
+
+    await this.LoadData();
+  }
+
+  async LoadData() {
+    try {
+      const { data } = await AxiosHelper.GET("/getFellowshipPeople.php");
+      const list = data.data as FellowshipPeople[];
+
+      this.fellowshipPeople = list;
+    } catch (error) {
+      console.log("홈페이지 메인 슬라이드 로딩 실패");
+      console.log(error);
+    }
   }
 
   mounted() {

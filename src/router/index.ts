@@ -14,6 +14,8 @@ import AdminStore from "../views/Admin/Store.vue";
 import AdminCateringStory from "../views/Admin/CateringStory.vue";
 import AdminPresentProject from "../views/Admin/PresentProject.vue";
 import AdminNotice from "../views/Admin/Notice.vue";
+import AdminNoticeMobile from "../views/Admin/NoticeMobile.vue";
+import AdminFellowshipPeople from "../views/Admin/FellowshipPeople.vue";
 
 Vue.use(VueRouter);
 
@@ -81,6 +83,14 @@ const routes: Array<RouteConfig> = [
       {
         path: "notice",
         component: AdminNotice
+      },
+      {
+        path: "noticemobile",
+        component: AdminNoticeMobile
+      },
+      {
+        path: "fellowship_people",
+        component: AdminFellowshipPeople
       }
     ]
   }

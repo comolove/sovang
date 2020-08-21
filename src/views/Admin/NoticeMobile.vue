@@ -1,7 +1,7 @@
 <template>
   <div class="manage-container">
     <header>
-      <h2>알립니다(PC)</h2>
+      <h2>알립니다(Mobile)</h2>
     </header>
     <div class="selector">
       <select ref="noticeSelector" @change="onNoticeSelect">
@@ -59,7 +59,7 @@ import { quillEditor } from 'vue-quill-editor'
     quillEditor
   }
 })
-export default class Notice extends Vue {
+export default class NoticeMobile extends Vue {
     noticeList = [];
 
     index = -1;
@@ -76,7 +76,7 @@ export default class Notice extends Vue {
       this.noticeList = [];
 
       try {
-        const { data } = await AxiosHelper.GET("/getNotice.php");
+        const { data } = await AxiosHelper.GET("/getNoticeMobile.php");
 
         this.noticeList = data.data;
       } catch (error) {
@@ -90,7 +90,7 @@ export default class Notice extends Vue {
     async onSubmit() {
       if (this.index == -1) {
         try {
-          await AxiosHelper.POST("/insertNotice.php", {
+          await AxiosHelper.POST("/insertNoticeMobile.php", {
             title : this.title,
             content : this.content,
             author : "소녀방앗간"
@@ -105,7 +105,7 @@ export default class Notice extends Vue {
       }
       else {
         try {
-          await AxiosHelper.POST("/modifyNotice.php", {
+          await AxiosHelper.POST("/modifyNoticeMobile.php", {
             index : this.noticeList[this.index].index,
             title : this.title,
             content : this.content,
@@ -125,7 +125,7 @@ export default class Notice extends Vue {
 
     async onNoticeDelete() {
       try {
-        await AxiosHelper.POST("/deleteNotice.php", {
+        await AxiosHelper.POST("/deleteNoticeMobile.php", {
           index : this.noticeList[this.index].index
         });
 

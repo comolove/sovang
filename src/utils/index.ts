@@ -10,6 +10,7 @@ import PresentProject from "@/utils/PresentProject";
 import PresentConsult from "@/utils/PresentConsult";
 import AxiosHelper from "@/utils/AxiosHelper";
 import NoticeData from "@/utils/NoticeData";
+import FellowshipPeople from "@/utils/FellowshipPeople";
 
 export {
   AxiosHelper,
@@ -23,5 +24,6 @@ export {
   CateringStory,
   PresentConsult,
   PresentProject,
-  NoticeData
+  NoticeData,
+  FellowshipPeople
 };
