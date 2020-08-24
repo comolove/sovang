@@ -1,6 +1,5 @@
 <template>
   <Carousel
-    style="padding-bottom:6px"
     ref="carousel"
     class="carousel"
     :per-page="carouselPerPage"
@@ -18,6 +17,7 @@
     @page-change="handleCarouselChange"
   >
     <Slide
+      style="padding-bottom:6px"
       v-for="(story, index) of stories"
       :key="index"
       :data-index="index"
