@@ -162,18 +162,10 @@
         <br />본인만의 철학으로 농사를 지으시는 모든 영세 농업 생산자분들의 많은
         가르침을 기다립니다.
       </p>
-      <div v-if="!isMobile" data-aos="fade-up">
-        <img 
-          v-for="(people, index) in fellowshipPeople"
-          :key="index" 
-          :src="people.img.pcPath" 
-        />
-      </div>
       <Carousel
         data-aos="fade-up"
-        v-if="isMobile"
         class="fellow-carousel"
-        :per-page="1"
+        :per-page="isMobile? 1:3"
         :mouseDrag="false"
         :autoplay="true"
         :autoplayTimeout="3000"
