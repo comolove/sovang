@@ -45,7 +45,7 @@
         />
       </HomeContent>
       <div class="info info-1" data-aos="fade-up">
-        2017년부터 지금까지 여러 공기관과 대기업, 그리고
+        2017년부터 지금까지 여러 공공기관과 대기업, 그리고
         <br v-if="isMobile" />사회적경제의 스타트업까지
         <br v-if="!isMobile" />다양한 공간에서 소녀방앗간과
         <br v-if="isMobile" />함께 청정케이터링 서비스를 경험하고 있습니다.
@@ -145,7 +145,7 @@
         <span v-if="!isMobile">아래의</span>상담 예약을 먼저 완료해주시면
         <span v-if="!isMobile">더 </span>빠른 소통이 가능합니다.
       </div>
-      <div class="info-7" data-aos="fade-up">
+      <div class="info-7" data-aos="fade-up" style="text-align:justify !important; text-align-last: left !important">
         <span class="bold-2">1) 주문시간</span> : 행사일 기준,
         <span class="red"
           >케이터링/맞춤도시락은 최소 1주 전, 간편도시락은 3일 전</span
