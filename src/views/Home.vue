@@ -33,8 +33,8 @@
         모두의 마음 속엔 소녀가 있습니다.
       </p>
       <p data-aos="fade-up" class="content">
-        소녀방앗간은 청정지역 장인들이 해마다 정성들여 수확한 청정
-        햇-식재료를<br v-if="!infoBreak" />수확한 만큼만 신선하게 담아 도시의
+        소녀방앗간은 청정지역 장인들이 해마다 정성들여<br v-if="infoBreak" /> 수확한 청정
+        햇-식재료를<br v-if="!infoBreak" /> 수확한 만큼만 신선하게<br v-if="infoBreak" /> 담아 도시의
         소비자에게 건강한 한 끼로 대접합니다.
       </p>
     </section>
@@ -113,7 +113,7 @@
             >
               <div class="online-mall-content">
                 <img :src="isMobile ? data.img.mobilePath : data.img.pcPath" />
-                <p>
+                <p style="padding-bottom:6px">
                   {{ data.itemDesc }}<br /><span>{{ data.itemName }}</span>
                 </p>
               </div>

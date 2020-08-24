@@ -13,7 +13,7 @@
         />
         <div class="info-1">
           농사 장인이
-          <br v-if="!isMobile" />직접 생산한 청정재료를 <br />도시의 건강한
+          <br v-if="!isMobile" />생산한 청정재료를 <br />도시의 건강한
           먹거리로
           <br />
         </div>
