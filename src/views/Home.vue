@@ -113,7 +113,7 @@
             >
               <div class="online-mall-content">
                 <img :src="isMobile ? data.img.mobilePath : data.img.pcPath" />
-                <p style="padding-bottom:6px">
+                <p style="line-height: 0.4">
                   {{ data.itemDesc }}<br /><span>{{ data.itemName }}</span>
                 </p>
               </div>

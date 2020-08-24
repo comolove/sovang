@@ -32,7 +32,7 @@
           class="color"
           :src="isMobile ? story.backImg.mobilePath : story.backImg.pcPath"
         />
-        <p>
+        <p style="padding-bottom:6px">
           {{ story.title }}
           <br />
           <span>{{ story.desc }}</span>
