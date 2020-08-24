@@ -62,8 +62,13 @@ div {
   position: relative;
 
   input {
+    font-size: 1.006vw;
     border: 0;
     padding: 0;
+
+    @include mobile {
+      font-size: 3.611vw;
+    }
   }
 
   label {

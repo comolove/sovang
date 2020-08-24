@@ -70,6 +70,7 @@ if ($lastListData != null) {
     $sheetWriter = new SheetWriter();
     $data = array(
         "type" => "present",
+        "header_row" => "2",
         "색인" => $lastListData["index"],
         "단체명" => $lastListData["organization"],
         "담당자" => $lastListData["personInCharge"],

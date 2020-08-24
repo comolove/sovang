@@ -29,7 +29,7 @@
       </div>
       <div data-aos="fade-up" class="info-2" id="t">
         식사공간에서는 편안하고 건강한 한 끼를 드실 수 있도록
-        <br />설명하지 않아도 더 깊은 정보와 경험을 전하고자 합니다.
+        <br />식사에 대한 더 깊은 정보와 경험을 곳곳에서 전합니다.
       </div>
     </section>
     <section class="contents">

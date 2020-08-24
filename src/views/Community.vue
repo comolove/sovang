@@ -19,11 +19,10 @@
           class="fellowship"
         />
         <p>
-          소녀방앗간은 지역의 생산자분들과 동행하고자 매 해 지역의 영세/중소
+          소녀방앗간은 지역의 생산자분들과 동행하고자 매해 지역의 영세/중소
           농업인분들을 선정하여 함께 지역의 청정식재료를 개발하는
-          <span class="bold">[푸릇농펠로십]</span>을 운영
-          <span v-if="!isMobile">하고 있습니다.</span>
-          <span v-if="isMobile">합니다.</span>
+          <span class="bold">[푸릇농펠로십]</span>을 운영<span v-if="!isMobile">하고 있습니다.</span>
+          <span v-if="isMobile"> 합니다.</span>
           <br />
           <br />소농의 푸릇한 양심을 가슴 가득히 품고 경작하시는 생산자분들의
           지속가능한 생산을 위해 소녀방앗간은 소박하지만 깊은 존경의 마음을
@@ -454,7 +453,7 @@ h2 {
           width: 8.073vw;
           height: 12.24vw;
           background: white;
-          font-size: 1.094vw;
+          font-size: 1.052vw;
           line-height: 1.81;
           padding: 2.891vw 0 0 0.469vw;
           border-bottom-right-radius: 0.521vw;
@@ -463,7 +462,7 @@ h2 {
           @include mobile {
             width: 24.167vw;
             height: 36.944vw;
-            font-size: 3.333vw;
+            font-size: 2.878vw;
             line-height: 1.79;
             padding: 10.278vw 0 0 1.389vw;
             border-bottom-right-radius: 2.778vw;
