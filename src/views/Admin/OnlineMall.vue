@@ -22,24 +22,24 @@
     />
     <hr />
     <form v-on:submit.prevent="onSubmit">
-      <h3>물품 추가</h3>
+      <h3>물품 {{selectedItem ? "변경" : "추가"}}</h3>
       <div class="input-wrap">
         <label for="itemName">물품 이름</label>
-        <input ref="itemName" id="itemName" type="text" />
+        <input ref="itemName" id="itemName" type="text" :value="selectedItem ? selectedItem.itemName : ''"/>
       </div>
       <div class="input-wrap">
         <label for="itemDesc">물품 설명</label>
-        <input ref="itemDesc" id="itemDesc" type="text" />
+        <input ref="itemDesc" id="itemDesc" type="text" :value="selectedItem ? selectedItem.itemDesc : ''"/>
       </div>
       <div class="input-wrap">
         <label for="link">물품 링크</label>
-        <input ref="link" id="link" type="text" />
+        <input ref="link" id="link" type="text" :value="selectedItem ? selectedItem.link : ''"/>
       </div>
-      <div class="input-wrap">
+      <div class="input-wrap" v-if="!selectedItem">
         <label for="pcImage">PC 이미지</label>
         <input ref="pcImage" id="pcImage" type="file" accept="image/*" />
       </div>
-      <div class="input-wrap">
+      <div class="input-wrap" v-if="!selectedItem">
         <label for="mobileImage">모바일 이미지</label>
         <input
           ref="mobileImage"
@@ -49,7 +49,7 @@
         />
       </div>
 
-      <button class="green-button" type="submit">업로드</button>
+      <button :class="selectedItem ? 'blue-button' : 'green-button'" type="submit">{{selectedItem ? "변경" : "업로드"}}</button>
     </form>
   </div>
 </template>
@@ -127,35 +127,14 @@ export default class AdminOnlineMall extends Vue {
     const pcImage = this.$refs["pcImage"] as HTMLInputElement;
     const mobileImage = this.$refs["mobileImage"] as HTMLInputElement;
 
-    if (!pcImage.files || !mobileImage.files) {
-      alert("이미지를 업로드 해주세요");
-      return;
-    }
-
-    if (
-      itemName.value &&
-      itemDesc.value &&
-      link.value &&
-      pcImage.files.length > 0 &&
-      mobileImage.files.length > 0
-    ) {
-      const formData = new FormData();
-      formData.append("itemName", itemName.value);
-      formData.append("itemDesc", itemDesc.value);
-      formData.append("link", link.value);
-      formData.append("pcImage", pcImage.files[0]);
-      formData.append("mobileImage", mobileImage.files[0]);
-
+    if (this.selectedItem) {
       try {
-        const { data } = await AxiosHelper.POST(
-          "/uploadOnlineMallItem.php",
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data"
-            }
-          }
-        );
+         const { data } = await AxiosHelper.POST("/modifyOnlineMall.php", {
+           index : this.selectedItem.index,
+           itemName : itemName.value,
+           itemDesc : itemDesc.value,
+           link : link.value
+        });
 
         alert(data.msg);
       } catch (error) {
@@ -163,15 +142,48 @@ export default class AdminOnlineMall extends Vue {
 
         alert(error.response.data.msg);
       }
-    } else {
-      alert("모든 정보를 채워주세요.");
     }
+    else {
+      if (!pcImage.files || !mobileImage.files) {
+        alert("이미지를 업로드 해주세요");
+        return;
+      }
 
-    itemName.value = itemName.defaultValue;
-    itemDesc.value = itemDesc.defaultValue;
-    link.value = link.defaultValue;
-    pcImage.value = pcImage.defaultValue;
-    mobileImage.value = mobileImage.defaultValue;
+      if (
+        itemName.value &&
+        itemDesc.value &&
+        link.value &&
+        pcImage.files.length > 0 &&
+        mobileImage.files.length > 0
+      ) {
+        const formData = new FormData();
+        formData.append("itemName", itemName.value);
+        formData.append("itemDesc", itemDesc.value);
+        formData.append("link", link.value);
+        formData.append("pcImage", pcImage.files[0]);
+        formData.append("mobileImage", mobileImage.files[0]);
+
+        try {
+          const { data } = await AxiosHelper.POST(
+            "/uploadOnlineMallItem.php",
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data"
+              }
+            }
+          );
+
+          alert(data.msg);
+        } catch (error) {
+          console.log("Upload Error : ", error);
+
+          alert(error.response.data.msg);
+        }
+      } else {
+        alert("모든 정보를 채워주세요.");
+      }
+    }
 
     await this.LoadData();
   }

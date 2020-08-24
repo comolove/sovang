@@ -432,7 +432,7 @@
         <br />
         <span class="bold">
           본인은 [개인정보 수집 및 이용에 관한 동의]를 잘 읽어 보았으며,
-          개인정보수집 및 이용에 동의 합니다.
+          개인정보 수집 및 이용에 동의 합니다.
         </span>
       </p>
     </Modal>
@@ -530,7 +530,7 @@ export default class Present extends Vue {
       `,
       `오지의 맛
       <br />
-      <span>#재래식간장, 함초소금, 취나물분말</span>
+      <span>#재래식간장, 함초소금, 취나물가루</span>
       `,
       `오지의 향
       <br />

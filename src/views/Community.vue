@@ -157,9 +157,9 @@
     <section class="content-3">
       <h2 data-aos="fade-up">푸릇농펠로우 이야기</h2>
       <p data-aos="fade-up">
-        지속가능한 생산을 위한 동행의 길을 함께 걸어가실 농업생산자분들을
+        지속가능한 생산을 위한 동행의 길을 함께 걸어가실 농업 생산자분들을
         모십니다.
-        <br />본인만의 철학으로 농사를 지으시는 모든 영세 농업생산자분들의 많은
+        <br />본인만의 철학으로 농사를 지으시는 모든 영세 농업 생산자분들의 많은
         가르침을 기다립니다.
       </p>
       <Carousel
@@ -177,11 +177,13 @@
         :navigationPrevLabel="fellowCarouselNavigationPrev"
       >
         <Slide
-          v-for="index in 3"
+          v-for="(people, index) in fellowshipPeople"
           :key="index"
           :id="'fellow-carousel-slide-' + index"
         >
-          <AssetImage :src="'community-page/story-' + index + '.png'" />
+          <img 
+            :src="people.img.pcPath" 
+          />
         </Slide>
       </Carousel>
     </section>
@@ -217,7 +219,7 @@ import {
   TextareaWithRedAsterisk,
   PresentPopup
 } from "@/components";
-import { screenSize } from "@/utils";
+import { screenSize, FellowshipPeople, AxiosHelper } from "@/utils";
 @Component({
   name: "Community",
   components: {
@@ -239,9 +241,25 @@ export default class Community extends Vue {
 
   private height = 0;
 
-  created() {
+  private fellowshipPeople: FellowshipPeople[] = [];
+
+  async created() {
     window.addEventListener("resize", this.handleResize);
     window.addEventListener("scroll", this.handleScroll);
+
+    await this.LoadData();
+  }
+
+  async LoadData() {
+    try {
+      const { data } = await AxiosHelper.GET("/getFellowshipPeople.php");
+      const list = data.data as FellowshipPeople[];
+
+      this.fellowshipPeople = list;
+    } catch (error) {
+      console.log("홈페이지 메인 슬라이드 로딩 실패");
+      console.log(error);
+    }
   }
 
   mounted() {

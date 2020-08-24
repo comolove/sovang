@@ -1,5 +1,5 @@
 <template>
-  <div class="store-view">
+  <div class="store-view" v-if="store">
     <div class="content-wrap">
       <div class="text-wrap">
         <p class="subject">매장 이름</p>

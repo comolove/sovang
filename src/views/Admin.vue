@@ -18,7 +18,8 @@
         <li>
           브랜드 페이지
           <ul class="menu-list-d2">
-            <li><router-link to="/admin/notice">알립니다</router-link></li>
+            <li><router-link to="/admin/notice">알립니다(PC)</router-link></li>
+            <li><router-link to="/admin/noticemobile">알립니다(Mobile)</router-link></li>
           </ul>
         </li>
         <li>
@@ -34,6 +35,12 @@
           </ul>
         </li>
         <li><router-link to="/admin/store">식사 공간 (매장 정보)</router-link></li>
+        <li>
+          펠로우십 페이지
+          <ul class="menu-list-d2">
+            <li><router-link to="/admin/fellowship_people">펠로우십 인물</router-link></li>
+          </ul>
+        </li>
         <li>
           <strong><a href="/downloadCateringOrders.php">케이터링 문의 목록 다운로드</a></strong>
         </li>

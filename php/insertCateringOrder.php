@@ -4,6 +4,7 @@ require_once "db.php";
 require_once "utils/CateringOrderXLSXWriter.php";
 require_once "utils/MailSender.php";
 require_once "utils/MessageSender.php";
+require_once "utils/SheetWriter.php";
 
 $_POST = json_decode(file_get_contents("php://input"), true);
 
@@ -68,6 +69,14 @@ $writer = new CateringOrderXLSXWriter();
 $list = $writer->LoadDataFromDB($conn);
 $filepath = $writer->Write($list);
 
+$result = array();
+
+$lastListData = null;
+if (count($list) > 0)
+{
+    $lastListData = $list[count($list) - 1];
+}
+
 $mailSender = new MailSender();
 $result = $mailSender->SendTo("sobang@millcompany.co.kr", "케이터링 상담예약", "신규 케이터링 상담예약이 접수되었습니다 :)", array($filepath));
 
@@ -81,6 +90,32 @@ if ($result == FALSE)
 
 $messageSender = new MessageSender();
 $result = $messageSender->SendMessage("신규 케이터링 상담예약이 접수되었습니다 :)", "01047210778", /* Test Mode */"N");
+
+if ($lastListData != null) {
+    $sheetWriter = new SheetWriter();
+    $data = array(
+        "type" => "catering",
+        "색인" => $lastListData["index"],
+        "단체명" => $lastListData["organization"],
+        "담당자" => $lastListData["personInCharge"],
+        "연락처" => $lastListData["hp"],
+        "이메일" => $lastListData["email"],
+        "날짜/시간" => $lastListData["date"],
+        "인원" => $lastListData["headcount"],
+        "결제방법" => $lastListData["payType"],
+        "주소" => $lastListData["address"],
+        "카테고리" => $lastListData["category"],
+        "메뉴구성" => $lastListData["menuItem"],
+        "메뉴항목" => $lastListData["menuSet"],
+        "추가메뉴" => $lastListData["extraMenu"],
+        "추가메시지" => $lastListData["extraMessage"],
+        "문의 날짜" => $lastListData["createdAt"]
+    );
+
+    $sheetResult = $sheetWriter->WriteToSheet($data);
+
+    array_push($result, array("sheetResult" => $sheetResult));
+}
 
 $conn->close();
 

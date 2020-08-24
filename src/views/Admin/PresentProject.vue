@@ -22,20 +22,20 @@
     />
     <hr/>
     <form v-on:submit.prevent="onSubmit">
-      <h3>명절선물 기획 프로젝트 추가</h3>
+      <h3>명절선물 기획 프로젝트 {{selectedProject ? "변경" : "추가"}}</h3>
       <div class="input-wrap">
         <label for="title">제목</label>
-        <input ref="title" id="title" type="text" />
+        <input ref="title" id="title" type="text" :value="selectedProject ? selectedProject.title : ''" />
       </div>
       <div class="input-wrap">
         <label for="desc">설명</label>
-        <input ref="desc" id="desc" type="text" />
+        <input ref="desc" id="desc" type="text" :value="selectedProject ? selectedProject.desc : ''" />
       </div>
       <div class="input-wrap">
         <label for="link">블로그 링크</label>
-        <input ref="link" id="link" type="text" placeholder="빈칸 가능"/>
+        <input ref="link" id="link" type="text" placeholder="빈칸 가능" :value="selectedProject ? selectedProject.link : ''" />
       </div>
-      <div class="input-wrap">
+      <div class="input-wrap" v-if="!selectedProject">
         <label for="frontPcImage">PC 전면 이미지</label>
         <input
           ref="frontPcImage"
@@ -44,7 +44,7 @@
           accept="image/*"
         />
       </div>
-      <div class="input-wrap">
+      <div class="input-wrap" v-if="!selectedProject">
         <label for="backPcImage">PC 후면 이미지</label>
         <input
           ref="backPcImage"
@@ -53,7 +53,7 @@
           accept="image/*"
         />
       </div>
-      <div class="input-wrap">
+      <div class="input-wrap" v-if="!selectedProject">
         <label for="mobileImage">모바일 전면 이미지</label>
         <input
           ref="mobileImage"
@@ -63,7 +63,7 @@
         />
       </div>
 
-      <button class="green-button" type="submit">업로드</button>
+      <button :class="selectedProject ? 'blue-button' : 'green-button'" type="submit">{{selectedProject ? "변경" : "업로드"}}</button>
     </form>
   </div>
 </template>
@@ -137,36 +137,14 @@ export default class AdminPresentProject extends Vue {
     const backPcImage = this.$refs["backPcImage"] as HTMLInputElement;
     const mobileImage = this.$refs["mobileImage"] as HTMLInputElement;
 
-    if (!frontPcImage.files || !backPcImage.files || !mobileImage.files) {
-      alert("이미지를 업로드 해주세요");
-      return;
-    }
-
-    if (
-      title.value &&
-      desc.value &&
-      frontPcImage.files.length > 0 &&
-      backPcImage.files.length > 0 &&
-      mobileImage.files.length > 0
-    ) {
-      const formData = new FormData();
-      formData.append("title", title.value);
-      formData.append("desc", desc.value);
-      formData.append("link", link.value);
-      formData.append("frontPcImage", frontPcImage.files[0]);
-      formData.append("backPcImage", backPcImage.files[0]);
-      formData.append("mobileImage", mobileImage.files[0]);
-
+    if (this.selectedProject) {
       try {
-        const { data } = await AxiosHelper.POST(
-          "/uploadPresentProject.php",
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data"
-            }
-          }
-        );
+         const { data } = await AxiosHelper.POST("/modifyPresentProject.php", {
+           index : this.selectedProject.index,
+           title : title.value,
+           desc : desc.value,
+           link : link.value
+        });
 
         alert(data.msg);
       } catch (error) {
@@ -174,15 +152,49 @@ export default class AdminPresentProject extends Vue {
 
         alert(error.response.data.msg);
       }
-    } else {
-      alert("모든 정보를 채워주세요.");
     }
+    else {
+      if (!frontPcImage.files || !backPcImage.files || !mobileImage.files) {
+        alert("이미지를 업로드 해주세요");
+        return;
+      }
 
-    title.value = title.defaultValue;
-    desc.value = desc.defaultValue;
-    frontPcImage.value = frontPcImage.defaultValue;
-    backPcImage.value = backPcImage.defaultValue;
-    mobileImage.value = mobileImage.defaultValue;
+      if (
+        title.value &&
+        desc.value &&
+        frontPcImage.files.length > 0 &&
+        backPcImage.files.length > 0 &&
+        mobileImage.files.length > 0
+      ) {
+        const formData = new FormData();
+        formData.append("title", title.value);
+        formData.append("desc", desc.value);
+        formData.append("link", link.value);
+        formData.append("frontPcImage", frontPcImage.files[0]);
+        formData.append("backPcImage", backPcImage.files[0]);
+        formData.append("mobileImage", mobileImage.files[0]);
+
+        try {
+          const { data } = await AxiosHelper.POST(
+            "/uploadPresentProject.php",
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data"
+              }
+            }
+          );
+
+          alert(data.msg);
+        } catch (error) {
+          console.log("Upload Error : ", error);
+
+          alert(error.response.data.msg);
+        }
+      } else {
+        alert("모든 정보를 채워주세요.");
+      }
+    }
 
     await this.LoadData();
   }

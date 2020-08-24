@@ -1,6 +1,6 @@
 <template>
   <div class="store-map-link">
-    <a class="searchIcon" :href="link">
+    <a class="searchIcon" :href="link" target="_blank">
       <span>지도보기</span>
       <img src="@/assets/images/icon-searching.png" />
     </a>

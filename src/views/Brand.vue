@@ -155,7 +155,8 @@ export default class Brand extends Vue {
   private isVisible = false;
 
   private mainImgPath = "brand-page/Mobile/main.jpg";
-  private noticeList: NoticeData[] = [];
+  private noticePCList: NoticeData[] = [];
+  private noticeMobileList: NoticeData[] = [];
   private numOfPage = 0;
   private currentPage = 1;
 
@@ -187,15 +188,21 @@ export default class Brand extends Vue {
 
   async LoadData() {
     try {
-      const { data } = await AxiosHelper.GET("/getNotice.php");
+      const pcNoticeResult = await AxiosHelper.GET("/getNotice.php");
+      this.noticePCList = pcNoticeResult.data.data as NoticeData[];
 
-      this.noticeList = data.data as NoticeData[];
+      const mobileNoticeResult = await AxiosHelper.GET("/getNoticeMobile.php");
+      this.noticeMobileList = mobileNoticeResult.data.data as NoticeData[];
 
       this.numOfPage = Math.floor((this.noticeList.length - 1) / 5 + 1);
     } catch (error) {
       console.log("로딩 실패");
       console.log(error.response);
     }
+  }
+
+  get noticeList() {
+    return this.isMobile ? this.noticeMobileList : this.noticePCList;
   }
 
   handleResize(/* e : Event */) {
