@@ -1,5 +1,6 @@
 <template>
   <Carousel
+    style="padding-bottom:6px"
     ref="carousel"
     class="carousel"
     :per-page="carouselPerPage"
@@ -32,7 +33,7 @@
           class="color"
           :src="isMobile ? story.backImg.mobilePath : story.backImg.pcPath"
         />
-        <p style="padding-bottom:6px">
+        <p>
           {{ story.title }}
           <br />
           <span>{{ story.desc }}</span>
