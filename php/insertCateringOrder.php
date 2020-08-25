@@ -78,7 +78,13 @@ if (count($list) > 0)
 }
 
 $mailSender = new MailSender();
-$emailResult = $mailSender->SendTo("sobang@millcompany.co.kr", "케이터링 상담예약", "신규 케이터링 상담예약이 접수되었습니다 :)", array($filepath));
+$mailBody = "신규 케이터링 상담예약이 접수되었습니다 :)\n";
+$mailBody = $mailBody."단체명 : $organization\n";
+$mailBody = $mailBody."담당자 : $personInCharge\n";
+$mailBody = $mailBody."이메일 : $email\n";
+$mailBody = $mailBody."연락처 : $hp\n";
+
+$emailResult = $mailSender->SendTo("sobang@millcompany.co.kr", "케이터링 상담예약", $mailBody, array($filepath));
 
 if ($emailResult == FALSE) 
 {
