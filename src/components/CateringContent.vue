@@ -9,6 +9,7 @@
     :navigationEnabled="true"
     :navigationNextLabel="carouselNavigationNext"
     :navigationPrevLabel="carouselNavigationPrev"
+    :speed="1000"
     :autoplay="true"
     :loop="true"
     :spacePadding="-12.5"

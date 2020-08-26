@@ -11,6 +11,7 @@
           :autoplayTimeout="3000"
           :autoplayHoverPause="false"
           :loop="true"
+          :speed="1000"
           :paginationEnabled="false"
           :navigationEnabled="true"
           :navigationNextLabel="mainCarouselNavigationNext"

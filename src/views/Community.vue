@@ -170,6 +170,7 @@
         :autoplayTimeout="3000"
         :autoplayHoverPause="false"
         :loop="true"
+        :speed="1000"
         :navigationEnabled="true"
         :paginationEnabled="false"
         :navigationNextLabel="fellowCarouselNavigationNext"
