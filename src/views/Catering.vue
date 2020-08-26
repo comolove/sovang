@@ -365,11 +365,7 @@
         </span>
         <textarea
           class="large"
-          :placeholder="
-            isMobile
-              ? '추가메세지: 이 외 궁금하신 사항이 있다면 문의주셔요.'
-              : '추가메세지: 이 외 궁금하신 내용이 있다면 문의해주셔요:)'
-          "
+          placeholder="추가메세지 : 전체 예산을 적어 문의해주시면 더 빠른 상담이 가능합니다:)"
           v-model="extraMessage"
         />
       </div>
@@ -1711,8 +1707,8 @@ article {
       }
 
       > select {
-        text-align-last: right;
-        padding-right: 1.198vw;
+        direction: rtl;
+        padding-right: 1.398vw;
         appearance: none;
         background: url("../assets/images/select-arrow.png") no-repeat 97% 50%/1vw;
       }
@@ -1743,8 +1739,8 @@ article {
       }
 
       > select {
-        text-align-last: right;
-        padding-right: 1.198vw;
+        direction: rtl;
+        padding-right: 1.398vw;
         appearance: none;
         background: url("../assets/images/select-arrow.png") no-repeat 97% 50%/1vw;
       }
