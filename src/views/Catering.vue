@@ -143,7 +143,7 @@
           >특별한 케이터링을 위해 소녀방앗간에 문의해보셔요 :)</span
         >
         <br />
-        <span v-if="!isMobile">아래의</span>상담 예약을 먼저 완료해주시면
+        <span v-if="!isMobile">아래의</span> 상담 예약을 먼저 완료해주시면
         <span v-if="!isMobile">더 </span>빠른 소통이 가능합니다.
       </div>
       <div class="info-7" data-aos="fade-up" style="text-align:justify !important; text-align-last: left !important">
