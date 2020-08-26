@@ -469,7 +469,8 @@ export default class Home extends Vue {
         .VueCarousel-dot {
           width: 2.5vw !important;
           height: 2.5vw !important;
-          padding: 0 2.222vw !important;
+          padding: 0 !important;
+          margin: 0 2.222vw !important;
         }
       }
     }
