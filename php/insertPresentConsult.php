@@ -53,24 +53,32 @@ if (count($list) > 0)
 }
 
 $mailSender = new MailSender();
-$result = $mailSender->SendTo("sobang@millcompany.co.kr", "명절선물 상담예약", "신규 명절선물 상담예약이 접수되었습니다 :)", array($filepath));
+$mailBody = "신규 명절선물 상담예약이 접수되었습니다 :)\n";
+$mailBody = $mailBody."단체명 : $organization\n";
+$mailBody = $mailBody."담당자 : $personInCharge\n";
+$mailBody = $mailBody."이메일 : $email\n";
+$mailBody = $mailBody."연락처 : $hp\n";
 
-if ($result == FALSE) 
+$emailResult = $mailSender->SendTo("sobang@millcompany.co.kr", "명절선물 상담예약", $mailBody, array($filepath));
+
+if ($emailResult == FALSE) 
 {
-    $message = MakeMessage(FALSE, "이메일 발송 실패", $result->GetError());
+    $message = MakeMessage(FALSE, "이메일 발송 실패", $mailSender->GetError());
     Response(500, $message);
     $conn->close();
     exit();
 }
 
 $messageSender = new MessageSender();
-$result = $messageSender->SendMessage("신규 명절선물 상담예약이 접수되었습니다 :)", "01047210778", /* Test Mode */"N");
+$messageResult = $messageSender->SendMessage("신규 명절선물 상담예약이 접수되었습니다 :)", "01047210778", /* Test Mode */"N");
+array_push($result, array("messageResult" => $messageResult));
 
 if ($lastListData != null) {
     $sheetWriter = new SheetWriter();
     $data = array(
         "type" => "present",
         "header_row" => "2",
+        "year" => date("Y"),
         "색인" => $lastListData["index"],
         "단체명" => $lastListData["organization"],
         "담당자" => $lastListData["personInCharge"],
