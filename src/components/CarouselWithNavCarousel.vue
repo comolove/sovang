@@ -159,6 +159,12 @@ export default class CarouselWithNavCarousel extends Vue {
       width: calc(100% + 10px);
     }
 
+    &__slides {
+      @include IE {
+        flex-shrink: 0;
+      }
+    }
+
     &__nav-button {
       background: transparent;
       border: none;

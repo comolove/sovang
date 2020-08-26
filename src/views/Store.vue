@@ -186,7 +186,7 @@ export default class Store extends Vue {
       const scrollFactor = this.isMobile ? 0.06389 : 0.07849;
       const clientHeight = mainTagElement.clientHeight;
       if (
-        window.scrollY >
+        window.pageYOffset >
         clientHeight - window.innerHeight + window.innerWidth * scrollFactor - 5
       ) {
         this.isVisible = true;
@@ -239,7 +239,15 @@ export default class Store extends Vue {
     &::v-deep {
       .agile {
         .agile__list {
-          overflow: unset;
+          overflow: visible;
+        }
+
+        @include IE{
+          &__slides {
+            position: relative;
+            z-index: 1;
+            flex-shrink: 0;
+          }
         }
 
         &__nav-button {

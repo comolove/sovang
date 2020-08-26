@@ -622,7 +622,7 @@ export default class Present extends Vue {
 
   handleScroll(/* e : Evuent */) {
     if (
-      window.scrollY >
+      window.pageYOffset >
       ((this.$refs.main as HTMLElement).clientHeight as number) -
         window.innerHeight +
         window.innerWidth * (this.isMobile ? 0.06389 : 0.07849) -
@@ -1006,7 +1006,7 @@ article {
               transition: 0.6s all ease;
               width: 22.917vw;
               height: 15.677vw;
-              margin: 0;
+              margin: 0.00001vw;
             }
 
             &:hover.before {
@@ -1481,7 +1481,8 @@ article {
       border-radius: 1.302vw;
       background-color: #001845;
       color: white;
-      font: 500 1.302vw NotoSansCJKr;
+      font-weight: 500;
+      font-size: 1.302vw;
       cursor: pointer;
 
       @include mobile {

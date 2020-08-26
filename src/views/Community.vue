@@ -276,7 +276,7 @@ export default class Community extends Vue {
 
   handleScroll(/* e : Evuent */) {
     if (
-      window.scrollY >
+      window.pageYOffset >
       ((this.$refs.main as HTMLElement).clientHeight as number) -
         window.innerHeight +
         window.innerWidth * (this.isMobile ? 0.06389 : 0.07849) -
@@ -587,7 +587,7 @@ h2 {
   @include mobile {
     width: 9.167vw;
     height: 7.222vw;
-    bottom: 49.167vw;
+    bottom: 49.611vw;
     right: 9.167vw;
   }
 

@@ -183,16 +183,15 @@
         <span class="bold-2">6) 결제방법</span> : 계좌이체, 카드결제 중 편하신
         방법으로 선택해주시면 됩니다.
         <br v-if="!isMobile" />
-        <span class="blank">
-          <span class="wider-2">(단, 퀵배송의 경우 카드결제는</span
-          >BC/우리/국민/농협카드만 가능합니다.)
+        <span class="blank">(단, 퀵배송의 경우 카드결제는
+          BC/우리/국민/농협카드만 가능합니다.)
         </span>
       </div>
+      <span v-if="!isMobile" class="warning">
+        <span style="color:red;">*</span> 별표 표시 항목은 필수
+        입력사항입니다.
+      </span>
       <div class="contentsWrap-6" data-aos="fade-up">
-        <span v-if="!isMobile" class="warning">
-          <span style="color:red;">*</span> 별표 표시 항목은 필수
-          입력사항입니다.
-        </span>
         <InputText
           ref="input-groupID"
           name="groupID"
@@ -847,7 +846,7 @@ export default class Catering extends Vue {
 
   handleScroll(/* e : Evuent */) {
     if (
-      window.scrollY >
+      window.pageYOffset >
       ((this.$refs.main as HTMLElement).clientHeight as number) -
         window.innerHeight +
         window.innerWidth * (this.isMobile ? 0.06389 : 0.07849) -
@@ -858,11 +857,12 @@ export default class Catering extends Vue {
   }
 
   goTop() {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: "smooth"
-    });
+    if(this.isVisible)
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
+      });
   }
 
   responseComponents() {
@@ -1424,6 +1424,13 @@ article {
     height: 23.542vw;
     margin-top: 10.573vw;
     &::v-deep {
+      .VueCarousel-slide {
+        .info-3 {
+          @include IE {
+            visibility: hidden;
+          }
+        }
+      }
       .info-3 {
         position: relative;
         background: unset;
@@ -1505,6 +1512,7 @@ article {
 }
 
 .content-4 {
+  position: relative;
   display: block;
   background-color: #ededee;
   width: 100%;
@@ -1515,6 +1523,18 @@ article {
     height: 344.167vw;
     padding: 20.833vw 9.444vw 22.222vw 9.444vw;
   }
+
+  .warning {
+      position: absolute;
+      font-size: 0.99vw;
+      left: 27.683vw;
+      bottom: 16.35vw;
+      color: #797777;
+
+      @include mobile {
+        display: none;
+      }
+    }
 
   .info-2 {
     padding: 0 0 4.818vw;
@@ -1551,29 +1571,19 @@ article {
     justify-content: space-between;
     align-content: space-between;
     flex-wrap: wrap;
+    select::-ms-expand {display:none}
     height: 27.813vw;
 
     @include mobile {
       height: 131.667vw;
     }
 
-    .warning {
-      position: absolute;
-      font-size: 0.99vw;
-      left: 0.6vw;
-      top: 28.9vw;
-      color: #797777;
-
-      @include mobile {
-        display: none;
-      }
-    }
-
     input,
     select,
     div {
       color: #595757;
-      font: 300 1.006vw NotoSansCjKr;
+      font-weight: 300;
+      font-size: 1.006vw;
       line-height: 1.73;
       height: 2.604vw;
       border: none;
@@ -1624,6 +1634,8 @@ article {
         height: 2.083vw;
         border: 0;
         border-bottom: 0.052vw solid black;
+        appearance: none;
+        background: url("../assets/images/select-arrow.png") no-repeat 97% 50%/1vw;
 
         @include mobile {
           width: 100%;
@@ -1700,6 +1712,9 @@ article {
 
       > select {
         text-align-last: right;
+        padding-right: 1.198vw;
+        appearance: none;
+        background: url("../assets/images/select-arrow.png") no-repeat 97% 50%/1vw;
       }
 
       #year {
@@ -1729,6 +1744,9 @@ article {
 
       > select {
         text-align-last: right;
+        padding-right: 1.198vw;
+        appearance: none;
+        background: url("../assets/images/select-arrow.png") no-repeat 97% 50%/1vw;
       }
 
       #hour {
@@ -1751,13 +1769,18 @@ article {
     .large {
       color: #797777;
       line-height: 1.73;
-      font: 300 1.006vw NotoSansCjKr;
+      font-weight: 300;
+      font-size: 1.006vw;
       width: 100%;
       height: 4.896vw;
       padding: 0;
       border: 0;
       padding: 0.521vw 0 0 0.677vw;
       resize: none;
+
+      &::placeholder {
+        font-family: "Noto Sans KR", sans-serif;
+      }
 
       @include mobile {
         padding: 1.667vw 2.083vw 0 2.083vw;
@@ -1774,6 +1797,7 @@ article {
     position: relative;
     text-align: right;
     font-size: 0.99vw;
+    font-family: "Noto Sans KR", sans-serif;
     line-height: 1.615vw;
 
     @include mobile {
@@ -1871,7 +1895,8 @@ article {
     border-radius: 1.302vw;
     background-color: #001845;
     color: white;
-    font: 500 1.302vw NotoSansCJKr;
+    font-weight: 500; 
+    font-size: 1.302vw;
     cursor: pointer;
 
     @include mobile {

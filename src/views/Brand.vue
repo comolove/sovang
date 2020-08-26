@@ -233,7 +233,7 @@ export default class Brand extends Vue {
     }
 
     if (
-      window.scrollY >
+      window.pageYOffset >
       ((this.$refs.main as HTMLElement).clientHeight as number) -
         window.innerHeight +
         window.innerWidth * (this.isMobile ? 0.06389 : 0.07849) -

@@ -18,6 +18,12 @@
   }
 }
 
+@mixin IE {
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    @content;
+   }
+}
+
 main {
   margin-top: 7.849vw;
 

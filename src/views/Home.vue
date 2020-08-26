@@ -279,7 +279,7 @@ export default class Home extends Vue {
 
   handleScroll(/* e : Evuent */) {
     if (
-      window.scrollY >
+      window.pageYOffset >
       ((this.$refs.main as HTMLElement).clientHeight as number) -
         window.innerHeight +
         window.innerWidth * (this.isMobile ? 0.06389 : 0.07849) -
@@ -453,7 +453,11 @@ export default class Home extends Vue {
       .VueCarousel-dot {
         width: 0.729vw !important;
         height: 0.729vw !important;
-        padding: 0 0.599vw !important;
+        margin: 0 0.599vw !important;
+        padding: 0 !important;
+        border-radius: 50% !important;
+        background-clip: border-box;
+        box-sizing: border-box;
       }
 
       @include mobile {
