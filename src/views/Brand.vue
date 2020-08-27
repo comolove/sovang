@@ -23,7 +23,7 @@
           청정지역 경북 청송에서 재배하였습니다.
           <br v-if="!isMobile" />
           <br v-if="!isMobile" />
-          <span v-if="!isMobile">소녀방앗간은</span>땅과 공기가 줄 수 있는
+          <span v-if="!isMobile">소녀방앗간은</span> 땅과 공기가 줄 수 있는
           에너지를 온전히 담은 재료로 청정지역 장인들의 수준 높은 식문화를
           전합니다.
         </div>
