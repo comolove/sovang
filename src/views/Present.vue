@@ -58,7 +58,7 @@
       </HomeContent>
     </section>
     <section class="content-2">
-      <HomeContent title="소녀방앗간 명절선물" data-aos="fade-up">
+      <HomeContent title="소녀방앗간 명절선물<span class='additional'>(클릭 시 상세내용을 보실 수 있습니다.)</span>" data-aos="fade-up">
         <span>
           낭비없는 생산을 위해 해마다 준비하는 명절 선물의 품목과 종류가 다를 수
           있습니다 :)
@@ -963,8 +963,17 @@ article {
   article {
     margin-bottom: 7.917vw;
 
+    &::v-deep .additional {
+      font-size: 0.99vw;
+      padding-left: 0.781vw;
+      @include mobile {
+        font-size: 3.056vw;
+        padding-left: 2.222vw;
+      }
+    }
+
     @include mobile {
-      margin-bottom: 5.278vw;
+      vmargin-bottom: 5.278vw;
     }
 
     > span {

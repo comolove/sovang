@@ -1,6 +1,6 @@
 <template>
   <article>
-    <h3 class="bar-bottom">{{ title }}</h3>
+    <h3 class="bar-bottom" v-html="title"></h3>
     <slot></slot>
   </article>
 </template>
