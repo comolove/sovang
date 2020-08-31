@@ -25,12 +25,15 @@
         <li>
           케이터링 페이지
           <ul class="menu-list-d2">
+            <li><router-link to="/admin/catering_mainslide">메인 슬라이드</router-link></li>
             <li><router-link to="/admin/cateringstory">청정케이터링 이야기</router-link></li>
           </ul>
         </li>
         <li>
           명절선물 페이지
           <ul class="menu-list-d2">
+            <li><router-link to="/admin/present_mainslide">메인 슬라이드</router-link></li>
+            <li><router-link to="/admin/present_item">소녀방앗간 명절선물</router-link></li>
             <li><router-link to="/admin/presentproject">명절선물 기획 프로젝트</router-link></li>
           </ul>
         </li>

@@ -19,5 +19,13 @@ export default {};
   height: 100%;
 
   font-family: "Noto Sans KR", sans-serif;
+
+  strong {
+    font-weight: bold;
+  }
+
+  em {
+    font-style: italic;
+  }
 }
 </style>

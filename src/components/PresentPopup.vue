@@ -11,7 +11,7 @@
             />
           </h2>
           <div class="flexWrap" @scroll.once="hideArrow">
-            <AssetImage :src="src" @click="$emit('click')" />
+            <img :src="src" @click="$emit('click')" />
             <p>
               <slot />
             </p>
@@ -29,11 +29,9 @@
 
 <script lang="ts">
 import { Vue, Prop, Component } from "vue-property-decorator";
-import { AssetImage } from "@/components";
 
 @Component({
   components: {
-    AssetImage
   }
 })
 export default class PresentPopup extends Vue {

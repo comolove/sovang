@@ -24,7 +24,7 @@
           :key="index"
           :id="'main-carousel-slide-' + index"
         >
-          <AssetImage :src="isMobile ? data.mobilePath : data.pcPath" />
+          <img :src="isMobile ? data.img.mobilePath : data.img.pcPath" />
         </Slide>
       </Carousel>
     </section>
@@ -66,9 +66,9 @@
         <div class="flexWrap" v-if="!isMobile">
           <div v-for="(data, index) of holidayPresentData" :key="index" @click="openPopup(index)">
             <div>
-              <AssetImage class="before" :src="data.pcPath" />
+              <img class="before" :src="data.thumbImg.pcPath" />
             </div>
-            <p v-html="data.info" />
+            <p>{{data.title}}<br /><span>{{data.desc}}</span></p>
           </div>
         </div>
         <Carousel
@@ -91,10 +91,27 @@
             :key="index"
             :id="'main-carousel-slide-' + index"
           >
-            <AssetImage :src="isMobile ? data.mobilePath : data.pcPath" @click="openPopup(index)" />
-            <p v-html="data.info" />
+            <img :src="data.thumbImg.mobilePath" @click="openPopup(index)" />
+            <p>{{data.title}}<br /><span>{{data.desc}}</span></p>
           </Slide>
         </Carousel>
+        <PresentPopup
+          v-for="(data, index) of holidayPresentData"
+          :key="index"
+          :class="'popup-' + index"
+          v-show="holidayPresentModal[index]"
+          :src="data.bodyImg.pcPath"
+          @close="closePopup(index)"
+          :isMobile="isMobile"
+        >
+          <template slot="title">
+            <span v-if="!isMobile">
+              {{data.popupTitle}}
+            </span>
+          </template>
+          <p v-html="data.body" />
+        </PresentPopup>
+        <!--  
         <PresentPopup
           class="popup-1"
           v-show="holidayPresentModal[0]"
@@ -291,6 +308,7 @@
           홍새우, 완도의 다시마가 담긴 맛국물팩으로 요리에 감칠맛을 더할 수
           있습니다.
         </PresentPopup>
+        -->
       </HomeContent>
     </section>
     <section class="content-3">
@@ -468,15 +486,17 @@ import {
   screenSize,
   ImgPath,
   PresentConsult,
-  PresentProject
+  PresentProject,
+  MainSlide,
+  PresentItem
 } from "@/utils";
 
-class DoubleImgPath extends ImgPath {
-  public pcPathAfter = "";
-  public tabletPathAfter = "";
-  public mobilePathAfter = "";
-  public info = "";
-}
+// class DoubleImgPath extends ImgPath {
+//   public pcPathAfter = "";
+//   public tabletPathAfter = "";
+//   public mobilePathAfter = "";
+//   public info = "";
+// }
 
 @Component({
   name: "Present",
@@ -494,9 +514,9 @@ class DoubleImgPath extends ImgPath {
   }
 })
 export default class Present extends Vue {
-  private mainSlideData: ImgPath[] = [];
+  private mainSlideData: MainSlide[] = [];
   private projectData: PresentProject[] = [];
-  private holidayPresentData: DoubleImgPath[] = [];
+  private holidayPresentData: PresentItem[] = [];
 
   private carouselPerPage = 1;
   private curIndex = 0;
@@ -512,20 +532,13 @@ export default class Present extends Vue {
     window.addEventListener("resize", this.handleResize);
     window.addEventListener("scroll", this.handleScroll);
 
+
+    /*
     for (let i = 0; i < 6; i++) {
       this.holidayPresentModal.push(false);
     }
 
-    for (let i = 1; i <= 2; i++) {
-      this.mainSlideData.push({
-        index: -1,
-        name: "",
-        pcPath: `present-page/Web/main/${i}.jpg`,
-        tabletPath: "",
-        mobilePath: `present-page/Mobile/main/${i}.jpg`
-      });
-    }
-
+    
     const presentInfo = [
       `오지의 장
       <br />
@@ -565,16 +578,51 @@ export default class Present extends Vue {
         info: presentInfo[i - 1]
       });
     }
+    */
 
+    await this.LoadData();
+  }
+
+  async LoadData() {
     await this.LoadPresentProject();
+    await this.LoadMainSlides();
+    await this.LoadPrsentItems();
   }
 
   async LoadPresentProject() {
     try {
       const { data } = await AxiosHelper.GET("/getPresentProjects.php");
-      const list = data.data as PresentProject[];
+      const projectList = data.data as PresentProject[];
 
-      this.projectData = list;
+      this.projectData = projectList;
+    } catch (error) {
+      console.log("명절선물 기획 프로젝트 로딩 실패");
+      console.log(error);
+    }
+  }
+
+  async LoadMainSlides() {
+    try {
+      const { data } = await AxiosHelper.GET("/getPresentMainSlides.php");
+      const mainSlide = data.data as MainSlide[];
+
+      this.mainSlideData = mainSlide;
+    } catch (error) {
+      console.log("명절선물 기획 프로젝트 로딩 실패");
+      console.log(error);
+    }
+  }
+
+  async LoadPrsentItems() {
+    try {
+      const { data } = await AxiosHelper.GET("/getPresentItem.php");
+      const presentItem = data.data as PresentItem[];
+
+      this.holidayPresentData = presentItem;
+
+      for (let i = 0; i < this.holidayPresentData.length; i++) {
+        this.holidayPresentModal.push(false);
+      }
     } catch (error) {
       console.log("명절선물 기획 프로젝트 로딩 실패");
       console.log(error);

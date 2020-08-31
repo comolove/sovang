@@ -8,6 +8,7 @@ import PresentProjectView from "@/components/Admin/PresentProjectView.vue";
 import StoreList from "@/components/Admin/StoreList.vue";
 import ModifiableImage from "@/components/Admin/ModifiableImage.vue";
 import SwapModifiableImage from "@/components/Admin/SwapModifiableImage.vue";
+import PresentItemView from "@/components/Admin/PresentItemView.vue";
 
 export {
   Login,
@@ -18,5 +19,6 @@ export {
   PresentProjectView,
   StoreList,
   ModifiableImage,
-  SwapModifiableImage
+  SwapModifiableImage,
+  PresentItemView
 };

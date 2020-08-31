@@ -16,6 +16,9 @@ import AdminPresentProject from "../views/Admin/PresentProject.vue";
 import AdminNotice from "../views/Admin/Notice.vue";
 import AdminNoticeMobile from "../views/Admin/NoticeMobile.vue";
 import AdminFellowshipPeople from "../views/Admin/FellowshipPeople.vue";
+import AdminCateringMainSlide from "../views/Admin/CateringMainSlide.vue";
+import AdminPresentMainSlide from "../views/Admin/PresentMainSlide.vue";
+import AdminPresentItem from "../views/Admin/PresentItem.vue";
 
 Vue.use(VueRouter);
 
@@ -91,18 +94,21 @@ const routes: Array<RouteConfig> = [
       {
         path: "fellowship_people",
         component: AdminFellowshipPeople
+      },
+      {
+        path: "catering_mainslide",
+        component: AdminCateringMainSlide
+      },
+      {
+        path: "present_mainslide",
+        component: AdminPresentMainSlide
+      },
+      {
+        path: "present_item",
+        component: AdminPresentItem
       }
     ]
   }
-  // {
-  //   path: "/about",
-  //   name: "About",
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/About.vue")
-  // }
 ];
 
 const router = new VueRouter({

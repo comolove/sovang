@@ -22,7 +22,7 @@
             :key="index"
             :id="'main-carousel-slide-' + index"
           >
-            <AssetImage :src="isMobile ? data.mobilePath : data.pcPath" />
+            <img :src="isMobile ? data.img.mobilePath : data.img.pcPath" />
           </Slide>
         </Carousel>
       </section>
@@ -481,7 +481,8 @@ import {
   screenSize,
   ImgPath,
   CateringOrder,
-  CateringStory
+  CateringStory,
+  MainSlide
 } from "@/utils";
 
 class CateringContentData extends ImgPath {
@@ -509,7 +510,7 @@ class CateringContentData extends ImgPath {
   }
 })
 export default class Catering extends Vue {
-  private mainSlideData: ImgPath[] = [];
+  private mainSlideData: MainSlide[] = [];
   private cateringStorySlideData: CateringStory[] = [];
   private cateringVisitSlideData: CateringContentData[] = [];
   private cateringBoxSlideData: CateringContentData[] = [];
@@ -549,16 +550,6 @@ export default class Catering extends Vue {
   async created() {
     window.addEventListener("resize", this.handleResize);
     window.addEventListener("scroll", this.handleScroll);
-
-    for (let i = 0; i < 2; i++) {
-      this.mainSlideData.push({
-        index: -1,
-        name: "",
-        pcPath: `catering-page/main/WEB/main-slide-${i + 1}.jpg`,
-        tabletPath: "",
-        mobilePath: `catering-page/main/Mobile/main-slide-${i + 1}.jpg`
-      });
-    }
 
     const visitTitle = ["실속형", "일반형", "고급형"];
 
@@ -726,10 +717,15 @@ export default class Catering extends Vue {
 
   async LoadCateringStories() {
     try {
-      const { data } = await AxiosHelper.GET("/getCateringStories.php");
-      const list = data.data as CateringStory[];
+      let result = await AxiosHelper.GET("/getCateringStories.php");
+      const cateringList = result.data.data as CateringStory[];
 
-      this.cateringStorySlideData = list;
+      this.cateringStorySlideData = cateringList;
+
+      result = await AxiosHelper.GET("/getCateringMainSlides.php");
+      const cateringSlide = result.data.data as MainSlide[];
+
+      this.mainSlideData = cateringSlide;
     } catch (error) {
       console.log("케이터링 이야기 로딩 실패");
       console.log(error);
