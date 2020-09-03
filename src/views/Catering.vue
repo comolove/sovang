@@ -295,11 +295,13 @@
             :isRequired="true"
             name="people"
           />
+          <div>
           <select class="mini" v-model="payType">
             <option selected disabled value>결제방법</option>
             <option>카드결제</option>
             <option>계좌이체</option>
           </select>
+          </div>
         </div>
         <InputText
           v-if="!isMobile"
@@ -733,6 +735,9 @@ export default class Catering extends Vue {
   }
 
   mounted() {
+    this.handleResize();
+    this.responseComponents();
+
     // vue-carousel mounted시 첫 번째 요소가 활성화 클래스 태그가 안붙는 문제가 있음
     ((document as Document).getElementById(
       "main-carousel-slide-0"
@@ -747,9 +752,6 @@ export default class Catering extends Vue {
         firstSlide.classList.remove("VueCarousel-slide-active");
       }
     }, 6000);
-
-    this.handleResize();
-    this.responseComponents();
   }
 
   destroyed() {
@@ -1130,6 +1132,7 @@ article {
 
     @include mobile {
       font-size: 2.778vw;
+      -webkit-text-size-adjust: none;
       line-height: 1.7;
       background: white;
       letter-spacing: 0.09vw;
@@ -1634,6 +1637,7 @@ article {
           width: 100%;
           height: 7.5vw;
           line-height: 7.361vw;
+          background: url("../assets/images/select-arrow.png") no-repeat 96% 50%/3vw;
         }
       }
     }
@@ -1667,6 +1671,20 @@ article {
       justify-content: space-between;
       padding: 0;
       background: #ededee;
+      
+      div {
+        background-color: white;
+        select.mini {
+          padding: 0 1.398vw 0 0.3vw;
+          appearance: none;
+          background: url("../assets/images/select-arrow.png") no-repeat 97% 50%/1vw;
+
+          @include mobile {
+            padding-right: 5vw;
+            background: url("../assets/images/select-arrow.png") no-repeat 97% 50%/3vw;
+          }    
+        }
+      }
 
       .mini::v-deep {
         display: inline-block;
@@ -1708,6 +1726,11 @@ article {
         padding-right: 1.398vw;
         appearance: none;
         background: url("../assets/images/select-arrow.png") no-repeat 97% 50%/1vw;
+
+        @include mobile {
+          padding-right: 5vw;
+          background: url("../assets/images/select-arrow.png") no-repeat 97% 50%/3vw;
+        }
       }
 
       #year {
@@ -1740,6 +1763,11 @@ article {
         padding-right: 1.398vw;
         appearance: none;
         background: url("../assets/images/select-arrow.png") no-repeat 97% 50%/1vw;
+
+        @include mobile {
+          padding-right: 5vw;
+          background: url("../assets/images/select-arrow.png") no-repeat 97% 50%/3vw;
+        }
       }
 
       #hour {

@@ -440,9 +440,8 @@ main {
       &:nth-child(4) {
         margin-top: 4.531vw;
         div {
-          padding-top: 1vw;
-          margin-left: 46.927vw;
-          line-height: 1.879vw;
+          margin: -0.5vw 0 0 46.927vw;
+          line-height: 1.97vw;
 
           @include mobile {
             margin: 0;
