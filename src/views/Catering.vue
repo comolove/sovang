@@ -1155,7 +1155,19 @@ article {
         }
 
         &-4 {
-          letter-spacing: 0.45vw;
+          letter-spacing: 0.45vw;  
+        }
+      }
+    }
+
+    @media screen and (max-width: 340px) {
+      .wider {
+        &-1 {
+          letter-spacing: normal;
+        }
+
+        &-4 {
+          letter-spacing: normal;  
         }
       }
     }
