@@ -1171,6 +1171,36 @@ article {
         }
       }
     }
+
+    @media only screen 
+    and (device-width: 414px) 
+    and (device-height: 896px) 
+    and (-webkit-device-pixel-ratio: 2) {
+      .wider {
+        &-1 {
+          letter-spacing: normal;
+        }
+
+        &-4 {
+          letter-spacing: normal;  
+        }
+      }
+    }
+
+    @media only screen 
+    and (device-width: 414px) 
+    and (device-height: 896px) 
+    and (-webkit-device-pixel-ratio: 3) {
+      .wider {
+        &-1 {
+          letter-spacing: normal;
+        }
+
+        &-4 {
+          letter-spacing: normal;  
+        }
+      }
+    }
   }
 }
 
