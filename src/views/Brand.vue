@@ -78,27 +78,10 @@
             'brand-page/' + (isMobile ? 'Mobile' : 'WEB') + '/content-4.jpg'
           "
         />
-        <!-- <div class="info-2">
-          오지(奧地).
-          <br />그 곳은 완전히 지워지지 않은 옛 삶의 방식이 고스란히 남겨져
-          있었고, 먹거리에 관한 오래된 유산을 이어받을 수 있는 곳이었습니다．
-          <br />
-          <br />산 속에 핀 수많은 풀 중에 먹을 것을 골라내는 눈, 고구려
-          사람들로부터 이어져 내려온 발효음식의 전통, 계절을 대비하여 식량을
-          갈무리하던 혜안 - 그 모든 것을 몸에 아로새긴 사람들이 살고 있었습니다.
-          <br />
-          <br />그렇게 우리는 오랜 시골집 속에, 빛나는 오지의 메리트를 찾았고,
-          지역과 농촌을 잇는 모두를 위한 위로의 공간이 되어가고자 합니다.
-        </div> -->
         <div class="info-2 og">
           <p>오지(奧地).</p>
-          <!-- <br /> -->
           <p>집 안 아궁이에 불을 떼는 곳이라는 한자에서 유래된 오(奧). 깊고 깊은 그 곳엔, 오래 간직되어 온 따스한 온기가 있습니다.</p>
-          <!-- <br /> -->
-          <!-- <br/> -->
           <p>오지는 옛 삶의 방식이 고스란히 남겨져 있는 곳이자, 먹거리에 관한 오래된 유산을 이어받을 수 있는 곳이었습니다． 산 속에 핀 수많은 풀 중에 먹을 것을 골라내는 눈, 옛부터 이어져 내려온 발효음식의 전통, 계절을 대비해 식량을 갈무리하던 혜안.</p>
-          <!-- <br /> -->
-          <!-- <br /> -->
           <p>소녀방앗간은 오래 간직되어 온 빛나는 오지의 메리트를 찾아 지역과 도시 모두를 위로하는 공간을 만들고자 합니다.</p>
         </div>
       </HomeContent>
@@ -352,9 +335,23 @@ main {
         float: right;
         width: 24.479vw;
         height: 23.229vw;
-
+        
         p {
           margin-bottom: 1.198vw;
+
+          &:first-child {
+            margin-bottom: 0px;
+          }
+        }
+
+        @include mobile {
+          clear: both;
+          width: auto;
+          height: auto;
+
+          p {
+            margin-bottom: 3.198vw;
+          }
         }
       }
 
@@ -475,12 +472,13 @@ main {
         margin-top: 4.531vw;
         div {
           padding-top: 1vw;
+          padding-bottom: 1vw;
           margin-left: 46.927vw;
           line-height: 1.879vw;
 
           @include mobile {
             margin: 0;
-            margin-top: 64.833vw;
+            margin-top: 59.833vw;
             padding: 0;
             line-height: 1.53;
           }
