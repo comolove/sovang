@@ -53,13 +53,15 @@ if (count($list) > 0)
 }
 
 $mailSender = new MailSender();
+$mailTitle = date("m월d일")." 명절선물 상담예약";
+
 $mailBody = "신규 명절선물 상담예약이 접수되었습니다 :)\n";
 $mailBody = $mailBody."단체명 : $organization\n";
 $mailBody = $mailBody."담당자 : $personInCharge\n";
 $mailBody = $mailBody."이메일 : $email\n";
 $mailBody = $mailBody."연락처 : $hp\n";
 
-$emailResult = $mailSender->SendTo("sobang@millcompany.co.kr", "명절선물 상담예약", $mailBody, array($filepath));
+$emailResult = $mailSender->SendTo("sobang@millcompany.co.kr", $mailTitle, $mailBody, array($filepath));
 
 if ($emailResult == FALSE) 
 {
