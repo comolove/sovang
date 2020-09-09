@@ -739,10 +739,16 @@ export default class Catering extends Vue {
     this.responseComponents();
 
     // vue-carousel mounted시 첫 번째 요소가 활성화 클래스 태그가 안붙는 문제가 있음
-    const mainSlideElement = document.getElementById("main-carousel-slide-0");
-    if (mainSlideElement) {
-      mainSlideElement.classList.add("VueCarousel-slide-active");
-    }
+    setTimeout(() => {
+      const firstSlideOfMain = document.getElementById("main-carousel-slide-0");
+      if (firstSlideOfMain) {
+        firstSlideOfMain.classList.add("VueCarousel-slide-active");
+      }
+    }, 1000);
+    // const mainSlideElement = document.getElementById("main-carousel-slide-0");
+    // if (mainSlideElement) {
+    //   mainSlideElement.classList.add("VueCarousel-slide-active");
+    // }
 
     setTimeout(() => {
       // 슬라이드가 바뀌어도 임의로 넣어준 active 클래스는 삭제가 안되서 n초후에 임의로 삭제
