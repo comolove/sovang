@@ -26,7 +26,8 @@ new Vue({
     AOS.init({
       duration: 1000,
       delay: 100,
-      offset: 300
+      offset: 300,
+      disable: "mobile"
     });
   },
   router,
