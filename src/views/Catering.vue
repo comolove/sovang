@@ -146,7 +146,11 @@
         <span v-if="!isMobile">아래의</span> 상담 예약을 먼저 완료해주시면
         <span v-if="!isMobile">더 </span>빠른 소통이 가능합니다.
       </div>
-      <div class="info-7" data-aos="fade-up" style="text-align:justify !important; text-align-last: left !important">
+      <div
+        class="info-7"
+        data-aos="fade-up"
+        style="text-align:justify !important; text-align-last: left !important"
+      >
         <span class="bold-2">1) 주문시간</span> : 행사일 기준,
         <span class="red"
           >케이터링/맞춤도시락은 최소 1주 전, 간편도시락은 3일 전</span
@@ -184,13 +188,12 @@
         <span class="bold-2">6) 결제방법</span> : 계좌이체, 카드결제 중 편하신
         방법으로 선택해주시면 됩니다.
         <br v-if="!isMobile" />
-        <span class="blank">(단, 퀵배송의 경우 카드결제는
-          BC/우리/국민/농협카드만 가능합니다.)
+        <span class="blank"
+          >(단, 퀵배송의 경우 카드결제는 BC/우리/국민/농협카드만 가능합니다.)
         </span>
       </div>
       <span v-if="!isMobile" class="warning">
-        <span style="color:red;">*</span> 별표 표시 항목은 필수
-        입력사항입니다.
+        <span style="color:red;">*</span> 별표 표시 항목은 필수 입력사항입니다.
       </span>
       <div class="contentsWrap-6" data-aos="fade-up">
         <InputText
@@ -296,11 +299,11 @@
             name="people"
           />
           <div>
-          <select class="mini" v-model="payType">
-            <option selected disabled value>결제방법</option>
-            <option>카드결제</option>
-            <option>계좌이체</option>
-          </select>
+            <select class="mini" v-model="payType">
+              <option selected disabled value>결제방법</option>
+              <option>카드결제</option>
+              <option>계좌이체</option>
+            </select>
           </div>
         </div>
         <InputText
@@ -396,7 +399,9 @@
       <p v-if="!isPrivacyChecked">
         개인정보 동의는 필수입니다 :)
       </p>
-      <p v-else-if="isEmpty">붉은색 별표 표시된 항목은 필수 입력사항입니다 :)</p>
+      <p v-else-if="isEmpty">
+        붉은색 별표 표시된 항목은 필수 입력사항입니다 :)
+      </p>
       <p v-else>
         상담을 예약해주셔서 감사합니다 :)
         <br />빠른 시일 내에 연락드리도록 하겠습니다.
@@ -752,7 +757,9 @@ export default class Catering extends Vue {
 
     setTimeout(() => {
       // 슬라이드가 바뀌어도 임의로 넣어준 active 클래스는 삭제가 안되서 n초후에 임의로 삭제
-      const firstSlide = document.getElementById("main-carousel-slide-0") as Element;
+      const firstSlide = document.getElementById(
+        "main-carousel-slide-0"
+      ) as Element;
       if (firstSlide) {
         firstSlide.classList.remove("VueCarousel-slide-active");
       }
@@ -837,8 +844,7 @@ export default class Catering extends Vue {
     try {
       await AxiosHelper.POST("/insertCateringOrder.php", { ...order });
       this.consultModal = true;
-    }
-    catch(error) {
+    } catch (error) {
       alert("실패");
       console.log(error);
     }
@@ -857,7 +863,7 @@ export default class Catering extends Vue {
   }
 
   goTop() {
-    if(this.isVisible)
+    if (this.isVisible)
       window.scroll({
         top: 0,
         left: 0,
@@ -1160,7 +1166,7 @@ article {
         }
 
         &-4 {
-          letter-spacing: 0.45vw;  
+          letter-spacing: 0.45vw;
         }
       }
     }
@@ -1172,37 +1178,31 @@ article {
         }
 
         &-4 {
-          letter-spacing: normal;  
+          letter-spacing: normal;
         }
       }
     }
 
-    @media only screen 
-    and (device-width: 414px) 
-    and (device-height: 896px) 
-    and (-webkit-device-pixel-ratio: 2) {
+    @media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
       .wider {
         &-1 {
           letter-spacing: normal;
         }
 
         &-4 {
-          letter-spacing: normal;  
+          letter-spacing: normal;
         }
       }
     }
 
-    @media only screen 
-    and (device-width: 414px) 
-    and (device-height: 896px) 
-    and (-webkit-device-pixel-ratio: 3) {
+    @media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) {
       .wider {
         &-1 {
           letter-spacing: normal;
         }
 
         &-4 {
-          letter-spacing: normal;  
+          letter-spacing: normal;
         }
       }
     }
@@ -1568,16 +1568,16 @@ article {
   }
 
   .warning {
-      position: absolute;
-      font-size: 0.99vw;
-      left: 27.683vw;
-      bottom: 16.35vw;
-      color: #797777;
+    position: absolute;
+    font-size: 0.99vw;
+    left: 27.683vw;
+    bottom: 16.35vw;
+    color: #797777;
 
-      @include mobile {
-        display: none;
-      }
+    @include mobile {
+      display: none;
     }
+  }
 
   .info-2 {
     padding: 0 0 4.818vw;
@@ -1614,7 +1614,9 @@ article {
     justify-content: space-between;
     align-content: space-between;
     flex-wrap: wrap;
-    select::-ms-expand {display:none}
+    select::-ms-expand {
+      display: none;
+    }
     height: 27.813vw;
 
     @include mobile {
@@ -1676,7 +1678,7 @@ article {
         width: 22.135vw;
         height: 2.083vw;
         border: 0;
-        border-bottom: 0.052vw solid black;
+        border-bottom: 1px solid black;
         appearance: none;
         background: url("../assets/images/select-arrow.png") no-repeat 97% 50%/1vw;
 
@@ -1718,7 +1720,7 @@ article {
       justify-content: space-between;
       padding: 0;
       background: #ededee;
-      
+
       div {
         background-color: white;
         select.mini {
@@ -1728,8 +1730,9 @@ article {
 
           @include mobile {
             padding-right: 5vw;
-            background: url("../assets/images/select-arrow.png") no-repeat 97% 50%/3vw;
-          }    
+            background: url("../assets/images/select-arrow.png") no-repeat 97%
+              50%/3vw;
+          }
         }
       }
 
@@ -1932,7 +1935,7 @@ article {
     .privacyButton {
       display: inline-block;
       border-radius: 0.755vw;
-      border: 0.052vw solid #001845;
+      border: 1px solid #001845;
       padding: 0 0.677vw;
       margin-left: 0.3vw;
       font-size: 0.99vw;
@@ -1963,7 +1966,7 @@ article {
     border-radius: 1.302vw;
     background-color: #001845;
     color: white;
-    font-weight: 500; 
+    font-weight: 500;
     font-size: 1.302vw;
     cursor: pointer;
 
