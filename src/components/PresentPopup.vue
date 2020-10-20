@@ -98,7 +98,7 @@ export default class PresentPopup extends Vue {
       @include mobile {
         font-size: 4.583vw;
         line-height: 5.278vw;
-        padding-bottom: 3.889vw;
+        padding: 0 5vw 3.889vw;
       }
 
       img {
@@ -106,6 +106,7 @@ export default class PresentPopup extends Vue {
         top: 2.396vw;
         right: 3.021vw;
         width: 1.302vw;
+        cursor: pointer;
 
         @include mobile {
           width: 4.444vw;
