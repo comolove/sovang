@@ -59,6 +59,12 @@ const routes: Array<RouteConfig> = [
     component: Notice
   },
   {
+    path: "/wadiz",
+    beforeEnter(/*to, from, next*/) {
+      window.location.href = "https://www.wadiz.kr/web/campaign/detail/90769?utm_source=naver&utm_medium=maker_naver" 
+    }
+  },
+  {
     path: "/admin",
     name: "Admin",
     component: Admin,
