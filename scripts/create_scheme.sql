@@ -100,7 +100,7 @@ CREATE TABLE `mainSlide` (
   PRIMARY KEY (`index`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
-ALTER TABLE `dbmminny`.`mainSlide` 
+ALTER TABLE `mainSlide` 
 ADD COLUMN `link` VARCHAR(300) NULL AFTER `imageIndex`;
 
 --
