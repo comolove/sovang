@@ -4,7 +4,7 @@ require_once "db.php";
 
 $list = array();
 
-$selectSQL = "SELECT M.index AS `index`, I.name AS name, I.pc AS pcPath, I.mobile AS mobilePath, I.`index`as imgIndex FROM mainSlide AS M INNER JOIN image AS I ON I.index=M.imageIndex";
+$selectSQL = "SELECT M.index AS `index`, M.link AS `link`, I.name AS name, I.pc AS pcPath, I.mobile AS mobilePath, I.`index`as imgIndex FROM mainSlide AS M INNER JOIN image AS I ON I.index=M.imageIndex";
 
 $conn = CreateConnection();
 if ($result = $conn->query($selectSQL))
@@ -13,6 +13,7 @@ if ($result = $conn->query($selectSQL))
     {
         array_push($list, array(
                                 "index" => $row["index"], 
+                                "link" => $row["link"],
                                 "img" => array(
                                     "index" => $row["imgIndex"],
                                     "name" => $row["name"], 

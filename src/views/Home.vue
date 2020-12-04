@@ -24,7 +24,9 @@
           :key="index"
           :id="'main-carousel-slide-' + index"
         >
-          <img :src="isMobile ? data.img.mobilePath : data.img.pcPath" />
+          <a :href="data.link">
+            <img :src="isMobile ? data.img.mobilePath : data.img.pcPath" />
+          </a>
         </Slide>
       </Carousel>
     </section>

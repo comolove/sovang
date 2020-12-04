@@ -5,6 +5,7 @@ require_once "db.php";
 
 $pcImage = isset($_FILES["pcImage"]) ? $_FILES["pcImage"] : "";
 $mobileImage = isset($_FILES["mobileImage"]) ? $_FILES["mobileImage"] : "";
+$link = isset($_POST["link"]) ? $_POST["link"] : "";
 
 $imageUploader = new ImageUploader();
 $result = $imageUploader->UploadImages($pcImage['name'] , $pcImage, $mobileImage);
@@ -14,7 +15,7 @@ if ($imageUploader->IsFail())
     Response(500, $message);
 }
 
-$insertSQL = "INSERT INTO mainSlide (imageIndex) VALUES($result)";
+$insertSQL = "INSERT INTO mainSlide (imageIndex, link) VALUES($result, '$link')";
 
 $conn = CreateConnection();
 if ($conn->query($insertSQL) !== TRUE)

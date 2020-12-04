@@ -1,7 +1,7 @@
 <template>
   <div class="main-slide" v-if="image">
     <SwapModifiableImage :image="image.img" @modify="onModify"/>
-
+  
     <button
       class="red-button"
       @click="
@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import { BaseResImgObj } from "@/utils";
+import { MainSlide } from "@/utils";
 
 import SwapModifiableImage from "@/components/Admin/SwapModifiableImage.vue";
 
@@ -28,7 +28,7 @@ import SwapModifiableImage from "@/components/Admin/SwapModifiableImage.vue";
   }
 })
 export default class MainSlideView extends Vue {
-  @Prop() image!: BaseResImgObj;
+  @Prop() image!: MainSlide;
 
   protected onDelete(index: number) {
     this.$emit("delete", index);

@@ -22,12 +22,12 @@
     />
     <hr />
     <form v-on:submit.prevent="onSubmit">
-      <h3>메인 슬라이드 추가</h3>
-      <div class="input-wrap">
+      <h3>메인 슬라이드 {{selectedMainSlide ? "변경" : "추가"}}</h3>
+      <div class="input-wrap" v-if="!selectedMainSlide">
         <label for="pcImage">PC 이미지</label>
         <input ref="pcImage" id="pcImage" type="file" accept="image/*" />
       </div>
-      <div class="input-wrap">
+      <div class="input-wrap" v-if="!selectedMainSlide">
         <label for="mobileImage">모바일 이미지</label>
         <input
           ref="mobileImage"
@@ -36,7 +36,11 @@
           accept="image/*"
         />
       </div>
-      <button class="green-button" type="submit">업로드</button>
+      <div class="input-wrap">
+        <label for="link">링크 {{selectedMainSlide ? "변경" : "추가"}}</label>
+        <input ref="link" id="link" type="text" placeholder="빈칸 가능" :value="selectedMainSlide ? selectedMainSlide.link : ''" />
+      </div>
+      <button :class="selectedMainSlide ? 'blue-button' : 'green-button'" type="submit">{{selectedMainSlide ? "변경" : "업로드"}}</button>
     </form>
   </div>
 </template>
@@ -82,6 +86,25 @@ export default class AdminMainSlide extends Vue {
   private async onSubmit() {
     const pcImage = this.$refs["pcImage"] as HTMLInputElement;
     const mobileImage = this.$refs["mobileImage"] as HTMLInputElement;
+    const link = this.$refs["link"] as HTMLInputElement;
+
+    if (this.selectedMainSlide) {
+      try {
+         const { data } = await AxiosHelper.POST("/modifyMainSlide.php", {
+           index : this.selectedMainSlide.index,
+           link : link.value
+        });
+
+        alert(data.msg);
+      } catch (error) {
+        console.log("Upload Error : ", error);
+
+        alert(error.response.data.msg);
+      }
+
+      await this.LoadData();
+      return;
+    }
 
     if (!pcImage.files || !mobileImage.files) {
       alert("이미지를 업로드 해주세요");
@@ -95,6 +118,7 @@ export default class AdminMainSlide extends Vue {
       const formData = new FormData();
       formData.append("pcImage", pcImageFile);
       formData.append("mobileImage", mobileImageFile);
+      formData.append("link", link.value);
 
       try {
         const { data } = await AxiosHelper.POST(
