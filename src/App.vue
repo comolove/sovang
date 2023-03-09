@@ -12,6 +12,7 @@ import ChannelService from "@/utils/ChannelService";
 export default class App extends Vue {
   mounted()
   {
+    
     ChannelService.boot({
       "pluginKey": "ab20f262-1468-41fc-b5b7-bc5052356d2a" //please fill with your plugin key
     });
